@@ -1,0 +1,40 @@
+import StaticPageHeader from "@/components/landing/StaticPageHeader";
+import LegalContent from "@/components/landing/LegalContent";
+
+export default function DisclaimerPage() {
+  return (
+    <main className="min-h-screen">
+      <StaticPageHeader
+        title="Disclaimer"
+        description="Legal notices regarding the accuracy and use of information on this website."
+      />
+
+      <LegalContent>
+        <h2>1. Accuracy of Information</h2>
+        <p>
+          The information provided on the SolarCo website is for general informational purposes only. While we strive to keep the information up-to-date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose.
+        </p>
+
+        <h2>2. No Guarantee of Savings</h2>
+        <p>
+          Energy savings mentioned on this site are estimates based on average usage patterns and historical weather data. Actual savings will vary depending on your specific location, roof orientation, shaded areas, energy consumption habits, and local utility rates. SolarCo does not guarantee any specific financial return or amount of energy production.
+        </p>
+
+        <h2>3. External Links</h2>
+        <p>
+          Through this website, you may be able to link to other websites that are not under the control of SolarCo. We have no control over the nature, content, and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.
+        </p>
+
+        <h2>4. Professional Advice</h2>
+        <p>
+          The information on this website does not constitute professional financial, tax, or legal advice. We recommend consulting with qualified professionals regarding your specific situation before making any investment or installation decisions.
+        </p>
+
+        <h2>5. Technical Issues</h2>
+        <p>
+          SolarCo takes no responsibility for, and will not be liable for, the website being temporarily unavailable due to technical issues beyond our control.
+        </p>
+      </LegalContent>
+    </main>
+  );
+}

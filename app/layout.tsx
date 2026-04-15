@@ -1,21 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 import SessionProvider from "@/components/providers/SessionProvider";
+import SmoothScroll from "@/components/providers/SmoothScroll";
+import Navbar from "@/components/landing/Navbar";
+import Footer from "@/components/landing/Footer";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fontSans = Outfit({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
-  title: "Solar Company",
-  description: "Solar Company Management Platform",
+  title: "SolarCo | Powering a Sustainable Future",
+  description:
+    "Leading solar energy solutions for residential, industrial, and maintenance needs.",
 };
 
 export default function RootLayout({
@@ -26,10 +25,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fontSans.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
-        <SessionProvider>{children}</SessionProvider>
+      <body className="min-h-full flex flex-col font-sans">
+        <SessionProvider>
+          <SmoothScroll>
+            <Navbar />
+            <main className="grow">{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </SessionProvider>
       </body>
     </html>
   );

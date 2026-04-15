@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = env("MONGODB_URI")
 }
 
 enum Role {
@@ -15,6 +15,12 @@ enum Role {
 enum Gender {
   male
   female
+}
+
+enum QuotationStatus {
+  inquiry
+  draft
+  finalized
 }
 
 model User {
@@ -34,6 +40,7 @@ model User {
   accounts       Account[]
   sessions       Session[]
   Authenticator  Authenticator[]
+  blogs          Blog[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -101,6 +108,96 @@ model Authenticator {
   transports           String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
-  @@unique([userId, credentialID])
+model ContactMessage {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName  String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model Blog {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  tags        String[]
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String   @db.ObjectId
+  metadata    String?
+  isPublished Boolean  @default(false)
+  slug        String   @unique
+  content     String
+  image       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String   @unique
+  description String
+  problem     String?
+  solution    String?
+  savings     String?
+  outcome     String?
+  location    String
+  capacity    Int      // capacity in kW
+  category    String   // Industrial / Residential
+  images      String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Quotation {
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  phone           String
+  email           String?
+  customerCompany String?
+  address         String?
+  location        String
+  billAmount      Int
+  requirement     String
+  quoteNumber     String?
+  status          QuotationStatus? @default(inquiry)
+  notes           String?
+  validUntil      DateTime?
+  subtotalAmount  Float?           @default(0)
+  discountAmount  Float?           @default(0)
+  totalAmount     Float?           @default(0)
+  items           QuotationItem[]
+  createdAt       DateTime         @default(now())
+}
+
+model QuotationItem {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  quotationId     String    @db.ObjectId
+  quotation       Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  productName     String
+  description     String?
+  quantity        Int
+  unitPrice       Float
+  discountPercent Float     @default(0)
+  lineTotal       Float     @default(0)
+  createdAt       DateTime  @default(now())
+}
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  rating    Int
+  comment   String
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  company  String
+  feedback String
+  image    String
 }

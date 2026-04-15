@@ -1,0 +1,285 @@
+"use client";
+
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { UploadButton } from "@/lib/uploadthing";
+import { Card, CardContent } from "@/components/ui/card";
+import { X, Loader2, Plus } from "lucide-react";
+import Image from "next/image";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { createProject, updateProject } from "@/lib/actions/project";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+
+interface ProjectFormProps {
+  initialData?: any;
+}
+
+export const ProjectForm = ({ initialData }: ProjectFormProps) => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [title, setTitle] = useState(initialData?.title || "");
+  const [description, setDescription] = useState(initialData?.description || "");
+  const [problem, setProblem] = useState(initialData?.problem || "");
+  const [solution, setSolution] = useState(initialData?.solution || "");
+  const [savings, setSavings] = useState(initialData?.savings || "");
+  const [outcome, setOutcome] = useState(initialData?.outcome || "");
+  const [location, setLocation] = useState(initialData?.location || "");
+  const [capacity, setCapacity] = useState(initialData?.capacity?.toString() || "");
+  const [category, setCategory] = useState(initialData?.category || "Residential");
+  const [images, setImages] = useState<string[]>(initialData?.images || []);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!title || !description || !location || !capacity || images.length === 0) {
+      toast.error("Please fill in all required fields and upload at least one image");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const data = {
+        title,
+        description,
+        problem,
+        solution,
+        savings,
+        outcome,
+        location,
+        capacity: parseInt(capacity),
+        category,
+        images,
+      };
+
+      let result;
+      if (initialData) {
+        result = await updateProject(initialData.id, data);
+      } else {
+        result = await createProject(data);
+      }
+
+      if (result.success) {
+        toast.success(initialData ? "Project updated" : "Project created");
+        router.push("/admin/projects");
+      } else {
+        toast.error(result.error || "Something went wrong");
+      }
+    } catch (error) {
+      toast.error("Failed to save project");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const removeImage = (url: string) => {
+    setImages(images.filter((img) => img !== url));
+  };
+
+  return (
+    <form onSubmit={onSubmit} className="space-y-8 max-w-5xl mx-auto pb-20">
+      <div className="flex items-center justify-between sticky top-0 z-20 bg-background/80 backdrop-blur-md py-4 border-b mb-8">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">
+            {initialData ? "Edit Project" : "Add New Project"}
+          </h1>
+          <p className="text-muted-foreground">
+            {initialData ? "Modify project details" : "Showcase a new solar installation"}
+          </p>
+        </div>
+        <div className="flex gap-4">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.push("/admin/projects")}
+            disabled={loading}
+          >
+            Cancel
+          </Button>
+          <Button type="submit" disabled={loading} className="min-w-[120px]">
+            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {initialData ? "Update Project" : "Save Project"}
+          </Button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 space-y-6">
+          <Card>
+            <CardContent className="pt-6 space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="title">Project Title <span className="text-destructive">*</span></Label>
+                <Input
+                  id="title"
+                  placeholder="e.g. Green Valley Industrial Park"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="description">Overview Description <span className="text-destructive">*</span></Label>
+                <Textarea
+                  id="description"
+                  placeholder="Tell us about the project specifications and impact..."
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="min-h-[100px]"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="problem">The Problem (Optional)</Label>
+                  <Textarea
+                    id="problem"
+                    placeholder="What challenge did the client face?"
+                    value={problem}
+                    onChange={(e) => setProblem(e.target.value)}
+                    className="min-h-[100px]"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="solution">Our Solution (Optional)</Label>
+                  <Textarea
+                    id="solution"
+                    placeholder="How did we solve it with solar?"
+                    value={solution}
+                    onChange={(e) => setSolution(e.target.value)}
+                    className="min-h-[100px]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="savings">Estimated Savings (Optional)</Label>
+                  <Input
+                    id="savings"
+                    placeholder="e.g. 40% reduction in bills"
+                    value={savings}
+                    onChange={(e) => setSavings(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="outcome">Final Outcome (Optional)</Label>
+                  <Input
+                    id="outcome"
+                    placeholder="e.g. Fully operational since Jan 2024"
+                    value={outcome}
+                    onChange={(e) => setOutcome(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="location">Location <span className="text-destructive">*</span></Label>
+                  <Input
+                    id="location"
+                    placeholder="City, State"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="capacity">Capacity (kW) <span className="text-destructive">*</span></Label>
+                  <Input
+                    id="capacity"
+                    type="number"
+                    placeholder="e.g. 50"
+                    value={capacity}
+                    onChange={(e) => setCapacity(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6 space-y-4">
+              <Label>Project Images <span className="text-destructive">*</span></Label>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {images.map((url) => (
+                  <div key={url} className="relative aspect-video rounded-lg overflow-hidden border group">
+                    <Image
+                      src={url}
+                      alt="Project image"
+                      fill
+                      className="object-cover"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(url)}
+                      className="absolute top-1 right-1 bg-destructive text-destructive-foreground p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </div>
+                ))}
+                {images.length < 5 && (
+                  <div className="flex flex-col items-center justify-center aspect-video rounded-lg border-2 border-dashed border-muted-foreground/25 bg-muted/50 transition-colors hover:bg-muted/80">
+                    <UploadButton
+                      endpoint="projectImage"
+                      onClientUploadComplete={(res) => {
+                        if (res) {
+                          setImages([...images, ...res.map(r => r.url)]);
+                          toast.success("Images uploaded");
+                        }
+                      }}
+                      onUploadError={(error: Error) => {
+                        toast.error(`Upload failed: ${error.message}`);
+                      }}
+                      appearance={{
+                        button: "bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-full h-full",
+                      }}
+                      content={{
+                        button({ ready }) {
+                          if (ready) return <Plus className="h-6 w-6" />;
+                          return "Loading...";
+                        },
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground">Upload up to 5 images. Recommended size: 1200x800px.</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="space-y-6">
+          <Card>
+            <CardContent className="pt-6 space-y-4">
+              <div className="space-y-2">
+                <Label>Category <span className="text-destructive">*</span></Label>
+                <Select value={category} onValueChange={setCategory}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Residential">Residential</SelectItem>
+                    <SelectItem value="Industrial">Industrial</SelectItem>
+                    <SelectItem value="Commercial">Commercial</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </form>
+  );
+};

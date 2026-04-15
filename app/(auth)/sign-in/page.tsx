@@ -1,122 +1,163 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { LogIn, Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
 import { signInAction } from "@/lib/actions/auth-actions";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function SignInPage() {
   const [state, formAction, isPending] = useActionState(
     signInAction,
-    undefined
+    undefined,
   );
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
   useEffect(() => {
-    if (state?.success) {
-      // Get form values and call next-auth signIn
-      const form = document.getElementById("signin-form") as HTMLFormElement;
-      const formData = new FormData(form);
-      signIn("credentials", {
-        email: formData.get("email"),
-        password: formData.get("password"),
-        callbackUrl: "/",
-      });
-    }
+    const performSignIn = async () => {
+      if (state?.success) {
+        setAuthError(null);
+        const result = await signIn("credentials", {
+          email,
+          password,
+          redirect: false,
+        });
+
+        if (result?.error) {
+          setAuthError("Authentication failed. Please check your credentials.");
+        } else {
+          router.push("/");
+          router.refresh();
+        }
+      }
+    };
+    performSignIn();
   }, [state?.success, router]);
 
   return (
-    <div className="auth-card">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-card border border-border p-8 rounded-[2.5rem] shadow-2xl shadow-primary/5"
+    >
       {/* Header */}
-      <div className="auth-card-header">
-        <div className="auth-icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="auth-icon-svg"
-          >
-            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-            <polyline points="10 17 15 12 10 7" />
-            <line x1="15" y1="12" x2="3" y2="12" />
-          </svg>
+      <div className="text-center mb-8">
+        <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <LogIn className="w-8 h-8" />
         </div>
-        <h1 className="auth-title">Welcome Back</h1>
-        <p className="auth-subtitle">Sign in to your account</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">
+          Welcome Back
+        </h1>
+        <p className="text-muted-foreground">
+          Sign in to manage your solar energy
+        </p>
       </div>
 
-      {/* Error/Success Messages */}
-      {state?.error && <div className="auth-alert auth-alert-error">{state.error}</div>}
+      {/* Messages */}
+      {(state?.error || authError) && (
+        <div className="p-4 rounded-xl bg-destructive/10 text-destructive text-sm mb-6 border border-destructive/20 text-center animate-shake">
+          {state?.error || authError}
+        </div>
+      )}
       {state?.success && (
-        <div className="auth-alert auth-alert-success">{state.success}</div>
+        <div className="p-4 rounded-xl bg-primary/10 text-primary text-sm mb-6 border border-primary/20 text-center">
+          {state.success}
+        </div>
       )}
 
       {/* Form */}
-      <form id="signin-form" action={formAction} className="auth-form">
-        <div className="auth-field">
-          <label htmlFor="email" className="auth-label">
-            Email Address
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="you@example.com"
-            className="auth-input"
-            required
-          />
+      <form id="signin-form" action={formAction} className="space-y-6">
+        <div className="space-y-2">
+          <Label htmlFor="email">Email Address</Label>
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="pl-10 h-12 rounded-xl bg-background border-border focus:ring-primary"
+              required
+            />
+          </div>
           {state?.errors?.email && (
-            <p className="auth-field-error">{state.errors.email[0]}</p>
+            <p className="text-xs text-destructive mt-1">
+              {state.errors.email[0]}
+            </p>
           )}
         </div>
 
-        <div className="auth-field">
-          <label htmlFor="password" className="auth-label">
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="••••••••"
-            className="auth-input"
-            required
-          />
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+            <Label htmlFor="password">Password</Label>
+            <Link
+              href="/forgot-password"
+              className="text-xs text-primary hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
+          <div className="relative">
+            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="pl-10 h-12 rounded-xl bg-background border-border focus:ring-primary"
+              required
+            />
+          </div>
           {state?.errors?.password && (
-            <p className="auth-field-error">{state.errors.password[0]}</p>
+            <p className="text-xs text-destructive mt-1">
+              {state.errors.password[0]}
+            </p>
           )}
         </div>
 
-        <div className="auth-forgot-link">
-          <Link href="/forgot-password">Forgot password?</Link>
-        </div>
-
-        <button type="submit" disabled={isPending} className="auth-btn">
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="w-full h-12 rounded-xl text-lg font-bold group"
+        >
           {isPending ? (
-            <span className="auth-btn-loading">
-              <span className="auth-spinner" />
+            <span className="flex items-center gap-2">
+              <Loader2 className="w-5 h-5 animate-spin" />
               Signing in...
             </span>
           ) : (
-            "Sign In"
+            <>
+              Sign In
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </>
           )}
-        </button>
+        </Button>
       </form>
 
       {/* Footer */}
-      <div className="auth-footer">
-        <p>
+      <div className="mt-8 pt-8 border-t border-border/50 text-center">
+        <p className="text-sm text-muted-foreground">
           Don&apos;t have an account?{" "}
-          <Link href="/sign-up" className="auth-link">
+          <Link
+            href="/sign-up"
+            className="text-primary font-bold hover:underline"
+          >
             Sign up
           </Link>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
