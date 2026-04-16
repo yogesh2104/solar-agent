@@ -1,35 +1,21 @@
-import BlogHighlights from "@/components/landing/BlogHighlights";
-import ContactForm from "@/components/landing/ContactForm";
-import CTA from "@/components/landing/CTA";
-import Hero from "@/components/landing/Hero";
-import Innovation from "@/components/landing/Innovation";
-import Projects from "@/components/landing/Projects";
-import Reviews from "@/components/landing/Reviews";
-import Services from "@/components/landing/Services";
-import Testimonials from "@/components/landing/Testimonials";
-import WhyChooseUs from "@/components/landing/WhyChooseUs";
-import { db } from "@/lib/db";
+import B2BHero from "@/components/landing/B2BHero";
+import B2BAbout from "@/components/landing/B2BAbout";
+import B2BProjects from "@/components/landing/B2BProjects";
+import B2BTestimonials from "@/components/landing/B2BTestimonials";
+
+export const metadata = {
+  title: "Ecoray — B2B Industrial & Commercial Solar Solutions",
+  description:
+    "Industrial-scale solar integration for modern enterprises. High-yield PV systems, commercial energy storage, and smart power solutions.",
+};
 
 export default async function Home() {
-  const latestProjects = await db.project.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: 3,
-  });
-
   return (
     <>
-      <Hero />
-      <Innovation />
-      <Services />
-      {/* <Projects projects={latestProjects} /> */}
-      {/* <BlogHighlights /> */}
-      <WhyChooseUs />
-      <Testimonials />
-      <Reviews />
-      <ContactForm />
-      <CTA />
+      <B2BHero />
+      <B2BAbout />
+      <B2BProjects />
+      <B2BTestimonials />
     </>
   );
 }

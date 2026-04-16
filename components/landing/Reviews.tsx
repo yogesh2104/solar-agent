@@ -55,33 +55,26 @@ export default function Reviews() {
     }
   };
 
-  useEffect(() => {
-    fetchReviews();
-  }, []);
+  useEffect(() => { fetchReviews(); }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (formData.comment.length < 10) {
       toast.error("Comment must be at least 10 characters long");
       return;
     }
-
     setSubmitting(true);
-
     try {
       const res = await fetch("/api/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
       if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData.message || "Failed to submit review");
       }
-
-      toast.success("Review submitted! It will appear once approved by admin.");
+      toast.success("Review submitted! It will appear once approved.");
       setIsModalOpen(false);
       setFormData({ name: "", rating: "5", comment: "" });
     } catch (error: any) {
@@ -91,96 +84,84 @@ export default function Reviews() {
     }
   };
 
+  if (!loading && reviews.length === 0) return null;
+
   return (
-    <section id="reviews" className="py-24 bg-background overflow-hidden">
+    <section id="reviews" className="py-28 bg-[#080f1e] overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-primary font-bold tracking-widest uppercase text-sm mb-4"
+              className="text-[#f5a623] font-bold tracking-[0.3em] uppercase text-xs mb-4"
             >
-              Reviews
-            </motion.div>
+              Client Reviews
+            </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold text-foreground"
+              className="text-4xl md:text-5xl font-bold text-white"
             >
-              Customer <span className="text-muted-foreground">Feedback</span>
+              Customer <span className="text-white/30">Feedback</span>
             </motion.h2>
           </div>
 
           <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
             <DialogTrigger asChild>
-              <Button size="lg" className="rounded-full gap-2 shadow-lg shadow-primary/20">
+              <Button size="lg" className="rounded-full gap-2 bg-[#f5a623] hover:bg-[#e09520] text-black font-bold">
                 <MessageSquarePlus className="w-5 h-5" /> Write a Review
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] rounded-3xl">
+            <DialogContent className="sm:max-w-[425px] rounded-3xl bg-[#080f1e] border-white/10 text-white">
               <DialogHeader>
-                <DialogTitle>Share Your Experience</DialogTitle>
-                <DialogDescription>
+                <DialogTitle className="text-white">Share Your Experience</DialogTitle>
+                <DialogDescription className="text-white/40">
                   Your review helps others make informed decisions about going solar.
                 </DialogDescription>
               </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-6 pt-4">
+              <form onSubmit={handleSubmit} className="space-y-5 pt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="rev-name">Full Name</Label>
+                  <Label htmlFor="rev-name" className="text-white/50 text-xs uppercase tracking-wide">Full Name</Label>
                   <Input
-                    id="rev-name"
-                    required
-                    value={formData.name}
+                    id="rev-name" required value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="John Doe"
-                    className="rounded-xl h-12"
+                    className="rounded-xl h-12 bg-white/5 border-white/10 text-white placeholder:text-white/20"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="rev-rating">Rating (1-5)</Label>
-                  <Select
-                    value={formData.rating}
-                    onValueChange={(val) => setFormData({ ...formData, rating: val })}
-                  >
-                    <SelectTrigger className="rounded-xl h-12">
+                  <Label htmlFor="rev-rating" className="text-white/50 text-xs uppercase tracking-wide">Rating</Label>
+                  <Select value={formData.rating} onValueChange={(val) => setFormData({ ...formData, rating: val })}>
+                    <SelectTrigger className="rounded-xl h-12 bg-white/5 border-white/10 text-white">
                       <SelectValue placeholder="Select rating" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-[#080f1e] border-white/10">
                       {[5, 4, 3, 2, 1].map((num) => (
-                        <SelectItem key={num} value={num.toString()}>
-                          <div className="flex items-center gap-2">
-                            {num} Stars
-                          </div>
+                        <SelectItem key={num} value={num.toString()} className="text-white hover:bg-white/5">
+                          {num} Stars {num === 5 ? "⭐⭐⭐⭐⭐" : num === 4 ? "⭐⭐⭐⭐" : num >= 3 ? "⭐⭐⭐" : "⭐⭐"}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="rev-comment">Your Thoughts</Label>
+                  <Label htmlFor="rev-comment" className="text-white/50 text-xs uppercase tracking-wide">Your Thoughts</Label>
                   <textarea
-                    id="rev-comment"
-                    required
-                    rows={4}
+                    id="rev-comment" required rows={4}
                     value={formData.comment}
                     onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
-                    className="flex w-full rounded-xl border border-border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Tell us about your installation..."
+                    className="flex w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/20 focus-visible:outline-none focus-visible:border-[#f5a623]/40 resize-none"
+                    placeholder="Tell us about your installation experience..."
                   />
                   {formData.comment.length > 0 && formData.comment.length < 10 && (
-                    <p className="text-xs text-destructive">Message must be at least 10 characters.</p>
+                    <p className="text-xs text-red-400">At least 10 characters required.</p>
                   )}
                 </div>
-                <Button type="submit" disabled={submitting} className="w-full h-12 rounded-xl">
-                  {submitting ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Submitting...
-                    </>
-                  ) : "Submit Review"}
+                <Button type="submit" disabled={submitting} className="w-full h-12 rounded-xl bg-[#f5a623] hover:bg-[#e09520] text-black font-bold">
+                  {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Submitting...</> : "Submit Review"}
                 </Button>
               </form>
             </DialogContent>
@@ -188,18 +169,11 @@ export default function Reviews() {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="h-64 rounded-3xl bg-muted/20 animate-pulse" />
-            ))}
-          </div>
-        ) : reviews.length === 0 ? (
-          <div className="text-center py-20 border-2 border-dashed border-border rounded-3xl bg-muted/5">
-            <Quote className="w-12 h-12 text-muted-foreground mx-auto mb-4 opacity-20" />
-            <p className="text-muted-foreground">No reviews yet. Be the first to share your experience!</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => <div key={i} className="h-64 rounded-3xl bg-white/3 animate-pulse" />)}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {reviews.map((review, i) => (
               <motion.div
                 key={review.id}
@@ -208,30 +182,24 @@ export default function Reviews() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <Card className="h-full border-border bg-card/40 hover:border-primary/30 transition-all group rounded-3xl">
+                <Card className="h-full border-white/8 bg-[#050a14] hover:border-[#f5a623]/20 transition-all group rounded-3xl">
                   <CardContent className="p-8">
-                    <div className="flex gap-1 mb-6">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-4 h-4 ${
-                            i < review.rating ? "fill-accent text-accent" : "text-border"
-                          }`}
-                        />
+                    <div className="flex gap-1 mb-5">
+                      {[...Array(5)].map((_, si) => (
+                        <Star key={si} className={`w-4 h-4 ${si < review.rating ? "fill-[#f5a623] text-[#f5a623]" : "text-white/10"}`} />
                       ))}
                     </div>
-                    <p className="text-foreground/80 mb-8 leading-relaxed italic">
-                      &quot;{review.comment}&quot;
+                    <Quote className="w-8 h-8 text-white/5 mb-3" />
+                    <p className="text-white/50 mb-8 leading-relaxed italic text-sm">
+                      &ldquo;{review.comment}&rdquo;
                     </p>
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-[#f5a623]/10 border border-[#f5a623]/15 flex items-center justify-center font-bold text-[#f5a623] group-hover:bg-[#f5a623]/20 transition-colors">
                         {review.name[0]}
                       </div>
                       <div>
-                        <h4 className="font-bold text-foreground text-sm">{review.name}</h4>
-                        <p className="text-xs text-muted-foreground">
-                          {new Date(review.createdAt).toLocaleDateString()}
-                        </p>
+                        <h4 className="font-bold text-white text-sm">{review.name}</h4>
+                        <p className="text-xs text-white/30">{new Date(review.createdAt).toLocaleDateString()}</p>
                       </div>
                     </div>
                   </CardContent>

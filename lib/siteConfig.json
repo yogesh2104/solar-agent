@@ -1,0 +1,174 @@
+{
+  "company": {
+    "name": "Ecoray",
+    "fullName": "Ecoray Solar Solutions",
+    "tagline": "Powering the Future of Industry",
+    "logo": "E",
+    "contact": {
+      "phone": "+353 21 431 4353",
+      "email": "info@ecoray-solar.com",
+      "address": "National Sculpture Factory, Albert Road, Cork City, Ireland.",
+      "googleMaps": "#",
+      "workingHours": "Mon-Fri: 9:00 AM - 6:00 PM"
+    },
+    "social": {
+      "facebook": "#",
+      "twitter": "#",
+      "linkedin": "#",
+      "instagram": "#"
+    }
+  },
+  "navigation": [
+    {
+      "name": "Home",
+      "href": "#hero"
+    },
+    {
+      "name": "About",
+      "href": "/about"
+    },
+    {
+      "name": "Services",
+      "href": "#services"
+    },
+    {
+      "name": "Solutions",
+      "href": "#solutions"
+    },
+    {
+      "name": "Projects",
+      "href": "/projects"
+    },
+    {
+      "name": "Blog",
+      "href": "/blogs"
+    }
+  ],
+  "hero": {
+    "badge": "Enterprise Solar Partner",
+    "title": "Powering the Future",
+    "titleHighlight": "of Industry",
+    "description": "Industrial-scale solar integration for modern enterprises. High-yield PV systems, commercial energy storage, and smart power solutions for sustainable growth.",
+    "ctaPrimary": {
+      "text": "Get Commercial Quote",
+      "href": "/get-quote"
+    },
+    "ctaSecondary": {
+      "text": "View Solutions",
+      "href": "#services"
+    },
+    "stats": [
+      {
+        "label": "Energy Storage",
+        "value": "24/7",
+        "icon": "Battery",
+        "percent": 85
+      },
+      {
+        "label": "Inverter Power",
+        "value": "7.6 kW",
+        "icon": "Zap",
+        "percent": 92
+      }
+    ],
+    "image": "/images/new_landing/hero_b2b.png",
+    "overlayCards": {
+      "successStories": "View Our Success Stories In Competitive Energy",
+      "clientCount": "140k+",
+      "clientLabel": "Our Clients' Words",
+      "featureTitle": "Efficient Panels",
+      "featureDesc": "Maximize every sunray with our advanced, high-efficiency industrial solar arrays."
+    }
+  },
+  "about": {
+    "badge": "About Us",
+    "title": "we are cultivating a cleaner greener future for",
+    "titleHighlight": "global industry.",
+    "subTitle": "By harnessing solar energy",
+    "description": "By integrating solar energy into industrial practices, we significantly reduce carbon footprints while cutting down on energy overheads. This sustainable approach ensures long-term operational viability.",
+    "metrics": [
+      {
+        "value": "12+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "140+",
+        "label": "Enterprise Clients"
+      }
+    ],
+    "image": "/images/new_landing/about_b2b.png",
+    "features": [
+      "Reliable Power for Remote Facilities",
+      "Modernize Industrial Infrastructure"
+    ]
+  },
+  "projects": {
+    "badge": "Our Portfolio",
+    "title": "Discover Our Successful",
+    "titleHighlight": "Industrial Solar Projects.",
+    "description": "Scaling energy independence for factories, warehouses, and commercial complexes with bankable ROI models.",
+    "items": [
+      {
+        "id": 1,
+        "title": "Titan Manufacturing Hub",
+        "year": "2023",
+        "image": "/images/new_landing/project1.png",
+        "description": "Industrial scale solar integration for a 2.5 MW manufacturing complex.",
+        "location": "Cork, Ireland"
+      },
+      {
+        "id": 2,
+        "title": "Logistics Central PV",
+        "year": "2023",
+        "image": "/images/new_landing/hero.png",
+        "description": "Rooftop solar solution for a 500,000 sq ft logistics warehouse.",
+        "location": "Dublin, Ireland"
+      },
+      {
+        "id": 3,
+        "title": "Vertex Data Center",
+        "year": "2022",
+        "image": "/images/new_landing/about.png",
+        "description": "High-reliability energy storage and PV array for zero-downtime operations.",
+        "location": "Limerick, Ireland"
+      },
+      {
+        "id": 4,
+        "title": "Harbor Tech Complex",
+        "year": "2022",
+        "image": "/images/new_landing/hero.png",
+        "description": "Full-scale solar integration for a multi-tenant commercial technology park.",
+        "location": "Galway, Ireland"
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title": "Hear From Those Who Power",
+    "titleHighlight": "the Future With Us.",
+    "items": [
+      {
+        "id": 1,
+        "content": "The industrial scale efficiency provided by Ecoray has transformed our operational overhead. We've seen a 40% reduction in energy costs within the first year alone.",
+        "author": "Marcus Thorne",
+        "role": "Plant Operations Director",
+        "image": "/images/new_landing/avatar1.png"
+      },
+      {
+        "id": 2,
+        "content": "Switching to Ecoray's utility-scale solution was the most strategic move for our logistics network. Bankable results and exceptional project management.",
+        "author": "Elena Rossi",
+        "role": "CEO, Rossi Logistics",
+        "image": "/images/new_landing/avatar1.png"
+      }
+    ]
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Sign up for our Newsletter",
+      "description": "Stay updated with the latest in enterprise solar technology and ROI trends."
+    },
+    "watermark": "Powering the Future",
+    "copyright": "© Copyright 2024 Ecoray - All rights reserved."
+  }
+}

@@ -1,11 +1,18 @@
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
+export const metadata = {
+  title: "Privacy Policy | Suntrix",
+  description: "Your privacy is important to us. This policy explains how we collect, use, and protect your information.",
+};
+
 export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#050a14]">
       <StaticPageHeader
-        title="Privacy Policy"
+        title="Privacy"
+        highlight="Policy"
+        breadcrumb="Privacy Policy"
         description="Your privacy is important to us. This policy explains how we collect, use, and protect your information."
       />
 
@@ -15,10 +22,10 @@ export default function PrivacyPolicyPage() {
           We collect information you provide directly to us when you fill out a form, request a quote, or communicate with us. This may include:
         </p>
         <ul>
-          <li>Name</li>
-          <li>Email address</li>
-          <li>Phone number</li>
-          <li>Service address</li>
+          <li>Name and company name</li>
+          <li>Email address and phone number</li>
+          <li>Installation address / site location</li>
+          <li>Energy consumption details</li>
           <li>Any other information you choose to provide</li>
         </ul>
 
@@ -27,10 +34,10 @@ export default function PrivacyPolicyPage() {
           We use the information we collect to:
         </p>
         <ul>
-          <li>Provide and improve our solar services</li>
-          <li>Respond to your inquiries and provide customer support</li>
-          <li>Send you quotes, technical notices, and administrative messages</li>
-          <li>Communicate with you about products, services, and events</li>
+          <li>Provide and improve our solar EPC and O&M services</li>
+          <li>Respond to your inquiries and provide technical support</li>
+          <li>Send you quotes, proposals, and administrative messages</li>
+          <li>Communicate about products, services, and events</li>
           <li>Monitor and analyze trends, usage, and activities</li>
         </ul>
 
@@ -42,7 +49,7 @@ export default function PrivacyPolicyPage() {
           <li>With your consent</li>
           <li>To fulfill the purpose for which you provided it (e.g., with installation partners)</li>
           <li>To comply with legal obligations</li>
-          <li>To protect the rights and safety of SolarCo and our users</li>
+          <li>To protect the rights and safety of Suntrix and our users</li>
         </ul>
 
         <h2>4. Data Security</h2>
@@ -64,9 +71,9 @@ export default function PrivacyPolicyPage() {
         <p>
           If you have any questions about this Privacy Policy, please contact us at:
           <br />
-          Email: privacy@solarco.com
+          Email: legal@suntrix.in
           <br />
-          Address: 123 Solar Way, Sunshine City, CA 94101
+          Address: Suntrix Tower, BKC, Mumbai – 400 051
         </p>
       </LegalContent>
     </main>

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import SessionProvider from "@/components/providers/SessionProvider";
 import SmoothScroll from "@/components/providers/SmoothScroll";
-import Navbar from "@/components/landing/Navbar";
-import Footer from "@/components/landing/Footer";
+import B2BNavbar from "@/components/landing/B2BNavbar";
+import B2BFooter from "@/components/landing/B2BFooter";
 import "./globals.css";
 
 const fontSans = Outfit({
@@ -31,9 +31,9 @@ export default function RootLayout({
       <body className="flex flex-col font-sans">
         <SessionProvider>
           <SmoothScroll>
-            <Navbar />
+            <B2BNavbar />
             <main className="grow">{children}</main>
-            <Footer />
+            <B2BFooter />
           </SmoothScroll>
         </SessionProvider>
       </body>

@@ -40,28 +40,28 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border py-2"
+          ? "bg-[#050a14]/90 backdrop-blur-md border-b border-white/8 py-2"
           : "bg-transparent py-4"
         }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="bg-primary p-2 rounded-xl group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-primary/20">
-            <Zap className="w-6 h-6 text-primary-foreground fill-current" />
+          <div className="bg-[#f5a623] p-2 rounded-xl group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-[#f5a623]/20">
+            <Zap className="w-6 h-6 text-black fill-current" />
           </div>
-          <span className="text-2xl font-bold tracking-tight text-foreground">
+          <span className="text-2xl font-bold tracking-tight text-white">
             Suntrix
           </span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          <div className="flex items-center gap-6 px-6 py-2 bg-muted/50 rounded-full border border-border/50">
+          <div className="flex items-center gap-6 px-6 py-2 bg-white/4 rounded-full border border-white/10">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+                className="text-sm font-medium text-white/60 hover:text-[#f5a623] transition-colors"
               >
                 {link.name}
               </Link>
@@ -80,13 +80,13 @@ export default function Navbar() {
                 </Button>
               </Link>
             )}
-            <Link href="/contact">
+            <Link href="/get-quote">
               <Button
                 variant="default"
                 size="default"
-                className="rounded-full px-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/25 transition-all hover:scale-105 active:scale-95"
+                className="rounded-full px-8 bg-[#f5a623] hover:bg-[#e09520] text-black font-bold shadow-lg shadow-[#f5a623]/20 transition-all hover:scale-105 active:scale-95"
               >
-                Contact Us
+                Get Enterprise Quote
               </Button>
             </Link>
           </div>

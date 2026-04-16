@@ -7,23 +7,32 @@ interface LegalContentProps {
 
 export default function LegalContent({ children, className }: LegalContentProps) {
   return (
-    <div className="bg-background pb-24 relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/3 blur-[120px] rounded-full translate-x-1/2 -z-10" />
-      
-      <div
-        className={cn(
-          "prose prose-slate dark:prose-invert max-w-4xl lg:prose-xl mx-auto",
-          "prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight",
-          "prose-p:text-muted-foreground/80 prose-p:leading-relaxed prose-p:text-lg",
-          "prose-li:text-muted-foreground/80 prose-li:text-lg",
-          "prose-strong:text-foreground/90 prose-strong:font-bold",
-          "prose-a:text-primary hover:prose-a:text-primary/80 transition-colors prose-a:no-underline hover:prose-a:underline",
-          "bg-card/30 backdrop-blur-sm border border-border/50 rounded-[2.5rem] p-8 md:p-16 shadow-sm",
-          className
-        )}
-      >
-        {children}
+    <div className="bg-[#080f1e] pb-28 relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#f5a623]/4 blur-[120px] rounded-full translate-x-1/2 pointer-events-none" />
+
+      <div className="container mx-auto px-6">
+        <div
+          className={cn(
+            "prose max-w-4xl lg:prose-lg mx-auto",
+            // Dark theme headings
+            "prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight prose-headings:mt-10",
+            "prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:border-b prose-h2:border-white/8 prose-h2:pb-3 prose-h2:text-[#f5a623]",
+            // Body text
+            "prose-p:text-white/50 prose-p:leading-relaxed prose-p:text-base",
+            "prose-li:text-white/50 prose-li:text-base",
+            "prose-strong:text-white/80 prose-strong:font-semibold",
+            // Links
+            "prose-a:text-[#f5a623] prose-a:no-underline hover:prose-a:underline",
+            // Lists
+            "prose-ul:text-white/50",
+            // Card container
+            "bg-[#050a14] border border-white/8 rounded-3xl p-8 md:p-14 shadow-2xl",
+            className
+          )}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

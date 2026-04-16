@@ -124,49 +124,54 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #F8FAFC;
+  --background: #ffffff;
   --foreground: #0F172A;
   --card: #ffffff;
   --card-foreground: #0F172A;
   --popover: #ffffff;
   --popover-foreground: #0F172A;
-  --primary: #F59E0B;
+  --primary: #8dd35f;
   --primary-foreground: #ffffff;
-  --secondary: #0EA5E9;
-  --secondary-foreground: #ffffff;
-  --muted: #f1f5f9;
+  --secondary: #e0f2fe;
+  --secondary-foreground: #0f172a;
+  --muted: #f8fafc;
   --muted-foreground: #64748b;
-  --accent: #F59E0B;
+  --accent: #f5a623;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #F59E0B;
-  --radius: 0.4rem;
+  --ring: #8dd35f;
+  --radius: 1rem;
   --font-sans: 'Outfit', sans-serif;
+
+  /* Agro Special */
+  --agro-green: #8dd35f;
+  --agro-sky: #e0f2fe;
+  --agro-dark: #050a14;
 }
 
 .dark {
-  --background: #0F172A;
+  --background: #050a14;
   --foreground: #F8FAFC;
-  --card: #1E293B;
+  --card: #080f1e;
   --card-foreground: #F8FAFC;
-  --popover: #0F172A;
+  --popover: #080f1e;
   --popover-foreground: #F8FAFC;
-  --primary: #F59E0B;
-  --primary-foreground: #ffffff;
-  --secondary: #0EA5E9;
+  --primary: #8dd35f;
+  --primary-foreground: #000000;
+  --secondary: #0d1a2e;
   --secondary-foreground: #ffffff;
-  --muted: #1E293B;
-  --muted-foreground: #94a3b8;
-  --accent: #F59E0B;
-  --accent-foreground: #ffffff;
+  --muted: #0d1a2e;
+  --muted-foreground: rgba(248, 250, 252, 0.4);
+  --accent: #f5a623;
+  --accent-foreground: #000000;
   --destructive: #7f1d1d;
   --destructive-foreground: #F8FAFC;
-  --border: #1E293B;
-  --input: #1E293B;
-  --ring: #F59E0B;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: #8dd35f;
 }
 
 @theme inline {
