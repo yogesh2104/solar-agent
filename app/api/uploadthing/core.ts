@@ -25,6 +25,17 @@ export const ourFileRouter = {
       console.log("Upload complete for project image:", file.url);
       return { uploadedBy: metadata.userId };
     }),
+  blogContentMedia: f({ 
+    image: { maxFileSize: "4MB", maxFileCount: 4 }, 
+    video: { maxFileSize: "16MB", maxFileCount: 1 } 
+  })
+    .middleware(async () => {
+      return { userId: "admin" };
+    })
+    .onUploadComplete(async ({ metadata, file }) => {
+      console.log("Upload complete for blog content media:", file.url);
+      return { uploadedBy: metadata.userId };
+    }),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;

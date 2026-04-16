@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { 
   Table, 
   TableBody, 
@@ -15,10 +15,21 @@ import {
   Trash2, 
   MessageSquare,
   Star,
-  Clock
+  Clock,
+  Search,
+  Filter,
+  CheckCircle,
+  AlertCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { 
+  Card, 
+  CardContent, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { Separator } from "@/components/ui/separator";
@@ -35,10 +46,12 @@ interface Review {
 export default function AdminReviewsPage() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "approved">("all");
 
   const fetchReviews = async () => {
     try {
-      const res = await fetch("/api/reviews?all=true"); // I need to update API to allow admin to see all
+      const res = await fetch("/api/reviews?all=true");
       const data = await res.json();
       setReviews(data);
     } catch (error) {
@@ -51,6 +64,29 @@ export default function AdminReviewsPage() {
   useEffect(() => {
     fetchReviews();
   }, []);
+
+  const stats = useMemo(() => {
+    const total = reviews.length;
+    const pending = reviews.filter(r => !r.approved).length;
+    const approved = reviews.filter(r => r.approved).length;
+    const avgRating = total > 0 
+      ? (reviews.reduce((acc, r) => acc + r.rating, 0) / total).toFixed(1) 
+      : "0";
+    
+    return { total, pending, approved, avgRating };
+  }, [reviews]);
+
+  const filteredReviews = useMemo(() => {
+    return reviews.filter(review => {
+      const matchesSearch = review.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                           review.comment.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesStatus = statusFilter === "all" || 
+                           (statusFilter === "pending" && !review.approved) || 
+                           (statusFilter === "approved" && review.approved);
+      
+      return matchesSearch && matchesStatus;
+    });
+  }, [reviews, searchQuery, statusFilter]);
 
   const toggleApproval = async (id: string, currentStatus: boolean) => {
     try {
@@ -84,8 +120,8 @@ export default function AdminReviewsPage() {
   };
 
   return (
-    <div className="container mx-auto py-12">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+    <div className="space-y-8 animate-in fade-in duration-500">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h1 className="text-4xl font-extrabold tracking-tight">Customer Reviews</h1>
           <p className="text-muted-foreground mt-2 text-lg">
@@ -94,70 +130,168 @@ export default function AdminReviewsPage() {
         </div>
       </div>
 
-      <Separator className="mb-12 opacity-50" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card className="bg-card/40 backdrop-blur-sm border-none shadow-lg shadow-primary/5">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Total Reviews</CardTitle>
+            <MessageSquare className="h-4 w-4 text-primary" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold">{stats.total}</div>
+            <p className="text-xs text-muted-foreground mt-1">Overall submissions</p>
+          </CardContent>
+        </Card>
+        <Card className="bg-card/40 backdrop-blur-sm border-none shadow-lg shadow-primary/5">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Pending Approval</CardTitle>
+            <AlertCircle className="h-4 w-4 text-amber-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold">{stats.pending}</div>
+            <p className="text-xs text-muted-foreground mt-1">Awaiting moderation</p>
+          </CardContent>
+        </Card>
+        <Card className="bg-card/40 backdrop-blur-sm border-none shadow-lg shadow-primary/5">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Approved</CardTitle>
+            <CheckCircle className="h-4 w-4 text-emerald-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold">{stats.approved}</div>
+            <p className="text-xs text-muted-foreground mt-1">Live on site</p>
+          </CardContent>
+        </Card>
+        <Card className="bg-card/40 backdrop-blur-sm border-none shadow-lg shadow-primary/5">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Average Rating</CardTitle>
+            <Star className="h-4 w-4 text-amber-400" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold">{stats.avgRating}/5.0</div>
+            <p className="text-xs text-muted-foreground mt-1">Customer satisfaction</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-card/30 p-4 rounded-2xl border border-border/50">
+        <div className="flex p-1 bg-muted/50 rounded-xl w-full md:w-auto">
+          <button
+            onClick={() => setStatusFilter("all")}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              statusFilter === "all" ? "bg-background shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            All
+          </button>
+          <button
+            onClick={() => setStatusFilter("pending")}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+              statusFilter === "pending" ? "bg-background shadow-sm text-amber-600 font-bold" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Pending {stats.pending > 0 && <span className="inline-flex items-center justify-center w-5 h-5 text-[10px] bg-amber-500 text-white rounded-full">{stats.pending}</span>}
+          </button>
+          <button
+            onClick={() => setStatusFilter("approved")}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              statusFilter === "approved" ? "bg-background shadow-sm text-emerald-600 font-bold" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Approved
+          </button>
+        </div>
+
+        <div className="relative w-full md:w-80">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input 
+            placeholder="Search reviews..." 
+            className="pl-10 rounded-xl bg-card/50 border-border/50"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+      </div>
 
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-24">
+        <div className="flex flex-col items-center justify-center py-24 bg-card/20 rounded-3xl border border-dashed">
           <Clock className="w-12 h-12 text-primary animate-spin mb-4" />
-          <p>Loading reviews...</p>
+          <p className="text-muted-foreground">Loading reviews...</p>
         </div>
-      ) : reviews.length === 0 ? (
+      ) : filteredReviews.length === 0 ? (
         <div className="text-center py-24 border-2 border-dashed rounded-3xl bg-muted/20">
-          <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-2xl font-bold">No reviews found</h3>
-          <p className="text-muted-foreground mt-2">New reviews will appear here for your approval.</p>
+          <Filter className="h-12 w-12 text-muted-foreground mx-auto mb-4 opacity-20" />
+          <h3 className="text-2xl font-bold text-muted-foreground">No matches found</h3>
+          <p className="text-muted-foreground mt-2">Try adjusting your search or filters.</p>
+          <Button variant="link" onClick={() => {setSearchQuery(""); setStatusFilter("all");}} className="mt-4">
+            Reset All Filters
+          </Button>
         </div>
       ) : (
         <div className="border border-border/50 rounded-2xl overflow-hidden bg-card/50 backdrop-blur-sm shadow-xl shadow-primary/5">
           <Table>
             <TableHeader className="bg-muted/50">
               <TableRow>
-                <TableHead>Customer</TableHead>
+                <TableHead className="py-5 px-6">Customer</TableHead>
                 <TableHead>Rating</TableHead>
-                <TableHead className="w-[400px]">Comment</TableHead>
+                <TableHead className="w-[450px]">Comment</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Date</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="text-right px-6">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {reviews.map((review) => (
-                <TableRow key={review.id} className="hover:bg-primary/5 transition-colors">
-                  <TableCell className="font-semibold">{review.name}</TableCell>
+              {filteredReviews.map((review) => (
+                <TableRow key={review.id} className="hover:bg-primary/5 transition-colors group">
+                  <TableCell className="py-5 px-6 font-semibold">{review.name}</TableCell>
                   <TableCell>
-                    <div className="flex items-center gap-1">
-                      <Star className="h-3 w-3 fill-accent text-accent" />
-                      {review.rating}/5
+                    <div className="flex items-center gap-1.5">
+                      <div className="flex text-amber-400">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className={`h-3 w-3 ${i < review.rating ? "fill-current" : "text-muted"}`} 
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm font-medium">{review.rating}</span>
                     </div>
                   </TableCell>
-                  <TableCell className="text-muted-foreground italic text-sm">
-                    &quot;{review.comment}&quot;
+                  <TableCell className="py-5">
+                    <div className="max-w-[400px] overflow-hidden text-ellipsis text-muted-foreground italic text-sm group-hover:text-foreground transition-colors leading-relaxed">
+                      &quot;{review.comment}&quot;
+                    </div>
                   </TableCell>
                   <TableCell>
-                    <Badge variant={review.approved ? "default" : "outline"} className={review.approved ? "bg-green-500/10 text-green-600 border-none px-3" : "px-3"}>
+                    <Badge variant={review.approved ? "default" : "outline"} className={
+                      review.approved 
+                        ? "bg-emerald-500/10 text-emerald-600 border-none px-4 py-1 rounded-full text-xs font-bold" 
+                        : "bg-amber-500/10 text-amber-600 border-none px-4 py-1 rounded-full text-xs font-bold"
+                    }>
                       {review.approved ? "Approved" : "Pending"}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-muted-foreground text-sm">
                     {format(new Date(review.createdAt), "MMM d, yyyy")}
                   </TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex items-center justify-end gap-2">
+                  <TableCell className="text-right px-6">
+                    <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Button 
-                        size="icon" 
+                        size="sm" 
                         variant="ghost" 
-                        className={review.approved ? "text-amber-500 hover:text-amber-600 hover:bg-amber-500/10" : "text-green-500 hover:text-green-600 hover:bg-green-500/10"}
+                        className={review.approved ? "h-9 w-9 p-0 text-amber-500 hover:text-amber-600 hover:bg-amber-500/10 rounded-xl" : "h-9 w-9 p-0 text-emerald-500 hover:text-emerald-600 hover:bg-emerald-500/10 rounded-xl"}
                         onClick={() => toggleApproval(review.id, review.approved)}
+                        title={review.approved ? "Unapprove" : "Approve"}
                       >
-                        {review.approved ? <XCircle className="h-4 w-4" /> : <CheckCircle2 className="h-4 w-4" />}
+                        {review.approved ? <XCircle className="h-5 w-5" /> : <CheckCircle2 className="h-5 w-5" />}
                       </Button>
                       <Button 
-                        size="icon" 
+                        size="sm" 
                         variant="ghost" 
-                        className="text-destructive hover:bg-destructive/10"
+                        className="h-9 w-9 p-0 text-destructive hover:bg-destructive/10 rounded-xl"
                         onClick={() => deleteReview(review.id)}
+                        title="Delete Review"
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="h-5 w-5" />
                       </Button>
                     </div>
                   </TableCell>

@@ -25,10 +25,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontSans.variable} h-full antialiased`}
+      className={`${fontSans.variable} antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="flex flex-col font-sans">
         <SessionProvider>
           <SmoothScroll>
             <Navbar />

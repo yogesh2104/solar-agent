@@ -1,93 +1,139 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Home, Factory, HardHat, ArrowUpRight } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
+import { Plus, Minus, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 const services = [
   {
-    title: "Residential Solar",
-    description: "Lower your home's carbon footprint and energy costs with our high-efficiency residential solar installations.",
-    icon: Home,
-    color: "bg-green-500/10 text-green-500",
+    id: "01",
+    title: "Solar Panel Installation",
+    description:
+      "Our experts provide professional solar panel installation tailored to your site's unique conditions, ensuring maximum sunlight capture and optimal energy performance.",
+    image: "/images/Solar-Panel-Installation.webp",
   },
   {
-    title: "Industrial & Commercial",
-    description: "Turn your business's rooftop into an asset. We provide scalable solar solutions for factories and offices.",
-    icon: Factory,
-    color: "bg-blue-500/10 text-blue-500",
+    id: "02",
+    title: "System Design & Engineering",
+    description:
+      "Precision-engineered solar systems designed to meet your specific energy needs, whether residential, corporate, or industrial.",
+    image: "/images/System-Design-Engineering.jpg",
   },
   {
-    title: "Maintenance & Support",
-    description: "Ensure your solar system runs at peak performance with our regular maintenance and monitoring services.",
-    icon: HardHat,
-    color: "bg-amber-500/10 text-amber-500",
+    id: "03",
+    title: "Energy Storage Solutions",
+    description:
+      "Advanced battery storage systems that allow you to use your solar energy even when the sun isn't shining, ensuring total energy independence.",
+    image: "/images/industrial.png",
+  },
+  {
+    id: "04",
+    title: "Maintenance & Performance Monitoring",
+    description:
+      "24/7 monitoring and regular maintenance to ensure your system continues to operate at peak efficiency for years to come.",
+    image: "/images/maintenance.png",
   },
 ];
 
 export default function Services() {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
-    <section id="services" className="py-24 bg-background">
+    <section id="services" className="py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
-          <div className="max-w-2xl">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-16">
+          <div className="w-full md:w-1/2">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-primary font-bold tracking-widest uppercase text-sm mb-4"
+              className="flex items-center gap-4 mb-8"
             >
-              Our Solutions
+              <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
+                Our Sustainable <br />
+                <span className="text-slate-400">Solar Services</span>
+              </h2>
             </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold text-foreground"
-            >
-              Comprehensive Energy Solutions <br />
-              <span className="text-muted-foreground">Tailored for Every Need</span>
-            </motion.h2>
-          </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <Link href="#contact" className="text-primary font-medium flex items-center gap-2 hover:underline">
-              View All Services <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </motion.div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <Card className="group h-full border-border hover:border-primary transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 bg-card">
-                <CardHeader>
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 ${service.color}`}>
-                    <service.icon className="w-7 h-7" />
+            <div className="space-y-4">
+              {services.map((service, index) => (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`border-b border-border/50 pb-6 pt-4 cursor-pointer group transition-all duration-300 ${activeTab === index ? "opacity-100" : "opacity-60 hover:opacity-100"
+                    }`}
+                  onMouseEnter={() => setActiveTab(index)}
+                >
+                  <div className="flex items-center justify-between gap-8 mb-4">
+                    <div className="flex items-center gap-6">
+                      <span className="text-sm font-bold text-foreground/40 group-hover:text-primary transition-colors">
+                        {service.id}
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:translate-x-2 transition-transform duration-300">
+                        {service.title}
+                      </h3>
+                    </div>
+                    <div className="p-2 rounded-full border border-border group-hover:border-primary group-hover:bg-primary transition-all duration-300">
+                      {activeTab === index ? (
+                        <Minus className="w-4 h-4 group-hover:text-white" />
+                      ) : (
+                        <Plus className="w-4 h-4 group-hover:text-white" />
+                      )}
+                    </div>
                   </div>
-                  <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base text-muted-foreground leading-relaxed mb-8">
-                    {service.description}
-                  </CardDescription>
-                  <Link href="#" className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-foreground group-hover:text-primary transition-all">
-                    Learn More <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </Link>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+
+                  {activeTab === index && (
+                    <motion.p
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      className="text-muted-foreground text-sm md:text-base leading-relaxed pl-12 max-w-lg"
+                    >
+                      {service.description}
+                    </motion.p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="w-full md:w-1/2 sticky top-32"
+          >
+            <div className="relative aspect-square md:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl">
+              {services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: activeTab === index ? 1 : 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-[2000ms] ease-out scale-100 translate-z-0"
+                    style={{
+                      transform: activeTab === index ? "scale(1.1)" : "scale(1)",
+                    }}
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end">
+                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white mb-4">
+                      <ArrowUpRight className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-white text-3xl font-bold">{service.title}</h4>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

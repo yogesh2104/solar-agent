@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import { z } from "zod";
+
+const reviewSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  rating: z.coerce.number().min(1).max(5),
+  comment: z.string().min(10, "Comment must be at least 10 characters"),
+});
 
 export async function GET(req: Request) {
   try {
@@ -42,23 +48,24 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, rating, comment } = body;
-
-    if (!name || !rating || !comment) {
-      return new NextResponse("Missing fields", { status: 400 });
-    }
+    
+    const validatedData = reviewSchema.parse(body);
 
     const review = await db.review.create({
       data: {
-        name,
-        rating: parseInt(rating),
-        comment,
+        ...validatedData,
         approved: false, // Must be approved by admin
       },
     });
 
     return NextResponse.json(review);
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new NextResponse(JSON.stringify({ 
+        message: "Validation error", 
+        errors: error.issues 
+      }), { status: 400 });
+    }
     console.error("[REVIEWS_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
   }

@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Blog } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Calendar, User, ArrowRight, Tag } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 import { format } from "date-fns";
+import { motion } from "framer-motion";
 
 interface BlogCardProps {
   blog: Blog;
@@ -15,55 +15,51 @@ export const BlogCard = ({ blog, isAdmin }: BlogCardProps) => {
   const href = isAdmin ? `/admin/blogs/${blog.id}` : `/blogs/${blog.slug}`;
 
   return (
-    <Card className="group overflow-hidden flex flex-col h-full hover:shadow-xl transition-all duration-300 border-none bg-muted/30">
-      <Link href={href} className="relative aspect-[16/9] overflow-hidden">
+    <div className="group flex flex-col gap-6">
+      <Link
+        href={href}
+        className="relative aspect-16/10 overflow-hidden rounded-[2.5rem]"
+      >
         <Image
           src={blog.image}
           alt={blog.title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute top-4 left-4">
-          {blog.isPublished ? (
-            <Badge className="bg-green-500/90 text-white backdrop-blur-sm border-none">Published</Badge>
-          ) : (
-            <Badge variant="secondary" className="bg-yellow-500/90 text-white backdrop-blur-sm border-none">Draft</Badge>
-          )}
+        <div className="absolute top-6 right-6">
+          <Badge className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full">
+            {blog.tags[0] || "Insight"}
+          </Badge>
         </div>
       </Link>
-      <CardHeader className="space-y-4 flex-grow">
-        <div className="flex flex-wrap gap-2">
-          {blog.tags.slice(0, 3).map((tag) => (
-            <Badge key={tag} variant="outline" className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground border-muted-foreground/30">
-               {tag}
-            </Badge>
-          ))}
+
+      <div className="flex flex-col gap-3 px-2">
+        <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40">
+          <span>{format(new Date(blog.createdAt), "MMMM d, yyyy")}</span>
+          <span className="w-1 h-1 rounded-full bg-foreground/20" />
+          <span>5 min read</span>
         </div>
+
         <Link href={href}>
-          <h3 className="text-xl font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">
+          <h3 className="text-2xl font-bold text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
             {blog.title}
           </h3>
         </Link>
-      </CardHeader>
-      <CardContent className="pt-0">
-        <p className="text-muted-foreground text-sm line-clamp-3 leading-relaxed">
-          {blog.metadata || "Read more about this article..."}
+
+        <p className="text-muted-foreground text-sm line-clamp-2 leading-relaxed">
+          {blog.metadata ||
+            "Discover how sustainable energy solutions are transforming our world and driving innovation across industries."}
         </p>
-      </CardContent>
-      <CardFooter className="pt-0 mt-auto flex items-center justify-between border-t border-border/50 py-4 px-6">
-        <div className="flex items-center gap-4 text-xs text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <Calendar className="h-3.5 w-3.5" />
-            <span>{format(new Date(blog.createdAt), "MMM d, yyyy")}</span>
-          </div>
-        </div>
+
         {!isAdmin && (
-           <Link href={href} className="text-primary font-semibold text-sm flex items-center gap-1 group/btn">
-             Details
-             <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-           </Link>
+          <Link
+            href={href}
+            className="w-10 h-10 rounded-full border border-border flex items-center justify-center mt-2 group-hover:bg-primary group-hover:border-primary group-hover:text-white transition-all self-end"
+          >
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         )}
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 };

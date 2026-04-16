@@ -10,11 +10,11 @@ export default function ContactPage() {
         description="Have a question or ready to switch to clean energy? Get in touch with our team of experts today."
       />
 
-      <section className="py-24 bg-background">
+      <section className="py-10 bg-background">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
             {/* Contact Details */}
-            <div className="lg:col-span-1 space-y-12">
+            {/* <div className="lg:col-span-1 space-y-12">
               <div>
                 <h2 className="text-2xl font-bold text-foreground mb-8">Get in Touch</h2>
                 <div className="space-y-6">
@@ -37,9 +37,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Map Placeholder */}
               <div className="rounded-3xl overflow-hidden border border-border h-[300px] relative bg-muted group">
-                 {/* This would be a real Google Maps iframe in production */}
                  <div className="absolute inset-0 flex items-center justify-center text-center p-8">
                     <div className="space-y-2">
                         <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
@@ -54,13 +52,13 @@ export default function ContactPage() {
                     loading="lazy"
                 ></iframe>
               </div>
-            </div>
+            </div> */}
 
             {/* Form Section */}
-            <div className="lg:col-span-2">
+            <div className="">
               <div className="bg-card border border-border rounded-4xl p-8 md:p-12 shadow-xl">
-                 <h2 className="text-2xl font-bold text-foreground mb-8">Send us a Message</h2>
-                 <ContactForm />
+                <h2 className="text-2xl font-bold text-foreground mb-8">Send us a Message</h2>
+                <ContactForm />
               </div>
             </div>
           </div>

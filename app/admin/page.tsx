@@ -16,18 +16,26 @@ import {
   Star,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 export default async function AdminDashboard() {
-  const [blogsCount, projectsCount, quotationsCount, contactsCount, usersCount, reviewsCount, testimonialsCount] =
-    await Promise.all([
-      db.blog.count(),
-      db.project.count(),
-      db.quotation.count(),
-      db.contactMessage.count(),
-      db.user.count(),
-      db.review.count(),
-      db.testimonial.count(),
-    ]);
+  const [
+    blogsCount,
+    projectsCount,
+    quotationsCount,
+    contactsCount,
+    usersCount,
+    reviewsCount,
+    testimonialsCount,
+  ] = await Promise.all([
+    db.blog.count(),
+    db.project.count(),
+    db.quotation.count(),
+    db.contactMessage.count(),
+    db.user.count(),
+    db.review.count(),
+    db.testimonial.count(),
+  ]);
 
   const stats = [
     {
@@ -83,9 +91,12 @@ export default async function AdminDashboard() {
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div>
-        <h1 className="text-4xl font-extrabold tracking-tight">Dashboard Overview</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight">
+          Dashboard Overview
+        </h1>
         <p className="text-muted-foreground mt-2 text-lg">
-          Welcome back! Here&apos;s what&apos;s happening with your solar project.
+          Welcome back! Here&apos;s what&apos;s happening with your solar
+          project.
         </p>
       </div>
 
@@ -93,9 +104,14 @@ export default async function AdminDashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat) => (
-          <Card key={stat.title} className="border-none shadow-xl shadow-primary/5 bg-card/50 backdrop-blur-sm -hover:translate-y-1 transition-all duration-300">
+          <Card
+            key={stat.title}
+            className="border-none   bg-card/50 backdrop-blur-sm -hover:translate-y-1 transition-all duration-300"
+          >
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                {stat.title}
+              </CardTitle>
               <div className={`${stat.bgColor} p-2 rounded-lg`}>
                 <stat.icon className={`h-4 w-4 ${stat.color}`} />
               </div>
@@ -111,7 +127,7 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="border-none shadow-xl shadow-primary/5 bg-card/50 backdrop-blur-sm">
+        <Card className="border-none   bg-card/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-primary" />
@@ -120,28 +136,58 @@ export default async function AdminDashboard() {
             <CardDescription>Common tasks for administrators</CardDescription>
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-4">
-            <a href="/admin/blogs/new" className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group">
-              <div className="font-semibold group-hover:text-primary transition-colors">Create Blog</div>
-            </a>
-            <a href="/admin/projects/new" className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group">
-              <div className="font-semibold group-hover:text-primary transition-colors">Add Project</div>
-            </a>
-            <a href="/admin/quotations" className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group">
-              <div className="font-semibold group-hover:text-primary transition-colors">View Quotes</div>
-            </a>
-            <a href="/admin/contacts" className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group">
-              <div className="font-semibold group-hover:text-primary transition-colors">Inquiries</div>
-            </a>
-            <a href="/admin/reviews" className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group">
-              <div className="font-semibold group-hover:text-primary transition-colors">Manage Reviews</div>
-            </a>
-            <a href="/admin/testimonials" className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group">
-              <div className="font-semibold group-hover:text-primary transition-colors">Testimonials</div>
-            </a>
+            <Link
+              href="/admin/blogs/new"
+              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
+            >
+              <div className="font-semibold group-hover:text-primary transition-colors">
+                Create Blog
+              </div>
+            </Link>
+            <Link
+              href="/admin/projects/new"
+              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
+            >
+              <div className="font-semibold group-hover:text-primary transition-colors">
+                Add Project
+              </div>
+            </Link>
+            <Link
+              href="/admin/quotations"
+              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
+            >
+              <div className="font-semibold group-hover:text-primary transition-colors">
+                View Quotes
+              </div>
+            </Link>
+            <Link
+              href="/admin/contacts"
+              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
+            >
+              <div className="font-semibold group-hover:text-primary transition-colors">
+                Inquiries
+              </div>
+            </Link>
+            <Link
+              href="/admin/reviews"
+              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
+            >
+              <div className="font-semibold group-hover:text-primary transition-colors">
+                Manage Reviews
+              </div>
+            </Link>
+            <Link
+              href="/admin/testimonials"
+              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
+            >
+              <div className="font-semibold group-hover:text-primary transition-colors">
+                Testimonials
+              </div>
+            </Link>
           </CardContent>
         </Card>
 
-        <Card className="border-none shadow-xl shadow-primary/5 bg-card/50 backdrop-blur-sm">
+        <Card className="border-none   bg-card/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5 text-sky-500" />
@@ -156,11 +202,15 @@ export default async function AdminDashboard() {
             </div>
             <div className="flex items-center justify-between p-3 rounded-lg bg-muted/30">
               <span className="text-sm">Database Engine</span>
-              <span className="font-mono text-xs px-2 py-1 rounded bg-green-500/20 text-green-600">MongoDB / Prisma</span>
+              <span className="font-mono text-xs px-2 py-1 rounded bg-green-500/20 text-green-600">
+                MongoDB / Prisma
+              </span>
             </div>
             <div className="flex items-center justify-between p-3 rounded-lg bg-muted/30">
               <span className="text-sm">Deployment Stage</span>
-              <span className="font-mono text-xs px-2 py-1 rounded bg-amber-500/20 text-amber-600">Development</span>
+              <span className="font-mono text-xs px-2 py-1 rounded bg-amber-500/20 text-amber-600">
+                Development
+              </span>
             </div>
           </CardContent>
         </Card>

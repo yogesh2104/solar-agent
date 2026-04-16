@@ -1,8 +1,6 @@
-"use client";
-
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface StaticPageHeaderProps {
@@ -22,24 +20,22 @@ export default function StaticPageHeader({
     <section
       className={cn(
         "relative pt-32 pb-20 overflow-hidden bg-background",
-        className
+        className,
       )}
     >
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 blur-[120px] rounded-full" />
-      </div>
+      {/* Background patterns - matching Hero style */}
+      <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-secondary/10 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/2" />
 
-      <div className="container mx-auto px-6 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl"
+      <div className="container mx-auto px-6 relative z-10">
+        <div
+          // initial={{ opacity: 0, y: 20 }}
+          // animate={{ opacity: 1, y: 0 }}
+          // transition={{ duration: 0.5 }}
+          className="max-w-4xl"
         >
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
+          <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-12">
             <Link
               href="/"
               className="hover:text-primary transition-colors flex items-center gap-1"
@@ -47,27 +43,31 @@ export default function StaticPageHeader({
               <Home className="w-4 h-4" />
               Home
             </Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-foreground font-medium">{title}</span>
+            <ChevronRight className="w-4 h-4 opacity-40" />
+            <span className="text-foreground font-semibold">{title}</span>
           </nav>
 
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
-            {title}
-            {highlight ? (
-              <>
-                {" "}
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary">
+          <h1 className="text-6xl md:text-8xl font-bold text-foreground mb-8 tracking-tight leading-[0.9]">
+            <span className="flex flex-wrap items-center gap-x-6 gap-y-4">
+              {title}
+              {highlight ? (
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
                   {highlight}
                 </span>
-              </>
-            ) : null}
+              ) : (
+                <span className="w-12 h-12 md:w-20 md:h-20 bg-primary rounded-full flex items-center justify-center animate-[spin_10s_linear_infinite]">
+                  <Sun className="w-6 h-6 md:w-10 md:h-10 text-primary-foreground" />
+                </span>
+              )}
+            </span>
           </h1>
+
           {description && (
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl mt-8">
               {description}
             </p>
           )}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
@@ -28,15 +29,72 @@ import {
   Strikethrough,
   Underline as UnderlineIcon,
   Type,
+  Video as VideoIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { UploadDropzone } from "@/lib/uploadthing";
+import { Video } from "./video-extension";
+import { toast } from "sonner";
 
 interface BlogEditorProps {
   content: string;
   onChange: (content: string) => void;
   placeholder?: string;
 }
+
+const MediaUploadDialog = ({ editor }: { editor: any }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          title="Upload image or video"
+        >
+          <ImageIcon className="h-4 w-4 mr-1" />
+          <VideoIcon className="h-4 w-4" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Upload Media</DialogTitle>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <UploadDropzone
+            endpoint="blogContentMedia"
+            onClientUploadComplete={(res) => {
+              res.forEach((file) => {
+                if (file.url.match(/\.(mp4|webm|ogg)$/i) || file.type.startsWith("video/")) {
+                  editor.chain().focus().setVideo({ src: file.url }).run();
+                } else {
+                  editor.chain().focus().setImage({ src: file.url }).run();
+                }
+              });
+              toast.success("Media uploaded and inserted");
+              setOpen(false);
+            }}
+            onUploadError={(error: Error) => {
+              toast.error(`Upload failed: ${error.message}`);
+            }}
+            className="ut-label:text-primary ut-button:bg-primary ut-button:ut-readying:bg-primary/50"
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
 
 const MenuBar = ({ editor }: { editor: any }) => {
   if (!editor) {
@@ -217,6 +275,11 @@ const MenuBar = ({ editor }: { editor: any }) => {
         <LinkIcon className="h-4 w-4" />
       </Button>
 
+      <div className="w-px h-6 bg-border mx-1 my-auto" />
+
+      <MediaUploadDialog editor={editor} />
+
+
       <div className="ml-auto flex gap-1">
         <Button
           type="button"
@@ -265,6 +328,11 @@ export const BlogEditor = ({
       Image.configure({
         HTMLAttributes: {
           class: "max-w-full h-auto rounded-lg shadow-md my-4",
+        },
+      }),
+      Video.configure({
+        HTMLAttributes: {
+          class: "w-full aspect-video rounded-lg shadow-md my-4",
         },
       }),
     ],

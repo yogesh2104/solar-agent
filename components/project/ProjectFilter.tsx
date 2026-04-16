@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from "@/components/ui/select";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -18,10 +18,10 @@ interface ProjectFilterProps {
   onFilterChange: (filters: { category: string; location: string; search: string }) => void;
 }
 
-export default function ProjectFilter({ 
-  categories, 
-  locations, 
-  onFilterChange 
+export default function ProjectFilter({
+  categories,
+  locations,
+  onFilterChange
 }: ProjectFilterProps) {
   const [category, setCategory] = useState("all");
   const [location, setLocation] = useState("all");
@@ -62,7 +62,7 @@ export default function ProjectFilter({
             Category
           </label>
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="h-11 bg-background">
+            <SelectTrigger className="!h-11 w-full bg-background">
               <SelectValue placeholder="All Categories" />
             </SelectTrigger>
             <SelectContent>
@@ -81,7 +81,7 @@ export default function ProjectFilter({
             Location
           </label>
           <Select value={location} onValueChange={setLocation}>
-            <SelectTrigger className="h-11 bg-background">
+            <SelectTrigger className="!h-11 w-full bg-background">
               <SelectValue placeholder="All Locations" />
             </SelectTrigger>
             <SelectContent>
@@ -96,13 +96,13 @@ export default function ProjectFilter({
         </div>
 
         <div className="flex gap-2">
-          <Button 
-            variant="outline" 
-            className="flex-1 h-11 border-dashed hover:border-primary/50 transition-colors"
+          <Button
+            variant="destructive"
+            className="flex-1 h-11 border-dashed hover:border-primary text-white !bg-red-600 transition-colors"
             disabled={!hasFilters}
             onClick={resetFilters}
           >
-            <X className="w-4 h-4 mr-2" />
+            {/* <X className="w-4 h-4 mr-2" /> */}
             Reset
           </Button>
           {/* <Button className="flex-grow h-11">

@@ -9,6 +9,8 @@ import {
   Briefcase,
   Quote,
   MessageSquare,
+  Star,
+  Users,
   LogOut,
   ChevronLeft,
   Menu,
@@ -47,6 +49,18 @@ const routes = [
     icon: MessageSquare,
     href: "/admin/contacts",
     color: "text-emerald-500",
+  },
+  {
+    label: "Reviews",
+    icon: Star,
+    href: "/admin/reviews",
+    color: "text-amber-500",
+  },
+  {
+    label: "Testimonials",
+    icon: Users,
+    href: "/admin/testimonials",
+    color: "text-blue-600",
   },
 ];
 

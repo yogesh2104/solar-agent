@@ -5,9 +5,9 @@ import { redirect, notFound } from "next/navigation";
 import { BlogForm } from "@/components/blog/blog-form";
 
 interface EditBlogPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function EditBlogPage({ params }: EditBlogPageProps) {

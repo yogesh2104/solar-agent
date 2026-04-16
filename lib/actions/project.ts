@@ -15,6 +15,23 @@ export async function createProject(data: {
   capacity: number;
   category: string;
   images: string[];
+  
+  // Technical Specifications
+  brand?: string;
+  modelNumber?: string;
+  material?: string;
+  type?: string;
+  numCells?: string;
+  solarPower?: string;
+  outputVoltage?: string;
+  netQuantity?: string;
+  frameMaterial?: string;
+  voltageRating?: string;
+  
+  // Dimensions
+  length?: string;
+  width?: string;
+  weight?: string;
 }) {
   try {
     const slug = slugify(data.title);
@@ -48,6 +65,23 @@ export async function updateProject(
     capacity: number;
     category: string;
     images: string[];
+    
+    // Technical Specifications
+    brand: string;
+    modelNumber: string;
+    material: string;
+    type: string;
+    numCells: string;
+    solarPower: string;
+    outputVoltage: string;
+    netQuantity: string;
+    frameMaterial: string;
+    voltageRating: string;
+    
+    // Dimensions
+    length: string;
+    width: string;
+    weight: string;
   }>
 ) {
   try {

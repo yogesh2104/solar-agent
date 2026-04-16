@@ -1,7 +1,5 @@
 import { db } from "@/lib/db";
-import ProjectCard from "@/components/project/ProjectCard";
 import ProjectFilterWrapper from "@/components/project/ProjectFilterWrapper";
-import { motion } from "framer-motion";
 
 export const metadata = {
   title: "Our Solar Projects | Portfolio",
@@ -33,10 +31,10 @@ export default async function ProjectsPage() {
           </p>
         </div>
 
-        <ProjectFilterWrapper 
-          initialProjects={projects} 
-          categories={categories} 
-          locations={locations} 
+        <ProjectFilterWrapper
+          initialProjects={projects}
+          categories={categories}
+          locations={locations}
         />
       </div>
     </main>

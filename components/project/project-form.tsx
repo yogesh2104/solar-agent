@@ -37,6 +37,23 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
   const [capacity, setCapacity] = useState(initialData?.capacity?.toString() || "");
   const [category, setCategory] = useState(initialData?.category || "Residential");
   const [images, setImages] = useState<string[]>(initialData?.images || []);
+  
+  // Technical Specifications
+  const [brand, setBrand] = useState(initialData?.brand || "");
+  const [modelNumber, setModelNumber] = useState(initialData?.modelNumber || "");
+  const [material, setMaterial] = useState(initialData?.material || "");
+  const [type, setType] = useState(initialData?.type || "");
+  const [numCells, setNumCells] = useState(initialData?.numCells || "");
+  const [solarPower, setSolarPower] = useState(initialData?.solarPower || "");
+  const [outputVoltage, setOutputVoltage] = useState(initialData?.outputVoltage || "");
+  const [netQuantity, setNetQuantity] = useState(initialData?.netQuantity || "");
+  const [frameMaterial, setFrameMaterial] = useState(initialData?.frameMaterial || "");
+  const [voltageRating, setVoltageRating] = useState(initialData?.voltageRating || "");
+  
+  // Dimensions
+  const [length, setLength] = useState(initialData?.length || "");
+  const [width, setWidth] = useState(initialData?.width || "");
+  const [weight, setWeight] = useState(initialData?.weight || "");
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,6 +75,19 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
         capacity: parseInt(capacity),
         category,
         images,
+        brand,
+        modelNumber,
+        material,
+        type,
+        numCells,
+        solarPower,
+        outputVoltage,
+        netQuantity,
+        frameMaterial,
+        voltageRating,
+        length,
+        width,
+        weight,
       };
 
       let result;
@@ -203,6 +233,84 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
                     onChange={(e) => setCapacity(e.target.value)}
                     required
                   />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6 space-y-6">
+              <h3 className="text-lg font-semibold border-b pb-2">Technical Specifications</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="brand">Brand</Label>
+                  <Input id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} placeholder="e.g. ZunSolar" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="modelNumber">Model Number</Label>
+                  <Input id="modelNumber" value={modelNumber} onChange={(e) => setModelNumber(e.target.value)} placeholder="e.g. 200 Watt 12 Volt Mono PERC" />
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="material">Material</Label>
+                  <Input id="material" value={material} onChange={(e) => setMaterial(e.target.value)} placeholder="e.g. Silver Anodized Aluminum Frame" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="type">Type</Label>
+                  <Input id="type" value={type} onChange={(e) => setType(e.target.value)} placeholder="e.g. Monocrystalline" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="numCells">Number of Cells</Label>
+                  <Input id="numCells" value={numCells} onChange={(e) => setNumCells(e.target.value)} placeholder="e.g. 36" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="solarPower">Solar Power</Label>
+                  <Input id="solarPower" value={solarPower} onChange={(e) => setSolarPower(e.target.value)} placeholder="e.g. 200" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="outputVoltage">Output Voltage</Label>
+                  <Input id="outputVoltage" value={outputVoltage} onChange={(e) => setOutputVoltage(e.target.value)} placeholder="e.g. 12" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="netQuantity">Net Quantity</Label>
+                  <Input id="netQuantity" value={netQuantity} onChange={(e) => setNetQuantity(e.target.value)} placeholder="e.g. 1 Solar Panel" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="frameMaterial">Frame Material</Label>
+                  <Input id="frameMaterial" value={frameMaterial} onChange={(e) => setFrameMaterial(e.target.value)} placeholder="e.g. Silver Anodized Aluminium" />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="voltageRating">Voltage Rating</Label>
+                <Input id="voltageRating" value={voltageRating} onChange={(e) => setVoltageRating(e.target.value)} placeholder="e.g. 12 V" />
+              </div>
+
+              <h3 className="text-lg font-semibold border-b pb-2 pt-4">Dimensions & Weight</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="length">Length</Label>
+                  <Input id="length" value={length} onChange={(e) => setLength(e.target.value)} placeholder="e.g. 149 cm" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="width">Width</Label>
+                  <Input id="width" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="e.g. 66.5 cm" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="weight">Weight</Label>
+                  <Input id="weight" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder="e.g. 11.6 kg" />
                 </div>
               </div>
             </CardContent>

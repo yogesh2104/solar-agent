@@ -147,6 +147,24 @@ model Project {
   capacity    Int      // capacity in kW
   category    String   // Industrial / Residential
   images      String[]
+  
+  // Technical Specifications
+  brand          String?
+  modelNumber    String?
+  material       String?
+  type           String?
+  numCells       String?
+  solarPower     String?
+  outputVoltage  String?
+  netQuantity    String?
+  frameMaterial  String?
+  voltageRating  String?
+  
+  // Dimensions
+  length         String?
+  width          String?
+  weight         String?
+
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

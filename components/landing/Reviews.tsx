@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Star, MessageSquarePlus, Quote } from "lucide-react";
+import { Star, MessageSquarePlus, Quote, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -13,6 +13,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
@@ -54,6 +61,12 @@ export default function Reviews() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (formData.comment.length < 10) {
+      toast.error("Comment must be at least 10 characters long");
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -63,7 +76,10 @@ export default function Reviews() {
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error("Failed to submit review");
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Failed to submit review");
+      }
 
       toast.success("Review submitted! It will appear once approved by admin.");
       setIsModalOpen(false);
@@ -154,9 +170,17 @@ export default function Reviews() {
                     className="flex w-full rounded-xl border border-border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Tell us about your installation..."
                   />
+                  {formData.comment.length > 0 && formData.comment.length < 10 && (
+                    <p className="text-xs text-destructive">Message must be at least 10 characters.</p>
+                  )}
                 </div>
                 <Button type="submit" disabled={submitting} className="w-full h-12 rounded-xl">
-                  {submitting ? "Submitting..." : "Submit Review"}
+                  {submitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : "Submit Review"}
                 </Button>
               </form>
             </DialogContent>
@@ -220,17 +244,3 @@ export default function Reviews() {
     </section>
   );
 }
-
-// Helper components for Select which were missing in imports
-import {
-  Select as ShadcnSelect,
-  SelectContent as ShadcnSelectContent,
-  SelectItem as ShadcnSelectItem,
-  SelectTrigger as ShadcnSelectTrigger,
-  SelectValue as ShadcnSelectValue,
-} from "@/components/ui/select";
-const Select = ShadcnSelect;
-const SelectContent = ShadcnSelectContent;
-const SelectItem = ShadcnSelectItem;
-const SelectTrigger = ShadcnSelectTrigger;
-const SelectValue = ShadcnSelectValue;

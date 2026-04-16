@@ -3,15 +3,16 @@ import { ProjectForm } from "@/components/project/project-form";
 import { notFound } from "next/navigation";
 
 interface EditProjectPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function EditProjectPage({ params }: EditProjectPageProps) {
+  const { id } = await params;
   const project = await db.project.findUnique({
     where: {
-      id: params.id,
+      id: id,
     },
   });
 

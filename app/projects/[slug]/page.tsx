@@ -2,27 +2,28 @@ import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  ArrowLeft, 
-  ChevronRight, 
-  MapPin, 
-  Zap, 
-  TrendingDown, 
-  CheckCircle2, 
-  AlertCircle 
+import {
+  ArrowLeft,
+  ChevronRight,
+  MapPin,
+  Zap,
+  TrendingDown,
+  CheckCircle2,
+  AlertCircle
 } from "lucide-react";
 import ProjectGallery from "@/components/project/ProjectGallery";
 import { Badge } from "@/components/ui/badge";
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {
+  const { slug } = await params;
   const project = await db.project.findUnique({
-    where: { slug: params.slug },
+    where: { slug: slug },
   });
 
   if (!project) return { title: "Project Not Found" };
@@ -34,9 +35,12 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 }
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
+  const { slug } = await params;
   const project = await db.project.findUnique({
-    where: { slug: params.slug },
+    where: { slug: slug },
   });
+
+  console.log(project);
 
   if (!project) {
     notFound();
@@ -56,7 +60,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           </span>
         </div>
 
-        <Link 
+        <Link
           href="/projects"
           className="inline-flex items-center text-sm font-medium text-primary hover:underline mb-12 group"
         >
@@ -68,7 +72,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           {/* Left Side: Images & Summary */}
           <div className="space-y-12 lg:sticky lg:top-32">
             <ProjectGallery images={project.images} />
-            
+
             <div className="bg-card/50 border border-border/50 rounded-3xl p-8 backdrop-blur-sm">
               <h3 className="text-xl font-bold mb-6">Installation Overview</h3>
               <div className="grid grid-cols-2 gap-6">
@@ -101,9 +105,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                     Completed
                   </p>
                   <p className="text-lg font-medium">
-                    {new Date(project.createdAt).toLocaleDateString('en-US', { 
-                      month: 'long', 
-                      year: 'numeric' 
+                    {new Date(project.createdAt).toLocaleDateString('en-US', {
+                      month: 'long',
+                      year: 'numeric'
                     })}
                   </p>
                 </div>
@@ -139,7 +143,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                     </p>
                   </div>
                 )}
-                
+
                 {project.solution && (
                   <div className="group bg-card rounded-3xl p-8 border border-border/50 hover:border-primary/20 transition-colors">
                     <div className="flex items-center gap-3 mb-4 text-primary">
@@ -170,7 +174,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                       </div>
                     </div>
                   )}
-                  
+
                   {project.outcome && (
                     <div className="flex gap-4">
                       <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center flex-shrink-0 text-secondary">
@@ -186,6 +190,64 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </div>
             )}
 
+            {/* Technical Specifications Section */}
+            {(project.brand || project.modelNumber || project.length || project.weight) && (
+              <div className="space-y-8">
+                <h3 className="text-3xl font-bold tracking-tight">Technical Specifications</h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
+                  {/* General Specs */}
+                  <div className="bg-card rounded-3xl p-8 border border-border/50">
+                    <h4 className="text-xl font-bold mb-6 text-primary flex items-center gap-2">
+                      <Zap className="w-5 h-5" />
+                      General
+                    </h4>
+                    <div className="divide-y divide-border/50">
+                      {[
+                        { label: "Brand", value: project.brand },
+                        { label: "Model Number", value: project.modelNumber },
+                        { label: "Material", value: project.material },
+                        { label: "Type", value: project.type },
+                        { label: "Number of Cells", value: project.numCells },
+                        { label: "Solar Power", value: project.solarPower },
+                        { label: "Output Voltage", value: project.outputVoltage },
+                        { label: "Net Quantity", value: project.netQuantity },
+                        { label: "Frame Material", value: project.frameMaterial },
+                        { label: "Voltage Rating", value: project.voltageRating },
+                      ].map((spec, i) => spec.value && (
+                        <div key={i} className="py-4 flex justify-between gap-4">
+                          <span className="text-muted-foreground font-medium">{spec.label}</span>
+                          <span className="text-foreground font-bold text-right">{spec.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Dimensions & Weight */}
+                  {(project.length || project.width || project.weight) && (
+                    <div className="bg-card rounded-3xl p-8 border border-border/50">
+                      <h4 className="text-xl font-bold mb-6 text-primary flex items-center gap-2">
+                        <MapPin className="w-5 h-5" />
+                        Dimensions & Weight
+                      </h4>
+                      <div className="divide-y divide-border/50">
+                        {[
+                          { label: "Length", value: project.length },
+                          { label: "Width", value: project.width },
+                          { label: "Weight", value: project.weight },
+                        ].map((spec, i) => spec.value && (
+                          <div key={i} className="py-4 flex justify-between gap-4">
+                            <span className="text-muted-foreground font-medium">{spec.label}</span>
+                            <span className="text-foreground font-bold text-right">{spec.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
             {/* CTA */}
             <div className="bg-foreground text-background rounded-3xl p-10 flex flex-col items-center text-center">
               <h3 className="text-2xl font-bold mb-4">Start Your Switch to Solar</h3>
@@ -193,7 +255,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 Inspired by this project? Get a personalized quotation for your
                 own rooftop installation today.
               </p>
-              <Link 
+              <Link
                 href="/get-quote"
                 className="bg-primary text-primary-foreground h-14 px-10 flex items-center justify-center rounded-full font-bold text-lg hover:bg-primary/90 transition-all hover:scale-105"
               >

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Send, Phone, Mail, MapPin } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, Phone, Mail, MapPin, CheckCircle2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label";
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,6 +22,8 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setStatus("idle");
+    setStatusMessage("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -31,12 +35,25 @@ export default function ContactForm() {
       const data = await res.json();
 
       if (!res.ok) {
+        if (data.errors && Array.isArray(data.errors)) {
+          // Display the first validation error message
+          const errorMsg = data.errors[0]?.message || "Validation failed";
+          throw new Error(errorMsg);
+        }
         throw new Error(data.message || "Something went wrong");
       }
 
-      toast.success("Message sent successfully!");
+      setStatus("success");
+      setStatusMessage("Message sent successfully! We'll get back to you soon.");
       setFormData({ firstName: "", lastName: "", email: "", message: "" });
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => setStatus("idle"), 5000);
+      
+      toast.success("Message sent successfully!");
     } catch (error: any) {
+      setStatus("error");
+      setStatusMessage(error.message);
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -113,6 +130,30 @@ export default function ContactForm() {
             className="bg-card border border-border p-8 md:p-12 rounded-4xl shadow-2xl"
           >
             <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Status Alert */}
+              <AnimatePresence mode="wait">
+                {status !== "idle" && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                    animate={{ opacity: 1, height: "auto", marginBottom: 24 }}
+                    exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={`p-4 rounded-2xl flex items-start gap-3 border ${
+                      status === "success" 
+                        ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-500" 
+                        : "bg-rose-500/10 border-rose-500/20 text-rose-500"
+                    }`}
+                  >
+                    {status === "success" ? (
+                      <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0" />
+                    ) : (
+                      <AlertCircle className="w-5 h-5 mt-0.5 shrink-0" />
+                    )}
+                    <div className="text-sm font-medium">{statusMessage}</div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
@@ -172,5 +213,6 @@ export default function ContactForm() {
         </div>
       </div>
     </section>
+
   );
 }

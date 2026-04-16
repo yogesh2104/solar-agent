@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -11,118 +10,140 @@ interface ProjectsProps {
   projects?: any[];
 }
 
+const stats = [
+  { label: "Years of Experience", value: "30+" },
+  { label: "Successful Installations", value: "850+" },
+  { label: "Energy Generated", value: "120MW+" },
+  { label: "Tons of CO2 Saved", value: "25,000+" },
+];
+
 export default function Projects({ projects = [] }: ProjectsProps) {
-  // If no projects provided by prop, we show a message or empty state 
-  // (In a real scenario, the landing page fetch will provide them)
-  
   return (
-    <section id="projects" className="py-24 bg-card overflow-hidden">
+    <section id="projects" className="py-24 bg-background overflow-hidden border-t border-border/50">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-primary font-bold tracking-widest uppercase text-sm mb-4"
-            >
-              Our Portfolio
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold text-foreground mb-6"
-            >
-              Real Impact,{" "}
-              <span className="text-muted-foreground">Tangible Results</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-muted-foreground text-lg"
-            >
-              Explore our lately completed projects across residential and
-              industrial sectors. Each installation is a step towards a greener
-              planet.
-            </motion.p>
-          </div>
-          
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16">
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="flex items-center gap-4"
           >
-            <Button variant="outline" size="lg" className="rounded-full group" asChild>
-              <Link href="/projects">
-                View All Projects
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
+              Powering With <span className="text-slate-400">Purpose</span>
+            </h2>
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 mt-4 h-fit border-t border-foreground/20 pt-1">
+              [PROJECT]
+            </div>
           </motion.div>
+
+          <Link href="/projects" className="hidden md:flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-foreground/60 hover:text-primary transition-colors">
+            View All Projects
+            <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center group hover:bg-primary transition-all">
+              <ArrowUpRight className="w-4 h-4 group-hover:text-white transition-colors" />
+            </div>
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.id || i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative h-[450px] overflow-hidden rounded-3xl"
-            >
-              <Image
-                src={project.images?.[0] || "/images/hero.png"}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
-
-              <div className="absolute top-6 left-6 flex gap-2">
-                <Badge
-                  variant="secondary"
-                  className="bg-white/10 backdrop-blur-md text-white border-white/20"
-                >
-                  {project.category}
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="bg-primary/80 backdrop-blur-md text-white border-none"
-                >
-                  {project.capacity} kW
-                </Badge>
-              </div>
-
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <div className="flex justify-between items-end">
-                  <div className="flex-grow">
-                    <p className="text-primary-foreground/60 text-sm mb-1">
-                      {project.location}
-                    </p>
-                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {projects.slice(0, 2).map((project, i) => (
+              <motion.div
+                key={project.id || i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group flex flex-col gap-6"
+              >
+                <div className="relative h-[400px] overflow-hidden rounded-[2.5rem]">
+                  <Image
+                    src={project.images?.[0] || "/images/hero.png"}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute top-6 right-6">
+                    <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full">
+                      {project.location || "California"}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-start px-2">
+                  <div>
+                    <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
+                    <p className="text-sm text-muted-foreground font-medium uppercase tracking-widest">
+                      [{project.status || "2024 - COMPLETE"}]
+                    </p>
                   </div>
-                  <Link 
-                    href={`/projects/${project.slug}`}
-                    className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white opacity-0 transition-all duration-500 group-hover:opacity-100 hover:scale-110 flex-shrink-0"
-                  >
-                    <ArrowUpRight className="w-6 h-6" />
-                  </Link>
                 </div>
-                <div className="h-0.5 w-0 bg-primary transition-all duration-500 group-hover:w-full" />
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="lg:col-span-4 flex flex-col gap-8">
+            {/* Smaller Featured Project */}
+            {projects[2] && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="group relative h-[300px] overflow-hidden rounded-[2.5rem]"
+              >
+                <Image
+                  src={projects[2].images?.[0] || "/images/hero.png"}
+                  alt={projects[2].title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <h3 className="text-xl font-bold leading-tight">{projects[2].title}</h3>
+                  <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">
+                    {projects[2].location}
+                  </p>
+                </div>
+              </motion.div>
+            )}
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex-grow bg-muted/30 p-10 rounded-[2.5rem] flex flex-col justify-center gap-6"
+            >
+              <h3 className="text-2xl font-bold text-foreground leading-tight">
+                Explore more successful <br />
+                installations and see <span className="text-slate-400">how solar energy transforms spaces worldwide.</span>
+              </h3>
+              <Button
+                className="w-fit rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-12 px-8 shadow-lg shadow-primary/25"
+                asChild
+              >
+                <Link href="/projects">See All Projects</Link>
+              </Button>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Stats Row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 py-16 border-t border-border/50 bg-slate-50/50 rounded-[2rem] px-10">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex flex-col items-center md:items-start"
+            >
+              <div className="text-4xl md:text-5xl font-bold text-foreground mb-2">{stat.value}</div>
+              <div className="text-[10px] md:text-xs font-bold text-muted-foreground uppercase tracking-[0.2em]">
+                {stat.label}
               </div>
             </motion.div>
           ))}
-          
-          {projects.length === 0 && (
-            <div className="col-span-full text-center py-20 border-2 border-dashed border-border rounded-3xl">
-              <p className="text-muted-foreground">No projects found. Check back later!</p>
-            </div>
-          )}
         </div>
       </div>
     </section>

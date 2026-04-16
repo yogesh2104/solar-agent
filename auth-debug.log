@@ -1,0 +1,4 @@
+[2026-04-16T08:09:43.583Z] Authorize called with credentials: {"email":"singhyogesh2104@gmail.com","hasPassword":true}
+[2026-04-16T08:09:43.597Z] User found: singhyogesh2104@gmail.com, isActive: true
+[2026-04-16T08:09:43.833Z] Password valid: true
+[2026-04-16T08:09:43.834Z] Authorize successful

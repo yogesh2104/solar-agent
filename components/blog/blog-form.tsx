@@ -92,7 +92,7 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
               : "Blog created and published"
             : initialData
               ? "Draft updated successfully"
-              : "Draft saved successfully"
+              : "Draft saved successfully",
         );
         router.push("/admin/blogs");
       } else {
@@ -113,7 +113,9 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
             {initialData ? "Edit Blog" : "Create New Blog"}
           </h1>
           <p className="text-muted-foreground">
-            {initialData ? "Modify your post details" : "Share your thoughts with the world"}
+            {initialData
+              ? "Modify your post details"
+              : "Share your thoughts with the world"}
           </p>
         </div>
         <div className="flex gap-4">
@@ -155,7 +157,9 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
         <div className="lg:col-span-2 space-y-6">
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="title" className="text-lg">Title <span className="text-destructive">*</span></Label>
+              <Label htmlFor="title" className="text-lg">
+                Title <span className="text-destructive">*</span>
+              </Label>
               <Input
                 id="title"
                 placeholder="Enter a catchy title..."
@@ -167,7 +171,9 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
             </div>
 
             <div className="space-y-2">
-              <Label className="text-lg">Content <span className="text-destructive">*</span></Label>
+              <Label className="text-lg">
+                Content <span className="text-destructive">*</span>
+              </Label>
               <BlogEditor
                 content={content}
                 onChange={setContent}
@@ -203,7 +209,9 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
               </div>
 
               <div className="space-y-2">
-                <Label>Featured Image <span className="text-destructive">*</span></Label>
+                <Label>
+                  Featured Image <span className="text-destructive">*</span>
+                </Label>
                 {image ? (
                   <div className="relative aspect-video rounded-lg overflow-hidden border">
                     <Image
@@ -234,7 +242,8 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
                         toast.error(`Upload failed: ${error.message}`);
                       }}
                       appearance={{
-                        button: "bg-primary text-primary-foreground hover:bg-primary/90 transition-colors",
+                        button:
+                          "bg-primary px-4 text-primary-foreground hover:bg-primary/90 transition-colors",
                       }}
                     />
                   </div>

@@ -41,7 +41,7 @@ export default function Footer() {
                 <Zap className="w-5 h-5 text-primary-foreground fill-current" />
               </div>
               <span className="text-xl font-bold tracking-tight text-foreground">
-                Solar<span className="text-primary">Co</span>
+                Suntrix
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -95,21 +95,25 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-foreground mb-6">Get in Touch</h4>
             <ul className="space-y-4">
-              {footerLinks.contact.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 group">
-                  <item.icon className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                  <span className="text-muted-foreground text-sm">
-                    {item.text}
-                  </span>
-                </li>
-              ))}
+              <li className="flex items-start gap-3 group">
+                <Phone className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                <span className="text-muted-foreground text-sm">+1 (555) 000-0000</span>
+              </li>
+              <li className="flex items-start gap-3 group">
+                <Mail className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                <span className="text-muted-foreground text-sm">contact@suntrix.com</span>
+              </li>
+              <li className="flex items-start gap-3 group">
+                <MapPin className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                <span className="text-muted-foreground text-sm">123 Solar Way, Sunshine City</span>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground" suppressHydrationWarning>
-            © {new Date().getFullYear()} SolarCo. All rights reserved.
+            © {new Date().getFullYear()} Suntrix. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-muted-foreground">
             <Link href="/privacy-policy" className="hover:text-primary">

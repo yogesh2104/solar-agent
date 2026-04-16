@@ -12,7 +12,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/#services" },
-  { name: "Projects", href: "/#projects" },
+  { name: "Projects", href: "/projects" },
   { name: "Blog", href: "/blogs" },
   { name: "Contact", href: "/contact" },
 ];
@@ -39,54 +39,57 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? "bg-background/80 backdrop-blur-md border-b border-border py-2"
           : "bg-transparent py-4"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="bg-primary p-2 rounded-lg group-hover:rotate-12 transition-transform duration-300">
+          <div className="bg-primary p-2 rounded-xl group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-primary/20">
             <Zap className="w-6 h-6 text-primary-foreground fill-current" />
           </div>
           <span className="text-2xl font-bold tracking-tight text-foreground">
-            Solar<span className="text-primary">Co</span>
+            Suntrix
           </span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
-          {isAdmin && (
-            <Link href="/admin">
-              <Button
-                variant="outline"
-                size="default"
-                className="rounded-full px-6 border-primary text-primary hover:bg-primary/10 gap-2"
+          <div className="flex items-center gap-6 px-6 py-2 bg-muted/50 rounded-full border border-border/50">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
               >
-                <ShieldCheck className="w-4 h-4" />
-                Admin Panel
+                {link.name}
+              </Link>
+            ))}
+          </div>
+          <div className="flex items-center gap-3">
+            {isAdmin && (
+              <Link href="/admin">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="rounded-full px-4 hover:bg-primary/10 text-primary gap-2"
+                >
+                  <ShieldCheck className="w-4 h-4" />
+                  Admin
+                </Button>
+              </Link>
+            )}
+            <Link href="/contact">
+              <Button
+                variant="default"
+                size="default"
+                className="rounded-full px-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/25 transition-all hover:scale-105 active:scale-95"
+              >
+                Contact Us
               </Button>
             </Link>
-          )}
-          <Link href="/get-quote">
-            <Button
-              variant="default"
-              size="default"
-              className="rounded-full px-6"
-            >
-              Get Quotation
-            </Button>
-          </Link>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
