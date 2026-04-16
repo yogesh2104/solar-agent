@@ -150,6 +150,11 @@
   --agro-green: #8dd35f;
   --agro-sky: #e0f2fe;
   --agro-dark: #050a14;
+  --brand-ink: #08111f;
+  --brand-sky: #edf5ff;
+  --brand-ocean: #8fb7df;
+  --brand-lime: #ccff34;
+  --brand-line: rgba(8, 17, 31, 0.08);
 }
 
 .dark {
@@ -226,6 +231,9 @@
   body {
     @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
+    background:
+      radial-gradient(circle at top, rgba(143, 183, 223, 0.28), transparent 38%),
+      linear-gradient(180deg, #f4f8fe 0%, #f7fbff 28%, #ffffff 100%);
   }
 }
 

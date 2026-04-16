@@ -13,10 +13,10 @@ export interface QuotationTotals {
 }
 
 export const COMPANY_PROFILE = {
-  name: "SolarCo",
-  email: "energy@solarco.com",
+  name: "Suntrix Energy Pvt. Ltd.",
+  email: "enterprise@suntrix.in",
   phone: "+91 98765 43210",
-  address: "123 Solar Way, Sunshine City",
+  address: "Suntrix Tower, BKC, Mumbai - 400 051",
 };
 
 export function generateQuotationNumber(date = new Date()) {
@@ -81,4 +81,3 @@ export function normalizeOptionalString(value?: string | null) {
   const normalized = value?.trim();
   return normalized ? normalized : null;
 }
-

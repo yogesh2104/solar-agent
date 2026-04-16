@@ -40,7 +40,7 @@ export default function ProjectFilter({
   const hasFilters = category !== "all" || location !== "all" || search !== "";
 
   return (
-    <div className="bg-card/50 backdrop-blur-md border border-border/50 rounded-2xl p-4 mb-12 shadow-sm">
+    <div className="bg-card backdrop-blur-md border border-border/50 rounded-2xl p-4 mb-12 shadow-sm">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
         <div className="space-y-2">
           <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider ml-1">

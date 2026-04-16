@@ -1,134 +1,184 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ChevronRight, Check } from "lucide-react";
-import siteConfig from "@/lib/siteConfig.json";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import siteConfig from "@/lib/siteConfig";
 
 export default function B2BAbout() {
-  const { about } = siteConfig;
+  const { overview } = siteConfig;
 
   return (
-    <section id="about" className="py-24 bg-white overflow-hidden">
+    <section id="overview" className="overflow-hidden bg-white py-24 md:py-28">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
-          {/* Left - Text Content */}
-          <div className="lg:w-1/2 flex flex-col items-start text-left">
+        <div className="grid gap-10 xl:grid-cols-[1fr_0.92fr] xl:items-start">
+          <div className="max-w-3xl">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-agro-sky/50 text-[10px] font-bold uppercase tracking-widest text-primary mb-8"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600"
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-              {about.badge}
+              <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+              {overview.badge}
             </motion.div>
 
             <motion.h2
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-6xl font-normal leading-[1.1] mb-12"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55 }}
+              className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl"
             >
-              {about.title} <br />
-              <span className="text-primary font-bold">{about.titleHighlight}</span> <br />
-              {about.subTitle}
+              {overview.title}
             </motion.h2>
 
-            <div className="flex flex-col md:flex-row gap-12 mb-12">
-              {about.metrics.map((metric, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex flex-col"
-                >
-                  <p className="text-5xl font-black tracking-tighter text-agro-dark">{metric.value}</p>
-                  <p className="text-sm text-muted-foreground mt-1 max-w-[100px]">{metric.label}</p>
-                </motion.div>
-              ))}
-              
-              <div className="flex-1 md:pl-12 border-l border-border md:block hidden">
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {about.description}
-                </p>
-              </div>
-            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.08 }}
+              className="mt-5 text-2xl leading-10 text-slate-500 md:text-3xl md:leading-[1.35]"
+            >
+              {overview.highlight}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.16 }}
+              className="mt-6 max-w-2xl text-base leading-8 text-slate-600"
+            >
+              {overview.description}
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.24 }}
+              className="mt-8"
             >
-              <Button size="lg" className="rounded-full h-14 px-8 text-lg font-bold group">
-                Read Our Story
-                <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-3 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+              >
+                Learn About Suntrix
+                <ArrowUpRight className="size-4" />
+              </Link>
             </motion.div>
           </div>
 
-          {/* Right - Images Grid */}
-          <div className="lg:w-1/2 relative">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl z-10"
-            >
+          <motion.div
+            initial={{ opacity: 0, y: 26 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55 }}
+            className="rounded-[2.3rem] border border-slate-200 bg-[var(--brand-sky)] p-6 md:p-8"
+          >
+            <div className="grid gap-4 sm:grid-cols-3">
+              {overview.stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-[1.6rem] bg-white p-5 shadow-[0_16px_45px_rgba(8,17,31,0.06)]"
+                >
+                  <div className="text-3xl font-semibold tracking-tight text-slate-950">
+                    {stat.value}
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 rounded-[1.8rem] bg-slate-950 p-6 text-white">
+              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/50">
+                Why buyers stay with us
+              </div>
+              <div className="mt-5 space-y-4">
+                {overview.advantages.map((advantage) => (
+                  <div key={advantage} className="flex items-start gap-3">
+                    <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[var(--brand-lime)]" />
+                    <p className="text-sm leading-7 text-white/72">{advantage}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 26 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55 }}
+            className="relative overflow-hidden rounded-[2.5rem] border border-slate-200"
+          >
+            <div className="relative h-[320px] md:h-[440px]">
               <Image
-                src={about.image}
-                alt="B2B industrial solar installation"
+                src={overview.image}
+                alt="Commercial rooftop solar overview"
                 fill
                 className="object-cover"
               />
-            </motion.div>
-            
-            {/* Floating Info Cards */}
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="absolute -right-8 top-1/4 z-20 bg-white p-6 rounded-3xl shadow-2xl border border-white flex flex-col gap-4 max-w-[240px]"
-            >
-              {about.features.map((feature, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                    <Check size={20} />
-                  </div>
-                  <p className="text-sm font-bold">{feature}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
+              <div className="absolute inset-x-6 bottom-6 rounded-[1.6rem] border border-white/18 bg-white/88 p-5 text-slate-950 backdrop-blur-xl md:max-w-md">
+                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
+                  Enterprise note
                 </div>
-              ))}
-              <button className="w-full py-3 bg-primary rounded-2xl text-white font-bold text-xs mt-2 hover:bg-primary/90 transition-colors">
-                Learn More →
-              </button>
-            </motion.div>
-
-            {/* Circular small images */}
-            <div className="absolute -bottom-10 left-1/4 flex gap-4 z-20">
-              <motion.div 
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 }}
-                className="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-xl"
-              >
-                <Image src="/images/new_landing/project1.png" fill className="object-cover" alt="Thumb" />
-              </motion.div>
-              <motion.div 
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.7 }}
-                className="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-xl"
-              >
-                <Image src="/images/new_landing/hero_b2b.png" fill className="object-cover" alt="Thumb" />
-              </motion.div>
+                <p className="mt-3 text-lg font-semibold leading-8">
+                  Faster decisions happen when technical, commercial, and rollout risks are visible early.
+                </p>
+              </div>
             </div>
+          </motion.div>
+
+          <div className="grid gap-6">
+            <div className="grid gap-6 sm:grid-cols-2">
+              {overview.gallery.map((image, index) => (
+                <motion.div
+                  key={image}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  className="relative overflow-hidden rounded-[2rem] border border-slate-200"
+                >
+                  <div className="relative h-52">
+                    <Image
+                      src={image}
+                      alt="Commercial solar project detail"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55 }}
+              className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6"
+            >
+              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
+                Typical buyer profiles
+              </div>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {overview.sectors.map((sector) => (
+                  <span
+                    key={sector}
+                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700"
+                  >
+                    {sector}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

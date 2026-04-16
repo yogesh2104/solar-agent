@@ -3,42 +3,42 @@ import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
   title: "Disclaimer | Suntrix",
-  description: "Legal notices regarding the accuracy and use of information on the Suntrix website.",
+  description: "Important legal notices regarding the information published on the Suntrix website.",
 };
 
 export default function DisclaimerPage() {
   return (
-    <main className="min-h-screen bg-[#050a14]">
+    <div className="bg-[#f7fbff] pb-20">
       <StaticPageHeader
         title="Disclaimer"
         breadcrumb="Disclaimer"
-        description="Legal notices regarding the accuracy and use of information on this website."
+        description="Important notes about the scope, reliability, and intended use of information shown on this website."
       />
 
       <LegalContent>
-        <h2>1. Accuracy of Information</h2>
+        <h2>1. Accuracy of information</h2>
         <p>
-          The information provided on the Suntrix website is for general informational purposes only. While we strive to keep the information up-to-date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, or suitability of the information for any purpose.
+          Information published on the Suntrix website is provided for general informational purposes only. While we aim to keep it current and useful, we do not guarantee that all information is complete, error-free, or suitable for every specific business context.
         </p>
 
-        <h2>2. No Guarantee of Savings</h2>
+        <h2>2. Savings and performance assumptions</h2>
         <p>
-          Energy savings and ROI projections mentioned on this site are estimates based on average usage patterns, historical irradiance data, and current tariff rates. Actual savings will vary depending on your specific location, roof orientation, shading, energy consumption habits, local utility rates, and grid curtailment policies. Suntrix does not guarantee any specific financial return or amount of energy production.
+          Any references to energy savings, project economics, payback, or generation outcomes are illustrative unless explicitly stated otherwise in a signed commercial proposal. Actual outcomes depend on site conditions, tariff structures, grid behavior, shading, equipment choices, and operational factors.
         </p>
 
-        <h2>3. External Links</h2>
+        <h2>3. External links</h2>
         <p>
-          Through this website, you may be able to link to other websites that are not under the control of Suntrix. We have no control over the nature, content, and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.
+          Our site may link to third-party resources for convenience. Suntrix does not control those sites and is not responsible for their content, availability, or accuracy.
         </p>
 
-        <h2>4. Professional Advice</h2>
+        <h2>4. Not professional advice</h2>
         <p>
-          The information on this website does not constitute professional financial, tax, or legal advice. We recommend consulting with qualified professionals regarding your specific situation before making any investment or installation decisions.
+          Website content should not be treated as legal, tax, financial, or engineering advice for a specific project. Businesses should review project decisions with their own qualified advisors where appropriate.
         </p>
 
-        <h2>5. Technical Issues</h2>
+        <h2>5. Website availability</h2>
         <p>
-          Suntrix takes no responsibility for, and will not be liable for, the website being temporarily unavailable due to technical issues beyond our control.
+          We do not guarantee uninterrupted access to the site and are not liable for downtime caused by technical issues, third-party services, or circumstances beyond our control.
         </p>
 
         <h2>6. Contact</h2>
@@ -46,6 +46,6 @@ export default function DisclaimerPage() {
           Questions about this disclaimer can be sent to legal@suntrix.in.
         </p>
       </LegalContent>
-    </main>
+    </div>
   );
 }

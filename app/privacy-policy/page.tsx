@@ -3,79 +3,73 @@ import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
   title: "Privacy Policy | Suntrix",
-  description: "Your privacy is important to us. This policy explains how we collect, use, and protect your information.",
+  description: "How Suntrix collects, uses, stores, and protects information submitted through its website.",
 };
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen bg-[#050a14]">
+    <div className="bg-[#f7fbff] pb-20">
       <StaticPageHeader
         title="Privacy"
         highlight="Policy"
         breadcrumb="Privacy Policy"
-        description="Your privacy is important to us. This policy explains how we collect, use, and protect your information."
+        description="This page explains what information we collect through the website, why we collect it, and how we handle it responsibly."
       />
 
       <LegalContent>
-        <h2>1. Information We Collect</h2>
+        <h2>1. Information we collect</h2>
         <p>
-          We collect information you provide directly to us when you fill out a form, request a quote, or communicate with us. This may include:
+          We collect information you provide directly when you contact us, request a quote, or submit an enquiry through the website. This may include:
         </p>
         <ul>
-          <li>Name and company name</li>
+          <li>Name and company information</li>
           <li>Email address and phone number</li>
-          <li>Installation address / site location</li>
-          <li>Energy consumption details</li>
-          <li>Any other information you choose to provide</li>
+          <li>Project or site location details</li>
+          <li>Energy consumption or project requirement information</li>
+          <li>Any additional details you choose to share with us</li>
         </ul>
 
-        <h2>2. How We Use Your Information</h2>
+        <h2>2. How we use your information</h2>
         <p>
-          We use the information we collect to:
+          We use submitted information to:
         </p>
         <ul>
-          <li>Provide and improve our solar EPC and O&M services</li>
-          <li>Respond to your inquiries and provide technical support</li>
-          <li>Send you quotes, proposals, and administrative messages</li>
-          <li>Communicate about products, services, and events</li>
-          <li>Monitor and analyze trends, usage, and activities</li>
+          <li>Respond to enquiries and prepare commercial solar proposals</li>
+          <li>Support project discussions, feasibility review, and technical follow-up</li>
+          <li>Improve our website, communication, and service process</li>
+          <li>Send administrative or sales-related responses relevant to your request</li>
+          <li>Maintain internal records related to business communications</li>
         </ul>
 
-        <h2>3. Information Sharing</h2>
+        <h2>3. When we may share information</h2>
         <p>
-          We do not share your personal information with third parties except:
-        </p>
-        <ul>
-          <li>With your consent</li>
-          <li>To fulfill the purpose for which you provided it (e.g., with installation partners)</li>
-          <li>To comply with legal obligations</li>
-          <li>To protect the rights and safety of Suntrix and our users</li>
-        </ul>
-
-        <h2>4. Data Security</h2>
-        <p>
-          We take reasonable measures to help protect information about you from loss, theft, misuse, and unauthorized access, disclosure, alteration, and destruction.
+          We do not sell personal information. We may share it only when necessary to support your request, comply with law, protect legitimate business interests, or work with trusted service providers operating on our behalf.
         </p>
 
-        <h2>5. Your Choices</h2>
+        <h2>4. Data security</h2>
         <p>
-          You may update or correct your information at any time by contacting us. You can also opt out of receiving promotional communications from us by following the instructions in those messages.
+          We use reasonable administrative and technical measures to protect submitted information from unauthorized access, misuse, alteration, or disclosure. No system is completely risk-free, but we work to handle data responsibly.
         </p>
 
-        <h2>6. Changes to This Policy</h2>
+        <h2>5. Your choices</h2>
         <p>
-          We may update this Privacy Policy from time to time. If we make changes, we will notify you by revising the date at the top of the policy.
+          You may contact us to update or correct your information or to request that we stop sending non-essential communications related to marketing or outreach.
         </p>
 
-        <h2>7. Contact Us</h2>
+        <h2>6. Changes to this policy</h2>
         <p>
-          If you have any questions about this Privacy Policy, please contact us at:
+          We may revise this Privacy Policy from time to time. Updates will be reflected on this page when changes are made.
+        </p>
+
+        <h2>7. Contact us</h2>
+        <p>
+          If you have questions about this Privacy Policy, contact us at:
           <br />
           Email: legal@suntrix.in
           <br />
-          Address: Suntrix Tower, BKC, Mumbai – 400 051
+          Address: Suntrix Tower, BKC, Mumbai - 400 051
         </p>
       </LegalContent>
-    </main>
+    </div>
   );
 }

@@ -2,57 +2,57 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Refund & Cancellation Policy | Suntrix",
-  description: "Our policies regarding project cancellations and payment refunds for enterprise solar installations.",
+  title: "Refund and Cancellation Policy | Suntrix",
+  description: "How Suntrix handles project cancellations and refund requests where applicable.",
 };
 
 export default function RefundPolicyPage() {
   return (
-    <main className="min-h-screen bg-[#050a14]">
+    <div className="bg-[#f7fbff] pb-20">
       <StaticPageHeader
-        title="Refund &"
+        title="Refund and"
         highlight="Cancellation"
         breadcrumb="Refund Policy"
-        description="Our policies regarding project cancellations and payment refunds for enterprise solar installations."
+        description="This page outlines how cancellation requests and refund considerations are generally handled for commercial solar engagements."
       />
 
       <LegalContent>
-        <h2>1. Project Cancellation</h2>
+        <h2>1. Project cancellation</h2>
         <p>
-          You have the right to cancel your solar project agreement within a specific period after signing, as defined by applicable laws (typically 3–7 business days). Beyond this period, cancellation may be subject to administrative, engineering, and procurement fees proportional to the project stage.
+          Cancellation terms depend on the stage of the commercial engagement and the specific agreement signed between Suntrix and the customer. Early-stage cancellations may be treated differently from cancellations after engineering, procurement, or installation activity has begun.
         </p>
 
-        <h2>2. Refund Eligibility</h2>
+        <h2>2. Refund eligibility</h2>
         <p>
-          Refunds of deposits or progress payments are evaluated based on the current stage of the project:
+          Refund decisions are reviewed based on work already completed, third-party costs incurred, and materials or services committed for the project. Broadly:
         </p>
         <ul>
-          <li><strong>Pre-Engineering:</strong> Full refund minus a small administrative fee.</li>
-          <li><strong>Post-Engineering / Permitting:</strong> Refund minus the cost of engineering designs and permit application fees incurred.</li>
-          <li><strong>Post-Procurement:</strong> Refund minus materials handling, restocking fees, and any equipment ordered on your behalf.</li>
-          <li><strong>Post-Installation:</strong> No refund is applicable once installation has been completed and commissioned.</li>
+          <li><strong>Before engineering begins:</strong> Refunds may be possible after administrative deductions where applicable.</li>
+          <li><strong>After engineering or permitting begins:</strong> Costs related to design, review, or approvals may be non-refundable.</li>
+          <li><strong>After procurement starts:</strong> Ordered equipment, logistics, or vendor commitments may reduce or eliminate refund eligibility.</li>
+          <li><strong>After installation or commissioning:</strong> Refunds are generally not available, though warranty and service obligations may still apply.</li>
         </ul>
 
-        <h2>3. Non-Refundable Items</h2>
+        <h2>3. Non-refundable items</h2>
         <p>
-          Fees paid to third-party government agencies for permits, DISCOM interconnection applications, net metering registrations, or site surveys are non-refundable once the service has been performed.
+          Government fees, permit charges, site surveys, engineering outputs, and third-party costs already incurred on your behalf are generally non-refundable once performed or committed.
         </p>
 
-        <h2>4. Refund Process</h2>
+        <h2>4. Refund process</h2>
         <p>
-          To request a refund, please contact your designated project manager in writing at finance@suntrix.in. Approved refunds will be processed within 15–30 business days and issued via the original payment method (RTGS/NEFT) or as mutually agreed.
+          Refund requests should be submitted in writing to the relevant Suntrix contact handling your engagement. Approved refunds, if any, will be processed according to the commercial agreement and operational timelines applicable to that engagement.
         </p>
 
-        <h2>5. Installation Satisfaction</h2>
+        <h2>5. Service quality concerns</h2>
         <p>
-          If you are dissatisfied with our installation service, please notify us within 30 days of commissioning. While we do not offer refunds on completed installations, we are committed to resolving any technical issues under our performance and workmanship warranties as specified in the O&M agreement.
+          If the issue relates to workmanship, system performance, or service delivery after installation, we encourage customers to use the support and warranty channels defined in their commercial agreement so corrective action can be taken promptly.
         </p>
 
         <h2>6. Contact</h2>
         <p>
-          For any refund-related queries, write to finance@suntrix.in or call +91 98765 43210.
+          For refund or cancellation questions, email finance@suntrix.in or call +91 98765 43210.
         </p>
       </LegalContent>
-    </main>
+    </div>
   );
 }

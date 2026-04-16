@@ -1,87 +1,125 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, Calendar } from "lucide-react";
-import siteConfig from "@/lib/siteConfig.json";
+import siteConfig from "@/lib/siteConfig";
 
 export default function B2BProjects() {
   const { projects } = siteConfig;
+  const [featured, ...secondary] = projects.items;
 
   return (
-    <section id="projects" className="py-24 bg-white">
+    <section id="projects" className="overflow-hidden bg-white py-24 md:py-28">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <div className="max-w-2xl text-left">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-agro-sky/50 text-[10px] font-bold uppercase tracking-widest text-primary mb-6"
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
+              <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
               {projects.badge}
-            </motion.div>
-            
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold tracking-tight text-agro-dark"
-            >
-              {projects.title} <br />
-              <span className="text-muted-foreground font-medium">{projects.titleHighlight}</span>
-            </motion.h2>
+            </div>
+            <h2 className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+              {projects.title}
+            </h2>
           </div>
 
-          <div className="flex flex-col items-start md:items-end gap-6">
-            <p className="text-sm text-muted-foreground/80 max-w-sm md:text-right">
-              {projects.description}
-            </p>
-            <Button variant="default" className="rounded-full px-8 h-12 bg-primary hover:bg-primary/90 text-white font-bold group">
-              See All Projects
-              <ArrowUpRight size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          <div className="max-w-xl">
+            <p className="text-base leading-8 text-slate-600">{projects.description}</p>
+            <Button
+              asChild
+              className="mt-5 h-12 rounded-full bg-slate-950 px-5 text-sm font-semibold text-white hover:bg-slate-800"
+            >
+              <Link href="/projects">
+                View All Projects
+                <ArrowUpRight className="size-4" />
+              </Link>
             </Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {projects.items.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative h-[400px] w-full rounded-[2rem] overflow-hidden mb-6 shadow-lg shadow-black/5">
+        <div className="mt-14 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+          <motion.article
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55 }}
+            className="overflow-hidden rounded-[2.5rem] border border-slate-200"
+          >
+            <Link href="/projects" className="block">
+              <div className="relative h-[320px] md:h-[440px]">
                 <Image
-                  src={project.image}
-                  alt={project.title}
+                  src={featured.image}
+                  alt={featured.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 hover:scale-105"
                 />
-                <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-agro-dark">
-                   <Calendar size={12} className="text-primary" />
-                   {project.year}
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 via-slate-950/8 to-transparent" />
               </div>
 
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-xs font-bold text-primary uppercase tracking-widest mb-1">{project.location}</p>
-                  <h3 className="text-2xl font-bold text-agro-dark group-hover:text-primary transition-colors">{project.title}</h3>
-                  <p className="text-sm text-muted-foreground/80 mt-2 max-w-md">{project.description}</p>
+              <div className="bg-white p-6 md:p-8">
+                <div className="flex flex-wrap gap-2">
+                  <span className="rounded-full bg-slate-950/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+                    {featured.sector}
+                  </span>
+                  <span className="rounded-full bg-[var(--brand-lime)]/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
+                    {featured.scale}
+                  </span>
                 </div>
-                <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-agro-dark group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300">
-                  <ArrowUpRight size={20} />
+
+                <h3 className="mt-5 text-3xl font-semibold tracking-tight text-slate-950">
+                  {featured.title}
+                </h3>
+
+                <div className="mt-3 flex items-center gap-2 text-sm text-slate-500">
+                  <MapPin className="size-4 text-slate-400" />
+                  {featured.location}
                 </div>
+
+                <p className="mt-4 text-base leading-8 text-slate-600">{featured.outcome}</p>
               </div>
-            </motion.div>
-          ))}
+            </Link>
+          </motion.article>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+            {secondary.map((project, index) => (
+              <motion.article
+                key={project.title}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white"
+              >
+                <Link href="/projects" className="block">
+                  <div className="relative h-52">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div className="p-5">
+                    <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                      {project.sector}
+                    </div>
+                    <h3 className="mt-3 text-xl font-semibold tracking-tight text-slate-950">
+                      {project.title}
+                    </h3>
+                    <div className="mt-2 flex items-center gap-2 text-sm text-slate-500">
+                      <MapPin className="size-4 text-slate-400" />
+                      {project.location}
+                    </div>
+                    <div className="mt-4 text-sm font-medium text-slate-700">{project.scale}</div>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">{project.outcome}</p>
+                  </div>
+                </Link>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

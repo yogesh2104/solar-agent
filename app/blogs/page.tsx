@@ -1,11 +1,14 @@
+import Image from "next/image";
+import Link from "next/link";
+import { format } from "date-fns";
 import { db } from "@/lib/db";
 import { BlogCard } from "@/components/blog/blog-card";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 
 export const metadata = {
-  title: "Blog & Insights | Suntrix",
+  title: "Blog and Insights | Suntrix",
   description:
-    "Expert insights on commercial solar, energy policy, ROI analysis, and industry trends from India's leading B2B solar EPC company.",
+    "Commercial solar insights, procurement guidance, ROI thinking, and deployment lessons from the Suntrix team.",
 };
 
 export default async function BlogsPage() {
@@ -14,26 +17,79 @@ export default async function BlogsPage() {
     orderBy: { createdAt: "desc" },
   });
 
+  const [featuredBlog, ...otherBlogs] = blogs;
+
   return (
-    <div className="min-h-screen bg-[#050a14] pb-28">
+    <div className="bg-[#f7fbff] pb-20">
       <StaticPageHeader
-        title="Blog &"
+        title="Blog and"
         highlight="Insights"
         breadcrumb="Blog"
-        description="Expert analysis on commercial solar economics, energy policy, and technology trends from Suntrix engineers and consultants."
+        description="Guidance for commercial buyers evaluating solar panel supply, rooftop systems, hybrid planning, procurement, and long-term performance."
       />
 
-      <div className="container mx-auto px-6 max-w-7xl pt-4">
+      <div className="container mx-auto max-w-7xl px-6 pt-10">
         {blogs.length === 0 ? (
-          <div className="text-center py-32 border border-dashed border-white/8 rounded-3xl">
-            <h3 className="text-2xl font-bold text-white/30">No articles yet</h3>
-            <p className="mt-3 text-white/20">Check back soon for expert solar energy insights.</p>
+          <div className="rounded-[2.2rem] border border-dashed border-slate-300 bg-white px-6 py-20 text-center">
+            <h3 className="text-2xl font-semibold tracking-tight text-slate-950">
+              No articles published yet
+            </h3>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
+              We are preparing commercial solar explainers, buying guides, and case-based insights. Check back soon.
+            </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-            {blogs.map((blog) => (
-              <BlogCard key={blog.id} blog={blog} />
-            ))}
+          <div className="space-y-10">
+            {featuredBlog && (
+              <Link
+                href={`/blogs/${featuredBlog.slug}`}
+                className="group block overflow-hidden rounded-[2.4rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(8,17,31,0.06)]"
+              >
+                <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">
+                  <div className="relative min-h-[320px]">
+                    <Image
+                      src={featuredBlog.image}
+                      alt={featuredBlog.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/18 via-transparent to-transparent" />
+                  </div>
+
+                  <div className="flex flex-col justify-center p-8 md:p-10">
+                    <div className="inline-flex max-w-max items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
+                      <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+                      Featured article
+                    </div>
+
+                    <div className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                      {featuredBlog.tags[0] || "Insight"} · {format(new Date(featuredBlog.createdAt), "MMMM d, yyyy")}
+                    </div>
+
+                    <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl">
+                      {featuredBlog.title}
+                    </h2>
+
+                    <p className="mt-5 text-base leading-8 text-slate-600">
+                      {featuredBlog.metadata ||
+                        "A closer look at commercial solar decisions, implementation risk, and the operational realities behind long-term energy savings."}
+                    </p>
+
+                    <div className="mt-6 text-sm font-semibold text-slate-950">
+                      Read featured insight
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            )}
+
+            {otherBlogs.length > 0 && (
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+                {otherBlogs.map((blog) => (
+                  <BlogCard key={blog.id} blog={blog} />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

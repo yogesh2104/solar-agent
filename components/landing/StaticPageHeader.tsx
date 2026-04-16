@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface StaticPageHeaderProps {
   title: string;
@@ -23,69 +23,57 @@ export default function StaticPageHeader({
   return (
     <section
       className={cn(
-        "relative pt-36 pb-24 overflow-hidden bg-[#050a14]",
+        "relative overflow-hidden border-b border-slate-200/80 pb-14 pt-20 md:pb-14 md:pt-28",
         className,
       )}
     >
-      {/* Animated grid */}
-      <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(rgba(245,166,35,1) 1px, transparent 1px), linear-gradient(90deg, rgba(245,166,35,1) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
-      {/* Glow orbs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#f5a623]/6 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#1a6b3c]/8 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(244,248,254,0.94)_0%,rgba(255,255,255,0.92)_70%,rgba(255,255,255,1)_100%)]" />
+      <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(8,17,31,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(8,17,31,0.5)_1px,transparent_1px)] [background-size:52px_52px]" />
+      <div className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(143,183,223,0.32),transparent_66%)]" />
+      <div className="absolute bottom-0 left-0 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(204,255,52,0.18),transparent_68%)]" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Breadcrumb */}
+      <div className="container relative z-10 mx-auto px-6">
         <motion.nav
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="flex items-center gap-2 text-sm text-white/30 mb-10"
+          transition={{ duration: 0.35 }}
+          className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-4 py-2 text-sm text-slate-500 shadow-[0_10px_30px_rgba(8,17,31,0.04)] backdrop-blur-xl"
         >
           <Link
             href="/"
-            className="hover:text-[#f5a623] transition-colors flex items-center gap-1.5"
+            className="inline-flex items-center gap-1.5 font-medium text-slate-600 transition-colors hover:text-slate-950"
           >
-            <Home className="w-3.5 h-3.5" />
+            <Home className="h-3.5 w-3.5" />
             Home
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-40" />
-          <span className="text-white/60 font-semibold">{breadcrumb || title}</span>
+          <ChevronRight className="h-3.5 w-3.5 text-slate-300" />
+          <span className="font-medium text-slate-700">{breadcrumb || title}</span>
         </motion.nav>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl"
+          transition={{ duration: 0.5, delay: 0.06 }}
+          className="mt-8 max-w-4xl"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.05]">
+
+          <h1 className="mt-2 text-5xl font-semibold tracking-tight text-slate-950 md:text-7xl md:leading-[1.02]">
             {title}
             {highlight && (
               <>
                 {" "}
-                <span className="bg-gradient-to-r from-[#f5a623] to-[#f7c869] bg-clip-text text-transparent">
-                  {highlight}
-                </span>
+                <span className="text-slate-400">{highlight}</span>
               </>
             )}
           </h1>
 
           {description && (
-            <p className="text-lg md:text-xl text-white/40 leading-relaxed max-w-2xl">
+            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
               {description}
             </p>
           )}
         </motion.div>
       </div>
-
-      {/* Bottom border line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#f5a623]/20 to-transparent" />
     </section>
   );
 }

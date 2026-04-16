@@ -1,108 +1,161 @@
 "use client";
 
 import Link from "next/link";
-import { Send, Phone, Mail, MapPin } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import siteConfig from "@/lib/siteConfig.json";
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, Mail, MapPin, Phone, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import siteConfig from "@/lib/siteConfig";
 
 export default function B2BFooter() {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
+
   const { company, footer } = siteConfig;
 
   return (
-    <footer className="bg-slate-50 text-slate-950 pt-24 pb-12 overflow-hidden relative border-t border-slate-200">
-      {/* Background Watermark Text */}
-      <div className="absolute bottom-0 left-0 w-full opacity-[0.03] select-none pointer-events-none translate-y-1/2">
-        <h2 className="text-[20vw] font-black whitespace-nowrap leading-none tracking-tighter text-slate-900">
-          {footer.watermark}
-        </h2>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-20">
-          {/* Newsletter Section */}
-          <div className="lg:col-span-2">
-            <h3 className="text-3xl font-bold mb-8 text-slate-900">{footer.newsletter.title}</h3>
-            <div className="relative max-w-md group">
-              <Input
-                className="bg-white border-slate-200 rounded-2xl h-16 pl-6 pr-20 text-slate-900 placeholder:text-slate-400 focus-visible:ring-primary/20 shadow-sm"
-                placeholder="Enter your email address..."
-              />
-              <button className="absolute right-2 top-2 bottom-2 w-12 rounded-xl bg-primary flex items-center justify-center hover:bg-primary/90 transition-all shadow-md shadow-primary/20">
-                <Send size={18} className="text-white" />
-              </button>
-            </div>
-            <p className="mt-4 text-slate-500 text-sm">
-              {footer.newsletter.description}
-            </p>
-          </div>
-
-          {/* Contact Details */}
-          <div>
-            <h4 className="font-bold text-lg mb-8 text-slate-900">Contact Us</h4>
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-4 group cursor-pointer">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Phone size={18} className="text-primary" />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Phone</p>
-                  <p className="font-bold text-slate-800">{company.contact.phone}</p>
-                </div>
+    <footer className="border-t border-white/8 bg-[var(--brand-ink)] text-white">
+      <div className="container mx-auto px-6 py-16 md:py-20">
+        <div className="mb-14 rounded-[2rem] border border-white/10 bg-white/4 p-8 md:p-10">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/55">
+                Enterprise support
               </div>
-              <div className="flex items-center gap-4 group cursor-pointer">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Mail size={18} className="text-primary" />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Email</p>
-                  <p className="font-bold text-slate-800">{company.contact.email}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Location */}
-          <div>
-            <h4 className="font-bold text-lg mb-8 text-slate-900">Location</h4>
-            <div className="flex items-center gap-4 group">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <MapPin size={18} />
-              </div>
-              <p className="text-slate-600 leading-relaxed font-medium">
-                {company.contact.address}
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                {footer.title}
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60 md:text-base">
+                {footer.description}
               </p>
             </div>
-            <div className="mt-8">
-              <p className="text-slate-500 text-sm mb-2">Need some help?</p>
-              <Link href="/contact" className="text-primary font-bold border-b border-primary/20 hover:border-primary transition-all">
-                Get in touch
-              </Link>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button
+                asChild
+                className="h-12 rounded-full bg-[var(--brand-lime)] px-5 text-slate-950 hover:bg-[var(--brand-lime)]/90"
+              >
+                <Link href="/get-quote">
+                  Start Quote
+                  <ArrowUpRight className="size-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="h-12 rounded-full border-white/15 bg-transparent px-5 text-white hover:bg-white/8"
+              >
+                <Link href="/contact">Contact Sales</Link>
+              </Button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-12 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-8 text-slate-500 text-sm font-medium">
-          <p>{footer.copyright}</p>
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr]">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-3">
+              <span className="flex size-11 items-center justify-center rounded-full bg-[var(--brand-lime)] text-slate-950">
+                <Zap className="size-4 fill-current" />
+              </span>
+              <div>
+                <div className="text-xl font-semibold tracking-tight">{company.name}</div>
+                <div className="text-xs uppercase tracking-[0.22em] text-white/45">
+                  B2B Solar Infrastructure
+                </div>
+              </div>
+            </Link>
 
-          <div className="flex gap-6">
-            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <p className="mt-5 max-w-sm text-sm leading-7 text-white/58">
+              {company.tagline}
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["Tier-1 supply", "Commercial EPC", "Hybrid-ready systems"].map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-white/10 bg-white/4 px-3 py-1.5 text-xs font-medium text-white/65"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <div className="flex gap-4">
-            {/* <Link href={company.social.facebook} className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm">
-              <Facebook size={18} />
-            </Link>
-            <Link href={company.social.twitter} className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm">
-              <Twitter size={18} />
-            </Link>
-            <Link href={company.social.linkedin} className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm">
-              <Linkedin size={18} />
-            </Link>
-            <Link href={company.social.instagram} className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm">
-              <Instagram size={18} />
-            </Link> */}
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
+              Solutions
+            </div>
+            <div className="mt-5 flex flex-col gap-3">
+              {footer.solutionLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm text-white/62 transition-colors hover:text-[var(--brand-lime)]"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
+              Company
+            </div>
+            <div className="mt-5 flex flex-col gap-3">
+              {footer.quickLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm text-white/62 transition-colors hover:text-[var(--brand-lime)]"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
+              Contact
+            </div>
+            <div className="mt-5 space-y-4">
+              <a
+                href={`tel:${company.contact.phone.replace(/\s+/g, "")}`}
+                className="flex items-start gap-3 text-sm text-white/62 transition-colors hover:text-[var(--brand-lime)]"
+              >
+                <Phone className="mt-0.5 size-4 shrink-0" />
+                <span>{company.contact.phone}</span>
+              </a>
+              <a
+                href={`mailto:${company.contact.email}`}
+                className="flex items-start gap-3 text-sm text-white/62 transition-colors hover:text-[var(--brand-lime)]"
+              >
+                <Mail className="mt-0.5 size-4 shrink-0" />
+                <span>{company.contact.email}</span>
+              </a>
+              <div className="flex items-start gap-3 text-sm text-white/62">
+                <MapPin className="mt-0.5 size-4 shrink-0" />
+                <span>{company.contact.address}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/8 pt-6 text-xs text-white/38 md:flex-row md:items-center md:justify-between">
+          <div>{footer.copyright}</div>
+          <div className="flex flex-wrap gap-4">
+            {footer.legalLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="transition-colors hover:text-[var(--brand-lime)]"
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

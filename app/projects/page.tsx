@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import ProjectFilterWrapper from "@/components/project/ProjectFilterWrapper";
+import StaticPageHeader from "@/components/landing/StaticPageHeader";
 
 export const metadata = {
   title: "Our Solar Projects | Portfolio",
@@ -18,25 +19,21 @@ export default async function ProjectsPage() {
   const locations = Array.from(new Set(projects.map((p) => p.location)));
 
   return (
-    <main className="min-h-screen pt-32 pb-24">
-      <div className="container mx-auto px-6">
-        <div className="max-w-3xl mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-            Pioneering <span className="text-primary italic">Solar</span> <br />
-            Installations
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            From industrial warehouses to eco-friendly homes, discover how we're
-            transforming energy landscapes one installation at a time.
-          </p>
-        </div>
+    <div className="bg-[#f7fbff] pb-20">
+      <StaticPageHeader
+        title="Pioneering Solar"
+        highlight="Projects"
+        breadcrumb="Projects"
+        description="From industrial warehouses to eco-friendly homes, discover how we're transforming energy landscapes one installation at a time."
+      />
 
+      <div className="container mx-auto max-w-7xl px-6 pt-10">
         <ProjectFilterWrapper
           initialProjects={projects}
           categories={categories}
           locations={locations}
         />
       </div>
-    </main>
+    </div>
   );
 }

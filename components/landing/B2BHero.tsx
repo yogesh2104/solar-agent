@@ -1,47 +1,52 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Battery, Zap, ChevronRight, Play, Sun } from "lucide-react";
+import { ArrowRight, BatteryCharging, Factory, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import siteConfig from "@/lib/siteConfig.json";
-import * as LucideIcons from "lucide-react";
+import siteConfig from "@/lib/siteConfig";
 
 export default function B2BHero() {
   const { hero } = siteConfig;
 
   return (
-    <section id="hero" className="relative min-h-screen pt-32 pb-20 overflow-hidden bg-gradient-to-b from-agro-sky/50 to-white">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -mr-64 -mt-32" />
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-secondary/20 rounded-full blur-3xl -ml-32" />
+    <section
+      id="hero"
+      className="relative isolate overflow-hidden bg-[var(--brand-ink)] pb-20 pt-32 text-white md:pb-24 md:pt-36"
+    >
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(143,183,223,0.5),transparent_38%)]" />
+        <div className="absolute inset-x-0 top-0 h-[46rem] bg-gradient-to-b from-[#8ab2db]/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,17,31,0.18)_0%,rgba(8,17,31,0.55)_60%,rgba(8,17,31,0.92)_100%)]" />
+      </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-16">
+      <div className="container relative z-10 mx-auto px-6">
+        <div className="mx-auto max-w-5xl text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 backdrop-blur-md border border-white text-xs font-bold uppercase tracking-wider text-primary mb-8"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/16 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/88 backdrop-blur-xl"
           >
-            <Sun size={14} className="animate-spin-slow" />
+            <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
             {hero.badge}
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold tracking-tighter text-agro-dark mb-6"
+            transition={{ duration: 0.65, delay: 0.08 }}
+            className="mt-8 text-5xl font-semibold tracking-tight text-white md:text-7xl xl:text-[5.6rem]"
           >
-            {hero.title} <br />
-            <span className="text-muted-foreground font-medium">{hero.titleHighlight}</span>
+            {hero.title}
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground/80 mb-10 max-w-2xl"
+            transition={{ duration: 0.65, delay: 0.16 }}
+            className="mx-auto mt-6 max-w-3xl text-base leading-8 text-white/72 md:text-lg"
           >
             {hero.description}
           </motion.p>
@@ -49,114 +54,168 @@ export default function B2BHero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4"
+            transition={{ duration: 0.55, delay: 0.24 }}
+            className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
           >
-            <Button size="lg" className="rounded-full h-14 px-8 text-lg font-bold group">
-              {hero.ctaPrimary.text}
-              <div className="w-8 h-8 rounded-full bg-white/20 ml-2 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                <ChevronRight size={18} />
-              </div>
+            <Button
+              asChild
+              className="h-12 rounded-full bg-white px-6 text-sm font-semibold text-slate-950 hover:bg-white/92"
+            >
+              <Link href={hero.primaryCta.href}>
+                {hero.primaryCta.text}
+                <ArrowRight className="size-4" />
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full h-14 px-8 text-lg font-bold bg-white/50 border-white">
-              {hero.ctaSecondary.text}
+            <Button
+              asChild
+              variant="outline"
+              className="h-12 rounded-full border-white/18 bg-white/8 px-6 text-sm font-semibold text-white hover:bg-white/12"
+            >
+              <Link href={hero.secondaryCta.href}>{hero.secondaryCta.text}</Link>
             </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.32 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-2"
+          >
+            {hero.trustChips.map((chip) => (
+              <span
+                key={chip}
+                className="rounded-full border border-white/12 bg-white/6 px-3 py-1.5 text-sm text-white/78 backdrop-blur-md"
+              >
+                {chip}
+              </span>
+            ))}
           </motion.div>
         </div>
 
-        {/* Floating Stat Cards Overlaying Hero Image */}
-        <div className="relative mt-12 max-w-6xl mx-auto">
-          {/* Top Left Card */}
+        <div className="relative mx-auto mt-16 max-w-7xl">
           <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            className="hidden lg:flex absolute top-10 left-0 z-20 bg-white/90 backdrop-blur-xl p-4 rounded-3xl border border-white shadow-2xl flex-col gap-1 w-48"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55 }}
+            className="absolute left-0 top-10 z-20 hidden w-60 rounded-[1.75rem] border border-white/18 bg-white/12 p-5 backdrop-blur-xl xl:block"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <Battery size={20} />
-              </div>
+              <span className="flex size-11 items-center justify-center rounded-full bg-white/12 text-[var(--brand-lime)]">
+                <BatteryCharging className="size-5" />
+              </span>
               <div>
-                <p className="text-[10px] uppercase font-bold text-muted-foreground">{hero.stats[0].label}</p>
-                <p className="text-xl font-bold">{hero.stats[0].value}</p>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-white/55">
+                  {hero.sideStats[0].label}
+                </div>
+                <div className="mt-1 text-3xl font-semibold">{hero.sideStats[0].value}</div>
               </div>
             </div>
-            <div className="mt-2 h-1 bg-muted rounded-full overflow-hidden">
-              <div className="h-full bg-primary" style={{ width: `${hero.stats[0].percent}%` }} />
-            </div>
+            <p className="mt-4 text-sm leading-6 text-white/62">{hero.sideStats[0].note}</p>
           </motion.div>
 
-          {/* Top Right Card */}
           <motion.div
-            initial={{ x: 50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            className="hidden lg:flex absolute top-10 right-0 z-20 bg-white/90 backdrop-blur-xl p-4 rounded-3xl border border-white shadow-2xl flex-col gap-1 w-48"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, delay: 0.08 }}
+            className="absolute right-0 top-10 z-20 hidden w-60 rounded-[1.75rem] border border-white/18 bg-white/12 p-5 backdrop-blur-xl xl:block"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
-                <Zap size={20} />
-              </div>
+              <span className="flex size-11 items-center justify-center rounded-full bg-white/12 text-[var(--brand-lime)]">
+                <ShieldCheck className="size-5" />
+              </span>
               <div>
-                <p className="text-[10px] uppercase font-bold text-muted-foreground">{hero.stats[1].label}</p>
-                <p className="text-xl font-bold">{hero.stats[1].value}</p>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-white/55">
+                  {hero.sideStats[1].label}
+                </div>
+                <div className="mt-1 text-3xl font-semibold">{hero.sideStats[1].value}</div>
               </div>
             </div>
-            <div className="mt-2 h-1 bg-muted rounded-full overflow-hidden">
-              <div className="h-full bg-secondary" style={{ width: `${hero.stats[1].percent}%` }} />
-            </div>
+            <p className="mt-4 text-sm leading-6 text-white/62">{hero.sideStats[1].note}</p>
           </motion.div>
 
-          {/* Main Hero Image */}
           <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="relative h-[400px] md:h-[600px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.16 }}
+            transition={{ duration: 0.7 }}
+            className="overflow-hidden rounded-[2.75rem] border border-white/14 bg-white/6 shadow-[0_32px_100px_rgba(8,17,31,0.35)]"
           >
-            <Image
-              src={hero.image}
-              alt="Industrial scale solar installation"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-agro-dark/40 to-transparent" />
+            <div className="relative h-[430px] md:h-[600px]">
+              <Image
+                src={hero.image}
+                alt="Commercial rooftop solar panels for industrial and B2B buyers"
+                fill
+                priority
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(135,177,224,0.18)_0%,rgba(8,17,31,0.04)_26%,rgba(8,17,31,0.72)_100%)]" />
+              <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[var(--brand-ink)] via-[var(--brand-ink)]/65 to-transparent" />
 
-            {/* Bottom Cards on Image */}
-            <div className="absolute bottom-8 left-8 right-8 flex flex-wrap gap-4 items-end justify-between">
-              <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl border border-white shadow-xl max-w-sm flex items-center gap-4 group cursor-pointer hover:bg-white transition-colors">
-                <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
-                  <Play size={24} fill="currentColor" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg leading-tight">{hero.overlayCards.successStories}</h3>
-                </div>
-              </div>
-
-              <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl border border-white shadow-xl flex flex-col items-center gap-2">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-muted">
-                      <Image src={`/images/new_landing/avatar1.png`} width={40} height={40} alt="Client" />
+              <div className="absolute inset-x-6 bottom-6 grid gap-4 lg:grid-cols-[1.15fr_0.55fr_0.78fr]">
+                <div className="rounded-[2rem] bg-white p-4 text-slate-950 shadow-[0_20px_60px_rgba(8,17,31,0.14)] md:p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="relative h-20 w-24 overflow-hidden rounded-[1.35rem]">
+                      <Image
+                        src={hero.stageCards.proof.image}
+                        alt="Commercial solar installation specialist"
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                  ))}
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                        Project delivery
+                      </div>
+                      <p className="mt-2 text-lg font-semibold leading-7">
+                        {hero.stageCards.proof.title}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <p className="text-2xl font-black tracking-tight">{hero.overlayCards.clientCount}</p>
-                  <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">{hero.overlayCards.clientLabel}</p>
-                </div>
-              </div>
 
-              <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl border border-white shadow-xl max-w-[200px] flex flex-col gap-2">
-                <div className="h-2 w-12 bg-primary rounded-full" />
-                <h3 className="font-bold text-xl">{hero.overlayCards.featureTitle}</h3>
-                <p className="text-xs text-muted-foreground">{hero.overlayCards.featureDesc}</p>
+                <div className="rounded-[2rem] bg-white p-5 text-center text-slate-950 shadow-[0_20px_60px_rgba(8,17,31,0.14)]">
+                  <div className="mx-auto flex max-w-max items-center gap-2 rounded-full bg-slate-950/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                    <Factory className="size-3.5 text-[var(--brand-lime)]" />
+                    Social proof
+                  </div>
+                  <div className="mt-5 text-4xl font-semibold">{hero.stageCards.social.value}</div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {hero.stageCards.social.label}
+                  </p>
+                </div>
+
+                <div className="rounded-[2rem] border border-white/16 bg-white/10 p-5 text-white backdrop-blur-xl">
+                  <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/55">
+                    Design note
+                  </div>
+                  <h3 className="mt-3 text-2xl font-semibold">
+                    {hero.stageCards.highlight.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-white/68">
+                    {hero.stageCards.highlight.description}
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {hero.metrics.map((metric, index) => (
+              <motion.div
+                key={metric.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="rounded-[1.8rem] border border-white/12 bg-white/8 p-5 backdrop-blur-xl"
+              >
+                <div className="text-3xl font-semibold">{metric.value}</div>
+                <p className="mt-2 text-sm leading-6 text-white/65">{metric.label}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { Send, IndianRupee, Mail, MapPin, Phone, User, Zap, Building2, Factory } from "lucide-react";
+import {
+  Building2,
+  Factory,
+  IndianRupee,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  User,
+  Zap,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,43 +24,53 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import siteConfig from "@/lib/siteConfig";
 
 const requirementOptions = [
-  { value: "Commercial", label: "Commercial Solar (Offices / Malls)" },
-  { value: "Industrial", label: "Industrial Solar (Factory / Plant)" },
-  { value: "DataCenter", label: "Data Center / IT Park" },
-  { value: "Warehouse", label: "Warehouse / Logistics" },
-  { value: "Agricultural", label: "Agricultural / Farm" },
-  { value: "Other", label: "Other / Not Sure" },
+  { value: "Commercial", label: "Commercial rooftop solar" },
+  { value: "Industrial", label: "Industrial or factory solar" },
+  { value: "DataCenter", label: "Data center or IT park" },
+  { value: "Warehouse", label: "Warehouse or logistics site" },
+  { value: "Agricultural", label: "Agricultural or food-processing site" },
+  { value: "Other", label: "Other or not sure yet" },
 ];
 
+const defaultFormData = {
+  name: "",
+  phone: "",
+  email: "",
+  company: "",
+  location: "",
+  billAmount: "",
+  requirement: "",
+  capacity: "",
+};
+
 export default function QuotationForm() {
+  const { company } = siteConfig;
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    company: "",
-    location: "",
-    billAmount: "",
-    requirement: "",
-    capacity: "",
-  });
+  const [formData, setFormData] = useState(defaultFormData);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setLoading(true);
+
     try {
-      const res = await fetch("/api/quotation", {
+      const response = await fetch("/api/quotation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      if (!res.ok) throw new Error("Failed to submit request");
+
+      if (!response.ok) {
+        throw new Error("Failed to submit request");
+      }
+
       setSubmitted(true);
-      toast.success("Quotation request submitted! We'll contact you within 4 hours.");
-    } catch (error) {
+      setFormData(defaultFormData);
+      toast.success("Quotation request submitted. We will contact you shortly.");
+    } catch (error: unknown) {
       toast.error(error instanceof Error ? error.message : "Failed to submit request");
     } finally {
       setLoading(false);
@@ -58,136 +79,191 @@ export default function QuotationForm() {
 
   if (submitted) {
     return (
-      <div className="bg-[#050a14] border border-[#22c55e]/20 rounded-3xl p-12 text-center">
-        <div className="w-16 h-16 rounded-2xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center mx-auto mb-6">
-          <Zap className="w-8 h-8 text-[#22c55e] fill-current" />
+      <div className="rounded-[2.4rem] border border-slate-200 bg-white p-10 text-center shadow-[0_24px_70px_rgba(8,17,31,0.06)]">
+        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-[var(--brand-lime)]/35 text-slate-950">
+          <Zap className="size-7" />
         </div>
-        <h3 className="text-2xl font-bold text-white mb-3">Request Received!</h3>
-        <p className="text-white/50 mb-6">Our enterprise solar consultant will reach out within 4 business hours with a customized proposal.</p>
+        <h3 className="mt-6 text-3xl font-semibold tracking-tight text-slate-950">
+          Request received
+        </h3>
+        <p className="mx-auto mt-4 max-w-xl text-base leading-8 text-slate-600">
+          Our enterprise solar team will review your details and get back to you with the next practical step within 4 business hours.
+        </p>
         <Button
           onClick={() => setSubmitted(false)}
-          className="rounded-full px-8 bg-white/5 border border-white/10 text-white hover:bg-white/10"
           variant="outline"
+          className="mt-8 h-12 rounded-full border-slate-200 bg-white px-6 text-slate-950 hover:bg-slate-50"
         >
-          Submit Another Request
+          Submit another request
         </Button>
       </div>
     );
   }
 
   return (
-    <div className="bg-[#050a14] border border-white/8 rounded-3xl p-8 md:p-12">
+    <div className="rounded-[2.4rem] border border-slate-200 bg-white p-8 shadow-[0_24px_70px_rgba(8,17,31,0.06)] md:p-10">
+      <div className="mb-8">
+        <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+          Project brief
+        </div>
+        <h3 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+          Tell us about the site, load, and buying intent.
+        </h3>
+        <p className="mt-3 text-sm leading-7 text-slate-600">
+          A monthly electricity spend, location, and target capacity is enough for a strong first-pass commercial response.
+        </p>
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Name + Company */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="space-y-1.5">
-            <Label htmlFor="name" className="text-white/50 text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
-              <User className="w-3 h-3 text-[#f5a623]" /> Full Name *
+        <div className="grid gap-5 md:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="name" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <User className="size-3.5 text-slate-400" />
+                Full name
+              </span>
             </Label>
             <Input
-              id="name" required placeholder="Rajesh Sharma"
+              id="name"
+              required
+              placeholder="Aarav Mehta"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-xl h-12 focus:border-[#f5a623]/40 focus:ring-0"
+              onChange={(event) => setFormData({ ...formData, name: event.target.value })}
+              className="h-12 rounded-xl border-slate-200 bg-slate-50 text-slate-950 placeholder:text-slate-400"
             />
           </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="company" className="text-white/50 text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
-              <Building2 className="w-3 h-3 text-[#f5a623]" /> Company Name *
+
+          <div className="space-y-2">
+            <Label htmlFor="company" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <Building2 className="size-3.5 text-slate-400" />
+                Company name
+              </span>
             </Label>
             <Input
-              id="company" required placeholder="Mahindra & Mahindra Ltd."
+              id="company"
+              required
+              placeholder="Example Industries Pvt. Ltd."
               value={formData.company}
-              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-              className="bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-xl h-12 focus:border-[#f5a623]/40 focus:ring-0"
+              onChange={(event) => setFormData({ ...formData, company: event.target.value })}
+              className="h-12 rounded-xl border-slate-200 bg-slate-50 text-slate-950 placeholder:text-slate-400"
             />
           </div>
         </div>
 
-        {/* Phone + Email */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="space-y-1.5">
-            <Label htmlFor="phone" className="text-white/50 text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
-              <Phone className="w-3 h-3 text-[#f5a623]" /> Phone *
+        <div className="grid gap-5 md:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="phone" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <Phone className="size-3.5 text-slate-400" />
+                Phone
+              </span>
             </Label>
             <Input
-              id="phone" required type="tel" placeholder="+91 98765 43210"
+              id="phone"
+              required
+              type="tel"
+              placeholder={company.contact.phone}
               value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-xl h-12 focus:border-[#f5a623]/40 focus:ring-0"
+              onChange={(event) => setFormData({ ...formData, phone: event.target.value })}
+              className="h-12 rounded-xl border-slate-200 bg-slate-50 text-slate-950 placeholder:text-slate-400"
             />
           </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="email" className="text-white/50 text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
-              <Mail className="w-3 h-3 text-[#f5a623]" /> Work Email
+
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <Mail className="size-3.5 text-slate-400" />
+                Work email
+              </span>
             </Label>
             <Input
-              id="email" type="email" placeholder="rajesh@company.com"
+              id="email"
+              type="email"
+              placeholder={company.contact.email}
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-xl h-12 focus:border-[#f5a623]/40 focus:ring-0"
+              onChange={(event) => setFormData({ ...formData, email: event.target.value })}
+              className="h-12 rounded-xl border-slate-200 bg-slate-50 text-slate-950 placeholder:text-slate-400"
             />
           </div>
         </div>
 
-        {/* Location + Monthly Bill */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="space-y-1.5">
-            <Label htmlFor="location" className="text-white/50 text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
-              <MapPin className="w-3 h-3 text-[#f5a623]" /> Installation Location *
+        <div className="grid gap-5 md:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="location" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="size-3.5 text-slate-400" />
+                Site location
+              </span>
             </Label>
             <Input
-              id="location" required placeholder="City, State"
+              id="location"
+              required
+              placeholder="City, state"
               value={formData.location}
-              onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-              className="bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-xl h-12 focus:border-[#f5a623]/40 focus:ring-0"
+              onChange={(event) => setFormData({ ...formData, location: event.target.value })}
+              className="h-12 rounded-xl border-slate-200 bg-slate-50 text-slate-950 placeholder:text-slate-400"
             />
           </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="billAmount" className="text-white/50 text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
-              <IndianRupee className="w-3 h-3 text-[#f5a623]" /> Monthly Bill (₹) *
+
+          <div className="space-y-2">
+            <Label htmlFor="billAmount" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <IndianRupee className="size-3.5 text-slate-400" />
+                Monthly bill (INR)
+              </span>
             </Label>
             <Input
-              id="billAmount" required type="number" placeholder="e.g. 500000"
+              id="billAmount"
+              required
+              type="number"
+              placeholder="500000"
               value={formData.billAmount}
-              onChange={(e) => setFormData({ ...formData, billAmount: e.target.value })}
-              className="bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-xl h-12 focus:border-[#f5a623]/40 focus:ring-0"
+              onChange={(event) => setFormData({ ...formData, billAmount: event.target.value })}
+              className="h-12 rounded-xl border-slate-200 bg-slate-50 text-slate-950 placeholder:text-slate-400"
             />
           </div>
         </div>
 
-        {/* Requirement Type + Target Capacity */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="space-y-1.5">
-            <Label htmlFor="requirement" className="text-white/50 text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
-              <Factory className="w-3 h-3 text-[#f5a623]" /> Sector / Requirement *
+        <div className="grid gap-5 md:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="requirement" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <Factory className="size-3.5 text-slate-400" />
+                Requirement
+              </span>
             </Label>
             <Select
               value={formData.requirement}
               onValueChange={(value) => setFormData({ ...formData, requirement: value })}
-              required
             >
-              <SelectTrigger className="bg-white/5 border-white/10 text-white/60 h-12 rounded-xl focus:border-[#f5a623]/40">
-                <SelectValue placeholder="Select your sector" />
+              <SelectTrigger className="h-12 rounded-xl border-slate-200 bg-slate-50 text-slate-700">
+                <SelectValue placeholder="Choose the closest fit" />
               </SelectTrigger>
-              <SelectContent className="bg-[#080f1e] border-white/10">
-                {requirementOptions.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value} className="text-white/70 hover:bg-white/5 focus:bg-white/5">
-                    {opt.label}
+              <SelectContent className="border-slate-200 bg-white">
+                {requirementOptions.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="capacity" className="text-white/50 text-xs font-semibold uppercase tracking-wide flex items-center gap-1.5">
-              <Zap className="w-3 h-3 text-[#f5a623]" /> Target Capacity (kW)
+
+          <div className="space-y-2">
+            <Label htmlFor="capacity" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <Zap className="size-3.5 text-slate-400" />
+                Target capacity (kW)
+              </span>
             </Label>
             <Input
-              id="capacity" type="number" placeholder="e.g. 500"
+              id="capacity"
+              type="number"
+              placeholder="500"
               value={formData.capacity}
-              onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-              className="bg-white/5 border-white/10 text-white placeholder:text-white/20 rounded-xl h-12 focus:border-[#f5a623]/40 focus:ring-0"
+              onChange={(event) => setFormData({ ...formData, capacity: event.target.value })}
+              className="h-12 rounded-xl border-slate-200 bg-slate-50 text-slate-950 placeholder:text-slate-400"
             />
           </div>
         </div>
@@ -195,18 +271,26 @@ export default function QuotationForm() {
         <Button
           type="submit"
           disabled={loading}
-          className="w-full h-14 text-base font-bold rounded-2xl bg-[#f5a623] hover:bg-[#e09520] text-black shadow-xl shadow-[#f5a623]/20 transition-all"
+          className="h-14 w-full rounded-2xl bg-slate-950 text-base font-semibold text-white hover:bg-slate-800"
         >
-          {loading ? "Submitting..." : "Request My Free Proposal"}
-          {!loading && <Send className="ml-2 w-5 h-5" />}
+          {loading ? "Submitting..." : "Request my proposal"}
+          {!loading && <Send className="ml-2 size-4" />}
         </Button>
 
-        <p className="text-center text-xs text-white/20">
+        <p className="text-center text-xs leading-6 text-slate-500">
           By submitting, you agree to our{" "}
-          <a href="/privacy-policy" className="text-[#f5a623]/60 hover:text-[#f5a623]">Privacy Policy</a>{" "}
+          <Link href="/privacy-policy" className="font-medium text-slate-950 underline underline-offset-4">
+            Privacy Policy
+          </Link>{" "}
           and{" "}
-          <a href="/terms" className="text-[#f5a623]/60 hover:text-[#f5a623]">Terms</a>.
-          Our team responds within 4 business hours.
+          <Link href="/terms" className="font-medium text-slate-950 underline underline-offset-4">
+            Terms
+          </Link>
+          . You can also reach us directly at{" "}
+          <a href={`mailto:${company.contact.email}`} className="font-medium text-slate-950 underline underline-offset-4">
+            {company.contact.email}
+          </a>
+          .
         </p>
       </form>
     </div>

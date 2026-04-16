@@ -1,11 +1,10 @@
+import { format } from "date-fns";
+import Image from "next/image";
+import Link from "next/link";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { format } from "date-fns";
-import { Calendar, ArrowLeft, User as UserIcon } from "lucide-react";
-import Link from "next/link";
+import { ArrowLeft, Calendar, User as UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 interface BlogDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -14,10 +13,14 @@ interface BlogDetailPageProps {
 export async function generateMetadata({ params }: BlogDetailPageProps) {
   const { slug } = await params;
   const blog = await db.blog.findUnique({ where: { slug, isPublished: true } });
-  if (!blog) return { title: "Post Not Found" };
+
+  if (!blog) {
+    return { title: "Post Not Found" };
+  }
+
   return {
     title: `${blog.title} | Suntrix`,
-    description: blog.metadata || "Read more about solar energy.",
+    description: blog.metadata || "Read more about commercial solar and energy infrastructure.",
     openGraph: {
       title: blog.title,
       description: blog.metadata || "",
@@ -33,116 +36,116 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     include: { author: true },
   });
 
-  if (!blog) notFound();
+  if (!blog) {
+    notFound();
+  }
 
   return (
-    <article className="min-h-screen bg-[#050a14] pb-28">
-      {/* Top nav area */}
-      <div className="bg-[#050a14] pt-28 pb-12 border-b border-white/8">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <Link href="/blogs">
-            <Button
-              variant="ghost"
-              className="mb-8 group text-white/50 hover:text-white hover:bg-white/5 rounded-full"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-              Back to Articles
-            </Button>
-          </Link>
+    <article className="bg-[#f7fbff] pb-20 pt-32">
+      <div className="container mx-auto max-w-5xl px-6">
+        <Link
+          href="/blogs"
+          className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-950"
+        >
+          <ArrowLeft className="size-4" />
+          Back to articles
+        </Link>
 
-          {/* Tags */}
-          <div className="flex items-center gap-2 mb-6">
+        <div className="mt-8 rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-[0_20px_60px_rgba(8,17,31,0.06)] md:p-10">
+          <div className="flex flex-wrap gap-2">
             {blog.tags.map((tag) => (
-              <Badge
+              <span
                 key={tag}
-                className="px-3 py-1 uppercase tracking-wider text-[10px] font-bold bg-[#f5a623]/10 border border-[#f5a623]/20 text-[#f5a623] hover:bg-[#f5a623]/20"
+                className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-600"
               >
                 {tag}
-              </Badge>
+              </span>
             ))}
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-white mb-8">
+          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl md:leading-[1.04]">
             {blog.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-white/30">
+          <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-slate-500">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-xl bg-[#f5a623]/10 border border-[#f5a623]/20 flex items-center justify-center overflow-hidden">
+              <span className="flex size-11 items-center justify-center overflow-hidden rounded-full bg-slate-100 text-slate-500">
                 {blog.author.image ? (
-                  <Image src={blog.author.image} alt={blog.author.name} width={40} height={40} className="object-cover" />
+                  <Image
+                    src={blog.author.image}
+                    alt={blog.author.name}
+                    width={44}
+                    height={44}
+                    className="size-11 object-cover"
+                  />
                 ) : (
-                  <UserIcon className="h-5 w-5 text-[#f5a623]" />
+                  <UserIcon className="size-5" />
                 )}
-              </div>
-              <span className="font-medium text-white/60">{blog.author.name}</span>
+              </span>
+              <span className="font-medium text-slate-700">{blog.author.name}</span>
             </div>
+
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
+              <Calendar className="size-4 text-slate-400" />
               <span>{format(new Date(blog.createdAt), "MMMM d, yyyy")}</span>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="container mx-auto px-6 max-w-4xl py-12">
-        {/* Hero image */}
-        <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl mb-16 border border-white/8">
-          <Image
-            src={blog.image}
-            alt={blog.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050a14]/40 to-transparent" />
+        <div className="relative mt-8 overflow-hidden rounded-[2.5rem] border border-slate-200 shadow-[0_20px_60px_rgba(8,17,31,0.06)]">
+          <div className="relative aspect-[16/8]">
+            <Image
+              src={blog.image}
+              alt={blog.title}
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
         </div>
 
-        {/* Content */}
-        <div
-          className="prose prose-lg max-w-none
-            prose-headings:text-white prose-headings:font-bold
-            prose-p:text-white/55 prose-p:leading-relaxed
-            prose-a:text-[#f5a623] prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-white/80
-            prose-li:text-white/55
-            prose-img:rounded-2xl
-            prose-blockquote:border-white/40 prose-blockquote:text-white/40
-            prose-code:text-white prose-code:bg-white/5"
-          dangerouslySetInnerHTML={{ __html: blog.content }}
-        />
+        <div className="mt-8 rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-[0_20px_60px_rgba(8,17,31,0.06)] md:p-12">
+          <div
+            className="prose prose-lg prose-slate max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-slate-950 prose-p:text-slate-600 prose-p:leading-8 prose-li:text-slate-600 prose-li:leading-8 prose-strong:text-slate-900 prose-a:text-slate-950 prose-a:underline prose-a:decoration-slate-300 prose-a:underline-offset-4"
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+          />
+        </div>
 
-        {/* Author footer */}
-        <div className="mt-20 pt-10 border-t border-white/8 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="mt-8 flex flex-col gap-6 rounded-[2.2rem] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(8,17,31,0.06)] md:flex-row md:items-center md:justify-between md:p-8">
           <div className="flex items-center gap-4">
-            <div className="h-16 w-16 rounded-2xl bg-[#f5a623]/10 border border-[#f5a623]/20 flex items-center justify-center overflow-hidden">
+            <span className="flex size-14 items-center justify-center overflow-hidden rounded-full bg-slate-100 text-slate-500">
               {blog.author.image ? (
-                <Image src={blog.author.image} alt={blog.author.name} width={64} height={64} className="object-cover" />
+                <Image
+                  src={blog.author.image}
+                  alt={blog.author.name}
+                  width={56}
+                  height={56}
+                  className="size-14 object-cover"
+                />
               ) : (
-                <UserIcon className="h-8 w-8 text-[#f5a623]" />
+                <UserIcon className="size-6" />
               )}
-            </div>
+            </span>
             <div>
-              <p className="text-sm text-white/30">Written by</p>
-              <p className="text-xl font-bold text-white">{blog.author.name}</p>
+              <div className="text-sm text-slate-500">Written by</div>
+              <div className="text-xl font-semibold text-slate-950">{blog.author.name}</div>
             </div>
           </div>
-          <div className="flex gap-4">
+
+          <div className="flex flex-col gap-3 sm:flex-row">
             <Button
+              asChild
               variant="outline"
-              size="lg"
-              className="rounded-full border-white/15 text-white/60 bg-white/5 hover:bg-white/10"
+              className="h-11 rounded-full border-slate-200 bg-white px-5 text-slate-950 hover:bg-slate-50"
             >
-              Share Article
+              <Link href="/blogs">More articles</Link>
             </Button>
-            <Link href="/get-quote">
-              <Button
-                size="lg"
-                className="rounded-full px-8 bg-[#f5a623] hover:bg-[#e09520] text-black font-bold"
-              >
-                Get Enterprise Quote
-              </Button>
-            </Link>
+            <Button
+              asChild
+              className="h-11 rounded-full bg-slate-950 px-5 text-white hover:bg-slate-800"
+            >
+              <Link href="/get-quote">Get enterprise quote</Link>
+            </Button>
           </div>
         </div>
       </div>

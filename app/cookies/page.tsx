@@ -3,53 +3,53 @@ import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
   title: "Cookie Policy | Suntrix",
-  description: "This policy explains how Suntrix uses cookies and similar technologies to improve your experience.",
+  description: "How Suntrix uses cookies and similar technologies across its public website.",
 };
 
 export default function CookiesPage() {
   return (
-    <main className="min-h-screen bg-[#050a14]">
+    <div className="bg-[#f7fbff] pb-20">
       <StaticPageHeader
         title="Cookie"
         highlight="Policy"
         breadcrumb="Cookie Policy"
-        description="This policy explains how we use cookies and similar technologies to improve your browsing experience."
+        description="This page explains how Suntrix uses cookies and similar technologies to support website performance, analytics, and your browsing experience."
       />
 
       <LegalContent>
-        <h2>1. What are Cookies?</h2>
+        <h2>1. What are cookies?</h2>
         <p>
-          Cookies are small text files that are stored on your device when you visit a website. They help the website remember your preferences and improve your browsing experience.
+          Cookies are small text files stored on your device when you visit a website. They help the website remember preferences, improve usability, and understand how visitors interact with content.
         </p>
 
-        <h2>2. Types of Cookies We Use</h2>
+        <h2>2. Types of cookies we use</h2>
         <ul>
-          <li><strong>Essential Cookies:</strong> Required for the website to function correctly (e.g., maintaining your session).</li>
-          <li><strong>Analytical Cookies:</strong> Help us understand how visitors interact with our site, which pages are popular, and where we can improve.</li>
-          <li><strong>Functional Cookies:</strong> Remember your choices (like region or language) to provide a more personalized experience.</li>
-          <li><strong>Marketing Cookies:</strong> Used to track visitors across websites to enable us to display relevant and targeted B2B advertising.</li>
+          <li><strong>Essential cookies:</strong> Needed for core website functionality such as maintaining sessions and security controls.</li>
+          <li><strong>Analytics cookies:</strong> Used to understand page usage, navigation flow, and performance so we can improve the public site.</li>
+          <li><strong>Functional cookies:</strong> Remember choices like form state or browsing preferences when applicable.</li>
+          <li><strong>Marketing cookies:</strong> May be used to understand campaign performance and serve more relevant B2B communications.</li>
         </ul>
 
-        <h2>3. Third-Party Cookies</h2>
+        <h2>3. Third-party cookies</h2>
         <p>
-          We may use third-party services like Google Analytics, LinkedIn Insight Tag, and HubSpot to analyze website traffic and measure marketing campaign performance. These services set their own cookies to collect anonymous data about your interactions.
+          We may use trusted third-party services such as analytics or campaign tools to understand traffic and improve our communication with business audiences. These services may place their own cookies subject to their respective policies.
         </p>
 
-        <h2>4. Your Control</h2>
+        <h2>4. Managing cookies</h2>
         <p>
-          Most web browsers allow you to control cookies through their settings. You can choose to block all cookies, accept only certain types, or delete them when you close your browser. Please note that disabling essential cookies may affect the functionality of some parts of our website.
+          Most browsers let you review, block, or delete cookies through browser settings. Blocking some categories may affect how certain parts of the site function.
         </p>
 
-        <h2>5. Updates to This Policy</h2>
+        <h2>5. Updates to this policy</h2>
         <p>
-          We may update our Cookie Policy from time to time to reflect changes in technology or data protection regulations. We encourage you to check this page periodically for updates.
+          We may update this policy from time to time to reflect changes in technology, regulation, or our website operations. Please review this page periodically for the latest version.
         </p>
 
         <h2>6. Contact</h2>
         <p>
-          If you have any questions about our use of cookies, please contact us at legal@suntrix.in.
+          Questions about this Cookie Policy can be sent to legal@suntrix.in.
         </p>
       </LegalContent>
-    </main>
+    </div>
   );
 }

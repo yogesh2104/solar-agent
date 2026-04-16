@@ -12,9 +12,9 @@ const fontSans = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "SolarCo | Powering a Sustainable Future",
+  title: "Suntrix | B2B Solar Panels and Commercial Solar Systems",
   description:
-    "Leading solar energy solutions for residential, industrial, and maintenance needs.",
+    "Suntrix helps industrial and commercial buyers procure solar panels, rooftop systems, hybrid-ready designs, and long-term O&M support.",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
       className={`${fontSans.variable} antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex flex-col font-sans">
+      <body className="flex min-h-screen flex-col font-sans text-foreground">
         <SessionProvider>
           <SmoothScroll>
             <B2BNavbar />

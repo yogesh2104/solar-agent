@@ -47,7 +47,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <main className="min-h-screen pt-32 pb-24">
+    <main className="min-h-screen pt-20 pb-24 bg-[#f7fbff]">
       <div className="container mx-auto px-6">
         {/* Breadcrumbs & Navigation */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
@@ -73,7 +73,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <div className="space-y-12 lg:sticky lg:top-32">
             <ProjectGallery images={project.images} />
 
-            <div className="bg-card/50 border border-border/50 rounded-3xl p-8 backdrop-blur-sm">
+            <div className="bg-card border border-border/50 rounded-3xl p-8 backdrop-blur-sm">
               <h3 className="text-xl font-bold mb-6">Installation Overview</h3>
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-1">
@@ -121,10 +121,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                 Case Study
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+              <h1 className="text-4xl text-black md:text-5xl font-bold tracking-tight mb-8">
                 {project.title}
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed italic border-l-4 border-primary/50 pl-6 mb-12">
+              <p className="text-xl text-black leading-relaxed italic border-l-4 border-primary/50 pl-6 mb-12">
                 {project.description}
               </p>
             </div>
@@ -160,7 +160,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
             {/* Impact Section */}
             {(project.savings || project.outcome) && (
-              <div className="bg-linear-to-br from-primary/5 via-transparent to-secondary/5 rounded-3xl p-8 border border-primary/10">
+              <div className="text-black rounded-3xl p-8 border border-primary/10">
                 <h3 className="text-2xl font-bold mb-8">Key Outcomes</h3>
                 <div className="space-y-8">
                   {project.savings && (
@@ -182,7 +182,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                       </div>
                       <div>
                         <h4 className="font-bold text-lg mb-1">Final Result</h4>
-                        <p className="text-muted-foreground">{project.outcome}</p>
+                        <p className="text-black">{project.outcome}</p>
                       </div>
                     </div>
                   )}
