@@ -28,7 +28,7 @@ const iconMap: Record<string, any> = {
 };
 
 export default async function ServicesPage() {
-  const services = await db.Service.findMany({
+  const services = await db.service.findMany({
     orderBy: {
       createdAt: "asc",
     },

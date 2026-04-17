@@ -17,7 +17,7 @@ export default async function EditFaqPage({ params }: EditFaqPageProps) {
   const { id } = await params;
 
   const [faq, services] = await Promise.all([
-    db.faq.findUnique({
+    db.fAQ.findUnique({
       where: { id },
     }),
     db.service.findMany({

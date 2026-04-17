@@ -17,12 +17,12 @@ export const metadata = {
 
 export default async function SolarInstallationMumbai() {
   const [faqs, services] = await Promise.all([
-    db.FAQ.findMany({
+    db.fAQ.findMany({
       where: { isPublished: true },
       orderBy: { order: "asc" },
       take: 6,
     }),
-    db.Service.findMany({
+    db.service.findMany({
       orderBy: { createdAt: "asc" },
     }),
   ]);

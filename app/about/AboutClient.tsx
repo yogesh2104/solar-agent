@@ -11,35 +11,21 @@ import {
   TrendingUp,
   Users,
   Wrench,
+  CheckCircle2,
 } from "lucide-react";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import siteConfig from "@/lib/siteConfig";
 
 const milestones = [
   {
-    year: "2020",
+    year: "2025",
     event:
-      "ELIZ ENERGY founded with a focus on affordable residential solar solutions.",
+      "ELIZ ENERGY founded by Ms. Falguni Rawal with a mission to deliver end-to-end sustainable solar solutions across Mumbai and Thane.",
   },
   {
-    year: "2022",
+    year: "Vision 2026",
     event:
-      "Expanded into commercial and industrial sectors across Mumbai and Thane.",
-  },
-  {
-    year: "2023",
-    event:
-      "Introduced comprehensive maintenance and O&M services for local businesses.",
-  },
-  {
-    year: "2024",
-    event:
-      "Launched EV Charger installation services to support suburban Mumbai's green transition.",
-  },
-  {
-    year: "2026",
-    event:
-      "Expanding solar infrastructure support across Navi Mumbai and Maharashtra.",
+      "Aiming to lead the renewable sector in Maharashtra by providing clean energy access to every home and industry.",
   },
 ];
 
@@ -295,44 +281,211 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#f7fbff] py-20">
+      <section className="bg-slate-950 py-24 text-white">
         <div className="container mx-auto px-6">
-          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
-            <div className="rounded-[2.2rem] border border-slate-200 bg-white p-6 md:p-8">
-              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
-                Timeline
-              </div>
-              <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">
-                Growth shaped by commercial delivery needs.
-              </h3>
-              <p className="mt-4 text-sm leading-7 text-slate-600">
-                Our path has been driven by how B2B solar projects actually get
-                bought, deployed, and maintained.
-              </p>
-            </div>
+          <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative aspect-square overflow-hidden rounded-[3rem] border border-white/10"
+            >
+              <Image
+                src={(siteConfig as any).founder.image}
+                alt={(siteConfig as any).founder.name}
+                fill
+                className="object-cover"
+              />
+            </motion.div>
 
-            <div className="space-y-4">
-              {milestones.map((item, index) => (
-                <motion.div
-                  key={item.year}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, delay: index * 0.06 }}
-                  className="grid gap-4 rounded-[1.9rem] border border-slate-200 bg-white p-5 md:grid-cols-[120px_1fr] md:items-start"
-                >
-                  <div className="text-2xl font-semibold tracking-tight text-slate-950">
-                    {item.year}
+            <div className="space-y-10">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--brand-lime)]">
+                  Meet our Founder
+                </div>
+                <h2 className="text-4xl font-bold tracking-tight md:text-6xl">
+                  {(siteConfig as any).founder.name}
+                </h2>
+                <p className="text-xl font-medium text-white/60">
+                  {(siteConfig as any).founder.role}
+                </p>
+              </div>
+
+              <div className="space-y-6 text-lg leading-relaxed text-white/80">
+                <p>{(siteConfig as any).founder.bio}</p>
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div className="rounded-2xl bg-white/5 p-6 border border-white/5">
+                    <div className="text-2xl font-bold text-[var(--brand-lime)]">
+                      {(siteConfig as any).founder.experience.combined}
+                    </div>
+                    <div className="text-sm uppercase tracking-wider text-white/40 mt-1">
+                      Combined Experience
+                    </div>
                   </div>
-                  <p className="text-sm leading-7 text-slate-600">
-                    {item.event}
-                  </p>
-                </motion.div>
-              ))}
+                  <div className="rounded-2xl bg-white/5 p-6 border border-white/5">
+                    <div className="text-2xl font-bold text-[var(--brand-lime)]">
+                      {(siteConfig as any).founder.experience.solar}
+                    </div>
+                    <div className="text-sm uppercase tracking-wider text-white/40 mt-1">
+                      Dedicated Solar Expertise
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      <section className="py-24">
+        <div className="container mx-auto px-6">
+          <div className="grid gap-10 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="rounded-[3rem] border border-slate-200 bg-slate-50 p-10 md:p-16"
+            >
+              <div className="size-16 rounded-2xl bg-[var(--brand-lime)] flex items-center justify-center mb-8">
+                <TrendingUp className="size-8 text-slate-950" />
+              </div>
+              <h2 className="text-4xl font-bold tracking-tight text-slate-950 mb-6">
+                Our Vision
+              </h2>
+              <p className="text-xl leading-relaxed text-slate-600">
+                To become a trusted leader in the renewable energy sector by
+                enabling access to clean and sustainable solar power for every
+                home, business, and industry.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="rounded-[3rem] border border-slate-950 bg-slate-950 p-10 md:p-16 text-white"
+            >
+              <div className="size-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8">
+                <ShieldCheck className="size-8 text-[var(--brand-lime)]" />
+              </div>
+              <h2 className="text-4xl font-bold tracking-tight mb-6">
+                Our Mission
+              </h2>
+              <ul className="space-y-4">
+                {[
+                  "Offer innovative and affordable solar solutions tailored to client needs",
+                  "Promote eco-friendly technologies that reduce dependence on fossil fuels",
+                  "Build long-lasting relationships through exceptional service and performance",
+                  "Help India move closer to a carbon-neutral future",
+                ].map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-4 items-start text-lg text-white/80"
+                  >
+                    <span className="size-2 rounded-full bg-[var(--brand-lime)] mt-2.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-10">
+        <div className="container mx-auto px-6">
+          <div className="mb-16 text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
+              Products & Services
+            </h2>
+            <p className="mt-4 text-lg text-slate-600">
+              Comprehensive Solar Solutions for every sector.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="rounded-[2.5rem] bg-white p-8 md:p-12 border border-slate-200">
+              <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span className="size-10 rounded-xl bg-blue-50 flex items-center justify-center">
+                  <Wrench className="size-5 text-blue-600" />
+                </span>
+                Products We Offer
+              </h3>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[
+                  "Solar PV Panels",
+                  "On-Grid/Hybrid Inverters",
+                  "Solar Batteries",
+                  "Mounting Structures",
+                  "Cabling Accessories",
+                  "BOS Components",
+                ].map((p) => (
+                  <div
+                    key={p}
+                    className="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 text-slate-700 font-medium"
+                  >
+                    <CheckCircle2 className="size-4 text-[var(--brand-lime)]" />
+                    {p}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[2.5rem] bg-white p-8 md:p-12 border border-slate-200">
+              <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span className="size-10 rounded-xl bg-orange-50 flex items-center justify-center">
+                  <Factory className="size-5 text-orange-600" />
+                </span>
+                Our Services
+              </h3>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[
+                  "System Installation",
+                  "Design & Engineering",
+                  "Solar Components Supply",
+                  "Operation & Maintenance",
+                  "Solar Consultancy",
+                  "Hybrid & Off-Grid Systems",
+                ].map((s) => (
+                  <div
+                    key={s}
+                    className="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 text-slate-700 font-medium"
+                  >
+                    <CheckCircle2 className="size-4 text-[var(--brand-lime)]" />
+                    {s}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* <section className="py-10">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold text-slate-950 md:text-5xl mb-12">
+            Growth Journey
+          </h2>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {milestones.map((item, index) => (
+              <motion.div
+                key={item.year}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex flex-col md:flex-row gap-6 p-8 rounded-[2.5rem] border border-slate-200 bg-white items-center text-left"
+              >
+                <div className="text-4xl font-black text-[var(--brand-lime)] md:w-48">
+                  {item.year}
+                </div>
+                <p className="text-lg leading-relaxed text-slate-600 font-medium flex-1">
+                  {item.event}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section> */}
     </div>
   );
 }

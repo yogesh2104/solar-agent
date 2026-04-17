@@ -4,58 +4,75 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0F172A;
+  --foreground: #2f3e5c;
+
   --card: #ffffff;
-  --card-foreground: #0F172A;
+  --card-foreground: #2f3e5c;
+
   --popover: #ffffff;
-  --popover-foreground: #0F172A;
-  --primary: #8dd35f;
+  --popover-foreground: #2f3e5c;
+
+  --primary: #1f9d4d;
   --primary-foreground: #ffffff;
-  --secondary: #e0f2fe;
-  --secondary-foreground: #0f172a;
-  --muted: #f8fafc;
+
+  --secondary: #f4c21d;
+  --secondary-foreground: #000000;
+
+  --muted: #f3f6f9;
   --muted-foreground: #64748b;
-  --accent: #f5a623;
-  --accent-foreground: #ffffff;
+
+  --accent: #f4c21d;
+  --accent-foreground: #000000;
+
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #8dd35f;
-  --radius: 0.5rem;
-  --font-sans: 'Outfit', sans-serif;
 
-  /* Agro Special */
-  --agro-green: #8dd35f;
-  --agro-sky: #e0f2fe;
-  --agro-dark: #050a14;
-  --brand-ink: #08111f;
-  --brand-sky: #edf5ff;
-  --brand-ocean: #8fb7df;
-  --brand-lime: #ccff34;
-  --brand-line: rgba(8, 17, 31, 0.08);
+  --border: #e6eaf0;
+  --input: #e6eaf0;
+  --ring: #1f9d4d;
+
+  --brand-ink: #2f3e5c;
+  --brand-sky: #f8fafc;
+  --brand-ocean: #1f9d4d;
+  --brand-lime: #f4c21d;
+  --brand-line: rgba(47, 62, 92, 0.08);
 }
 
 .dark {
   --background: #050a14;
-  --foreground: #F8FAFC;
-  --card: #080f1e;
-  --card-foreground: #F8FAFC;
-  --popover: #080f1e;
-  --popover-foreground: #F8FAFC;
-  --primary: #8dd35f;
-  --primary-foreground: #000000;
-  --secondary: #0d1a2e;
-  --secondary-foreground: #ffffff;
-  --muted: #0d1a2e;
-  --muted-foreground: rgba(248, 250, 252, 0.4);
-  --accent: #f5a623;
+  --foreground: #f8fafc;
+
+  --card: #0b1220;
+  --card-foreground: #f8fafc;
+
+  --popover: #0b1220;
+  --popover-foreground: #f8fafc;
+
+  --primary: #1f9d4d;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f4c21d;
+  --secondary-foreground: #000000;
+
+  --muted: #0f172a;
+  --muted-foreground: rgba(255, 255, 255, 0.6);
+
+  --accent: #f4c21d;
   --accent-foreground: #000000;
+
   --destructive: #7f1d1d;
-  --destructive-foreground: #F8FAFC;
+  --destructive-foreground: #f8fafc;
+
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.06);
-  --ring: #8dd35f;
+  --ring: #1f9d4d;
+  
+  
+  --brand-ink: #f8fafc;
+  --brand-sky: #050a14;
+  --brand-ocean: #1f9d4d;
+  --brand-lime: #f4c21d;
+  --brand-line: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
@@ -85,6 +102,15 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+body {
+  @apply bg-background text-foreground;
+  letter-spacing: var(--tracking-normal);
+  background:
+    radial-gradient(circle at top left, rgba(244, 194, 29, 0.12), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(31, 157, 77, 0.10), transparent 40%),
+    linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
 }
 
 @layer utilities {
@@ -132,4 +158,8 @@ html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+.text-gradient {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(90deg, #1f9d4d, #f4c21d);
 }

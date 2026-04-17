@@ -568,9 +568,9 @@ const siteConfig = {
     image: "/images/new_landing/about_b2b.png",
     gallery: ["/images/Rooftop.jpg", "/images/industrial.png"],
     stats: [
-      { value: "3+ Years", label: "Solar experience" },
-      { value: "100+", label: "Happy customers" },
-      { value: "Affordable", label: "Cost-effective solutions" },
+      { value: "4+ Years", label: "Solar focus" },
+      { value: "10+ Years", label: "Combined expertise" },
+      { value: "Founded 2025", label: "ELIZ ENERGY" },
     ],
     advantages: [
       "Bulk procurement support for installers, EPCs, and project developers",
@@ -651,6 +651,17 @@ const siteConfig = {
       { name: "EV Charger Setup", href: "/ev-charger" },
     ],
     copyright: "© 2026 ELIZ ENERGY. All rights reserved.",
+  },
+  founder: {
+    name: "Ms. Falguni Rawal",
+    role: "Founder & Lead Consultant",
+    experience: {
+      solar: "3+ years",
+      combined: "10-11 years",
+      sales: "5+ years",
+    },
+    bio: "Ms. Falguni Rawal brings a unique blend of technical hands-on solar experience and strategic marketing expertise. Driven by a passion for clean energy, she founded ELIZ ENERGY to make sustainable power accessible and affordable across India.",
+    image: "/images/founder.png",
   },
 } as const;
 

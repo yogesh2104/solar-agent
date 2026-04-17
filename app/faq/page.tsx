@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 export default async function FaqPage() {
-  const faqs = await db.FAQ.findMany({
+  const faqs = await db.fAQ.findMany({
     where: { isPublished: true },
     orderBy: { order: "asc" },
   });

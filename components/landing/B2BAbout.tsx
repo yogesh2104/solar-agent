@@ -51,7 +51,7 @@ export default function B2BAbout() {
               transition={{ duration: 0.55, delay: 0.16 }}
               className="mt-6 max-w-2xl text-base leading-8 text-slate-600"
             >
-              {overview.description}
+              {overview.description} Led by <strong>Ms. Falguni Rawal</strong>, ELIZ ENERGY combines over a decade of industry expertise with a fresh vision for sustainable energy.
             </motion.p>
 
             <motion.div

@@ -14,14 +14,11 @@ export default async function AdminFaqsPage() {
     redirect("/sign-in");
   }
 
-  const faqs = await db.faq.findMany({
+  const faqs = await db.fAQ.findMany({
     include: {
       service: true,
     },
-    orderBy: [
-      { category: "asc" },
-      { order: "asc" },
-    ],
+    orderBy: [{ category: "asc" }, { order: "asc" }],
   });
 
   return (
@@ -73,18 +70,27 @@ export default async function AdminFaqsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <Badge variant="secondary" className="bg-blue-500/10 text-blue-600 hover:bg-blue-500/20">
+                    <Badge
+                      variant="secondary"
+                      className="bg-blue-500/10 text-blue-600 hover:bg-blue-500/20"
+                    >
                       {faq.category || "General"}
                     </Badge>
                     {faq.service && (
-                      <Badge variant="outline" className="border-primary/20 text-primary">
+                      <Badge
+                        variant="outline"
+                        className="border-primary/20 text-primary"
+                      >
                         Service: {faq.service.title}
                       </Badge>
                     )}
                     {!faq.isPublished && (
-                        <Badge variant="destructive" className="bg-destructive/10 text-destructive">
-                            Draft
-                        </Badge>
+                      <Badge
+                        variant="destructive"
+                        className="bg-destructive/10 text-destructive"
+                      >
+                        Draft
+                      </Badge>
                     )}
                   </div>
                   <h3 className="text-lg font-bold text-foreground">
@@ -96,7 +102,11 @@ export default async function AdminFaqsPage() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <Link href={`/admin/faqs/${faq.id}`}>
-                    <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 hover:text-primary">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="rounded-full hover:bg-primary/10 hover:text-primary"
+                    >
                       <Pencil className="h-4 w-4" />
                     </Button>
                   </Link>

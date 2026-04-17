@@ -33,6 +33,20 @@ const productCategories = [
     image: "/images/solar-battery-solar.jpg",
     features: ["Deep Cycle Life", "Fast Charging", "Safe & Reliable", "Scalable Design"],
   },
+  {
+    title: "Mounting Structures & BOS",
+    description: "Durable and corrosion-resistant mounting structures with complete Balance of System (BoS) components.",
+    icon: ShieldCheck,
+    image: "/images/industrial.png",
+    features: ["Hot-dip Galvanized", "High Wind Loading", "Quick Installation", "Precision Engineering"],
+  },
+  {
+    title: "Cabling & Accessories",
+    description: "High-quality solar DC/AC cables and accessories for safe and efficient power transmission.",
+    icon: Zap,
+    image: "/images/power-generation.jpg",
+    features: ["UV Resistant Cables", "MC4 Connectors", "Protection Devices", "Standard Compliance"],
+  },
 ];
 
 export default function ProductsPage() {

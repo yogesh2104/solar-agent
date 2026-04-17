@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 
 export async function getServices() {
   try {
-    const services = await db.Service.findMany({
+    const services = await db.service.findMany({
       orderBy: {
         createdAt: "desc",
       },
@@ -19,7 +19,7 @@ export async function getServices() {
 
 export async function getServiceBySlug(slug: string) {
   try {
-    const service = await db.Service.findUnique({
+    const service = await db.service.findUnique({
       where: { slug },
       include: {
         faqs: {
@@ -45,7 +45,7 @@ export async function createService(data: {
   features: string[];
 }) {
   try {
-    const service = await db.Service.create({
+    const service = await db.service.create({
       data,
     });
     revalidatePath("/services");
@@ -70,7 +70,7 @@ export async function updateService(
   },
 ) {
   try {
-    const service = await db.Service.update({
+    const service = await db.service.update({
       where: { id },
       data,
     });
@@ -86,7 +86,7 @@ export async function updateService(
 
 export async function deleteService(id: string) {
   try {
-    const service = await db.Service.delete({
+    const service = await db.service.delete({
       where: { id },
     });
     revalidatePath("/services");

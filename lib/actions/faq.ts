@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 
 export async function getFaqs() {
   try {
-    const faqs = await db.FAQ.findMany({
+    const faqs = await db.fAQ.findMany({
       include: {
         service: true,
       },
@@ -27,7 +27,7 @@ export async function createFaq(data: {
   isPublished?: boolean;
 }) {
   try {
-    const faq = await db.FAQ.create({
+    const faq = await db.fAQ.create({
       data,
     });
     revalidatePath("/faq");
@@ -57,7 +57,7 @@ export async function updateFaq(
   },
 ) {
   try {
-    const faq = await db.FAQ.update({
+    const faq = await db.fAQ.update({
       where: { id },
       data,
     });
@@ -78,7 +78,7 @@ export async function updateFaq(
 
 export async function deleteFaq(id: string) {
   try {
-    const faq = await db.FAQ.delete({
+    const faq = await db.fAQ.delete({
       where: { id },
     });
     revalidatePath("/faq");
