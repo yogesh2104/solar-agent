@@ -20,7 +20,9 @@ export async function generateMetadata({ params }: BlogDetailPageProps) {
 
   return {
     title: `${blog.title} | Suntrix`,
-    description: blog.metadata || "Read more about commercial solar and energy infrastructure.",
+    description:
+      blog.metadata ||
+      "Read more about commercial solar and energy infrastructure.",
     openGraph: {
       title: blog.title,
       description: blog.metadata || "",
@@ -56,7 +58,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             {blog.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-600"
+                className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold uppercase  text-slate-600"
               >
                 {tag}
               </span>
@@ -82,7 +84,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <UserIcon className="size-5" />
                 )}
               </span>
-              <span className="font-medium text-slate-700">{blog.author.name}</span>
+              <span className="font-medium text-slate-700">
+                {blog.author.name}
+              </span>
             </div>
 
             <div className="flex items-center gap-2">
@@ -128,7 +132,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </span>
             <div>
               <div className="text-sm text-slate-500">Written by</div>
-              <div className="text-xl font-semibold text-slate-950">{blog.author.name}</div>
+              <div className="text-xl font-semibold text-slate-950">
+                {blog.author.name}
+              </div>
             </div>
           </div>
 

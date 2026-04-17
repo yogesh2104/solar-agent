@@ -73,10 +73,12 @@ export default function B2BNavbar() {
             <Zap className="size-4 fill-current" />
           </span>
           <div className="leading-none">
-            <div className="text-lg font-semibold tracking-tight">{siteConfig.company.name}</div>
+            <div className="text-lg font-semibold tracking-tight">
+              {siteConfig.company.name}
+            </div>
             <div
               className={cn(
-                "mt-1 text-[11px] uppercase tracking-[0.22em]",
+                "mt-1 text-[11px] uppercase ",
                 compactShell ? "text-slate-500" : "text-white/70",
               )}
             >
@@ -151,10 +153,10 @@ export default function B2BNavbar() {
                 : "bg-white text-slate-950 hover:bg-white/90",
             )}
           >
-              <Link href="/get-quote" onClick={() => setMobileMenuOpen(false)}>
-                Get Quote
-                <ArrowUpRight className="size-4" />
-              </Link>
+            <Link href="/get-quote" onClick={() => setMobileMenuOpen(false)}>
+              Get Quote
+              <ArrowUpRight className="size-4" />
+            </Link>
           </Button>
 
           <button
@@ -169,7 +171,11 @@ export default function B2BNavbar() {
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
           >
-            {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            {mobileMenuOpen ? (
+              <X className="size-5" />
+            ) : (
+              <Menu className="size-5" />
+            )}
           </button>
         </div>
       </motion.nav>
@@ -197,7 +203,7 @@ export default function B2BNavbar() {
             </div>
 
             <div className="mt-4 rounded-[1.5rem] bg-slate-950 p-4 text-white">
-              <div className="text-xs uppercase tracking-[0.22em] text-white/55">
+              <div className="text-xs uppercase  text-white/55">
                 Enterprise Desk
               </div>
               <a

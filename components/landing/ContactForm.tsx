@@ -154,9 +154,14 @@ export default function ContactForm() {
   };
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
-    setFormData((previous) => ({ ...previous, [event.target.id]: event.target.value }));
+    setFormData((previous) => ({
+      ...previous,
+      [event.target.id]: event.target.value,
+    }));
   };
 
   return (
@@ -179,8 +184,9 @@ export default function ContactForm() {
                 Speak with a team built for B2B solar buying decisions.
               </h2>
               <p className="mt-5 text-base leading-8 text-white/64">
-                Use this page for panel sourcing, rooftop solar feasibility, hybrid system planning,
-                or channel-partner support. We will point you to the right commercial path quickly.
+                Use this page for panel sourcing, rooftop solar feasibility,
+                hybrid system planning, or channel-partner support. We will
+                point you to the right commercial path quickly.
               </p>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -193,10 +199,12 @@ export default function ContactForm() {
                     key={item.label}
                     className="rounded-[1.6rem] border border-white/10 bg-white/6 p-4"
                   >
-                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/45">
+                    <div className="text-xs font-semibold uppercase  text-white/45">
                       {item.label}
                     </div>
-                    <div className="mt-2 text-2xl font-semibold">{item.value}</div>
+                    <div className="mt-2 text-2xl font-semibold">
+                      {item.value}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -222,13 +230,15 @@ export default function ContactForm() {
                           <Icon className="size-5" />
                         </span>
                         <div>
-                          <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                          <div className="text-xs font-semibold uppercase  text-slate-400">
                             {card.label}
                           </div>
                           <div className="mt-2 text-base font-semibold text-slate-950">
                             {card.value}
                           </div>
-                          <p className="mt-1 text-sm leading-6 text-slate-600">{card.sub}</p>
+                          <p className="mt-1 text-sm leading-6 text-slate-600">
+                            {card.sub}
+                          </p>
                         </div>
                       </div>
                       <ArrowUpRight className="mt-1 size-4 text-slate-400" />
@@ -257,8 +267,12 @@ export default function ContactForm() {
                         <Icon className="size-4" />
                       </span>
                       <div>
-                        <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
-                        <p className="mt-1 text-sm leading-7 text-slate-600">{item.body}</p>
+                        <h3 className="text-base font-semibold text-slate-950">
+                          {item.title}
+                        </h3>
+                        <p className="mt-1 text-sm leading-7 text-slate-600">
+                          {item.body}
+                        </p>
                       </div>
                     </div>
                   );
@@ -281,7 +295,8 @@ export default function ContactForm() {
                 Share the essentials and we will take it from there.
               </h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">
-                We can work from a monthly bill, rough roof area, target capacity, or a sourcing brief.
+                We can work from a monthly bill, rough roof area, target
+                capacity, or a sourcing brief.
               </p>
             </div>
 
@@ -311,7 +326,10 @@ export default function ContactForm() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="firstName" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  <Label
+                    htmlFor="firstName"
+                    className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+                  >
                     First name
                   </Label>
                   <Input
@@ -324,7 +342,10 @@ export default function ContactForm() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="lastName" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  <Label
+                    htmlFor="lastName"
+                    className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+                  >
                     Last name
                   </Label>
                   <Input
@@ -339,7 +360,10 @@ export default function ContactForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="company" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                <Label
+                  htmlFor="company"
+                  className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+                >
                   Company
                 </Label>
                 <Input
@@ -354,7 +378,10 @@ export default function ContactForm() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  <Label
+                    htmlFor="email"
+                    className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+                  >
                     Work email
                   </Label>
                   <Input
@@ -368,7 +395,10 @@ export default function ContactForm() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="capacity" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  <Label
+                    htmlFor="capacity"
+                    className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+                  >
                     Estimated capacity
                   </Label>
                   <Input
@@ -383,7 +413,10 @@ export default function ContactForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="industry" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                <Label
+                  htmlFor="industry"
+                  className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+                >
                   Industry
                 </Label>
                 <select
@@ -402,7 +435,10 @@ export default function ContactForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="message" className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                <Label
+                  htmlFor="message"
+                  className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+                >
                   Project details
                 </Label>
                 <Textarea
@@ -427,7 +463,8 @@ export default function ContactForm() {
               </Button>
 
               <p className="text-center text-xs leading-6 text-slate-500">
-                We will only use this information to respond to your enquiry and shape the right next step.
+                We will only use this information to respond to your enquiry and
+                shape the right next step.
               </p>
             </form>
           </motion.div>

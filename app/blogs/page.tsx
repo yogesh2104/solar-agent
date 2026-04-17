@@ -35,7 +35,8 @@ export default async function BlogsPage() {
               No articles published yet
             </h3>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
-              We are preparing commercial solar explainers, buying guides, and case-based insights. Check back soon.
+              We are preparing commercial solar explainers, buying guides, and
+              case-based insights. Check back soon.
             </p>
           </div>
         ) : (
@@ -62,8 +63,9 @@ export default async function BlogsPage() {
                       Featured article
                     </div>
 
-                    <div className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-                      {featuredBlog.tags[0] || "Insight"} · {format(new Date(featuredBlog.createdAt), "MMMM d, yyyy")}
+                    <div className="mt-6 text-xs font-semibold uppercase  text-slate-400">
+                      {featuredBlog.tags[0] || "Insight"} ·{" "}
+                      {format(new Date(featuredBlog.createdAt), "MMMM d, yyyy")}
                     </div>
 
                     <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl">

@@ -39,6 +39,18 @@ const routes = [
     color: "text-pink-700",
   },
   {
+    label: "Services",
+    icon: LayoutDashboard, // Or choose a better icon
+    href: "/admin/services",
+    color: "text-indigo-500",
+  },
+  {
+    label: "FAQs",
+    icon: MessageSquare,
+    href: "/admin/faqs",
+    color: "text-teal-500",
+  },
+  {
     label: "Quotations",
     icon: Quote,
     href: "/admin/quotations",

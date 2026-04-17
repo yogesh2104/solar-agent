@@ -60,8 +60,10 @@ export default function B2BFooter() {
                 <Zap className="size-4 fill-current" />
               </span>
               <div>
-                <div className="text-xl font-semibold tracking-tight">{company.name}</div>
-                <div className="text-xs uppercase tracking-[0.22em] text-white/45">
+                <div className="text-xl font-semibold tracking-tight">
+                  {company.name}
+                </div>
+                <div className="text-xs uppercase  text-white/45">
                   B2B Solar Infrastructure
                 </div>
               </div>
@@ -72,14 +74,16 @@ export default function B2BFooter() {
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {["Tier-1 supply", "Commercial EPC", "Hybrid-ready systems"].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-white/10 bg-white/4 px-3 py-1.5 text-xs font-medium text-white/65"
-                >
-                  {tag}
-                </span>
-              ))}
+              {["Tier-1 supply", "Commercial EPC", "Hybrid-ready systems"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-white/10 bg-white/4 px-3 py-1.5 text-xs font-medium text-white/65"
+                  >
+                    {tag}
+                  </span>
+                ),
+              )}
             </div>
           </div>
 

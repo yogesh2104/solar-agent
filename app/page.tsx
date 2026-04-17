@@ -5,6 +5,8 @@ import B2BProjects from "@/components/landing/B2BProjects";
 import B2BSolutions from "@/components/landing/B2BSolutions";
 import B2BTestimonials from "@/components/landing/B2BTestimonials";
 import B2BWhyUs from "@/components/landing/B2BWhyUs";
+import HomeFAQ from "@/components/landing/HomeFAQ";
+import { db } from "@/lib/db";
 
 export const metadata = {
   title: "Suntrix | B2B Solar Panels and Commercial Solar Systems",
@@ -13,14 +15,32 @@ export const metadata = {
 };
 
 export default async function Home() {
+  const [faqs, services] = await Promise.all([
+    db.FAQ.findMany({
+      where: { isPublished: true },
+      orderBy: { order: "asc" },
+      take: 6,
+    }),
+    db.Service.findMany({
+      orderBy: { createdAt: "asc" },
+    }),
+  ]);
+
   return (
     <div className="overflow-x-clip">
       <B2BHero />
       <B2BAbout />
-      <B2BSolutions />
+      <B2BSolutions initialServices={services} />
       <B2BWhyUs />
       <B2BProjects />
       <B2BTestimonials />
+      <HomeFAQ
+        faqs={faqs.map((f) => ({
+          id: f.id,
+          question: f.question,
+          answer: f.answer,
+        }))}
+      />
       <B2BCTA />
     </div>
   );

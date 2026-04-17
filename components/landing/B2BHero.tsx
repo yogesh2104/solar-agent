@@ -3,7 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, BatteryCharging, Factory, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  BatteryCharging,
+  Factory,
+  ShieldCheck,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import siteConfig from "@/lib/siteConfig";
 
@@ -71,7 +76,9 @@ export default function B2BHero() {
               variant="outline"
               className="h-12 rounded-full border-white/18 bg-white/8 px-6 text-sm font-semibold text-white hover:bg-white/12"
             >
-              <Link href={hero.secondaryCta.href}>{hero.secondaryCta.text}</Link>
+              <Link href={hero.secondaryCta.href}>
+                {hero.secondaryCta.text}
+              </Link>
             </Button>
           </motion.div>
 
@@ -105,13 +112,17 @@ export default function B2BHero() {
                 <BatteryCharging className="size-5" />
               </span>
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-white/55">
+                <div className="text-[11px] uppercase  text-white/55">
                   {hero.sideStats[0].label}
                 </div>
-                <div className="mt-1 text-3xl font-semibold">{hero.sideStats[0].value}</div>
+                <div className="mt-1 text-3xl font-semibold">
+                  {hero.sideStats[0].value}
+                </div>
               </div>
             </div>
-            <p className="mt-4 text-sm leading-6 text-white/62">{hero.sideStats[0].note}</p>
+            <p className="mt-4 text-sm leading-6 text-white/62">
+              {hero.sideStats[0].note}
+            </p>
           </motion.div>
 
           <motion.div
@@ -126,13 +137,17 @@ export default function B2BHero() {
                 <ShieldCheck className="size-5" />
               </span>
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-white/55">
+                <div className="text-[11px] uppercase  text-white/55">
                   {hero.sideStats[1].label}
                 </div>
-                <div className="mt-1 text-3xl font-semibold">{hero.sideStats[1].value}</div>
+                <div className="mt-1 text-3xl font-semibold">
+                  {hero.sideStats[1].value}
+                </div>
               </div>
             </div>
-            <p className="mt-4 text-sm leading-6 text-white/62">{hero.sideStats[1].note}</p>
+            <p className="mt-4 text-sm leading-6 text-white/62">
+              {hero.sideStats[1].note}
+            </p>
           </motion.div>
 
           <motion.div
@@ -165,7 +180,7 @@ export default function B2BHero() {
                       />
                     </div>
                     <div>
-                      <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                      <div className="text-xs font-semibold uppercase  text-slate-400">
                         Project delivery
                       </div>
                       <p className="mt-2 text-lg font-semibold leading-7">
@@ -176,18 +191,20 @@ export default function B2BHero() {
                 </div>
 
                 <div className="rounded-[2rem] bg-white p-5 text-center text-slate-950 shadow-[0_20px_60px_rgba(8,17,31,0.14)]">
-                  <div className="mx-auto flex max-w-max items-center gap-2 rounded-full bg-slate-950/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                  <div className="mx-auto flex max-w-max items-center gap-2 rounded-full bg-slate-950/5 px-3 py-1 text-[11px] font-semibold uppercase  text-slate-500">
                     <Factory className="size-3.5 text-[var(--brand-lime)]" />
                     Social proof
                   </div>
-                  <div className="mt-5 text-4xl font-semibold">{hero.stageCards.social.value}</div>
+                  <div className="mt-5 text-4xl font-semibold">
+                    {hero.stageCards.social.value}
+                  </div>
                   <p className="mt-2 text-sm leading-6 text-slate-600">
                     {hero.stageCards.social.label}
                   </p>
                 </div>
 
                 <div className="rounded-[2rem] border border-white/16 bg-white/10 p-5 text-white backdrop-blur-xl">
-                  <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/55">
+                  <div className="text-xs font-semibold uppercase  text-white/55">
                     Design note
                   </div>
                   <h3 className="mt-3 text-2xl font-semibold">
@@ -212,7 +229,9 @@ export default function B2BHero() {
                 className="rounded-[1.8rem] border border-white/12 bg-white/8 p-5 backdrop-blur-xl"
               >
                 <div className="text-3xl font-semibold">{metric.value}</div>
-                <p className="mt-2 text-sm leading-6 text-white/65">{metric.label}</p>
+                <p className="mt-2 text-sm leading-6 text-white/65">
+                  {metric.label}
+                </p>
               </motion.div>
             ))}
           </div>

@@ -1,34 +1,141 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowUpRight,
+  Package,
+  Building2,
+  BatteryCharging,
+  Activity,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import siteConfig from "@/lib/siteConfig";
+import Link from "next/link";
 
-export default function B2BSolutions() {
+interface Service {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  features: string[];
+}
+
+export default function B2BSolutions({
+  initialServices,
+}: {
+  initialServices?: Service[];
+}) {
   const { solutions } = siteConfig;
 
+  // Use DB services if available, otherwise fallback to siteConfig
+  const displayCards =
+    initialServices && initialServices.length > 0
+      ? initialServices.map((s, i) => ({
+          id: (i + 1).toString().padStart(2, "0"),
+          title: s.title,
+          description: s.description,
+          bullets: s.features,
+          slug: s.slug,
+        }))
+      : solutions.cards;
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const nextStep = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % displayCards.length);
+  }, [displayCards.length]);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(nextStep, 5000);
+    return () => clearInterval(interval);
+  }, [isPaused, nextStep]);
+
+  const handleManualSelect = (index: number) => {
+    setActiveIndex(index);
+    setIsPaused(true);
+    // Optional: Resume after some time
+    setTimeout(() => setIsPaused(false), 10000);
+  };
+
   return (
-    <section id="services" className="overflow-hidden bg-[#f4f8fe] py-24 md:py-28">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <section
+      id="services"
+      className="relative isolate overflow-hidden bg-[#f4f8fe] py-7 md:py-10"
+    >
+      {/* Decorative Background */}
+      <div className="absolute inset-0 -z-10">
+        <div
+          className="absolute inset-x-0 top-0 h-[500px] opacity-35"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, var(--brand-line) 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute -left-1/4 top-0 size-[600px] rounded-full bg-[var(--brand-sky)] mix-blend-multiply blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute -right-1/4 top-1/4 size-[500px] rounded-full bg-[var(--brand-lime)] mix-blend-multiply blur-[120px]"
+        />
+      </div>
+
+      <div className="container relative z-10 mx-auto px-6">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600 shadow-sm"
+            >
               <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
               {solutions.badge}
-            </div>
-            <h2 className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="mt-7 text-4xl font-semibold leading-[1.15] tracking-tight text-slate-950 md:text-6xl"
+            >
               {solutions.title}
-            </h2>
+            </motion.h2>
           </div>
 
-          <p className="max-w-xl text-base leading-8 text-slate-600">
+          {/* <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="max-w-xl text-lg leading-relaxed text-slate-600 lg:mb-2"
+          >
             {solutions.description}
-          </p>
+          </motion.p> */}
         </div>
 
-        <div className="mt-14 grid gap-8 xl:grid-cols-[0.88fr_1.12fr]">
+        <div className="mt-16 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -36,34 +143,48 @@ export default function B2BSolutions() {
             transition={{ duration: 0.55 }}
             className="xl:sticky xl:top-28"
           >
-            <div className="overflow-hidden rounded-[2.5rem] border border-slate-200 bg-slate-950 text-white shadow-[0_30px_80px_rgba(8,17,31,0.15)]">
-              <div className="relative h-[340px] md:h-[480px]">
+            <div className="group relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-slate-950 text-white shadow-[0_40px_100px_rgba(8,17,31,0.12)] transition-all duration-500 hover:shadow-[0_40px_100px_rgba(8,17,31,0.18)]">
+              {/* Subtle Glow */}
+              <div className="absolute -left-1/4 -top-1/4 h-[150%] w-[150%] bg-[radial-gradient(circle_at_center,var(--brand-lime)_0%,transparent_70%)] opacity-0 blur-[100px] transition-opacity duration-700 group-hover:opacity-10" />
+
+              <div className="relative h-[400px] md:h-[540px]">
                 <Image
                   src={solutions.image}
                   alt="Commercial solar panel installation"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent" />
-                <div className="absolute inset-x-6 bottom-6 rounded-[1.8rem] border border-white/12 bg-white/10 p-5 backdrop-blur-xl">
-                  <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/55">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+
+                {/* Status Indicator */}
+                <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                  <span className="relative flex size-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-lime)] opacity-75"></span>
+                    <span className="relative inline-flex size-2 rounded-full bg-[var(--brand-lime)]"></span>
+                  </span>
+                  Live project tracking
+                </div>
+
+                <div className="absolute inset-x-6 bottom-6 rounded-[2rem] border border-white/20 bg-white/12 p-6 backdrop-blur-[20px]">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-white/60">
                     Commercial paths
                   </div>
-                  <p className="mt-3 text-lg font-semibold leading-8">
-                    Supply-only, turnkey EPC, phased rollout, or hybrid-ready design.
+                  <p className="mt-4 text-xl font-semibold leading-relaxed">
+                    Supply-only, turnkey EPC, phased rollout, or hybrid-ready
+                    design.
                   </p>
                 </div>
               </div>
 
-              <div className="border-t border-white/8 p-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
-                  Common use cases
+              <div className="relative border-t border-white/10 p-7">
+                <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-white/50">
+                  Common sectors & use cases
                 </div>
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-5 flex flex-wrap gap-2.5">
                   {solutions.sectors.map((sector) => (
                     <span
                       key={sector}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/72"
+                      className="rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-white/80 transition-colors hover:border-white/20 hover:bg-white/10"
                     >
                       {sector}
                     </span>
@@ -73,98 +194,136 @@ export default function B2BSolutions() {
             </div>
           </motion.div>
 
-          <div className="space-y-4">
-            {solutions.cards.map((card, index) => {
-              const featured = index === 0;
+          <div className="flex flex-col gap-4">
+            {displayCards.map((card, index) => {
+              const isActive = activeIndex === index;
+              const Icon =
+                [Package, Building2, BatteryCharging, Activity][index] ||
+                Package;
 
               return (
                 <motion.div
                   key={card.id}
-                  initial={{ opacity: 0, y: 22 }}
+                  layout
+                  onClick={() => handleManualSelect(index)}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={cn(
-                    "rounded-[2rem] border p-6 md:p-7",
-                    featured
-                      ? "border-[var(--brand-lime)] bg-[var(--brand-lime)] text-slate-950"
-                      : "border-slate-200 bg-white text-slate-950",
+                    "group relative cursor-pointer overflow-hidden rounded-4xl border transition-all duration-500",
+                    isActive
+                      ? "border-(--brand-lime) bg-white"
+                      : "border-slate-100 bg-white/40 hover:border-slate-200 hover:bg-white/80",
                   )}
                 >
-                  <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-                    <div className="max-w-2xl">
-                      <div
-                        className={cn(
-                          "text-xs font-semibold uppercase tracking-[0.24em]",
-                          featured ? "text-slate-700" : "text-slate-400",
-                        )}
-                      >
-                        {card.id}
+                  {/* Progress Line */}
+                  {isActive && (
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      key={`timer-${activeIndex}`}
+                      transition={{ duration: 5, ease: "linear" }}
+                      className="absolute bottom-0 left-0 h-1 bg-(--brand-lime)"
+                    />
+                  )}
+
+                  <div
+                    className={cn(
+                      "relative p-6 md:p-8 transition-all duration-500",
+                      isActive ? "pb-10" : "pb-6",
+                    )}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-5">
+                        <div
+                          className={cn(
+                            "flex size-12 items-center justify-center rounded-xl border transition-all duration-300",
+                            isActive
+                              ? "border-[var(--brand-lime)] bg-[var(--brand-lime)]/10 text-slate-900"
+                              : "border-slate-100 bg-slate-50 text-slate-400 group-hover:border-slate-200 group-hover:bg-white",
+                          )}
+                        >
+                          <Icon
+                            className={cn(
+                              "size-5 transition-transform duration-500",
+                              isActive && "scale-110",
+                            )}
+                          />
+                        </div>
+                        <div>
+                          <div
+                            className={cn(
+                              "text-[10px] font-bold uppercase tracking-[0.3em]",
+                              isActive ? "text-primary" : "text-slate-400",
+                            )}
+                          >
+                            Step {card.id}
+                          </div>
+                          <h3
+                            className={cn(
+                              "mt-1 text-xl font-bold tracking-tight md:text-2xl transition-colors duration-300",
+                              isActive
+                                ? "text-slate-950"
+                                : "text-slate-900 group-hover:text-slate-950",
+                            )}
+                          >
+                            {card.title}
+                          </h3>
+                        </div>
                       </div>
-                      <h3 className="mt-3 text-2xl font-semibold tracking-tight">
-                        {card.title}
-                      </h3>
-                      <p
+
+                      <Link
+                        href={
+                          (card as any).slug
+                            ? `/services/${(card as any).slug}`
+                            : "/services"
+                        }
                         className={cn(
-                          "mt-4 text-sm leading-7 md:text-base",
-                          featured ? "text-slate-800" : "text-slate-600",
+                          "inline-flex size-10 shrink-0 items-center justify-center rounded-full border transition-all duration-500",
+                          isActive
+                            ? "rotate-0 border-(--brand-lime) bg-(--brand-lime) text-slate-950"
+                            : "border-slate-100 bg-white text-slate-300 opacity-0 group-hover:opacity-100 group-hover:text-slate-600",
                         )}
                       >
-                        {card.description}
-                      </p>
+                        <ArrowUpRight className="size-4" />
+                      </Link>
                     </div>
 
-                    <div
-                      className={cn(
-                        "flex size-11 shrink-0 items-center justify-center rounded-full border",
-                        featured
-                          ? "border-slate-950/10 bg-white/40 text-slate-950"
-                          : "border-slate-200 bg-slate-50 text-slate-700",
+                    <AnimatePresence mode="wait">
+                      {isActive && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pt-6">
+                            <p className="text-base leading-relaxed text-slate-600 md:text-lg">
+                              {card.description}
+                            </p>
+
+                            {/* <div className="mt-4 grid gap-4 md:grid-cols-3">
+                              {card.bullets.map((bullet) => (
+                                <div
+                                  key={bullet}
+                                  className="flex mb-2 items-start gap-3 rounded-xl border bg-card p-2 text-sm font-medium leading-relaxed text-slate-700"
+                                >
+                                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                                  <span>{bullet}</span>
+                                </div>
+                              ))}
+                            </div> */}
+                          </div>
+                        </motion.div>
                       )}
-                    >
-                      <ArrowUpRight className="size-4" />
-                    </div>
-                  </div>
-
-                  <div className="mt-6 grid gap-3 md:grid-cols-3">
-                    {card.bullets.map((bullet) => (
-                      <div
-                        key={bullet}
-                        className={cn(
-                          "flex items-start gap-3 rounded-[1.35rem] border p-4 text-sm leading-6",
-                          featured
-                            ? "border-slate-950/10 bg-white/35 text-slate-900"
-                            : "border-slate-100 bg-slate-50 text-slate-700",
-                        )}
-                      >
-                        <CheckCircle2 className="mt-0.5 size-4 shrink-0" />
-                        <span>{bullet}</span>
-                      </div>
-                    ))}
+                    </AnimatePresence>
                   </div>
                 </motion.div>
               );
             })}
           </div>
-        </div>
-
-        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {solutions.rollout.map((item, index) => (
-            <motion.div
-              key={item.step}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="rounded-[1.9rem] border border-slate-200 bg-white p-6"
-            >
-              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
-                Step {index + 1}
-              </div>
-              <h3 className="mt-3 text-xl font-semibold text-slate-950">{item.step}</h3>
-              <p className="mt-4 text-sm leading-7 text-slate-600">{item.body}</p>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>

@@ -28,9 +28,9 @@ export default function StaticPageHeader({
       )}
     >
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(244,248,254,0.94)_0%,rgba(255,255,255,0.92)_70%,rgba(255,255,255,1)_100%)]" />
-      <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(8,17,31,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(8,17,31,0.5)_1px,transparent_1px)] [background-size:52px_52px]" />
-      <div className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(143,183,223,0.32),transparent_66%)]" />
-      <div className="absolute bottom-0 left-0 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(204,255,52,0.18),transparent_68%)]" />
+      <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(8,17,31,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(8,17,31,0.5)_1px,transparent_1px)] bg-size-[52px_52px]" />
+      <div className="absolute right-0 top-0 h-112 w-md rounded-full bg-[radial-gradient(circle,rgba(143,183,223,0.32),transparent_66%)]" />
+      <div className="absolute bottom-0 left-0 h-96 w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(204,255,52,0.18),transparent_68%)]" />
 
       <div className="container relative z-10 mx-auto px-6">
         <motion.nav
@@ -47,7 +47,9 @@ export default function StaticPageHeader({
             Home
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-slate-300" />
-          <span className="font-medium text-slate-700">{breadcrumb || title}</span>
+          <span className="font-medium text-slate-700">
+            {breadcrumb || title}
+          </span>
         </motion.nav>
 
         <motion.div
@@ -56,7 +58,6 @@ export default function StaticPageHeader({
           transition={{ duration: 0.5, delay: 0.06 }}
           className="mt-8 max-w-4xl"
         >
-
           <h1 className="mt-2 text-5xl font-semibold tracking-tight text-slate-950 md:text-7xl md:leading-[1.02]">
             {title}
             {highlight && (

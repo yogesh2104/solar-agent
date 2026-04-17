@@ -16,11 +16,31 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import siteConfig from "@/lib/siteConfig";
 
 const milestones = [
-  { year: "2014", event: "Suntrix begins with a commercial solar focus and an engineering-first approach." },
-  { year: "2017", event: "Expanded into larger industrial rooftops and multi-building commercial estates." },
-  { year: "2020", event: "Added monitoring, long-term service workflows, and hybrid-ready planning." },
-  { year: "2023", event: "Scaled supply and EPC support across manufacturing, logistics, and institutional clients." },
-  { year: "2026", event: "Now supporting panel procurement, commercial systems, and phased B2B rollout programs." },
+  {
+    year: "2014",
+    event:
+      "Suntrix begins with a commercial solar focus and an engineering-first approach.",
+  },
+  {
+    year: "2017",
+    event:
+      "Expanded into larger industrial rooftops and multi-building commercial estates.",
+  },
+  {
+    year: "2020",
+    event:
+      "Added monitoring, long-term service workflows, and hybrid-ready planning.",
+  },
+  {
+    year: "2023",
+    event:
+      "Scaled supply and EPC support across manufacturing, logistics, and institutional clients.",
+  },
+  {
+    year: "2026",
+    event:
+      "Now supporting panel procurement, commercial systems, and phased B2B rollout programs.",
+  },
 ];
 
 const principles = [
@@ -82,13 +102,17 @@ export default function AboutPage() {
                 How we work
               </div>
               <h2 className="text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
-                Solar buying made clearer for teams who have to defend every decision.
+                Solar buying made clearer for teams who have to defend every
+                decision.
               </h2>
               <p className="text-base leading-8 text-slate-600 md:text-lg">
                 {overview.description}
               </p>
               <p className="text-base leading-8 text-slate-600">
-                We are not built around generic residential installs. We are built around business cases, panel selection, rollout coordination, and the long-term performance questions that matter once a system becomes part of your operations.
+                We are not built around generic residential installs. We are
+                built around business cases, panel selection, rollout
+                coordination, and the long-term performance questions that
+                matter once a system becomes part of your operations.
               </p>
 
               <div className="grid gap-4 sm:grid-cols-3">
@@ -100,7 +124,9 @@ export default function AboutPage() {
                     <div className="text-3xl font-semibold tracking-tight text-slate-950">
                       {stat.value}
                     </div>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {stat.label}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -134,11 +160,13 @@ export default function AboutPage() {
               </div>
 
               <div className="absolute -bottom-6 left-6 right-6 rounded-[1.8rem] border border-white/70 bg-white/92 p-5 shadow-[0_24px_60px_rgba(8,17,31,0.08)] backdrop-blur-xl md:max-w-md">
-                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                <div className="text-xs font-semibold uppercase  text-slate-400">
                   Practical promise
                 </div>
                 <p className="mt-3 text-lg font-semibold leading-8 text-slate-950">
-                  We combine panel supply, engineering, and deployment thinking so commercial decisions are easier to approve and easier to execute.
+                  We combine panel supply, engineering, and deployment thinking
+                  so commercial decisions are easier to approve and easier to
+                  execute.
                 </p>
               </div>
             </motion.div>
@@ -158,7 +186,9 @@ export default function AboutPage() {
                 Built for commercial buyers, operators, and delivery partners.
               </h3>
               <p className="mt-5 text-base leading-8 text-white/64">
-                {company.fullName} works with businesses that need a supplier and delivery partner capable of handling procurement pressure, technical questions, and post-install accountability.
+                {company.fullName} works with businesses that need a supplier
+                and delivery partner capable of handling procurement pressure,
+                technical questions, and post-install accountability.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-2">
@@ -213,7 +243,9 @@ export default function AboutPage() {
                     <h3 className="mt-5 text-xl font-semibold tracking-tight text-slate-950">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">{item.body}</p>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {item.body}
+                    </p>
                   </motion.div>
                 );
               })}
@@ -250,8 +282,12 @@ export default function AboutPage() {
                   <span className="flex size-11 items-center justify-center rounded-full bg-[var(--brand-lime)]/30 text-slate-950">
                     <Icon className="size-5" />
                   </span>
-                  <h3 className="mt-5 text-xl font-semibold text-slate-950">{principle.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{principle.body}</p>
+                  <h3 className="mt-5 text-xl font-semibold text-slate-950">
+                    {principle.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {principle.body}
+                  </p>
                 </motion.div>
               );
             })}
@@ -270,7 +306,8 @@ export default function AboutPage() {
                 Growth shaped by commercial delivery needs.
               </h3>
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                Our path has been driven by how B2B solar projects actually get bought, deployed, and maintained.
+                Our path has been driven by how B2B solar projects actually get
+                bought, deployed, and maintained.
               </p>
             </div>
 
@@ -287,7 +324,9 @@ export default function AboutPage() {
                   <div className="text-2xl font-semibold tracking-tight text-slate-950">
                     {item.year}
                   </div>
-                  <p className="text-sm leading-7 text-slate-600">{item.event}</p>
+                  <p className="text-sm leading-7 text-slate-600">
+                    {item.event}
+                  </p>
                 </motion.div>
               ))}
             </div>

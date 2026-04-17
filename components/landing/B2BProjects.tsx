@@ -12,12 +12,12 @@ export default function B2BProjects() {
   const [featured, ...secondary] = projects.items;
 
   return (
-    <section id="projects" className="overflow-hidden bg-white py-24 md:py-28">
+    <section id="projects" className="overflow-hidden bg-white py-7 md:py-10">
       <div className="container mx-auto px-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
-              <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase text-slate-600">
+              <span className="size-2 rounded-full bg-(--brand-lime)" />
               {projects.badge}
             </div>
             <h2 className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
@@ -26,7 +26,9 @@ export default function B2BProjects() {
           </div>
 
           <div className="max-w-xl">
-            <p className="text-base leading-8 text-slate-600">{projects.description}</p>
+            <p className="text-base leading-8 text-slate-600">
+              {projects.description}
+            </p>
             <Button
               asChild
               className="mt-5 h-12 rounded-full bg-slate-950 px-5 text-sm font-semibold text-white hover:bg-slate-800"
@@ -45,7 +47,7 @@ export default function B2BProjects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55 }}
-            className="overflow-hidden rounded-[2.5rem] border border-slate-200"
+            className="overflow-hidden rounded-[2.5rem] h-fit border border-slate-200"
           >
             <Link href="/projects" className="block">
               <div className="relative h-[320px] md:h-[440px]">
@@ -55,7 +57,7 @@ export default function B2BProjects() {
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 via-slate-950/8 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/72 via-slate-950/8 to-transparent" />
               </div>
 
               <div className="bg-white p-6 md:p-8">
@@ -63,7 +65,7 @@ export default function B2BProjects() {
                   <span className="rounded-full bg-slate-950/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
                     {featured.sector}
                   </span>
-                  <span className="rounded-full bg-[var(--brand-lime)]/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
+                  <span className="rounded-full bg-(--brand-lime)/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
                     {featured.scale}
                   </span>
                 </div>
@@ -77,7 +79,9 @@ export default function B2BProjects() {
                   {featured.location}
                 </div>
 
-                <p className="mt-4 text-base leading-8 text-slate-600">{featured.outcome}</p>
+                <p className="mt-4 text-base leading-8 text-slate-600">
+                  {featured.outcome}
+                </p>
               </div>
             </Link>
           </motion.article>
@@ -90,7 +94,7 @@ export default function B2BProjects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white"
+                className="overflow-hidden rounded-4xl border border-slate-200 bg-white"
               >
                 <Link href="/projects" className="block">
                   <div className="relative h-52">
@@ -102,19 +106,25 @@ export default function B2BProjects() {
                     />
                   </div>
 
-                  <div className="p-5">
-                    <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
-                      {project.sector}
+                  <div className="p-4">
+                    <div className="flex justify-between align-center items-center">
+                      <div className="text-xs font-semibold uppercase text-slate-600">
+                        {project.sector}
+                      </div>
+                      <div className="mt-2 flex items-center gap-2 text-sm text-slate-600">
+                        <MapPin className="size-4 text-slate-400" />
+                        {project.location}
+                      </div>
                     </div>
-                    <h3 className="mt-3 text-xl font-semibold tracking-tight text-slate-950">
-                      {project.title}
+                    <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-950">
+                      {project.title} &nbsp;&nbsp;&nbsp;
+                      <span className="text-sm font-medium text-slate-700">
+                        ({project.scale})
+                      </span>
                     </h3>
-                    <div className="mt-2 flex items-center gap-2 text-sm text-slate-500">
-                      <MapPin className="size-4 text-slate-400" />
-                      {project.location}
-                    </div>
-                    <div className="mt-4 text-sm font-medium text-slate-700">{project.scale}</div>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">{project.outcome}</p>
+                    <p className=" text-sm leading-7 text-slate-600">
+                      {project.outcome}
+                    </p>
                   </div>
                 </Link>
               </motion.article>

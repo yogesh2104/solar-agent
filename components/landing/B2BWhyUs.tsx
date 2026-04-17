@@ -9,7 +9,10 @@ export default function B2BWhyUs() {
   const { whyUs } = siteConfig;
 
   return (
-    <section id="why-us" className="overflow-hidden bg-[var(--brand-ink)] py-24 text-white md:py-28">
+    <section
+      id="why-us"
+      className="overflow-hidden bg-[var(--brand-ink)] py-7 text-white md:py-10"
+    >
       <div className="container mx-auto px-6">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/76">
@@ -70,29 +73,12 @@ export default function B2BWhyUs() {
                 Operating principle
               </div>
               <p className="mt-3 text-lg leading-8 text-white/72">
-                We treat solar as an operating asset, not a one-time install. That changes how proposals are structured, how projects are deployed, and how support is handled afterward.
+                We treat solar as an operating asset, not a one-time install.
+                That changes how proposals are structured, how projects are
+                deployed, and how support is handled afterward.
               </p>
             </div>
           </motion.div>
-        </div>
-
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {whyUs.pillars.map((pillar, index) => (
-            <motion.div
-              key={pillar.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="rounded-[1.9rem] border border-white/10 bg-white/6 p-6 backdrop-blur-xl"
-            >
-              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
-                Pillar {index + 1}
-              </div>
-              <h3 className="mt-3 text-xl font-semibold">{pillar.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-white/62">{pillar.body}</p>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>

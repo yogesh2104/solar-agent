@@ -15,23 +15,26 @@ export default function B2BTestimonials() {
   };
 
   const previous = () => {
-    setActiveIndex((current) => (current - 1 + testimonials.items.length) % testimonials.items.length);
+    setActiveIndex(
+      (current) =>
+        (current - 1 + testimonials.items.length) % testimonials.items.length,
+    );
   };
 
   const activeTestimonial = testimonials.items[activeIndex];
 
   return (
-    <section className="overflow-hidden bg-[#f7fbff] py-24 md:py-28">
+    <section className="overflow-hidden bg-[#f7fbff] py-7 md:py-10">
       <div className="container mx-auto px-6">
         <div className="mx-auto max-w-4xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
             <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
             {testimonials.badge}
           </div>
-          <h2 className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
             {testimonials.title}
           </h2>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          {/* <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
             {testimonials.proofPoints.map((point) => (
               <span
                 key={point}
@@ -40,7 +43,7 @@ export default function B2BTestimonials() {
                 {point}
               </span>
             ))}
-          </div>
+          </div> */}
 
           <div className="mt-8 flex items-center justify-center gap-3">
             {testimonials.items.map((item, index) => (
@@ -94,7 +97,7 @@ export default function B2BTestimonials() {
           <div className="relative">
             <Quote className="absolute -top-3 left-0 size-12 text-slate-200" />
             <div className="pl-0 md:pl-10">
-              <div className="inline-flex rounded-full bg-[var(--brand-lime)]/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-700">
+              <div className="inline-flex rounded-full bg-[var(--brand-lime)]/25 px-4 py-2 text-xs font-semibold uppercase  text-slate-700">
                 {activeTestimonial.result}
               </div>
               <p className="mt-6 text-2xl font-medium leading-[1.55] text-slate-950 md:text-3xl">

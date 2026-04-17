@@ -219,3 +219,30 @@ model Testimonial {
   feedback String
   image    String
 }
+
+model Service {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String   @unique
+  description String
+  content     String?
+  image       String?
+  icon        String?
+  features    String[]
+  faqs        FAQ[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model FAQ {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  question    String
+  answer      String
+  order       Int      @default(0)
+  category    String?  // General, Service Specific, etc.
+  serviceId   String?  @db.ObjectId
+  service     Service? @relation(fields: [serviceId], references: [id])
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
