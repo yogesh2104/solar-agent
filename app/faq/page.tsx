@@ -6,7 +6,7 @@ import Link from "next/link";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 
 export const metadata = {
-  title: "Frequently Asked Questions | Suntrix Solar",
+  title: "Frequently Asked Questions | ELIZ ENERGY Solar",
   description:
     "Find answers to common questions about solar installation, maintenance, pricing, and technical specifications.",
 };

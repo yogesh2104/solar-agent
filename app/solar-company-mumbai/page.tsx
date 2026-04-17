@@ -7,15 +7,15 @@ import B2BTestimonials from "@/components/landing/B2BTestimonials";
 import B2BWhyUs from "@/components/landing/B2BWhyUs";
 import HomeFAQ from "@/components/landing/HomeFAQ";
 import { db } from "@/lib/db";
-
 import siteConfig from "@/lib/siteConfig";
 
 export const metadata = {
-  title: siteConfig.seo.home.title,
-  description: siteConfig.seo.home.description,
+  title: "Best Solar Company in Mumbai | ELIZ ENERGY Solar Solutions",
+  description:
+    "ELIZ ENERGY is a leading solar company in Mumbai providing reliable, cost-effective, and sustainable solar solutions for homes and businesses.",
 };
 
-export default async function Home() {
+export default async function SolarCompanyMumbai() {
   const [faqs, services] = await Promise.all([
     db.FAQ.findMany({
       where: { isPublished: true },
@@ -31,7 +31,6 @@ export default async function Home() {
     <div className="overflow-x-clip">
       <B2BHero />
       <B2BAbout />
-      {/* <B2BSolutions initialServices={services} /> */}
       <B2BWhyUs />
       <B2BProjects />
       <B2BTestimonials />

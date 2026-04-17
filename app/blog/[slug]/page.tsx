@@ -19,10 +19,10 @@ export async function generateMetadata({ params }: BlogDetailPageProps) {
   }
 
   return {
-    title: `${blog.title} | Suntrix`,
+    title: `${blog.title} | ELIZ ENERGY`,
     description:
       blog.metadata ||
-      "Read more about commercial solar and energy infrastructure.",
+      "Read more about commercial solar and energy infrastructure in Mumbai.",
     openGraph: {
       title: blog.title,
       description: blog.metadata || "",
@@ -42,11 +42,32 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     notFound();
   }
 
+  const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": blog.title,
+    "description": blog.metadata || blog.title,
+    "author": {
+      "@type": "Organization",
+      "name": "ELIZ ENERGY"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ELIZ ENERGY"
+    },
+    "image": blog.image,
+    "datePublished": blog.createdAt.toISOString().split('T')[0],
+  };
+
   return (
     <article className="bg-[#f7fbff] pb-20 pt-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
       <div className="container mx-auto max-w-5xl px-6">
         <Link
-          href="/blogs"
+          href="/blog"
           className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-950"
         >
           <ArrowLeft className="size-4" />
@@ -144,7 +165,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               variant="outline"
               className="h-11 rounded-full border-slate-200 bg-white px-5 text-slate-950 hover:bg-slate-50"
             >
-              <Link href="/blogs">More articles</Link>
+              <Link href="/blog">More articles</Link>
             </Button>
             <Button
               asChild

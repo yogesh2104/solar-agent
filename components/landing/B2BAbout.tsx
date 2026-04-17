@@ -65,7 +65,7 @@ export default function B2BAbout() {
                 href="/about"
                 className="inline-flex items-center gap-3 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
               >
-                Learn About Suntrix
+                Learn About ELIZ ENERGY
                 <ArrowUpRight className="size-4" />
               </Link>
             </motion.div>

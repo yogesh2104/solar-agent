@@ -2,8 +2,8 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Refund and Cancellation Policy | Suntrix",
-  description: "How Suntrix handles project cancellations and refund requests where applicable.",
+  title: "Refund and Cancellation Policy | ELIZ ENERGY",
+  description: "How ELIZ ENERGY handles project cancellations and refund requests where applicable.",
 };
 
 export default function RefundPolicyPage() {
@@ -19,7 +19,7 @@ export default function RefundPolicyPage() {
       <LegalContent>
         <h2>1. Project cancellation</h2>
         <p>
-          Cancellation terms depend on the stage of the commercial engagement and the specific agreement signed between Suntrix and the customer. Early-stage cancellations may be treated differently from cancellations after engineering, procurement, or installation activity has begun.
+          Cancellation terms depend on the stage of the commercial engagement and the specific agreement signed between ELIZ ENERGY and the customer. Early-stage cancellations may be treated differently from cancellations after engineering, procurement, or installation activity has begun.
         </p>
 
         <h2>2. Refund eligibility</h2>
@@ -40,7 +40,7 @@ export default function RefundPolicyPage() {
 
         <h2>4. Refund process</h2>
         <p>
-          Refund requests should be submitted in writing to the relevant Suntrix contact handling your engagement. Approved refunds, if any, will be processed according to the commercial agreement and operational timelines applicable to that engagement.
+          Refund requests should be submitted in writing to the relevant ELIZ ENERGY contact handling your engagement. Approved refunds, if any, will be processed according to the commercial agreement and operational timelines applicable to that engagement.
         </p>
 
         <h2>5. Service quality concerns</h2>
@@ -50,7 +50,7 @@ export default function RefundPolicyPage() {
 
         <h2>6. Contact</h2>
         <p>
-          For refund or cancellation questions, email finance@suntrix.in or call +91 98765 43210.
+          For refund or cancellation questions, email energyeliz@gmail.com or call +91 7700908508.
         </p>
       </LegalContent>
     </div>

@@ -11,19 +11,19 @@ interface BlogCardProps {
 }
 
 export const BlogCard = ({ blog, isAdmin }: BlogCardProps) => {
-  const href = isAdmin ? `/admin/blogs/${blog.id}` : `/blogs/${blog.slug}`;
+  const href = isAdmin ? `/admin/blogs/${blog.id}` : `/blog/${blog.slug}`;
 
   return (
     <Link href={href} className="group block h-full">
-      <article className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_14px_40px_rgba(8,17,31,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(8,17,31,0.08)]">
-        <div className="relative aspect-[16/10] overflow-hidden">
+      <article className="flex h-full flex-col overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-[0_14px_40px_rgba(8,17,31,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(8,17,31,0.08)]">
+        <div className="relative aspect-16/10 overflow-hidden">
           <Image
             src={blog.image}
             alt={blog.title}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-slate-950/35 via-transparent to-transparent" />
           <div className="absolute left-5 top-5">
             <Badge className="rounded-full border border-white/40 bg-white/88 px-3 py-1 text-[10px] font-semibold uppercase  text-slate-700 shadow-none">
               {blog.tags[0] || "Insight"}

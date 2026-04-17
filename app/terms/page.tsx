@@ -2,8 +2,8 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Terms and Conditions | Suntrix",
-  description: "Terms governing the use of the Suntrix website and related business interactions.",
+  title: "Terms and Conditions | ELIZ ENERGY",
+  description: "Terms governing the use of the ELIZ ENERGY website and related business interactions.",
 };
 
 export default function TermsPage() {
@@ -13,18 +13,18 @@ export default function TermsPage() {
         title="Terms and"
         highlight="Conditions"
         breadcrumb="Terms and Conditions"
-        description="Please read these terms carefully before using the Suntrix website or engaging with our commercial solar services."
+        description="Please read these terms carefully before using the ELIZ ENERGY website or engaging with our commercial solar services."
       />
 
       <LegalContent>
         <h2>1. Acceptance of terms</h2>
         <p>
-          By accessing this website or using services offered by Suntrix Energy Pvt. Ltd., you agree to these Terms and Conditions. If you do not agree, please do not use the website or related services.
+          By accessing this website or using services offered by ELIZ ENERGY Solar Solutions, you agree to these Terms and Conditions. If you do not agree, please do not use the website or related services.
         </p>
 
         <h2>2. Scope of services</h2>
         <p>
-          Suntrix provides commercial and industrial solar-related services, which may include panel supply, EPC support, hybrid system planning, monitoring, and maintenance. Specific commercial terms are defined only through signed agreements.
+          ELIZ ENERGY provides commercial and industrial solar-related services, which may include panel supply, EPC support, hybrid system planning, monitoring, and maintenance. Specific commercial terms are defined only through signed agreements.
         </p>
 
         <h2>3. User responsibilities</h2>
@@ -44,12 +44,12 @@ export default function TermsPage() {
 
         <h2>6. Intellectual property</h2>
         <p>
-          Website content, branding, graphics, text, and technical materials belong to Suntrix Energy Pvt. Ltd. unless otherwise stated and may not be reproduced or reused without permission.
+          Website content, branding, graphics, text, and technical materials belong to ELIZ ENERGY Solar Solutions unless otherwise stated and may not be reproduced or reused without permission.
         </p>
 
         <h2>7. Limitation of liability</h2>
         <p>
-          Suntrix is not liable for indirect or consequential damages arising from website use, project assumptions interpreted outside signed agreements, or disruptions caused by factors beyond our reasonable control.
+          ELIZ ENERGY is not liable for indirect or consequential damages arising from website use, project assumptions interpreted outside signed agreements, or disruptions caused by factors beyond our reasonable control.
         </p>
 
         <h2>8. Governing law</h2>
@@ -64,7 +64,7 @@ export default function TermsPage() {
 
         <h2>10. Contact information</h2>
         <p>
-          Questions about these terms can be sent to legal@suntrix.in.
+          Questions about these terms can be sent to energyeliz@gmail.com.
         </p>
       </LegalContent>
     </div>

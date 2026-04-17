@@ -1,20 +1,20 @@
-import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import ContactForm from "@/components/landing/ContactForm";
+import StaticPageHeader from "@/components/landing/StaticPageHeader";
+import siteConfig from "@/lib/siteConfig";
 
 export const metadata = {
-  title: "Contact Enterprise Sales | Suntrix",
-  description:
-    "Talk to Suntrix about B2B solar panel sourcing, commercial rooftop systems, hybrid-ready design, or rollout planning.",
+  title: siteConfig.seo.contact.title,
+  description: siteConfig.seo.contact.description,
 };
 
 export default function ContactPage() {
   return (
     <div className="bg-[#f7fbff] pb-20">
       <StaticPageHeader
-        title="Contact"
-        highlight="Enterprise Sales"
+        title="Get Free"
+        highlight="Solar Consultation"
         breadcrumb="Contact"
-        description="Reach out for panel procurement, commercial solar feasibility, rollout planning, or long-term asset support. We will route you to the right team quickly."
+        description="Contact ELIZ ENERGY for solar panel installation in Mumbai. Get a free consultation and quotation today."
       />
       <ContactForm />
     </div>

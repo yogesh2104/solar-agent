@@ -7,15 +7,15 @@ import B2BTestimonials from "@/components/landing/B2BTestimonials";
 import B2BWhyUs from "@/components/landing/B2BWhyUs";
 import HomeFAQ from "@/components/landing/HomeFAQ";
 import { db } from "@/lib/db";
-
 import siteConfig from "@/lib/siteConfig";
 
 export const metadata = {
-  title: siteConfig.seo.home.title,
-  description: siteConfig.seo.home.description,
+  title: "Solar Panel Installation in Mumbai & Thane | Professional Setup",
+  description:
+    "Get affordable and professional solar panel installation in Mumbai, Thane, and Navi Mumbai. ELIZ ENERGY provides end-to-end rooftop solar solutions.",
 };
 
-export default async function Home() {
+export default async function SolarInstallationMumbai() {
   const [faqs, services] = await Promise.all([
     db.FAQ.findMany({
       where: { isPublished: true },
@@ -31,7 +31,6 @@ export default async function Home() {
     <div className="overflow-x-clip">
       <B2BHero />
       <B2BAbout />
-      {/* <B2BSolutions initialServices={services} /> */}
       <B2BWhyUs />
       <B2BProjects />
       <B2BTestimonials />

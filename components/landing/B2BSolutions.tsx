@@ -111,7 +111,7 @@ export default function B2BSolutions({
               className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600 shadow-sm"
             >
               <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
-              {solutions.badge}
+              {/* {solutions.badge} */}
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -120,7 +120,7 @@ export default function B2BSolutions({
               transition={{ delay: 0.1 }}
               className="mt-7 text-4xl font-semibold leading-[1.15] tracking-tight text-slate-950 md:text-6xl"
             >
-              {solutions.title}
+              {/* {solutions.title} */}
             </motion.h2>
           </div>
 

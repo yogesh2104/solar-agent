@@ -42,7 +42,7 @@ export async function createBlog(data: {
     });
 
     revalidatePath("/admin/blogs");
-    revalidatePath("/blogs");
+    revalidatePath("/blog");
     revalidatePath("/");
     return { success: true, blog };
   } catch (error) {
@@ -84,8 +84,8 @@ export async function updateBlog(
     });
 
     revalidatePath("/admin/blogs");
-    revalidatePath(`/blogs/${blog.slug}`);
-    revalidatePath("/blogs");
+    revalidatePath(`/blog/${blog.slug}`);
+    revalidatePath("/blog");
     revalidatePath("/");
     return { success: true, blog };
   } catch (error) {
@@ -101,7 +101,7 @@ export async function deleteBlog(id: string) {
     });
 
     revalidatePath("/admin/blogs");
-    revalidatePath("/blogs");
+    revalidatePath("/blog");
     revalidatePath("/");
     return { success: true };
   } catch (error) {
@@ -118,8 +118,8 @@ export async function togglePublish(id: string, isPublished: boolean) {
     });
 
     revalidatePath("/admin/blogs");
-    revalidatePath(`/blogs/${blog.slug}`);
-    revalidatePath("/blogs");
+    revalidatePath(`/blog/${blog.slug}`);
+    revalidatePath("/blog");
     revalidatePath("/");
     return { success: true, blog };
   } catch (error) {

@@ -165,7 +165,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="bg-[#f7fbff] pb-20 pt-6">
+    <section id="contact" className="bg-[#f7fbff] pt-6">
       <div className="container mx-auto px-6">
         <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr]">
           <div className="space-y-6">
@@ -248,7 +248,7 @@ export default function ContactForm() {
               })}
             </div>
 
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -278,7 +278,7 @@ export default function ContactForm() {
                   );
                 })}
               </div>
-            </motion.div>
+            </motion.div> */}
           </div>
 
           <motion.div

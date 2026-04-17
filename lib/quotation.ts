@@ -13,10 +13,10 @@ export interface QuotationTotals {
 }
 
 export const COMPANY_PROFILE = {
-  name: "Suntrix Energy Pvt. Ltd.",
-  email: "enterprise@suntrix.in",
-  phone: "+91 98765 43210",
-  address: "Suntrix Tower, BKC, Mumbai - 400 051",
+  name: "ELIZ ENERGY Solar Solutions",
+  email: "energyeliz@gmail.com",
+  phone: "+91 7700908508",
+  address: "Thane, Mumbai, Maharashtra",
 };
 
 export function generateQuotationNumber(date = new Date()) {

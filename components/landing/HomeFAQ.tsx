@@ -54,8 +54,8 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
               transition={{ delay: 0.1 }}
               className="mt-7 text-4xl font-semibold leading-[1.15] tracking-tight text-slate-950 md:text-6xl"
             >
-              Got Questions? <br />
-              <span className="text-slate-400">We&apos;ve Got Answers.</span>
+              Frequently Asked Questions <br />
+              <span className="text-slate-400">About Solar in Mumbai</span>
             </motion.h2>
 
             <motion.p

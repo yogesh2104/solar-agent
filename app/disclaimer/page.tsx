@@ -2,8 +2,8 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Disclaimer | Suntrix",
-  description: "Important legal notices regarding the information published on the Suntrix website.",
+  title: "Disclaimer | ELIZ ENERGY",
+  description: "Important legal notices regarding the information published on the ELIZ ENERGY website.",
 };
 
 export default function DisclaimerPage() {
@@ -18,7 +18,7 @@ export default function DisclaimerPage() {
       <LegalContent>
         <h2>1. Accuracy of information</h2>
         <p>
-          Information published on the Suntrix website is provided for general informational purposes only. While we aim to keep it current and useful, we do not guarantee that all information is complete, error-free, or suitable for every specific business context.
+          Information published on the ELIZ ENERGY website is provided for general informational purposes only. While we aim to keep it current and useful, we do not guarantee that all information is complete, error-free, or suitable for every specific business context.
         </p>
 
         <h2>2. Savings and performance assumptions</h2>
@@ -28,7 +28,7 @@ export default function DisclaimerPage() {
 
         <h2>3. External links</h2>
         <p>
-          Our site may link to third-party resources for convenience. Suntrix does not control those sites and is not responsible for their content, availability, or accuracy.
+          Our site may link to third-party resources for convenience. ELIZ ENERGY does not control those sites and is not responsible for their content, availability, or accuracy.
         </p>
 
         <h2>4. Not professional advice</h2>
@@ -43,7 +43,7 @@ export default function DisclaimerPage() {
 
         <h2>6. Contact</h2>
         <p>
-          Questions about this disclaimer can be sent to legal@suntrix.in.
+          Questions about this disclaimer can be sent to energyeliz@gmail.com.
         </p>
       </LegalContent>
     </div>

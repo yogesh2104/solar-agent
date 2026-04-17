@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -51,7 +52,7 @@ export default function B2BNavbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={cn(
-          "mx-auto flex w-full max-w-7xl items-center justify-between rounded-[2rem] border px-4 py-3 shadow-[0_20px_50px_rgba(8,17,31,0.08)] transition-all duration-300 md:px-6",
+          "mx-auto flex w-full max-w-7xl items-center justify-between rounded-[2rem] border px-4 py-2 shadow-[0_20px_50px_rgba(8,17,31,0.08)] transition-all duration-300 md:px-6",
           compactShell
             ? "border-white/80 bg-white/88 text-slate-950 backdrop-blur-2xl"
             : "border-white/20 bg-white/12 text-white backdrop-blur-xl",
@@ -62,28 +63,14 @@ export default function B2BNavbar() {
           className="flex items-center gap-3"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <span
-            className={cn(
-              "flex size-11 items-center justify-center rounded-full border transition-colors",
-              compactShell
-                ? "border-slate-950/10 bg-[var(--brand-ink)] text-white"
-                : "border-white/20 bg-white/15 text-white",
-            )}
-          >
-            <Zap className="size-4 fill-current" />
-          </span>
-          <div className="leading-none">
-            <div className="text-lg font-semibold tracking-tight">
-              {siteConfig.company.name}
-            </div>
-            <div
-              className={cn(
-                "mt-1 text-[11px] uppercase ",
-                compactShell ? "text-slate-500" : "text-white/70",
-              )}
-            >
-              B2B Solar
-            </div>
+          <div className="relative h-16 w-40">
+            <Image
+              src="/Logo1.png"
+              alt={siteConfig.company.name}
+              fill
+              className={cn("object-contain transition-all duration-300")}
+              priority
+            />
           </div>
         </Link>
 

@@ -5,10 +5,12 @@ import { db } from "@/lib/db";
 import { BlogCard } from "@/components/blog/blog-card";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 
+import siteConfig from "@/lib/siteConfig";
+
 export const metadata = {
-  title: "Blog and Insights | Suntrix",
+  title: siteConfig.footer.quickLinks.find(l => l.name === "Blog")?.name + " | ELIZ ENERGY",
   description:
-    "Commercial solar insights, procurement guidance, ROI thinking, and deployment lessons from the Suntrix team.",
+    "Commercial solar insights, procurement guidance, and energy saving tips from the ELIZ ENERGY team.",
 };
 
 export default async function BlogsPage() {
@@ -43,7 +45,7 @@ export default async function BlogsPage() {
           <div className="space-y-10">
             {featuredBlog && (
               <Link
-                href={`/blogs/${featuredBlog.slug}`}
+                href={`/blog/${featuredBlog.slug}`}
                 className="group block overflow-hidden rounded-[2.4rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(8,17,31,0.06)]"
               >
                 <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">

@@ -2,8 +2,8 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Privacy Policy | Suntrix",
-  description: "How Suntrix collects, uses, stores, and protects information submitted through its website.",
+  title: "Privacy Policy | ELIZ ENERGY",
+  description: "How ELIZ ENERGY collects, uses, stores, and protects information submitted through its website.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -65,9 +65,9 @@ export default function PrivacyPolicyPage() {
         <p>
           If you have questions about this Privacy Policy, contact us at:
           <br />
-          Email: legal@suntrix.in
+          Email: energyeliz@gmail.com
           <br />
-          Address: Suntrix Tower, BKC, Mumbai - 400 051
+          Address: Thane, Mumbai, Maharashtra
         </p>
       </LegalContent>
     </div>

@@ -4,6 +4,8 @@ import SessionProvider from "@/components/providers/SessionProvider";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import B2BNavbar from "@/components/landing/B2BNavbar";
 import B2BFooter from "@/components/landing/B2BFooter";
+import WhatsAppCTA from "@/components/landing/WhatsAppCTA";
+import siteConfig from "@/lib/siteConfig";
 import "./globals.css";
 
 const fontSans = Outfit({
@@ -12,9 +14,8 @@ const fontSans = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Suntrix | B2B Solar Panels and Commercial Solar Systems",
-  description:
-    "Suntrix helps industrial and commercial buyers procure solar panels, rooftop systems, hybrid-ready designs, and long-term O&M support.",
+  title: siteConfig.seo.home.title,
+  description: siteConfig.seo.home.description,
 };
 
 export default function RootLayout({
@@ -22,6 +23,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ELIZ ENERGY",
+    "image": "https://elizenergy.in/logo.png", // Recommended URL
+    "telephone": "+917700908508",
+    "email": "energyeliz@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Thane",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "India"
+    },
+    "areaServed": ["Mumbai", "Thane", "Navi Mumbai"],
+    "url": "https://elizenergy.in"
+  };
+
   return (
     <html
       lang="en"
@@ -29,11 +47,16 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col font-sans text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <SessionProvider>
           <SmoothScroll>
             <B2BNavbar />
             <main className="grow">{children}</main>
             <B2BFooter />
+            <WhatsAppCTA />
           </SmoothScroll>
         </SessionProvider>
       </body>

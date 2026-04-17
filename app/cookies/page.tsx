@@ -2,8 +2,8 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Cookie Policy | Suntrix",
-  description: "How Suntrix uses cookies and similar technologies across its public website.",
+  title: "Cookie Policy | ELIZ ENERGY",
+  description: "How ELIZ ENERGY uses cookies and similar technologies across its public website.",
 };
 
 export default function CookiesPage() {
@@ -13,7 +13,7 @@ export default function CookiesPage() {
         title="Cookie"
         highlight="Policy"
         breadcrumb="Cookie Policy"
-        description="This page explains how Suntrix uses cookies and similar technologies to support website performance, analytics, and your browsing experience."
+        description="This page explains how ELIZ ENERGY uses cookies and similar technologies to support website performance, analytics, and your browsing experience."
       />
 
       <LegalContent>
@@ -47,7 +47,7 @@ export default function CookiesPage() {
 
         <h2>6. Contact</h2>
         <p>
-          Questions about this Cookie Policy can be sent to legal@suntrix.in.
+          Questions about this Cookie Policy can be sent to energyeliz@gmail.com.
         </p>
       </LegalContent>
     </div>

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   const service = await db.service.findUnique({ where: { slug } });
   
   return {
-    title: service ? `${service.title} | Suntrix Solar` : "Service Details",
+    title: service ? `${service.title} | ELIZ ENERGY` : "Service Details",
     description: service?.description,
   };
 }
@@ -133,17 +133,17 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                 <div className="mt-12 pt-8 border-t border-white/10 relative z-10">
                     <p className="text-sm font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Direct Support</p>
                     <div className="space-y-4">
-                        <a href="tel:+919876543210" className="flex items-center gap-4 text-white hover:text-[var(--brand-lime)] transition-colors">
+                        <a href="tel:+917700908508" className="flex items-center gap-4 text-white hover:text-[var(--brand-lime)] transition-colors">
                             <div className="size-10 rounded-full bg-white/5 flex items-center justify-center">
                                 <Phone className="size-4" />
                             </div>
-                            <span className="font-semibold">+91 98765 43210</span>
+                            <span className="font-semibold">+91 7700908508</span>
                         </a>
-                        <a href="mailto:solutions@suntrix.in" className="flex items-center gap-4 text-white hover:text-[var(--brand-lime)] transition-colors">
+                        <a href="mailto:energyeliz@gmail.com" className="flex items-center gap-4 text-white hover:text-[var(--brand-lime)] transition-colors">
                             <div className="size-10 rounded-full bg-white/5 flex items-center justify-center">
                                 <Mail className="size-4" />
                             </div>
-                            <span className="font-semibold">solutions@suntrix.in</span>
+                            <span className="font-semibold">energyeliz@gmail.com</span>
                         </a>
                     </div>
                 </div>

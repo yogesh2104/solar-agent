@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight, Mail, MapPin, Phone, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import siteConfig from "@/lib/siteConfig";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export default function B2BFooter() {
   const pathname = usePathname();
@@ -55,17 +57,15 @@ export default function B2BFooter() {
 
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr]">
           <div>
-            <Link href="/" className="inline-flex items-center gap-3">
-              <span className="flex size-11 items-center justify-center rounded-full bg-[var(--brand-lime)] text-slate-950">
-                <Zap className="size-4 fill-current" />
-              </span>
-              <div>
-                <div className="text-xl font-semibold tracking-tight">
-                  {company.name}
-                </div>
-                <div className="text-xs uppercase  text-white/45">
-                  B2B Solar Infrastructure
-                </div>
+            <Link href="/" className="flex items-center gap-3">
+              <div className="relative h-40 w-40">
+                <Image
+                  src="/Logo1.png"
+                  alt={siteConfig.company.name}
+                  fill
+                  className={cn("object-contain transition-all duration-300")}
+                  priority
+                />
               </div>
             </Link>
 
@@ -149,7 +149,12 @@ export default function B2BFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/8 pt-6 text-xs text-white/38 md:flex-row md:items-center md:justify-between">
-          <div>{footer.copyright}</div>
+          <div className="flex flex-col gap-1">
+            <div>{footer.copyright}</div>
+            <div className="font-medium text-white/30">
+              {company.contact.locationBoost}
+            </div>
+          </div>
           <div className="flex flex-wrap gap-4">
             {footer.legalLinks.map((link) => (
               <Link
@@ -161,6 +166,12 @@ export default function B2BFooter() {
               </Link>
             ))}
           </div>
+        </div>
+
+        {/* SEO Keyword Block (Visually Hidden) */}
+        <div className="sr-only mt-8 text-[10px] text-white/10 select-none pointer-events-none">
+          solar company in Mumbai, solar panel installation in Thane, rooftop
+          solar Navi Mumbai, solar system Maharashtra
         </div>
       </div>
     </footer>

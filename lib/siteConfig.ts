@@ -310,44 +310,49 @@
 
 const siteConfig = {
   company: {
-    name: "ELIZ",
-    fullName: "ELIZ ENERGY",
+    name: "ELIZ ENERGY",
+    fullName: "ELIZ ENERGY Solar Solutions",
     tagline: "Affordable & reliable solar solutions for homes and businesses.",
     logo: "E",
     contact: {
       phone: "+91 7700908508",
+      whatsapp: "917700908508",
       email: "energyeliz@gmail.com",
       address: "Thane, Mumbai, Maharashtra",
       googleMaps: "#",
       workingHours: "Mon-Sat, 9:00 AM - 7:00 PM",
+      locationBoost:
+        "Solar Company in Mumbai | Thane | Navi Mumbai | Maharashtra",
     },
   },
   navigation: [
-    { name: "Home", href: "/#hero" },
-    { name: "Overview", href: "/#overview" },
-    { name: "Solutions", href: "/#services" },
-    { name: "Why Us", href: "/#why-us" },
-    { name: "Projects", href: "/projects" },
-    { name: "Insights", href: "/blogs" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Products", href: "/products" },
+    // { name: "Maintenance", href: "/maintenance" },
+    // { name: "EV Charger", href: "/ev-charger" },
+    { name: "Contact", href: "/contact" },
   ],
   hero: {
     badge: "Clean energy for homes, shops & industries",
-    title: "Save Electricity Bills with Smart Solar Solutions",
+    title:
+      "Solar Panel Installation in Mumbai & Thane – Save Electricity Bills with Solar",
     description:
-      "ELIZ ENERGY provides complete solar solutions including installation, maintenance, and consultancy. Reduce your electricity cost and switch to sustainable energy today.",
+      "ELIZ ENERGY provides affordable solar panel installation in Mumbai, Thane, and Navi Mumbai for homes, shops, and industries. Reduce electricity costs and switch to clean energy today.",
     primaryCta: {
       text: "Get Free Consultation",
       href: "/contact",
     },
     secondaryCta: {
       text: "Our Services",
-      href: "/#services",
+      href: "/services",
     },
     trustChips: [
-      "Affordable solar solutions",
-      "End-to-end installation",
-      "Reliable service & support",
-      "Eco-friendly energy",
+      "Affordable Solar Solutions in Mumbai",
+      "End-to-end Solar Installation & Support",
+      "Reliable Solar Company in Thane",
+      "Eco-Friendly Energy for Homes & Businesses",
     ],
     sideStats: [
       {
@@ -369,7 +374,7 @@ const siteConfig = {
       },
       social: {
         value: "500+",
-        label: "enterprise buyers, EPCs, and channel partners served",
+        label: "satisfied customers and partners served",
       },
       highlight: {
         title: "Storage-ready design",
@@ -378,11 +383,11 @@ const siteConfig = {
       },
     },
     metrics: [
-      { value: "240+", label: "MW delivered across C&I deployments" },
+      { value: "240+", label: "kW delivered across local deployments" },
       { value: "3.4 yrs", label: "median modeled payback on high-load sites" },
       {
-        value: "18",
-        label: "states supported through sourcing and EPC partners",
+        value: "Mumbai",
+        label: "Primary service area including Thane & Navi Mumbai",
       },
       {
         value: "48 hrs",
@@ -391,38 +396,11 @@ const siteConfig = {
     ],
     image: "/images/new_landing/hero_b2b.png",
   },
-  overview: {
-    badge: "About ELIZ ENERGY",
-    title: "Your trusted solar partner for a greener future",
-    description:
-      "ELIZ ENERGY provides reliable, cost-effective, and sustainable solar solutions for residential, commercial, and industrial sectors. Led by experienced professionals, we help reduce electricity bills while promoting clean energy.",
-    highlight: "We align sourcing, engineering, commissioning, and service.",
-    image: "/images/new_landing/about_b2b.png",
-    gallery: ["/images/Rooftop.jpg", "/images/industrial.png"],
-    stats: [
-      { value: "3+ Years", label: "Solar experience" },
-      { value: "100+", label: "Happy customers" },
-      { value: "Affordable", label: "Cost-effective solutions" },
-    ],
-    advantages: [
-      "Bulk procurement support for installers, EPCs, and project developers",
-      "Single point of contact from site study to commissioning sign-off",
-      "Documentation support for finance teams, EPC approvals, and ESG reporting",
-    ],
-    sectors: [
-      "Manufacturing",
-      "Warehousing",
-      "Food and cold chain",
-      "Hospitals and campuses",
-      "Hotels and malls",
-      "Solar channel partners",
-    ],
-  },
   solutions: {
-    badge: "Our Services",
-    title: "Complete solar solutions tailored for your needs",
+    badge: "Solar delivery models",
+    title: "Solar Installation Services in Mumbai & Thane",
     description:
-      "From installation to maintenance, we provide end-to-end solar services designed for homes, offices, and industries.",
+      "We provide complete solar installation services including design, engineering, installation, and maintenance. Our solutions are tailored for homes, offices, and industries across Mumbai.",
     image: "/images/Solar-Panel-Installation.webp",
     sectors: [
       "Factory rooftops",
@@ -435,56 +413,55 @@ const siteConfig = {
     cards: [
       {
         id: "01",
-        title: "Solar Installation",
+        title: "Residential Solar",
         description:
-          "Rooftop and ground-mounted solar systems for homes, offices, and industries.",
+          "Solar panel installation for homes in Mumbai. Reduce electricity bills and increase property value with rooftop solar.",
+        bullets: [
+          "Affordable rooftop solar for homes",
+          "Government subsidy support",
+          "Professional installation & maintenance",
+        ],
       },
       {
         id: "02",
-        title: "Design & Engineering",
+        title: "Commercial Solar",
         description:
-          "Customized solar system design based on your energy needs and site conditions.",
+          "Cost-effective solar solutions for shops, offices, and industries in Mumbai and Thane.",
+        bullets: [
+          "Reduced operational energy costs",
+          "Tax benefits and ROI modeling",
+          "Scalable solar deployments",
+        ],
       },
       {
         id: "03",
-        title: "Solar Consultancy",
+        title: "Hybrid systems with storage readiness",
         description:
-          "Feasibility study, ROI analysis, and expert guidance before installation.",
+          "Pair solar generation with hybrid inverters and battery architecture to protect uptime, reduce peak charges, and support night or backup loads.",
+        bullets: [
+          "Peak demand shaving strategy",
+          "Critical-load planning",
+          "Storage-ready design even when battery deployment is phased",
+        ],
       },
       {
         id: "04",
-        title: "Maintenance & Support",
+        title: "Monitoring, warranty, and O&M",
         description:
-          "Regular maintenance, inspections, and performance optimization.",
+          "Track generation and asset health after go-live with service workflows built for enterprise facilities and multi-site portfolios.",
+        bullets: [
+          "Remote performance monitoring",
+          "Preventive maintenance schedules",
+          "Warranty coordination and escalation support",
+        ],
       },
-      {
-        id: "05",
-        title: "Hybrid & Off-Grid Systems",
-        description:
-          "Reliable power solutions for areas with low or no electricity access.",
-      },
-    ],
-  },
-  whyUs: {
-    badge: "Commercial confidence",
-    title: "Why Choose ELIZ ENERGY?",
-    description:
-      "ELIZ ENERGY is built for teams that have to justify capex, defend supplier choice, and maintain uptime after handover. We make those downstream decisions easier before the project starts.",
-    image: "/images/wind_turbines_clean_energy.jpg",
-    checklist: [
-      "Affordable and reliable solutions",
-      "Experienced team",
-      "End-to-end service",
-      "Quality products and installation",
-      "Customer-focused approach",
     ],
   },
   projects: {
     badge: "Selected deployments",
-    title:
-      "Proof across manufacturing, logistics, retail, and institutional sites.",
+    title: "Solar Projects in Mumbai, Thane & Maharashtra",
     description:
-      "Representative B2B use cases that show how Suntrix approaches panel selection, project sizing, and commercial outcomes.",
+      "Representative B2B use cases that show how ELIZ ENERGY approaches panel selection, project sizing, and commercial outcomes.",
     items: [
       {
         title: "Automotive Components Plant",
@@ -514,12 +491,11 @@ const siteConfig = {
   },
   testimonials: {
     badge: "Client perspective",
-    title:
-      "What procurement heads and operations teams say after installation.",
+    title: "What Our Solar Customers Say in Mumbai",
     items: [
       {
         quote:
-          "Suntrix did not just quote panels. They mapped our load curve, showed where storage would matter later, and helped our finance team compare capex versus supply-led phases.",
+          "ELIZ ENERGY did not just quote panels. They mapped our load curve, showed where storage would matter later, and helped our finance team compare capex versus supply-led phases.",
         author: "Rohan Mehta",
         role: "Procurement Head",
         company: "Westline Manufacturing",
@@ -551,11 +527,24 @@ const siteConfig = {
       "Clearer post-install service ownership",
     ],
   },
-  finalCta: {
-    title: "Contact ELIZ ENERGY",
+  whyUs: {
+    badge: "Commercial confidence",
+    title: "Why Choose ELIZ ENERGY – Best Solar Company in Mumbai?",
     description:
-      "Looking to switch to solar? Contact us today for a free consultation and start saving on electricity bills.",
-    copyright: "© 2026 ELIZ ENERGY. All rights reserved.",
+      "ELIZ ENERGY is built for teams that have to justify capex, defend supplier choice, and maintain uptime after handover. We make those downstream decisions easier before the project starts.",
+    image: "/images/wind_turbines_clean_energy.jpg",
+    checklist: [
+      "Affordable solar installation in Mumbai",
+      "Experienced solar experts",
+      "End-to-end solar solutions",
+      "High-quality solar panels & inverters",
+      "Trusted by customers across Thane & Navi Mumbai",
+    ],
+  },
+  finalCta: {
+    title: "Get Free Solar Consultation in Mumbai",
+    description:
+      "Contact ELIZ ENERGY today for solar panel installation in Mumbai, Thane, and Navi Mumbai. Get a free quote and start saving on electricity bills.",
     primary: {
       text: "Talk to Enterprise Sales",
       href: "/contact",
@@ -565,19 +554,87 @@ const siteConfig = {
       href: "/get-quote",
     },
     deliverables: [
-      "EV Charger Installation",
-      "Robotic Solar Cleaning",
-      "Indian Rack Structure",
+      "Capacity sizing recommendation",
+      "Estimated generation and savings model",
+      "Panel, inverter, and deployment-fit guidance",
     ],
   },
-  footer: {
-    title: "Need pricing, technical data sheets, or EPC support?",
+  overview: {
+    badge: "About ELIZ ENERGY",
+    title: "Trusted Solar Company in Mumbai for Homes & Businesses",
     description:
-      "Tell us whether you are buying panels in volume, evaluating a rooftop solar project, or planning a multi-site rollout. Our enterprise team will point you to the right path quickly.",
+      "ELIZ ENERGY is a leading solar company in Mumbai providing reliable, cost-effective, and sustainable solar solutions. We specialize in rooftop solar installation for residential, commercial, and industrial customers across Thane, Navi Mumbai, and Maharashtra.",
+    highlight: "We align sourcing, engineering, commissioning, and service.",
+    image: "/images/new_landing/about_b2b.png",
+    gallery: ["/images/Rooftop.jpg", "/images/industrial.png"],
+    stats: [
+      { value: "3+ Years", label: "Solar experience" },
+      { value: "100+", label: "Happy customers" },
+      { value: "Affordable", label: "Cost-effective solutions" },
+    ],
+    advantages: [
+      "Bulk procurement support for installers, EPCs, and project developers",
+      "Single point of contact from site study to commissioning sign-off",
+      "Documentation support for finance teams, EPC approvals, and ESG reporting",
+    ],
+    sectors: [
+      "Residential Homes",
+      "Commercial Offices",
+      "Industrial Plants",
+      "Warehousing",
+      "Hospitals and campuses",
+      "Malls and Hotels",
+    ],
+  },
+  seo: {
+    home: {
+      title:
+        "Solar Panel Installation in Mumbai & Thane | Best Solar Company | ELIZ ENERGY",
+      description:
+        "ELIZ ENERGY provides affordable solar panel installation in Mumbai, Thane, and Navi Mumbai for homes, shops, and industries. Get a free consultation today.",
+    },
+    about: {
+      title: "About ELIZ ENERGY | Trusted Solar Company in Mumbai",
+      description:
+        "Learn about ELIZ ENERGY, a trusted solar company in Mumbai providing cost-effective and sustainable solar solutions for homes and businesses.",
+    },
+    services: {
+      title: "Solar Installation Services in Mumbai | Rooftop Solar Experts",
+      description:
+        "Get complete solar installation services in Mumbai. ELIZ ENERGY provides rooftop, commercial, and industrial solar solutions with maintenance support.",
+    },
+    products: {
+      title: "Solar Panels, Inverters & Batteries in Mumbai | ELIZ ENERGY",
+      description:
+        "Buy high-quality solar panels, inverters, and batteries in Mumbai. Reliable and efficient solar products for homes and businesses.",
+    },
+    maintenance: {
+      title: "Solar Maintenance Services in Mumbai | AMC & Cleaning",
+      description:
+        "Keep your solar system efficient with expert maintenance services in Mumbai. AMC, cleaning, and performance optimization available.",
+    },
+    evCharger: {
+      title: "EV Charger Installation in Mumbai | Home & Commercial Setup",
+      description:
+        "Install EV chargers in Mumbai for homes and businesses. Reliable and fast charging solutions by ELIZ ENERGY.",
+    },
+    contact: {
+      title: "Contact ELIZ ENERGY | Solar Consultation in Mumbai",
+      description:
+        "Contact ELIZ ENERGY for solar panel installation in Mumbai. Get a free consultation and quotation today.",
+    },
+  },
+  footer: {
+    title: "Need pricing, technical data sheets, or solar support?",
+    description:
+      "Tell us whether you are evaluating a rooftop solar project, buying panels, or planning maintenance. Our team will point you to the right path quickly.",
     quickLinks: [
-      { name: "About Suntrix", href: "/about" },
-      { name: "Projects", href: "/projects" },
-      { name: "Blog and Insights", href: "/blogs" },
+      { name: "About Us", href: "/about" },
+      { name: "Products", href: "/products" },
+      { name: "Services", href: "/services" },
+      { name: "Maintenance", href: "/maintenance" },
+      { name: "EV Charger", href: "/ev-charger" },
+      { name: "Blog", href: "/blog" },
       { name: "Contact", href: "/contact" },
     ],
     legalLinks: [
@@ -588,12 +645,12 @@ const siteConfig = {
       { name: "Refund Policy", href: "/refund-policy" },
     ],
     solutionLinks: [
-      { name: "Bulk panel supply", href: "/#services" },
-      { name: "Commercial rooftop solar", href: "/#services" },
-      { name: "Hybrid and storage-ready systems", href: "/#services" },
-      { name: "Monitoring and O&M", href: "/#services" },
+      { name: "Rooftop Solar", href: "/services" },
+      { name: "Commercial Solar", href: "/services" },
+      { name: "Maintenance & AMC", href: "/maintenance" },
+      { name: "EV Charger Setup", href: "/ev-charger" },
     ],
-    copyright: "Copyright 2026 Suntrix Energy Pvt. Ltd. All rights reserved.",
+    copyright: "© 2026 ELIZ ENERGY. All rights reserved.",
   },
 } as const;
 
