@@ -14,8 +14,72 @@ const fontSans = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.seo.home.title,
+  metadataBase: new URL("https://elizenergy.in"),
+  title: {
+    default: siteConfig.seo.home.title,
+    template: "%s | ELIZ ENERGY",
+  },
   description: siteConfig.seo.home.description,
+  keywords: [
+    "solar panel installation India",
+    "solar company Mumbai",
+    "rooftop solar installation",
+    "Surya Ghar Yojana",
+    "residential solar",
+    "commercial solar",
+    "industrial solar",
+    "utility solar",
+    "EV charger installation",
+    "solar panel price India",
+    "ELIZ ENERGY",
+    "solar Thane",
+    "solar Navi Mumbai",
+    "robotic cleaning utility solar",
+  ],
+  authors: [{ name: "ELIZ ENERGY", url: "https://elizenergy.in" }],
+  creator: "ELIZ ENERGY",
+  publisher: "ELIZ ENERGY",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://elizenergy.in",
+    siteName: "ELIZ ENERGY",
+    title: siteConfig.seo.home.title,
+    description: siteConfig.seo.home.description,
+    images: [
+      {
+        url: "/Logo1.png",
+        width: 1200,
+        height: 630,
+        alt: "ELIZ ENERGY – Solar Solutions Across India",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.seo.home.title,
+    description: siteConfig.seo.home.description,
+    images: ["/Logo1.png"],
+    creator: "@elizenergy",
+  },
+  alternates: {
+    canonical: "https://elizenergy.in",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -25,19 +89,135 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "ELIZ ENERGY",
-    "image": "https://elizenergy.in/logo.png", // Recommended URL
-    "telephone": "+917700908508",
-    "email": "energyeliz@gmail.com",
-    "address": {
+    "@type": ["LocalBusiness", "SolarEnergyCompany"],
+    name: "ELIZ ENERGY",
+    alternateName: "ELIZ ENERGY Solar Solutions",
+    description:
+      "ELIZ ENERGY provides complete solar solutions across India – Residential, Commercial, Industrial & Utility. Specialists in Surya Ghar Yojana subsidy projects, EV charger installation, and robotic cleaning for utility solar plants.",
+    logo: "https://elizenergy.in/Logo1.png",
+    image: "https://elizenergy.in/Logo1.png",
+    telephone: "+917700908508",
+    email: "energyeliz@gmail.com",
+    foundingDate: "2025",
+    priceRange: "₹₹",
+    openingHours: "Mo-Sa 09:00-19:00",
+    address: {
       "@type": "PostalAddress",
-      "addressLocality": "Thane",
-      "addressRegion": "Maharashtra",
-      "addressCountry": "India"
+      streetAddress: "Thane",
+      addressLocality: "Mumbai",
+      addressRegion: "Maharashtra",
+      postalCode: "400000",
+      addressCountry: "IN",
     },
-    "areaServed": ["Mumbai", "Thane", "Navi Mumbai"],
-    "url": "https://elizenergy.in"
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "19.2183",
+      longitude: "72.9781",
+    },
+    areaServed: [
+      { "@type": "City", name: "Mumbai" },
+      { "@type": "City", name: "Thane" },
+      { "@type": "City", name: "Navi Mumbai" },
+      { "@type": "State", name: "Maharashtra" },
+      { "@type": "State", name: "Uttar Pradesh" },
+      { "@type": "State", name: "Madhya Pradesh" },
+      { "@type": "State", name: "Rajasthan" },
+      { "@type": "State", name: "Gujarat" },
+      { "@type": "State", name: "Delhi" },
+      { "@type": "State", name: "Haryana" },
+      { "@type": "State", name: "Punjab" },
+      { "@type": "State", name: "Himachal Pradesh" },
+      { "@type": "State", name: "Uttarakhand" },
+      { "@type": "State", name: "Jammu & Kashmir" },
+      { "@type": "State", name: "Ladakh" },
+      { "@type": "State", name: "Chandigarh" },
+      { "@type": "State", name: "Sikkim" },
+      { "@type": "State", name: "Arunachal Pradesh" },
+      { "@type": "State", name: "Assam" },
+      { "@type": "State", name: "Meghalaya" },
+      { "@type": "State", name: "Manipur" },
+      { "@type": "State", name: "Mizoram" },
+      { "@type": "State", name: "Tripura" },
+      { "@type": "State", name: "Nagaland" },
+      { "@type": "State", name: "West Bengal" },
+      { "@type": "State", name: "Jharkhand" },
+      { "@type": "State", name: "Bihar" },
+      { "@type": "State", name: "Odisha" },
+      { "@type": "State", name: "Chhattisgarh" },
+      { "@type": "State", name: "Andhra Pradesh" },
+      { "@type": "State", name: "Telangana" },
+      { "@type": "State", name: "Karnataka" },
+      { "@type": "State", name: "Kerala" },
+      { "@type": "State", name: "Tamil Nadu" },
+      { "@type": "State", name: "Goa" },
+      { "@type": "State", name: "Andaman and Nicobar Islands" },
+      { "@type": "State", name: "Lakshadweep" },
+      { "@type": "State", name: "Puducherry" },
+      { "@type": "State", name: "Daman and Diu" },
+      { "@type": "State", name: "Dadra and Nagar Haveli" },
+      { "@type": "State", name: "Chandigarh" },
+      { "@type": "Country", name: "India" },
+    ],
+    founder: {
+      "@type": "Person",
+      name: "Ms. Falguni Rawal",
+      jobTitle: "Founder & Lead Consultant",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Solar & Clean Energy Solutions",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Residential Solar Installation",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Commercial Solar Installation",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Industrial Solar Installation",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "Utility-Scale Solar" },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "EV Charger Installation" },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Surya Ghar Yojana Subsidy Projects",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Robotic Cleaning for Utility Solar",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "Solar AMC & Maintenance" },
+        },
+      ],
+    },
+    url: "https://elizenergy.in",
+    sameAs: ["https://elizenergy.in"],
   };
 
   return (

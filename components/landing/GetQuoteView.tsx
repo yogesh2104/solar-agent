@@ -66,28 +66,27 @@ export default function GetQuoteView() {
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-[2.2rem] bg-(--brand-ink) p-8 text-white">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/72">
-                <span className="size-2 rounded-full bg-(--brand-lime)" />
-                What happens next
-              </div>
-              <div className="mt-6 space-y-6">
+            <div className="rounded-[2.2rem] -foreground p-8 text-black">
+              <div className="space-y-6">
                 {steps.map((step) => {
                   const Icon = step.icon;
 
                   return (
-                    <div key={step.num} className="flex gap-4">
-                      <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-[var(--brand-lime)]">
+                    <div
+                      key={step.num}
+                      className="flex gap-4 border border-border rounded-2xl"
+                    >
+                      <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-secondary">
                         <Icon className="size-5" />
                       </span>
                       <div>
-                        <div className="text-xs font-semibold uppercase  text-white/45">
+                        <div className="text-xs font-semibold uppercase text-white/45">
                           Step {step.num}
                         </div>
                         <h3 className="mt-2 text-lg font-semibold">
                           {step.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-7 text-white/62">
+                        <p className="mt-2 text-sm leading-7 text-black/60">
                           {step.description}
                         </p>
                       </div>

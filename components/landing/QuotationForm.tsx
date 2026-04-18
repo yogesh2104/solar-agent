@@ -104,7 +104,7 @@ export default function QuotationForm({
   if (submitted) {
     return (
       <div className="rounded-[2.4rem] border border-slate-200 bg-white p-10 text-center shadow-[0_24px_70px_rgba(8,17,31,0.06)]">
-        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-[var(--brand-lime)]/35 text-slate-950">
+        <div className="mx-auto flex size-16 items-center justify-center rounded-full -secondary/35 text-slate-950">
           <Zap className="size-7" />
         </div>
         <h3 className="mt-6 text-3xl font-semibold tracking-tight text-slate-950">

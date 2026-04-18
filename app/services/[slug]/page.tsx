@@ -63,7 +63,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         <div className="container mx-auto px-6 relative z-10">
           <Link 
             href="/services"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-[var(--brand-lime)] transition-colors mb-8 group"
+            className="inline-flex items-center gap-2 text-white/60 hover:-secondary transition-colors mb-8 group"
           >
             <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
             <span className="text-sm font-bold uppercase tracking-widest">Back to Services</span>
@@ -90,9 +90,9 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                 {service.features.map((feature) => (
                   <div 
                     key={feature}
-                    className="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 border border-slate-100 transition-all hover:border-[var(--brand-lime)]/30 hover:bg-white hover:shadow-lg hover:shadow-primary/5"
+                    className="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 border border-slate-100 transition-all hover:-secondary/30 hover:bg-white hover:shadow-lg hover:shadow-primary/5"
                   >
-                    <CheckCircle2 className="size-6 shrink-0 text-[var(--brand-lime)]" />
+                    <CheckCircle2 className="size-6 shrink-0 -secondary" />
                     <span className="text-lg font-semibold text-slate-800">{feature}</span>
                   </div>
                 ))}
@@ -100,7 +100,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
               {/* Rich Text Content */}
               {service.content && (
-                <div className="prose prose-lg max-w-none prose-slate prose-headings:font-bold prose-headings:tracking-tight prose-a:text-[var(--brand-lime)]">
+                <div className="prose prose-lg max-w-none prose-slate prose-headings:font-bold prose-headings:tracking-tight prose-a:-secondary">
                     <div dangerouslySetInnerHTML={{ __html: service.content }} />
                 </div>
               )}
@@ -109,7 +109,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
             {/* Sticky Sidebar */}
             <aside className="lg:sticky lg:top-32 h-fit">
               <div className="rounded-[2.5rem] bg-slate-950 p-8 md:p-10 text-white shadow-2xl overflow-hidden relative group">
-                <div className="absolute -right-1/4 -top-1/4 size-64 rounded-full bg-[var(--brand-lime)] opacity-10 blur-[80px] transition-all duration-700 group-hover:scale-150" />
+                <div className="absolute -right-1/4 -top-1/4 size-64 rounded-full -secondary opacity-10 blur-[80px] transition-all duration-700 group-hover:scale-150" />
                 
                 <h3 className="text-2xl font-bold mb-6 relative z-10">Request a custom quote for {service.title}</h3>
                 <p className="text-slate-400 mb-10 relative z-10">
@@ -118,7 +118,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
                 <div className="space-y-4 relative z-10">
                     <Link href="/get-quote" className="block w-full">
-                        <Button className="w-full h-14 rounded-full font-bold text-base bg-[var(--brand-lime)] text-slate-950 hover:bg-[var(--brand-lime)]/90">
+                        <Button className="w-full h-14 rounded-full font-bold text-base -secondary text-slate-950 hover:-secondary/90">
                             Start Solar Quote
                             <ArrowRight className="ml-2 size-5" />
                         </Button>
@@ -133,13 +133,13 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                 <div className="mt-12 pt-8 border-t border-white/10 relative z-10">
                     <p className="text-sm font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Direct Support</p>
                     <div className="space-y-4">
-                        <a href="tel:+917700908508" className="flex items-center gap-4 text-white hover:text-[var(--brand-lime)] transition-colors">
+                        <a href="tel:+917700908508" className="flex items-center gap-4 text-white hover:-secondary transition-colors">
                             <div className="size-10 rounded-full bg-white/5 flex items-center justify-center">
                                 <Phone className="size-4" />
                             </div>
                             <span className="font-semibold">+91 7700908508</span>
                         </a>
-                        <a href="mailto:energyeliz@gmail.com" className="flex items-center gap-4 text-white hover:text-[var(--brand-lime)] transition-colors">
+                        <a href="mailto:energyeliz@gmail.com" className="flex items-center gap-4 text-white hover:-secondary transition-colors">
                             <div className="size-10 rounded-full bg-white/5 flex items-center justify-center">
                                 <Mail className="size-4" />
                             </div>
@@ -157,7 +157,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
           {service.faqs.length > 0 && (
             <div className="max-w-4xl">
                 <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600 shadow-sm mb-6">
-                    <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+                    <span className="size-2 rounded-full -secondary" />
                     Service FAQ
                 </div>
                 <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-5xl mb-12">

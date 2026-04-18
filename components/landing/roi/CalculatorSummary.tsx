@@ -23,17 +23,7 @@ interface CalculatorSummaryProps {
   annualGeneration: number;
   estimatedInvestment: number;
   offsetPercent: number;
-  incentiveTitle: string;
-  incentiveBody: string;
   className?: string;
-}
-
-function formatCurrency(value: number) {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0,
-  }).format(Math.round(value));
 }
 
 function formatCompactCurrency(value: number) {
@@ -55,8 +45,6 @@ export default function CalculatorSummary({
   annualGeneration,
   estimatedInvestment,
   offsetPercent,
-  incentiveTitle,
-  incentiveBody,
   className,
 }: CalculatorSummaryProps) {
   const metrics = [
@@ -89,20 +77,17 @@ export default function CalculatorSummary({
   return (
     <div
       className={cn(
-        "rounded-[2.1rem] bg-[var(--brand-ink)] p-6 text-white md:p-8",
+        "rounded-[2.1rem] bg-muted-foreground p-6 text-black md:p-8",
         className,
       )}
     >
       <div className="flex items-center justify-between gap-4">
         <div>
-          <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
-            Estimated outcome
-          </div>
           <h3 className="mt-3 text-3xl font-semibold tracking-tight">
             Solar Economics
           </h3>
         </div>
-        <span className="flex size-12 items-center justify-center rounded-full bg-white/10 text-[var(--brand-lime)]">
+        <span className="flex size-12 items-center justify-center rounded-full bg-white/10 -secondary">
           <SunMedium className="size-6" />
         </span>
       </div>
@@ -117,7 +102,7 @@ export default function CalculatorSummary({
               className="rounded-[1.6rem] border border-white/10 bg-white/6 p-5 transition-colors hover:bg-white/8"
             >
               <div className="flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-full bg-white/10 text-[var(--brand-lime)]">
+                <span className="flex size-10 items-center justify-center rounded-full bg-white/10 -secondary">
                   <Icon className="size-4" />
                 </span>
                 <div className="text-[10px] font-semibold uppercase text-white/45">
@@ -132,7 +117,7 @@ export default function CalculatorSummary({
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${paybackRatio * 100}%` }}
-                    className="h-1 bg-[var(--brand-lime)]"
+                    className="h-1 -secondary"
                   />
                 </div>
               )}
@@ -193,7 +178,7 @@ export default function CalculatorSummary({
       <div className="mt-6 flex flex-col gap-3">
         <Button
           asChild
-          className="h-14 rounded-full bg-[var(--brand-lime)] px-8 text-base font-bold text-slate-950 hover:bg-[var(--brand-lime)]/90"
+          className="h-14 rounded-full -secondary px-8 text-base font-bold text-slate-950 hover:-secondary/90"
         >
           <Link href="#proposal-form">
             Request Proposal
@@ -218,10 +203,7 @@ function DetailRow({
     <div className="flex items-center justify-between gap-4">
       <span className="text-white/58">{label}</span>
       <span
-        className={cn(
-          "font-semibold text-white",
-          highlight && "text-[var(--brand-lime)]",
-        )}
+        className={cn("font-semibold text-white", highlight && "-secondary")}
       >
         {value}
       </span>

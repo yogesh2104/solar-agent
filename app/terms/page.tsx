@@ -2,8 +2,10 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Terms and Conditions | ELIZ ENERGY",
-  description: "Terms governing the use of the ELIZ ENERGY website and related business interactions.",
+  title: "Terms and Conditions | ELIZ ENERGY Solar Solutions India",
+  description: "Terms and conditions for using the ELIZ ENERGY website and solar installation services across India.",
+  alternates: { canonical: "https://elizenergy.in/terms" },
+  robots: { index: true, follow: false },
 };
 
 export default function TermsPage() {

@@ -23,7 +23,7 @@ export default function StaticPageHeader({
   return (
     <section
       className={cn(
-        "relative overflow-hidden border-b border-slate-200/80 pb-14 pt-20 md:pb-14 md:pt-28",
+        "relative overflow-hidden border-b border-slate-200/80 pb-6 pt-20 md:pb-10 md:pt-28",
         className,
       )}
     >
@@ -58,18 +58,18 @@ export default function StaticPageHeader({
           transition={{ duration: 0.5, delay: 0.06 }}
           className="mt-8 max-w-4xl"
         >
-          <h1 className="mt-2 text-5xl font-semibold tracking-tight text-slate-950 md:text-7xl md:leading-[1.02]">
+          <h1 className="mt-2 text-4xl font-semibold tracking-tight text-slate-950 md:text-7xl md:leading-[1.02]">
             {title}
             {highlight && (
               <>
                 {" "}
-                <span className="text-slate-400">{highlight}</span>
+                <span className="text-primary">{highlight}</span>
               </>
             )}
           </h1>
 
           {description && (
-            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
+            <p className="max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
               {description}
             </p>
           )}

@@ -17,7 +17,7 @@ export default function B2BProjects() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase text-slate-600">
-              <span className="size-2 rounded-full bg-(--brand-lime)" />
+              <span className="size-2 rounded-full -secondary" />
               {projects.badge}
             </div>
             <h2 className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
@@ -65,7 +65,7 @@ export default function B2BProjects() {
                   <span className="rounded-full bg-slate-950/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
                     {featured.sector}
                   </span>
-                  <span className="rounded-full bg-(--brand-lime)/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
+                  <span className="rounded-full -secondary/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
                     {featured.scale}
                   </span>
                 </div>

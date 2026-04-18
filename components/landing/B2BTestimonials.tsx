@@ -28,7 +28,7 @@ export default function B2BTestimonials() {
       <div className="container mx-auto px-6">
         <div className="mx-auto max-w-4xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
-            <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+            <span className="size-2 rounded-full -secondary" />
             {testimonials.badge}
           </div>
           <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
@@ -57,7 +57,7 @@ export default function B2BTestimonials() {
                 <span
                   className={`block overflow-hidden rounded-full border-2 transition-all ${
                     index === activeIndex
-                      ? "border-[var(--brand-lime)]"
+                      ? "-secondary"
                       : "border-transparent opacity-60"
                   }`}
                 >
@@ -82,7 +82,7 @@ export default function B2BTestimonials() {
           transition={{ duration: 0.5 }}
           className="mx-auto mt-12 grid max-w-6xl gap-8 overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-6 shadow-[0_22px_70px_rgba(8,17,31,0.08)] md:p-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center"
         >
-          <div className="relative overflow-hidden rounded-[2rem]">
+          <div className="relative overflow-hidden rounded-4xl">
             <div className="relative h-[320px]">
               <Image
                 src={activeTestimonial.image}
@@ -90,14 +90,14 @@ export default function B2BTestimonials() {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-950/35 via-transparent to-transparent" />
             </div>
           </div>
 
           <div className="relative">
             <Quote className="absolute -top-3 left-0 size-12 text-slate-200" />
             <div className="pl-0 md:pl-10">
-              <div className="inline-flex rounded-full bg-[var(--brand-lime)]/25 px-4 py-2 text-xs font-semibold uppercase  text-slate-700">
+              <div className="inline-flex rounded-full -secondary/25 px-4 py-2 text-xs font-semibold uppercase  text-slate-700">
                 {activeTestimonial.result}
               </div>
               <p className="mt-6 text-2xl font-medium leading-[1.55] text-slate-950 md:text-3xl">

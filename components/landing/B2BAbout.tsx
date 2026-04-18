@@ -20,7 +20,7 @@ export default function B2BAbout() {
               viewport={{ once: true, amount: 0.3 }}
               className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600"
             >
-              <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+              <span className="size-2 rounded-full -secondary" />
               {overview.badge}
             </motion.div>
 
@@ -76,7 +76,7 @@ export default function B2BAbout() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55 }}
-            className="rounded-[2.3rem] border border-slate-200 bg-[var(--brand-sky)] p-6 md:p-8"
+            className="rounded-[2.3rem] border border-slate-200 -muted p-6 md:p-8"
           >
             <div className="grid gap-4 sm:grid-cols-3">
               {overview.stats.map((stat) => (
@@ -99,7 +99,7 @@ export default function B2BAbout() {
               <div className="mt-5 space-y-4">
                 {overview.advantages.map((advantage) => (
                   <div key={advantage} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[var(--brand-lime)]" />
+                    <CheckCircle2 className="mt-0.5 size-5 shrink-0 -secondary" />
                     <p className="text-sm leading-7 text-white/72">{advantage}</p>
                   </div>
                 ))}

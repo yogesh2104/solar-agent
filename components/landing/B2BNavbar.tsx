@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, Phone, X, Zap } from "lucide-react";
+import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import siteConfig from "@/lib/siteConfig";
@@ -52,7 +52,7 @@ export default function B2BNavbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={cn(
-          "mx-auto flex w-full max-w-7xl items-center justify-between rounded-[2rem] border px-4 py-2 shadow-[0_20px_50px_rgba(8,17,31,0.08)] transition-all duration-300 md:px-6",
+          "mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border px-4 py-2 shadow-[0_20px_50px_rgba(8,17,31,0.08)] transition-all duration-300 md:px-6",
           compactShell
             ? "border-white/80 bg-white/88 text-slate-950 backdrop-blur-2xl"
             : "border-white/20 bg-white/12 text-white backdrop-blur-xl",
@@ -63,12 +63,27 @@ export default function B2BNavbar() {
           className="flex items-center gap-3"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <div className="relative h-16 w-40">
+          <div className="relative h-16 w-16 rounded-full">
+            {/* Light bg logo (Logo1.png) — shown when navbar is white/scrolled */}
             <Image
               src="/Logo1.png"
               alt={siteConfig.company.name}
               fill
-              className={cn("object-contain transition-all duration-300")}
+              className={cn(
+                "object-contain transition-all duration-300 rounded-full!",
+                compactShell ? "opacity-100" : "opacity-0 pointer-events-none",
+              )}
+              priority
+            />
+            {/* Dark bg logo (logo.png) — shown when navbar is transparent/dark */}
+            <Image
+              src="/logo.png"
+              alt={siteConfig.company.name}
+              fill
+              className={cn(
+                "object-contain transition-all duration-300 rounded-full!",
+                compactShell ? "opacity-0 pointer-events-none" : "opacity-100",
+              )}
               priority
             />
           </div>
@@ -136,7 +151,7 @@ export default function B2BNavbar() {
             className={cn(
               "h-11 rounded-full px-5 text-sm font-semibold shadow-none",
               compactShell
-                ? "bg-[var(--brand-lime)] text-slate-950 hover:bg-[var(--brand-lime)]/90"
+                ? "bg-secondary text-slate-950 hover:bg-secondary/90"
                 : "bg-white text-slate-950 hover:bg-white/90",
             )}
           >
@@ -174,7 +189,7 @@ export default function B2BNavbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[2rem] border border-white/80 bg-white/95 p-4 shadow-[0_26px_60px_rgba(8,17,31,0.12)] backdrop-blur-2xl lg:hidden"
+            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-4xl border border-white/80 bg-white/95 p-4 shadow-[0_26px_60px_rgba(8,17,31,0.12)] backdrop-blur-2xl lg:hidden"
           >
             <div className="flex flex-col gap-2">
               {siteConfig.navigation.map((item) => (
@@ -189,7 +204,7 @@ export default function B2BNavbar() {
               ))}
             </div>
 
-            <div className="mt-4 rounded-[1.5rem] bg-slate-950 p-4 text-white">
+            <div className="mt-4 rounded-3xl bg-slate-950 p-4 text-white">
               <div className="text-xs uppercase  text-white/55">
                 Enterprise Desk
               </div>
@@ -212,7 +227,7 @@ export default function B2BNavbar() {
               )}
               <Button
                 asChild
-                className="mt-4 h-11 w-full rounded-full bg-[var(--brand-lime)] text-slate-950 hover:bg-[var(--brand-lime)]/90"
+                className="mt-4 h-11 w-full rounded-full bg-secondary text-slate-950 hover:bg-secondary/90"
               >
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                   Talk to Sales

@@ -80,24 +80,6 @@ export default function ContactForm() {
     },
   ];
 
-  const valueProps = [
-    {
-      icon: Factory,
-      title: "Technical-first response",
-      body: "Talk to a team that understands procurement, load profile, and rollout constraints from the first conversation.",
-    },
-    {
-      icon: ShieldCheck,
-      title: "Clear commercial guidance",
-      body: "We help compare supply-only, turnkey EPC, and phased deployment paths before you commit to one route.",
-    },
-    {
-      icon: Clock3,
-      title: "Fast feasibility turnaround",
-      body: "Share your monthly spend, site details, or target capacity and we will point you toward the most practical next step quickly.",
-    },
-  ];
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
@@ -173,23 +155,18 @@ export default function ContactForm() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="rounded-[2.4rem] bg-[var(--brand-ink)] p-8 text-white md:p-10"
+              className="rounded-[2.4rem] -foreground p-8 text-black md:p-10"
             >
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/72">
-                <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
-                Enterprise enquiries
-              </div>
-
-              <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
+              <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
                 Speak with a team built for B2B solar buying decisions.
               </h2>
-              <p className="mt-5 text-base leading-8 text-white/64">
+              <p className="mt-5 text-base leading-8 text-black/64">
                 Use this page for panel sourcing, rooftop solar feasibility,
                 hybrid system planning, or channel-partner support. We will
                 point you to the right commercial path quickly.
               </p>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              <div className="mt-3 grid gap-4 sm:grid-cols-3">
                 {[
                   { label: "Response", value: "4 hrs" },
                   { label: "Coverage", value: "18 states" },
@@ -199,7 +176,7 @@ export default function ContactForm() {
                     key={item.label}
                     className="rounded-[1.6rem] border border-white/10 bg-white/6 p-4"
                   >
-                    <div className="text-xs font-semibold uppercase  text-white/45">
+                    <div className="text-xs font-semibold uppercase  text-black/45">
                       {item.label}
                     </div>
                     <div className="mt-2 text-2xl font-semibold">
@@ -226,7 +203,7 @@ export default function ContactForm() {
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex items-start gap-4">
-                        <span className="flex size-11 items-center justify-center rounded-full bg-[var(--brand-sky)] text-slate-950">
+                        <span className="flex size-11 items-center justify-center rounded-full -muted text-slate-950">
                           <Icon className="size-5" />
                         </span>
                         <div>
@@ -247,38 +224,6 @@ export default function ContactForm() {
                 );
               })}
             </div>
-
-            {/* <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="rounded-[2rem] border border-slate-200 bg-white p-6"
-            >
-              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
-                Why teams contact us
-              </div>
-              <div className="mt-5 space-y-4">
-                {valueProps.map((item) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <div key={item.title} className="flex items-start gap-4">
-                      <span className="flex size-10 items-center justify-center rounded-full bg-[var(--brand-lime)]/30 text-slate-950">
-                        <Icon className="size-4" />
-                      </span>
-                      <div>
-                        <h3 className="text-base font-semibold text-slate-950">
-                          {item.title}
-                        </h3>
-                        <p className="mt-1 text-sm leading-7 text-slate-600">
-                          {item.body}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div> */}
           </div>
 
           <motion.div

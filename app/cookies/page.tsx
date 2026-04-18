@@ -2,8 +2,10 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Cookie Policy | ELIZ ENERGY",
-  description: "How ELIZ ENERGY uses cookies and similar technologies across its public website.",
+  title: "Cookie Policy | ELIZ ENERGY Solar Solutions India",
+  description: "ELIZ ENERGY cookie policy – how we use cookies on our website to improve your experience when enquiring about solar installation in India.",
+  alternates: { canonical: "https://elizenergy.in/cookies" },
+  robots: { index: true, follow: false },
 };
 
 export default function CookiesPage() {

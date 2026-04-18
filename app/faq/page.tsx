@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import siteConfig from "@/lib/siteConfig";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { HelpCircle, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,16 +6,48 @@ import Link from "next/link";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 
 export const metadata = {
-  title: "Frequently Asked Questions | ELIZ ENERGY Solar",
+  title: "Solar FAQs | Solar Panel Installation Questions | ELIZ ENERGY India",
   description:
-    "Find answers to common questions about solar installation, maintenance, pricing, and technical specifications.",
+    "Answers to frequently asked questions about solar panel installation, Surya Ghar Yojana subsidy, solar cost in India, EV chargers, maintenance & more. ELIZ ENERGY – India's trusted solar company.",
+  keywords: [
+    "solar FAQ India",
+    "solar panel installation questions",
+    "Surya Ghar Yojana FAQ",
+    "solar panel cost FAQ",
+    "how does solar work",
+    "solar subsidy India questions",
+    "EV charger FAQ",
+    "solar maintenance FAQ",
+    "solar company FAQ India",
+  ],
+  openGraph: {
+    type: "website",
+    url: "https://elizenergy.in/faq",
+    title: "Solar FAQs | Frequently Asked Questions | ELIZ ENERGY",
+    description:
+      "Common solar questions answered – installation, cost, subsidy, maintenance & EV chargers in India.",
+    images: [
+      {
+        url: "/Logo1.png",
+        width: 1200,
+        height: 630,
+        alt: "ELIZ ENERGY Solar FAQ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solar FAQs | ELIZ ENERGY India",
+    description:
+      "Solar installation questions, subsidy, cost & maintenance answered.",
+    images: ["/Logo1.png"],
+  },
+  alternates: { canonical: "https://elizenergy.in/faq" },
+  robots: { index: true, follow: true },
 };
 
-export default async function FaqPage() {
-  const faqs = await db.fAQ.findMany({
-    where: { isPublished: true },
-    orderBy: { order: "asc" },
-  });
+export default function FaqPage() {
+  const faqs = siteConfig.faqs;
 
   // Group FAQs by category
   const categories = Array.from(
@@ -56,7 +88,7 @@ export default async function FaqPage() {
               ))}
 
               <div className="mt-12 p-6 rounded-3xl bg-slate-950 text-white relative overflow-hidden group">
-                <div className="absolute -right-8 -bottom-8 size-32 rounded-full bg-[var(--brand-lime)] opacity-10 blur-2xl group-hover:scale-150 transition-transform duration-700" />
+                <div className="absolute -right-8 -bottom-8 size-32 rounded-full text-secondary opacity-10 blur-2xl group-hover:scale-150 transition-transform duration-700" />
                 <h4 className="font-bold mb-4 relative z-10">
                   Still have questions?
                 </h4>
@@ -64,7 +96,7 @@ export default async function FaqPage() {
                   Our team is ready to help you with any technical inquiries.
                 </p>
                 <Link href="/contact">
-                  <Button className="w-full rounded-full bg-(--brand-lime) text-slate-950 hover:bg-(--brand-lime)/90 h-10 text-xs font-bold uppercase tracking-wider">
+                  <Button className="w-full rounded-full bg-secondary text-slate-950 hover:bg-secondary/90 h-10 text-xs font-bold uppercase tracking-wider">
                     Contact Us
                   </Button>
                 </Link>

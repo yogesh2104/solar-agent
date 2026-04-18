@@ -31,7 +31,7 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
             backgroundSize: "40px 40px",
           }}
         />
-        <div className="absolute -left-1/4 top-1/2 size-[600px] rounded-full bg-[var(--brand-sky)] opacity-10 blur-[120px]" />
+        <div className="absolute -left-1/4 top-1/2 size-[600px] rounded-full -muted opacity-10 blur-[120px]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-6">
@@ -43,7 +43,7 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600 shadow-sm"
             >
-              <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+              <span className="size-2 rounded-full -secondary" />
               Common Questions
             </motion.div>
 

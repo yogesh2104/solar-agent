@@ -18,26 +18,16 @@ export default function B2BHero() {
   return (
     <section
       id="hero"
-      className="relative isolate overflow-hidden bg-[var(--brand-ink)] pb-20 pt-32 text-white md:pb-24 md:pt-36"
+      className="relative isolate overflow-hidden -foreground pb-20 pt-32 text-white md:pb-24 md:pt-36"
     >
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(143,183,223,0.5),transparent_38%)]" />
-        <div className="absolute inset-x-0 top-0 h-[46rem] bg-gradient-to-b from-[#8ab2db]/40 via-transparent to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-184 bg-linear-to-b from-[#8ab2db]/40 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,17,31,0.18)_0%,rgba(8,17,31,0.55)_60%,rgba(8,17,31,0.92)_100%)]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-6">
         <div className="mx-auto max-w-5xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/16 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/88 backdrop-blur-xl"
-          >
-            <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
-            {hero.badge}
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,7 +81,7 @@ export default function B2BHero() {
             {hero.trustChips.map((chip) => (
               <span
                 key={chip}
-                className="rounded-full border border-white/12 bg-white/6 px-3 py-1.5 text-sm text-white/78 backdrop-blur-md"
+                className="rounded-full border border-white/12 bg-white/6 px-3 py-1.5 text-sm text-white backdrop-blur-md"
               >
                 {chip}
               </span>
@@ -108,7 +98,7 @@ export default function B2BHero() {
             className="absolute left-0 top-10 z-20 hidden w-60 rounded-[1.75rem] border border-white/18 bg-white/12 p-5 backdrop-blur-xl xl:block"
           >
             <div className="flex items-center gap-3">
-              <span className="flex size-11 items-center justify-center rounded-full bg-white/12 text-[var(--brand-lime)]">
+              <span className="flex size-11 items-center justify-center rounded-full bg-white/12 text-secondary">
                 <BatteryCharging className="size-5" />
               </span>
               <div>
@@ -133,7 +123,7 @@ export default function B2BHero() {
             className="absolute right-0 top-10 z-20 hidden w-60 rounded-[1.75rem] border border-white/18 bg-white/12 p-5 backdrop-blur-xl xl:block"
           >
             <div className="flex items-center gap-3">
-              <span className="flex size-11 items-center justify-center rounded-full bg-white/12 text-[var(--brand-lime)]">
+              <span className="flex size-11 items-center justify-center rounded-full bg-white/12 text-secondary">
                 <ShieldCheck className="size-5" />
               </span>
               <div>
@@ -166,10 +156,10 @@ export default function B2BHero() {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(135,177,224,0.18)_0%,rgba(8,17,31,0.04)_26%,rgba(8,17,31,0.72)_100%)]" />
-              <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[var(--brand-ink)] via-[var(--brand-ink)]/65 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-44 bg-linear-to-t -foreground -foreground/65 to-transparent" />
 
               <div className="absolute inset-x-6 bottom-6 grid gap-4 lg:grid-cols-[1.15fr_0.55fr_0.78fr]">
-                <div className="rounded-[2rem] bg-white p-4 text-slate-950 shadow-[0_20px_60px_rgba(8,17,31,0.14)] md:p-5">
+                <div className="rounded-4xl bg-white p-4 text-slate-950 shadow-[0_20px_60px_rgba(8,17,31,0.14)] md:p-5">
                   <div className="flex items-center gap-4">
                     <div className="relative h-20 w-24 overflow-hidden rounded-[1.35rem]">
                       <Image
@@ -190,9 +180,9 @@ export default function B2BHero() {
                   </div>
                 </div>
 
-                <div className="rounded-[2rem] bg-white p-5 text-center text-slate-950 shadow-[0_20px_60px_rgba(8,17,31,0.14)]">
+                <div className="rounded-4xl bg-white p-5 text-center text-slate-950 shadow-[0_20px_60px_rgba(8,17,31,0.14)]">
                   <div className="mx-auto flex max-w-max items-center gap-2 rounded-full bg-slate-950/5 px-3 py-1 text-[11px] font-semibold uppercase  text-slate-500">
-                    <Factory className="size-3.5 text-[var(--brand-lime)]" />
+                    <Factory className="size-3.5 text-secondary" />
                     Social proof
                   </div>
                   <div className="mt-5 text-4xl font-semibold">
@@ -203,7 +193,7 @@ export default function B2BHero() {
                   </p>
                 </div>
 
-                <div className="rounded-[2rem] border border-white/16 bg-white/10 p-5 text-white backdrop-blur-xl">
+                <div className="rounded-4xl border border-white/16 bg-white/10 p-5 text-white backdrop-blur-xl">
                   <div className="text-xs font-semibold uppercase  text-white/55">
                     Design note
                   </div>

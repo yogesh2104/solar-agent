@@ -104,7 +104,7 @@ export default function CalculatorInputs({
                     className={cn(
                       "flex size-11 items-center justify-center rounded-full transition-colors",
                       active
-                        ? "bg-slate-950 text-[var(--brand-lime)]"
+                        ? "bg-slate-950 -secondary"
                         : "bg-slate-100 text-slate-500",
                     )}
                   >
@@ -129,7 +129,7 @@ export default function CalculatorInputs({
       {/* 2. Bill Input */}
       <section>
         <SectionHeader num="02" title="Monthly Electricity Spend" />
-        <div className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="mt-6 rounded-4xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex items-center gap-4">
             <div className="flex-1">
               <label
@@ -145,7 +145,7 @@ export default function CalculatorInputs({
                   type="number"
                   value={monthlyBill}
                   onChange={(e) => setMonthlyBill(e.target.value)}
-                  className="border-none bg-transparent p-0 text-3xl font-bold text-slate-950 focus-visible:ring-0"
+                  className="border p-2 bg-transparent h-10 text-3xl font-bold text-slate-950 focus-visible:ring-0"
                   placeholder="0"
                 />
               </div>

@@ -45,12 +45,6 @@ const routes = [
     color: "text-indigo-500",
   },
   {
-    label: "FAQs",
-    icon: MessageSquare,
-    href: "/admin/faqs",
-    color: "text-teal-500",
-  },
-  {
     label: "Quotations",
     icon: Quote,
     href: "/admin/quotations",
@@ -67,12 +61,6 @@ const routes = [
     icon: Star,
     href: "/admin/reviews",
     color: "text-amber-500",
-  },
-  {
-    label: "Testimonials",
-    icon: Users,
-    href: "/admin/testimonials",
-    color: "text-blue-600",
   },
 ];
 

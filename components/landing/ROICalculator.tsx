@@ -6,14 +6,15 @@ import CalculatorSummary from "./roi/CalculatorSummary";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronUp, ChevronDown, BarChart3, SunMedium } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ChevronUp, ChevronDown, SunMedium } from "lucide-react";
 
 interface ROICalculatorProps {
   onEstimateChange?: (data: { capacity: string; bill: string }) => void;
 }
 
-export default function ROICalculator({ onEstimateChange }: ROICalculatorProps) {
+export default function ROICalculator({
+  onEstimateChange,
+}: ROICalculatorProps) {
   const calc = useROICalculator();
   const [isMobile, setIsMobile] = useState(false);
   const [showMobileResults, setShowMobileResults] = useState(false);
@@ -21,7 +22,10 @@ export default function ROICalculator({ onEstimateChange }: ROICalculatorProps) 
   useEffect(() => {
     if (onEstimateChange) {
       onEstimateChange({
-        capacity: calc.estimatedSystemSize > 0 ? calc.estimatedSystemSize.toString() : "",
+        capacity:
+          calc.estimatedSystemSize > 0
+            ? calc.estimatedSystemSize.toString()
+            : "",
         bill: calc.monthlyBill,
       });
     }
@@ -38,16 +42,14 @@ export default function ROICalculator({ onEstimateChange }: ROICalculatorProps) 
     <section id="roi-estimator" className="relative pt-10">
       <div className="rounded-[2.6rem] border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(8,17,31,0.06)] md:p-10 lg:p-12">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
-            <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
-            ROI Estimator
-          </div>
-          <h2 className="mt-6 text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl">
-            See your solar savings <br className="hidden md:block" /> before you commit.
+          <h2 className="text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+            See your solar savings <br className="hidden md:block" /> before you
+            commit.
           </h2>
           <p className="mt-6 text-base leading-8 text-slate-600">
-            Our planning tool uses your energy profile to generate a realistic first-pass estimate. 
-            Adjust the sliders and options below to see how your payback and carbon impact shift.
+            Our planning tool uses your energy profile to generate a realistic
+            first-pass estimate. Adjust the sliders and options below to see how
+            your payback and carbon impact shift.
           </p>
         </div>
 
@@ -75,25 +77,35 @@ export default function ROICalculator({ onEstimateChange }: ROICalculatorProps) 
           >
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                 <div className="flex size-10 items-center justify-center rounded-full bg-slate-950 text-[var(--brand-lime)]">
-                    <SunMedium className="size-5" />
-                 </div>
-                 <div>
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Est. Size</div>
-                    <div className="text-lg font-bold text-slate-950">{calc.estimatedSystemSize > 0 ? `${calc.estimatedSystemSize} kW` : "--"}</div>
-                 </div>
+                <div className="flex size-10 items-center justify-center rounded-full bg-slate-950 -secondary">
+                  <SunMedium className="size-5" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    Est. Size
+                  </div>
+                  <div className="text-lg font-bold text-slate-950">
+                    {calc.estimatedSystemSize > 0
+                      ? `${calc.estimatedSystemSize} kW`
+                      : "--"}
+                  </div>
+                </div>
               </div>
               <div className="flex flex-1 items-center justify-end gap-3">
-                 <div className="text-right">
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Payback</div>
-                    <div className="text-lg font-bold text-slate-950">{calc.paybackYears > 0 ? `${calc.paybackYears} yrs` : "--"}</div>
-                 </div>
-                 <Button
-                    onClick={() => setShowMobileResults(true)}
-                    className="size-11 rounded-full bg-slate-950 p-0 text-[var(--brand-lime)]"
-                 >
-                    <ChevronUp className="size-6" />
-                 </Button>
+                <div className="text-right">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    Payback
+                  </div>
+                  <div className="text-lg font-bold text-slate-950">
+                    {calc.paybackYears > 0 ? `${calc.paybackYears} yrs` : "--"}
+                  </div>
+                </div>
+                <Button
+                  onClick={() => setShowMobileResults(true)}
+                  className="size-11 rounded-full bg-slate-950 p-0 -secondary"
+                >
+                  <ChevronUp className="size-6" />
+                </Button>
               </div>
             </div>
           </motion.div>
@@ -121,7 +133,10 @@ export default function ROICalculator({ onEstimateChange }: ROICalculatorProps) 
               </Button>
             </div>
             <div className="flex-1 overflow-y-auto p-6 pb-32">
-              <CalculatorSummary {...calc} className="bg-slate-950 shadow-2xl" />
+              <CalculatorSummary
+                {...calc}
+                className="bg-slate-950 shadow-2xl"
+              />
             </div>
           </motion.div>
         )}

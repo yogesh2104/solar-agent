@@ -2,8 +2,10 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Privacy Policy | ELIZ ENERGY",
-  description: "How ELIZ ENERGY collects, uses, stores, and protects information submitted through its website.",
+  title: "Privacy Policy | ELIZ ENERGY Solar Solutions India",
+  description: "ELIZ ENERGY privacy policy – how we collect, use, store and protect your information when you contact us for solar installation quotes across India.",
+  alternates: { canonical: "https://elizenergy.in/privacy-policy" },
+  robots: { index: true, follow: false },
 };
 
 export default function PrivacyPolicyPage() {

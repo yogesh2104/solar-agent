@@ -85,7 +85,7 @@ export default function B2BSolutions({
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -left-1/4 top-0 size-[600px] rounded-full bg-[var(--brand-sky)] mix-blend-multiply blur-[120px]"
+          className="absolute -left-1/4 top-0 size-[600px] rounded-full -muted mix-blend-multiply blur-[120px]"
         />
         <motion.div
           animate={{
@@ -97,7 +97,7 @@ export default function B2BSolutions({
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -right-1/4 top-1/4 size-[500px] rounded-full bg-[var(--brand-lime)] mix-blend-multiply blur-[120px]"
+          className="absolute -right-1/4 top-1/4 size-[500px] rounded-full -secondary mix-blend-multiply blur-[120px]"
         />
       </div>
 
@@ -110,7 +110,7 @@ export default function B2BSolutions({
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600 shadow-sm"
             >
-              <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+              <span className="size-2 rounded-full -secondary" />
               {/* {solutions.badge} */}
             </motion.div>
             <motion.h2
@@ -159,8 +159,8 @@ export default function B2BSolutions({
                 {/* Status Indicator */}
                 <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
                   <span className="relative flex size-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-lime)] opacity-75"></span>
-                    <span className="relative inline-flex size-2 rounded-full bg-[var(--brand-lime)]"></span>
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full -secondary opacity-75"></span>
+                    <span className="relative inline-flex size-2 rounded-full -secondary"></span>
                   </span>
                   Live project tracking
                 </div>
@@ -213,7 +213,7 @@ export default function B2BSolutions({
                   className={cn(
                     "group relative cursor-pointer overflow-hidden rounded-4xl border transition-all duration-500",
                     isActive
-                      ? "border-(--brand-lime) bg-white"
+                      ? "-secondary bg-white"
                       : "border-slate-100 bg-white/40 hover:border-slate-200 hover:bg-white/80",
                   )}
                 >
@@ -224,7 +224,7 @@ export default function B2BSolutions({
                       animate={{ width: "100%" }}
                       key={`timer-${activeIndex}`}
                       transition={{ duration: 5, ease: "linear" }}
-                      className="absolute bottom-0 left-0 h-1 bg-(--brand-lime)"
+                      className="absolute bottom-0 left-0 h-1 -secondary"
                     />
                   )}
 
@@ -240,7 +240,7 @@ export default function B2BSolutions({
                           className={cn(
                             "flex size-12 items-center justify-center rounded-xl border transition-all duration-300",
                             isActive
-                              ? "border-[var(--brand-lime)] bg-[var(--brand-lime)]/10 text-slate-900"
+                              ? "-secondary -secondary/10 text-slate-900"
                               : "border-slate-100 bg-slate-50 text-slate-400 group-hover:border-slate-200 group-hover:bg-white",
                           )}
                         >
@@ -282,7 +282,7 @@ export default function B2BSolutions({
                         className={cn(
                           "inline-flex size-10 shrink-0 items-center justify-center rounded-full border transition-all duration-500",
                           isActive
-                            ? "rotate-0 border-(--brand-lime) bg-(--brand-lime) text-slate-950"
+                            ? "rotate-0 -secondary -secondary text-slate-950"
                             : "border-slate-100 bg-white text-slate-300 opacity-0 group-hover:opacity-100 group-hover:text-slate-600",
                         )}
                       >

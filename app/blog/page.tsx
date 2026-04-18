@@ -5,12 +5,44 @@ import { db } from "@/lib/db";
 import { BlogCard } from "@/components/blog/blog-card";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 
-import siteConfig from "@/lib/siteConfig";
-
 export const metadata = {
-  title: siteConfig.footer.quickLinks.find(l => l.name === "Blog")?.name + " | ELIZ ENERGY",
+  title: "Solar Blog & Insights | Solar Energy Tips & News India | ELIZ ENERGY",
   description:
-    "Commercial solar insights, procurement guidance, and energy saving tips from the ELIZ ENERGY team.",
+    "Solar energy articles, buying guides, Surya Ghar Yojana updates, EV charger tips and industry insights from the ELIZ ENERGY team. Stay informed about solar installation across India.",
+  keywords: [
+    "solar blog India",
+    "solar energy news",
+    "solar panel buying guide",
+    "Surya Ghar Yojana updates",
+    "solar installation tips",
+    "solar energy insights",
+    "EV charger guide India",
+    "solar industry India",
+    "ELIZ ENERGY blog",
+  ],
+  openGraph: {
+    type: "website",
+    url: "https://elizenergy.in/blog",
+    title: "Solar Blog & Insights | ELIZ ENERGY India",
+    description:
+      "Solar energy articles, guides, Surya Ghar Yojana updates & EV charger insights from ELIZ ENERGY.",
+    images: [
+      {
+        url: "/Logo1.png",
+        width: 1200,
+        height: 630,
+        alt: "ELIZ ENERGY Solar Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solar Blog & Insights | ELIZ ENERGY India",
+    description: "Solar energy articles, guides & insights from ELIZ ENERGY.",
+    images: ["/Logo1.png"],
+  },
+  alternates: { canonical: "https://elizenergy.in/blog" },
+  robots: { index: true, follow: true },
 };
 
 export default async function BlogsPage() {
@@ -56,12 +88,12 @@ export default async function BlogsPage() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/18 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/18 via-transparent to-transparent" />
                   </div>
 
                   <div className="flex flex-col justify-center p-8 md:p-10">
                     <div className="inline-flex max-w-max items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
-                      <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+                      <span className="size-2 rounded-full text-secondary" />
                       Featured article
                     </div>
 

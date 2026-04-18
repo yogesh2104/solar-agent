@@ -11,12 +11,12 @@ export default function B2BWhyUs() {
   return (
     <section
       id="why-us"
-      className="overflow-hidden bg-[var(--brand-ink)] py-7 text-white md:py-10"
+      className="overflow-hidden -foreground py-7 text-white md:py-10"
     >
       <div className="container mx-auto px-6">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/76">
-            <span className="size-2 rounded-full bg-[var(--brand-lime)]" />
+            <span className="size-2 rounded-full -secondary" />
             {whyUs.badge}
           </div>
           <h2 className="mt-7 text-4xl font-semibold tracking-tight md:text-6xl">
@@ -62,7 +62,7 @@ export default function B2BWhyUs() {
             <div className="mt-6 space-y-4">
               {whyUs.checklist.map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[var(--brand-lime)]" />
+                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 -secondary" />
                   <p className="text-sm leading-7 text-slate-600">{item}</p>
                 </div>
               ))}
