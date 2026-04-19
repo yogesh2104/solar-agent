@@ -16,7 +16,6 @@ export default function TermsPage() {
         highlight="Conditions"
         breadcrumb="Terms and Conditions"
         description="Please read these terms carefully before using the ELIZ ENERGY website or engaging with our commercial solar services."
-        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>

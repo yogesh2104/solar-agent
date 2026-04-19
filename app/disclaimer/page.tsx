@@ -16,7 +16,6 @@ export default function DisclaimerPage() {
         highlight="Disclaimer"
         breadcrumb="Disclaimer"
         description="Important notes about the scope, reliability, and intended use of information shown on this website."
-        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>

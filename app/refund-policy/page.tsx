@@ -16,7 +16,6 @@ export default function RefundPolicyPage() {
         highlight="Cancellation"
         breadcrumb="Refund Policy"
         description="This page outlines how cancellation requests and refund considerations are generally handled for commercial solar engagements."
-        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>

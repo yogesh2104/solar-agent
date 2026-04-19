@@ -58,7 +58,7 @@ export default function FaqPage() {
       acc[cat] = faqs.filter((f) => (f.category || "General") === cat);
       return acc;
     },
-    {} as Record<string, typeof faqs>,
+    {} as Record<string, (typeof faqs)[number][]>,
   );
 
   return (
@@ -130,14 +130,14 @@ export default function FaqPage() {
               </div>
             ))}
 
-            {faqs.length === 0 && (
+            {/* {faqs.length === 0 && (
               <div className="text-center py-24 bg-white/40 backdrop-blur-md rounded-[3rem] border border-dashed border-slate-200">
                 <MessageSquare className="size-12 text-slate-200 mx-auto mb-4" />
                 <p className="text-slate-500 font-medium">
                   No FAQs have been published yet. Please check back later.
                 </p>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

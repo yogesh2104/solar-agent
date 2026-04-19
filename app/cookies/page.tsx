@@ -16,7 +16,6 @@ export default function CookiesPage() {
         highlight="Policy"
         breadcrumb="Cookie Policy"
         description="This page explains how ELIZ ENERGY uses cookies and similar technologies to support website performance, analytics, and your browsing experience."
-        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>

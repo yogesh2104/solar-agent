@@ -16,7 +16,6 @@ export default function PrivacyPolicyPage() {
         highlight="Policy"
         breadcrumb="Privacy Policy"
         description="This page explains what information we collect through the website, why we collect it, and how we handle it responsibly."
-        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>
