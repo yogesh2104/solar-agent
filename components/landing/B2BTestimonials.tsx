@@ -27,14 +27,10 @@ export default function B2BTestimonials() {
     <section className="overflow-hidden bg-[#f7fbff] py-7 md:py-10">
       <div className="container mx-auto px-6">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
-            <span className="size-2 rounded-full -secondary" />
-            {testimonials.badge}
-          </div>
           <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
             {testimonials.title}
           </h2>
-          {/* <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
             {testimonials.proofPoints.map((point) => (
               <span
                 key={point}
@@ -43,7 +39,7 @@ export default function B2BTestimonials() {
                 {point}
               </span>
             ))}
-          </div> */}
+          </div>
 
           <div className="mt-8 flex items-center justify-center gap-3">
             {testimonials.items.map((item, index) => (
@@ -55,11 +51,10 @@ export default function B2BTestimonials() {
                 aria-label={`Show testimonial from ${item.author}`}
               >
                 <span
-                  className={`block overflow-hidden rounded-full border-2 transition-all ${
-                    index === activeIndex
-                      ? "-secondary"
-                      : "border-transparent opacity-60"
-                  }`}
+                  className={`block overflow-hidden rounded-full border-2 transition-all ${index === activeIndex
+                    ? "-secondary"
+                    : "border-transparent opacity-60"
+                    }`}
                 >
                   <Image
                     src={item.image}

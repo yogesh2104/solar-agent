@@ -2,20 +2,21 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Terms and Conditions | ELIZ ENERGY Solar Solutions India",
-  description: "Terms and conditions for using the ELIZ ENERGY website and solar installation services across India.",
+  title: "Terms and Conditions | ELIZ ENERGY - B2B Solar Solutions India",
+  description: "Official terms and conditions for ELIZ ENERGY. Detailed legal framework for our commercial and industrial solar installation services across India.",
   alternates: { canonical: "https://elizenergy.in/terms" },
-  robots: { index: true, follow: false },
+  robots: { index: true, follow: true },
 };
 
 export default function TermsPage() {
   return (
-    <div className="bg-[#f7fbff] pb-20">
+    <>
       <StaticPageHeader
         title="Terms and"
         highlight="Conditions"
         breadcrumb="Terms and Conditions"
         description="Please read these terms carefully before using the ELIZ ENERGY website or engaging with our commercial solar services."
+        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>
@@ -69,6 +70,6 @@ export default function TermsPage() {
           Questions about these terms can be sent to energyeliz@gmail.com.
         </p>
       </LegalContent>
-    </div>
+    </>
   );
 }

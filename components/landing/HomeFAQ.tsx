@@ -37,16 +37,6 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
       <div className="container relative z-10 mx-auto px-6">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-xl lg:sticky lg:top-32">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600 shadow-sm"
-            >
-              <span className="size-2 rounded-full -secondary" />
-              Common Questions
-            </motion.div>
-
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +45,7 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
               className="mt-7 text-4xl font-semibold leading-[1.15] tracking-tight text-slate-950 md:text-6xl"
             >
               Frequently Asked Questions <br />
-              <span className="text-slate-400">About Solar in Mumbai</span>
+              <span className="text-primary">About Solar in Mumbai</span>
             </motion.h2>
 
             <motion.p

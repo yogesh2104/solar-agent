@@ -16,10 +16,6 @@ export default function B2BProjects() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase text-slate-600">
-              <span className="size-2 rounded-full -secondary" />
-              {projects.badge}
-            </div>
             <h2 className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
               {projects.title}
             </h2>
@@ -86,7 +82,7 @@ export default function B2BProjects() {
             </Link>
           </motion.article>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
             {secondary.map((project, index) => (
               <motion.article
                 key={project.title}
@@ -97,7 +93,7 @@ export default function B2BProjects() {
                 className="overflow-hidden rounded-4xl border border-slate-200 bg-white"
               >
                 <Link href="/projects" className="block">
-                  <div className="relative h-52">
+                  <div className="relative h-48">
                     <Image
                       src={project.image}
                       alt={project.title}

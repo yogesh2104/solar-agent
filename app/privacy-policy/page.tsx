@@ -2,20 +2,21 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Privacy Policy | ELIZ ENERGY Solar Solutions India",
-  description: "ELIZ ENERGY privacy policy – how we collect, use, store and protect your information when you contact us for solar installation quotes across India.",
+  title: "Privacy Policy | ELIZ ENERGY - B2B Solar India",
+  description: "ELIZ ENERGY privacy policy. Learn how we handle project data and personal information for our commercial and industrial solar clients in India.",
   alternates: { canonical: "https://elizenergy.in/privacy-policy" },
-  robots: { index: true, follow: false },
+  robots: { index: true, follow: true },
 };
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-[#f7fbff] pb-20">
+    <>
       <StaticPageHeader
         title="Privacy"
         highlight="Policy"
         breadcrumb="Privacy Policy"
         description="This page explains what information we collect through the website, why we collect it, and how we handle it responsibly."
+        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>
@@ -72,6 +73,6 @@ export default function PrivacyPolicyPage() {
           Address: Thane, Mumbai, Maharashtra
         </p>
       </LegalContent>
-    </div>
+    </>
   );
 }

@@ -2,18 +2,21 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Refund and Cancellation Policy | ELIZ ENERGY",
-  description: "How ELIZ ENERGY handles project cancellations and refund requests where applicable.",
+  title: "Refund & Cancellation Policy | ELIZ ENERGY - B2B Solar",
+  description: "Official refund and cancellation policy for ELIZ ENERGY. Transparent terms for commercial solar project engagements and equipment procurement.",
+  alternates: { canonical: "https://elizenergy.in/refund-policy" },
+  robots: { index: true, follow: true },
 };
 
 export default function RefundPolicyPage() {
   return (
-    <div className="bg-[#f7fbff] pb-20">
+    <>
       <StaticPageHeader
         title="Refund and"
         highlight="Cancellation"
         breadcrumb="Refund Policy"
         description="This page outlines how cancellation requests and refund considerations are generally handled for commercial solar engagements."
+        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>
@@ -53,6 +56,6 @@ export default function RefundPolicyPage() {
           For refund or cancellation questions, email energyeliz@gmail.com or call +91 7700908508.
         </p>
       </LegalContent>
-    </div>
+    </>
   );
 }

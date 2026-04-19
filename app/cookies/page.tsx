@@ -2,20 +2,21 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Cookie Policy | ELIZ ENERGY Solar Solutions India",
-  description: "ELIZ ENERGY cookie policy – how we use cookies on our website to improve your experience when enquiring about solar installation in India.",
+  title: "Cookie Policy | ELIZ ENERGY - B2B Solar Solutions",
+  description: "ELIZ ENERGY cookie policy. Understand how we use cookies to improve our digital services for commercial solar partners.",
   alternates: { canonical: "https://elizenergy.in/cookies" },
-  robots: { index: true, follow: false },
+  robots: { index: true, follow: true },
 };
 
 export default function CookiesPage() {
   return (
-    <div className="bg-[#f7fbff] pb-20">
+    <>
       <StaticPageHeader
         title="Cookie"
         highlight="Policy"
         breadcrumb="Cookie Policy"
         description="This page explains how ELIZ ENERGY uses cookies and similar technologies to support website performance, analytics, and your browsing experience."
+        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>
@@ -52,6 +53,6 @@ export default function CookiesPage() {
           Questions about this Cookie Policy can be sent to energyeliz@gmail.com.
         </p>
       </LegalContent>
-    </div>
+    </>
   );
 }

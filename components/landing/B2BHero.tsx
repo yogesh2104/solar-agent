@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import Image from "next/image";
@@ -18,13 +20,13 @@ export default function B2BHero() {
   return (
     <section
       id="hero"
-      className="relative isolate overflow-hidden -foreground pb-20 pt-32 text-white md:pb-24 md:pt-36"
+      className="relative isolate overflow-hidden bg-foreground pb-20 pt-32 text-white md:pb-24 md:pt-36"
     >
-      <div className="absolute inset-0">
+      {/* <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(143,183,223,0.5),transparent_38%)]" />
         <div className="absolute inset-x-0 top-0 h-184 bg-linear-to-b from-[#8ab2db]/40 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,17,31,0.18)_0%,rgba(8,17,31,0.55)_60%,rgba(8,17,31,0.92)_100%)]" />
-      </div>
+      </div> */}
 
       <div className="container relative z-10 mx-auto px-6">
         <div className="mx-auto max-w-5xl text-center">

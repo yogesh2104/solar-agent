@@ -2,17 +2,21 @@ import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import LegalContent from "@/components/landing/LegalContent";
 
 export const metadata = {
-  title: "Disclaimer | ELIZ ENERGY",
-  description: "Important legal notices regarding the information published on the ELIZ ENERGY website.",
+  title: "Disclaimer | ELIZ ENERGY - B2B Solar India",
+  description: "Official legal disclaimer for ELIZ ENERGY. Important notices regarding information accuracy and project assumptions for industrial solar projects.",
+  alternates: { canonical: "https://elizenergy.in/disclaimer" },
+  robots: { index: true, follow: true },
 };
 
 export default function DisclaimerPage() {
   return (
-    <div className="bg-[#f7fbff] pb-20">
+    <>
       <StaticPageHeader
-        title="Disclaimer"
+        title="Legal"
+        highlight="Disclaimer"
         breadcrumb="Disclaimer"
         description="Important notes about the scope, reliability, and intended use of information shown on this website."
+        lastUpdated="April 19, 2026"
       />
 
       <LegalContent>
@@ -46,6 +50,6 @@ export default function DisclaimerPage() {
           Questions about this disclaimer can be sent to energyeliz@gmail.com.
         </p>
       </LegalContent>
-    </div>
+    </>
   );
 }

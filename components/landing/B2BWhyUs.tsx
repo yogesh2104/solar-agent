@@ -11,14 +11,10 @@ export default function B2BWhyUs() {
   return (
     <section
       id="why-us"
-      className="overflow-hidden -foreground py-7 text-white md:py-10"
+      className="overflow-hidden bg-foreground py-7 text-white md:py-10"
     >
       <div className="container mx-auto px-6">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/76">
-            <span className="size-2 rounded-full -secondary" />
-            {whyUs.badge}
-          </div>
           <h2 className="mt-7 text-4xl font-semibold tracking-tight md:text-6xl">
             {whyUs.title}
           </h2>
@@ -68,7 +64,7 @@ export default function B2BWhyUs() {
               ))}
             </div>
 
-            <div className="mt-8 rounded-[1.8rem] bg-slate-950 p-6 text-white">
+            {/* <div className="mt-8 rounded-[1.8rem] bg-slate-950 p-6 text-white">
               <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
                 Operating principle
               </div>
@@ -77,7 +73,7 @@ export default function B2BWhyUs() {
                 That changes how proposals are structured, how projects are
                 deployed, and how support is handled afterward.
               </p>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </div>

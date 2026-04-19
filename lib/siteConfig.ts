@@ -2,8 +2,7 @@ const siteConfig = {
   company: {
     name: "ELIZ ENERGY",
     fullName: "ELIZ ENERGY Solar Solutions",
-    tagline:
-      "Affordable & reliable solar solutions across India – Residential, Commercial, Industrial & Utility.",
+    tagline: "Affordable & reliable solar solutions across India – Residential, Commercial, Industrial & Utility.",
     logo: "E",
     contact: {
       phone: "+91 7700908508",
@@ -181,7 +180,7 @@ const siteConfig = {
   },
   testimonials: {
     badge: "Client perspective",
-    title: "What Our Solar Customers Say in Mumbai",
+    title: "What Our Solar Customers Say.",
     items: [
       {
         quote:

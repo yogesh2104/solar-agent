@@ -10,20 +10,10 @@ export default function B2BAbout() {
   const { overview } = siteConfig;
 
   return (
-    <section id="overview" className="overflow-hidden bg-white py-24 md:py-28">
+    <section id="overview" className="overflow-hidden bg-white py-7 md:py-10">
       <div className="container mx-auto px-6">
         <div className="grid gap-10 xl:grid-cols-[1fr_0.92fr] xl:items-start">
           <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600"
-            >
-              <span className="size-2 rounded-full -secondary" />
-              {overview.badge}
-            </motion.div>
-
             <motion.h2
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -31,10 +21,10 @@ export default function B2BAbout() {
               transition={{ duration: 0.55 }}
               className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl"
             >
-              {overview.title}
+              Affordable & reliable solar solutions across India
             </motion.h2>
 
-            <motion.p
+            {/* <motion.p
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -42,7 +32,7 @@ export default function B2BAbout() {
               className="mt-5 text-2xl leading-10 text-slate-500 md:text-3xl md:leading-[1.35]"
             >
               {overview.highlight}
-            </motion.p>
+            </motion.p> */}
 
             <motion.p
               initial={{ opacity: 0, y: 24 }}
@@ -84,7 +74,7 @@ export default function B2BAbout() {
                   key={stat.label}
                   className="rounded-[1.6rem] bg-white p-5 shadow-[0_16px_45px_rgba(8,17,31,0.06)]"
                 >
-                  <div className="text-3xl font-semibold tracking-tight text-slate-950">
+                  <div className="text-2xl font-semibold tracking-tight text-slate-950">
                     {stat.value}
                   </div>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</p>

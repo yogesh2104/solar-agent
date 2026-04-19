@@ -104,9 +104,9 @@ export default function B2BNavbar() {
                     ? "text-slate-600 hover:bg-slate-950/5 hover:text-slate-950"
                     : "text-white/82 hover:bg-white/12 hover:text-white",
                   active &&
-                    (compactShell
-                      ? "bg-slate-950 text-white shadow-[0_12px_30px_rgba(8,17,31,0.16)]"
-                      : "bg-white text-slate-950"),
+                  (compactShell
+                    ? "bg-slate-950 text-white shadow-[0_12px_30px_rgba(8,17,31,0.16)]"
+                    : "bg-white text-slate-950"),
                 )}
               >
                 {item.name}
@@ -151,8 +151,8 @@ export default function B2BNavbar() {
             className={cn(
               "h-11 rounded-full px-5 text-sm font-semibold shadow-none",
               compactShell
-                ? "bg-secondary text-slate-950 hover:bg-secondary/90"
-                : "bg-white text-slate-950 hover:bg-white/90",
+                ? "bg-primary text-white hover:bg-primary/90"
+                : "bg-white text-black hover:bg-white/90",
             )}
           >
             <Link href="/get-quote" onClick={() => setMobileMenuOpen(false)}>

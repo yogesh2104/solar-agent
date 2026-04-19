@@ -14,14 +14,14 @@ export default function WhatsAppCTA() {
       href={`https://wa.me/${contact.whatsapp}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-100 flex items-center justify-center p-4 transition-transform duration-300 hover:scale-110 active:scale-95 group"
+      className="fixed bottom-10 right-4 z-100 flex items-center justify-center p-2 transition-transform duration-300 hover:scale-110 active:scale-95 group"
       aria-label="Contact on WhatsApp"
     >
       {/* Background Pulse Effect */}
       <span className="absolute inset-0 animate-ping rounded-full bg-green-500/20 duration-1000" />
 
       {/* Button Body */}
-      <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_24px_rgba(37,211,102,0.3)] group-hover:shadow-[0_16px_32px_rgba(37,211,102,0.4)]">
+      <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_24px_rgba(37,211,102,0.3)] group-hover:shadow-[0_16px_32px_rgba(37,211,102,0.4)]">
         <MessageCircle className="size-7 fill-white" />
       </div>
 

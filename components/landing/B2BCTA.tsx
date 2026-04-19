@@ -17,17 +17,13 @@ export default function B2BCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
-          className="relative overflow-hidden rounded-[2.6rem] -foreground p-8 text-black md:p-10 lg:p-12"
+          className="relative overflow-hidden rounded-[2.6rem] bg-foreground/10 p-6 text-black md:p-8 lg:p-10"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(204,255,52,0.2),transparent_36%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(143,183,223,0.22),transparent_34%)]" />
 
           <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-black/76">
-                <span className="size-2 rounded-full -secondary" />
-                Next step
-              </div>
               <h2 className="mt-6 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
                 {finalCta.title}
               </h2>
@@ -48,7 +44,7 @@ export default function B2BCTA() {
                 <Button
                   asChild
                   variant="outline"
-                  className="h-12 rounded-full border-white/14 bg-white/8 px-6 text-sm font-semibold text-black hover:bg-white/12"
+                  className="h-12 rounded-full border px-6 text-sm font-semibold text-black hover:bg-white/12"
                 >
                   <Link href={finalCta.secondary.href}>
                     {finalCta.secondary.text}
@@ -64,7 +60,7 @@ export default function B2BCTA() {
               <div className="mt-5 space-y-4">
                 {finalCta.deliverables.map((deliverable) => (
                   <div key={deliverable} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 size-5 shrink-0 -secondary" />
+                    <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-secondary" />
                     <p className="text-sm leading-7 text-black/74">
                       {deliverable}
                     </p>
