@@ -52,7 +52,7 @@ export default function GetQuoteView() {
       />
 
       <div className="container mx-auto px-6">
-        <ROICalculator onEstimateChange={setEstimate} />
+        {/* <ROICalculator onEstimateChange={setEstimate} /> */}
 
         <div
           id="proposal-form"
@@ -66,7 +66,7 @@ export default function GetQuoteView() {
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-[2.2rem] -foreground p-8 text-black">
+            <div className="rounded-[2.2rem] text-black">
               <div className="space-y-6">
                 {steps.map((step) => {
                   const Icon = step.icon;
@@ -74,9 +74,9 @@ export default function GetQuoteView() {
                   return (
                     <div
                       key={step.num}
-                      className="flex gap-4 border border-border rounded-2xl"
+                      className="flex gap-4 border border-border rounded-4xl p-2 bg-white"
                     >
-                      <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-secondary">
+                      <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-secondary">
                         <Icon className="size-5" />
                       </span>
                       <div>

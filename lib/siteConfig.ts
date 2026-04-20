@@ -13,13 +13,13 @@ const siteConfig = {
       googleMaps: "#",
       workingHours: "Mon-Sat, 9:00 AM - 7:00 PM",
       locationBoost:
-        "Solar Company in Mumbai | Thane | Navi Mumbai | Pan India | Maharashtra",
+        "Solar Company in Pan India | Gujarat | Rajasthan | Delhi | Uttar Pradesh | Maharashtra | Madhya Pradesh | Haryana | Punjab | Bihar | Uttarakhand | Jammu & Kashmir | Ladakh | Goa | Chandigarh",
     },
   },
   navigation: [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
+    // { name: "Services", href: "/services" },
     { name: "Blog", href: "/blog" },
     { name: "Products", href: "/products" },
     { name: "Contact", href: "/contact" },
@@ -320,8 +320,8 @@ const siteConfig = {
     quickLinks: [
       { name: "About Us", href: "/about" },
       { name: "Products", href: "/products" },
-      { name: "Services", href: "/services" },
-      { name: "Maintenance", href: "/maintenance" },
+      // { name: "Services", href: "/services" },
+      // { name: "Maintenance", href: "/maintenance" },
       { name: "Blog", href: "/blog" },
       { name: "Contact", href: "/contact" },
     ],

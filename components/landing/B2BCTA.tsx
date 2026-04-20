@@ -10,7 +10,7 @@ export default function B2BCTA() {
   const { finalCta } = siteConfig;
 
   return (
-    <section className="bg-white pb-16 pt-4 md:pb-20">
+    <section className="pb-6 pt-2 md:pb-8">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -34,7 +34,7 @@ export default function B2BCTA() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button
                   asChild
-                  className="h-12 rounded-full -secondary px-6 text-sm font-semibold text-slate-950 hover:-secondary/90"
+                  className="h-12 rounded-full text-white px-6 text-sm font-semibold hover:-secondary/90"
                 >
                   <Link href={finalCta.primary.href}>
                     {finalCta.primary.text}

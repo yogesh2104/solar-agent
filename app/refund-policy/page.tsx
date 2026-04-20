@@ -1,9 +1,14 @@
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
-import LegalContent from "@/components/landing/LegalContent";
+import LegalContent, {
+  InfoBox,
+  WarningBox,
+} from "@/components/landing/LegalContent";
+import B2BCTA from "@/components/landing/B2BCTA";
 
 export const metadata = {
   title: "Refund & Cancellation Policy | ELIZ ENERGY - B2B Solar",
-  description: "Official refund and cancellation policy for ELIZ ENERGY. Transparent terms for commercial solar project engagements and equipment procurement.",
+  description:
+    "Official refund and cancellation policy for ELIZ ENERGY. Transparent terms for commercial solar project engagements and equipment procurement.",
   alternates: { canonical: "https://elizenergy.in/refund-policy" },
   robots: { index: true, follow: true },
 };
@@ -19,42 +24,126 @@ export default function RefundPolicyPage() {
       />
 
       <LegalContent>
-        <h2>1. Project cancellation</h2>
+        {/* 1 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            1
+          </span>
+          Project cancellation
+        </h2>
+
         <p>
-          Cancellation terms depend on the stage of the commercial engagement and the specific agreement signed between ELIZ ENERGY and the customer. Early-stage cancellations may be treated differently from cancellations after engineering, procurement, or installation activity has begun.
+          Cancellation terms depend on the stage of the project and the specific
+          agreement signed between ELIZ ENERGY and the customer.
         </p>
 
-        <h2>2. Refund eligibility</h2>
+        <InfoBox>
+          Early-stage cancellations are treated differently from cancellations
+          after engineering, procurement, or installation has begun.
+        </InfoBox>
+
+        {/* 2 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            2
+          </span>
+          Refund eligibility
+        </h2>
+
         <p>
-          Refund decisions are reviewed based on work already completed, third-party costs incurred, and materials or services committed for the project. Broadly:
+          Refund eligibility depends on the work completed and costs already
+          incurred:
         </p>
+
         <ul>
-          <li><strong>Before engineering begins:</strong> Refunds may be possible after administrative deductions where applicable.</li>
-          <li><strong>After engineering or permitting begins:</strong> Costs related to design, review, or approvals may be non-refundable.</li>
-          <li><strong>After procurement starts:</strong> Ordered equipment, logistics, or vendor commitments may reduce or eliminate refund eligibility.</li>
-          <li><strong>After installation or commissioning:</strong> Refunds are generally not available, though warranty and service obligations may still apply.</li>
+          <li>
+            <strong>Before engineering begins:</strong> Refunds may be possible
+            after administrative deductions.
+          </li>
+          <li>
+            <strong>After engineering or permitting:</strong> Design and
+            approval costs are typically non-refundable.
+          </li>
+          <li>
+            <strong>After procurement starts:</strong> Equipment and vendor
+            commitments may significantly reduce refund eligibility.
+          </li>
+          <li>
+            <strong>After installation or commissioning:</strong> Refunds are
+            generally not available.
+          </li>
         </ul>
 
-        <h2>3. Non-refundable items</h2>
+        <WarningBox>
+          As the project progresses, refund eligibility decreases due to
+          committed costs and executed work.
+        </WarningBox>
+
+        {/* 3 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            3
+          </span>
+          Non-refundable items
+        </h2>
+
+        <p>The following are generally non-refundable once incurred:</p>
+
+        <ul>
+          <li>Government fees and permits</li>
+          <li>Site surveys and inspections</li>
+          <li>Engineering and design work</li>
+          <li>Third-party vendor costs</li>
+        </ul>
+
+        <WarningBox>
+          Costs already committed on your behalf cannot be reversed.
+        </WarningBox>
+
+        {/* 4 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            4
+          </span>
+          Refund process
+        </h2>
+
         <p>
-          Government fees, permit charges, site surveys, engineering outputs, and third-party costs already incurred on your behalf are generally non-refundable once performed or committed.
+          Refund requests must be submitted in writing to your ELIZ ENERGY point
+          of contact.
         </p>
 
-        <h2>4. Refund process</h2>
+        <InfoBox>
+          Approved refunds are processed according to the commercial agreement
+          and may take standard operational processing time.
+        </InfoBox>
+
+        {/* 5 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            5
+          </span>
+          Service quality concerns
+        </h2>
+
         <p>
-          Refund requests should be submitted in writing to the relevant ELIZ ENERGY contact handling your engagement. Approved refunds, if any, will be processed according to the commercial agreement and operational timelines applicable to that engagement.
+          If your concern relates to system performance or service quality after
+          installation:
         </p>
 
-        <h2>5. Service quality concerns</h2>
-        <p>
-          If the issue relates to workmanship, system performance, or service delivery after installation, we encourage customers to use the support and warranty channels defined in their commercial agreement so corrective action can be taken promptly.
-        </p>
+        <ul>
+          <li>Use official support channels</li>
+          <li>Refer to warranty terms in your agreement</li>
+          <li>Contact our service team for resolution</li>
+        </ul>
 
-        <h2>6. Contact</h2>
-        <p>
-          For refund or cancellation questions, email energyeliz@gmail.com or call +91 7700908508.
-        </p>
+        <InfoBox>
+          We aim to resolve issues quickly through structured support and
+          warranty processes.
+        </InfoBox>
       </LegalContent>
+
+      <B2BCTA />
     </>
   );
 }

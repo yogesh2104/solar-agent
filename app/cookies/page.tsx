@@ -1,9 +1,14 @@
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
-import LegalContent from "@/components/landing/LegalContent";
+import LegalContent, {
+  InfoBox,
+  WarningBox,
+} from "@/components/landing/LegalContent";
+import B2BCTA from "@/components/landing/B2BCTA";
 
 export const metadata = {
   title: "Cookie Policy | ELIZ ENERGY - B2B Solar Solutions",
-  description: "ELIZ ENERGY cookie policy. Understand how we use cookies to improve our digital services for commercial solar partners.",
+  description:
+    "ELIZ ENERGY cookie policy. Understand how we use cookies to improve our digital services for commercial solar partners.",
   alternates: { canonical: "https://elizenergy.in/cookies" },
   robots: { index: true, follow: true },
 };
@@ -19,39 +24,116 @@ export default function CookiesPage() {
       />
 
       <LegalContent>
-        <h2>1. What are cookies?</h2>
+        {/* 1 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            1
+          </span>
+          What are cookies?
+        </h2>
+
         <p>
-          Cookies are small text files stored on your device when you visit a website. They help the website remember preferences, improve usability, and understand how visitors interact with content.
+          Cookies are small text files stored on your device when you visit a
+          website. They help improve usability, remember preferences, and
+          analyze how visitors interact with content.
         </p>
 
-        <h2>2. Types of cookies we use</h2>
+        <InfoBox>
+          Cookies do not typically identify you personally, but they help
+          improve your browsing experience.
+        </InfoBox>
+
+        {/* 2 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            2
+          </span>
+          Types of cookies we use
+        </h2>
+
         <ul>
-          <li><strong>Essential cookies:</strong> Needed for core website functionality such as maintaining sessions and security controls.</li>
-          <li><strong>Analytics cookies:</strong> Used to understand page usage, navigation flow, and performance so we can improve the public site.</li>
-          <li><strong>Functional cookies:</strong> Remember choices like form state or browsing preferences when applicable.</li>
-          <li><strong>Marketing cookies:</strong> May be used to understand campaign performance and serve more relevant B2B communications.</li>
+          <li>
+            <strong>Essential cookies:</strong> Required for core functionality
+            such as security and session management.
+          </li>
+          <li>
+            <strong>Analytics cookies:</strong> Help us understand user
+            behavior, page performance, and improve the website.
+          </li>
+          <li>
+            <strong>Functional cookies:</strong> Store preferences like form
+            inputs or browsing settings.
+          </li>
+          <li>
+            <strong>Marketing cookies:</strong> Used to measure campaign
+            performance and deliver relevant B2B communication.
+          </li>
         </ul>
 
-        <h2>3. Third-party cookies</h2>
+        <WarningBox>
+          Disabling essential cookies may impact core website functionality.
+        </WarningBox>
+
+        {/* 3 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            3
+          </span>
+          Third-party cookies
+        </h2>
+
         <p>
-          We may use trusted third-party services such as analytics or campaign tools to understand traffic and improve our communication with business audiences. These services may place their own cookies subject to their respective policies.
+          We may use trusted third-party services (such as analytics or
+          marketing tools) to understand website usage and improve
+          communication.
         </p>
 
-        <h2>4. Managing cookies</h2>
+        <InfoBox>
+          These third-party providers may set their own cookies according to
+          their respective privacy policies.
+        </InfoBox>
+
+        {/* 4 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            4
+          </span>
+          Managing cookies
+        </h2>
+
         <p>
-          Most browsers let you review, block, or delete cookies through browser settings. Blocking some categories may affect how certain parts of the site function.
+          Most browsers allow you to manage cookies through settings. You can:
         </p>
 
-        <h2>5. Updates to this policy</h2>
+        <ul>
+          <li>View stored cookies</li>
+          <li>Delete cookies</li>
+          <li>Block specific or all cookies</li>
+        </ul>
+
+        <WarningBox>
+          Blocking certain cookies may affect how parts of the website function.
+        </WarningBox>
+
+        {/* 5 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            5
+          </span>
+          Updates to this policy
+        </h2>
+
         <p>
-          We may update this policy from time to time to reflect changes in technology, regulation, or our website operations. Please review this page periodically for the latest version.
+          We may update this Cookie Policy to reflect changes in technology,
+          regulations, or website functionality.
         </p>
 
-        <h2>6. Contact</h2>
-        <p>
-          Questions about this Cookie Policy can be sent to energyeliz@gmail.com.
-        </p>
+        <InfoBox>
+          Please review this page periodically to stay informed about updates.
+        </InfoBox>
       </LegalContent>
+
+      <B2BCTA />
     </>
   );
 }

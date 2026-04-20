@@ -1,9 +1,14 @@
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
-import LegalContent from "@/components/landing/LegalContent";
+import LegalContent, {
+  InfoBox,
+  WarningBox,
+} from "@/components/landing/LegalContent";
+import B2BCTA from "@/components/landing/B2BCTA";
 
 export const metadata = {
   title: "Disclaimer | ELIZ ENERGY - B2B Solar India",
-  description: "Official legal disclaimer for ELIZ ENERGY. Important notices regarding information accuracy and project assumptions for industrial solar projects.",
+  description:
+    "Official legal disclaimer for ELIZ ENERGY. Important notices regarding information accuracy and project assumptions for industrial solar projects.",
   alternates: { canonical: "https://elizenergy.in/disclaimer" },
   robots: { index: true, follow: true },
 };
@@ -19,36 +24,109 @@ export default function DisclaimerPage() {
       />
 
       <LegalContent>
-        <h2>1. Accuracy of information</h2>
+        {/* 1 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            1
+          </span>
+          Accuracy of information
+        </h2>
+
         <p>
-          Information published on the ELIZ ENERGY website is provided for general informational purposes only. While we aim to keep it current and useful, we do not guarantee that all information is complete, error-free, or suitable for every specific business context.
+          Information published on the ELIZ ENERGY website is provided for
+          general informational purposes only.
         </p>
 
-        <h2>2. Savings and performance assumptions</h2>
+        <InfoBox>
+          While we aim to keep information current and useful, we do not
+          guarantee that all content is complete, error-free, or suitable for
+          every business scenario.
+        </InfoBox>
+
+        {/* 2 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            2
+          </span>
+          Savings and performance assumptions
+        </h2>
+
         <p>
-          Any references to energy savings, project economics, payback, or generation outcomes are illustrative unless explicitly stated otherwise in a signed commercial proposal. Actual outcomes depend on site conditions, tariff structures, grid behavior, shading, equipment choices, and operational factors.
+          Any references to energy savings, payback periods, or system
+          performance are indicative unless explicitly confirmed in a signed
+          commercial proposal.
         </p>
 
-        <h2>3. External links</h2>
+        <ul>
+          <li>Site conditions</li>
+          <li>Tariff structures</li>
+          <li>Grid performance</li>
+          <li>Shading and installation factors</li>
+          <li>Equipment selection</li>
+          <li>Operational usage</li>
+        </ul>
+
+        <WarningBox>
+          Actual project outcomes may vary significantly based on real-world
+          conditions.
+        </WarningBox>
+
+        {/* 3 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            3
+          </span>
+          External links
+        </h2>
+
         <p>
-          Our site may link to third-party resources for convenience. ELIZ ENERGY does not control those sites and is not responsible for their content, availability, or accuracy.
+          Our website may include links to third-party resources for
+          convenience.
         </p>
 
-        <h2>4. Not professional advice</h2>
+        <WarningBox>
+          We do not control or take responsibility for the content, accuracy, or
+          availability of external websites.
+        </WarningBox>
+
+        {/* 4 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            4
+          </span>
+          Not professional advice
+        </h2>
+
         <p>
-          Website content should not be treated as legal, tax, financial, or engineering advice for a specific project. Businesses should review project decisions with their own qualified advisors where appropriate.
+          Content on this website should not be considered as legal, financial,
+          tax, or engineering advice for specific projects.
         </p>
 
-        <h2>5. Website availability</h2>
+        <InfoBox>
+          We recommend consulting qualified professionals before making project
+          or investment decisions.
+        </InfoBox>
+
+        {/* 5 */}
+        <h2 className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+            5
+          </span>
+          Website availability
+        </h2>
+
         <p>
-          We do not guarantee uninterrupted access to the site and are not liable for downtime caused by technical issues, third-party services, or circumstances beyond our control.
+          We aim to keep the website accessible and functioning smoothly, but do
+          not guarantee uninterrupted availability.
         </p>
 
-        <h2>6. Contact</h2>
-        <p>
-          Questions about this disclaimer can be sent to energyeliz@gmail.com.
-        </p>
+        <WarningBox>
+          We are not liable for downtime caused by technical issues, third-party
+          services, or circumstances beyond our control.
+        </WarningBox>
       </LegalContent>
+
+      <B2BCTA />
     </>
   );
 }
