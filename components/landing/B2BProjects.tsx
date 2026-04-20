@@ -51,6 +51,7 @@ export default function B2BProjects() {
                   src={featured.image}
                   alt={featured.title}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 60vw"
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/72 via-slate-950/8 to-transparent" />
@@ -98,6 +99,7 @@ export default function B2BProjects() {
                       src={project.image}
                       alt={project.title}
                       fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover"
                     />
                   </div>

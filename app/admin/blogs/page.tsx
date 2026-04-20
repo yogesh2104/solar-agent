@@ -1,12 +1,12 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { BlogCard } from "@/components/blog/blog-card";
 import { Button } from "@/components/ui/button";
-import { Plus, LayoutGrid, List } from "lucide-react";
+import { Plus, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import { getUnifiedBlogs } from "@/lib/blog-service";
 
 export default async function AdminBlogsPage() {
   const session = await getServerSession(authOptions);
@@ -14,11 +14,7 @@ export default async function AdminBlogsPage() {
     redirect("/sign-in");
   }
 
-  const blogs = await db.blog.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  const blogs = await getUnifiedBlogs(true);
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
@@ -60,7 +56,7 @@ export default async function AdminBlogsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.map((blog) => (
             <div key={blog.id} className="relative group">
-              <BlogCard blog={blog} isAdmin />
+              <BlogCard blog={blog as any} isAdmin />
             </div>
           ))}
         </div>

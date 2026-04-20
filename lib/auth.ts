@@ -105,7 +105,7 @@ export const authOptions: AuthOptions = {
     signIn: "/sign-in",
   },
   secret: process.env.AUTH_SECRET,
-  debug: process.env.NODE_ENV === "development",
+  debug: false,
 };
 
 export const handler = NextAuth(authOptions);

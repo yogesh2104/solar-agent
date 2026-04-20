@@ -69,6 +69,7 @@ export default function B2BNavbar() {
               src="/Logo1.png"
               alt={siteConfig.company.name}
               fill
+              sizes="64px"
               className={cn(
                 "object-contain transition-all duration-300 rounded-full!",
                 compactShell ? "opacity-100" : "opacity-0 pointer-events-none",
@@ -80,6 +81,7 @@ export default function B2BNavbar() {
               src="/logo.png"
               alt={siteConfig.company.name}
               fill
+              sizes="64px"
               className={cn(
                 "object-contain transition-all duration-300 rounded-full!",
                 compactShell ? "opacity-0 pointer-events-none" : "opacity-100",

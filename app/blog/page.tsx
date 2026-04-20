@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
-import { db } from "@/lib/db";
 import { BlogCard } from "@/components/blog/blog-card";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
+import { getUnifiedBlogs } from "@/lib/blog-service";
+import FAQSchema from "@/components/FAQSchema";
+import siteConfig from "@/lib/siteConfig";
+import HomeFAQ from "@/components/landing/HomeFAQ";
 
 export const metadata = {
   title: "Solar Blog & Insights | Solar Energy Tips & News India | ELIZ ENERGY",
@@ -46,15 +49,12 @@ export const metadata = {
 };
 
 export default async function BlogsPage() {
-  const blogs = await db.blog.findMany({
-    where: { isPublished: true },
-    orderBy: { createdAt: "desc" },
-  });
+  const blogs = await getUnifiedBlogs();
 
   const [featuredBlog, ...otherBlogs] = blogs;
 
   return (
-    <div className="bg-[#f7fbff] pb-20">
+    <div className="bg-[#f7fbff] pb-10 ">
       <StaticPageHeader
         title="Blog and"
         highlight="Insights"
@@ -63,6 +63,7 @@ export default async function BlogsPage() {
       />
 
       <div className="container mx-auto max-w-7xl px-6 pt-10">
+        <FAQSchema faqs={siteConfig.faqs} />
         {blogs.length === 0 ? (
           <div className="rounded-[2.2rem] border border-dashed border-slate-300 bg-white px-6 py-20 text-center">
             <h3 className="text-2xl font-semibold tracking-tight text-slate-950">
@@ -122,12 +123,17 @@ export default async function BlogsPage() {
             {otherBlogs.length > 0 && (
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
                 {otherBlogs.map((blog) => (
-                  <BlogCard key={blog.id} blog={blog} />
+                  <BlogCard key={blog.id} blog={blog as any} />
                 ))}
               </div>
             )}
           </div>
         )}
+      </div>
+
+      {/* FAQ Section */}
+      <div className="mt-20 border-t border-slate-100 bg-white">
+        <HomeFAQ faqs={siteConfig.faqs.slice(0, 5)} />
       </div>
     </div>
   );

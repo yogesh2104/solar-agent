@@ -33,15 +33,22 @@ export const ServiceForm = ({ initialData }: ServiceFormProps) => {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState(initialData?.title || "");
   const [slug, setSlug] = useState(initialData?.slug || "");
-  const [description, setDescription] = useState(initialData?.description || "");
+  const [description, setDescription] = useState(
+    initialData?.description || "",
+  );
   const [content, setContent] = useState(initialData?.content || "");
   const [image, setImage] = useState(initialData?.image || "");
   const [icon, setIcon] = useState(initialData?.icon || "");
-  const [features, setFeatures] = useState<string[]>(initialData?.features || []);
+  const [features, setFeatures] = useState<string[]>(
+    initialData?.features || [],
+  );
   const [featureInput, setFeatureInput] = useState("");
 
   const handleAddFeature = (e: React.KeyboardEvent | React.MouseEvent) => {
-    if ((e.type === "click" || (e as React.KeyboardEvent).key === "Enter") && featureInput.trim()) {
+    if (
+      (e.type === "click" || (e as React.KeyboardEvent).key === "Enter") &&
+      featureInput.trim()
+    ) {
       if (e.type === "keydown") (e as React.KeyboardEvent).preventDefault();
       if (!features.includes(featureInput.trim())) {
         setFeatures([...features, featureInput.trim()]);
@@ -95,7 +102,7 @@ export const ServiceForm = ({ initialData }: ServiceFormProps) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8 max-w-5xl mx-auto pb-20">
+    <form onSubmit={onSubmit} className="space-y-4 max-w-6xl mx-auto pb-20">
       <div className="flex items-center justify-between sticky top-0 z-20 bg-background/80 backdrop-blur-md py-4 border-b mb-8">
         <div className="flex items-center gap-4">
           <Button
@@ -150,8 +157,11 @@ export const ServiceForm = ({ initialData }: ServiceFormProps) => {
                     placeholder="e.g. Residential Solar"
                     value={title}
                     onChange={(e) => {
-                        setTitle(e.target.value);
-                        if (!initialData) setSlug(e.target.value.toLowerCase().replace(/ /g, '-'));
+                      setTitle(e.target.value);
+                      if (!initialData)
+                        setSlug(
+                          e.target.value.toLowerCase().replace(/ /g, "-"),
+                        );
                     }}
                     required
                   />
@@ -162,7 +172,9 @@ export const ServiceForm = ({ initialData }: ServiceFormProps) => {
                     id="slug"
                     placeholder="e.g. residential-solar"
                     value={slug}
-                    onChange={(e) => setSlug(e.target.value.toLowerCase().replace(/ /g, '-'))}
+                    onChange={(e) =>
+                      setSlug(e.target.value.toLowerCase().replace(/ /g, "-"))
+                    }
                     required
                   />
                 </div>

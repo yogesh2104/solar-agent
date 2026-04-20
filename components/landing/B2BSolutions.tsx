@@ -152,6 +152,7 @@ export default function B2BSolutions({
                   src={solutions.image}
                   alt="Commercial solar panel installation"
                   fill
+                  sizes="(max-width: 1280px) 100vw, 40vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />

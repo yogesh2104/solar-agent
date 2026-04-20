@@ -83,6 +83,7 @@ export default function B2BTestimonials() {
                 src={activeTestimonial.image}
                 alt={activeTestimonial.author}
                 fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-t from-slate-950/35 via-transparent to-transparent" />

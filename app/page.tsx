@@ -7,6 +7,7 @@ import B2BTestimonials from "@/components/landing/B2BTestimonials";
 import B2BWhyUs from "@/components/landing/B2BWhyUs";
 import HomeFAQ from "@/components/landing/HomeFAQ";
 import siteConfig from "@/lib/siteConfig";
+import FAQSchema from "@/components/FAQSchema";
 
 export const metadata = {
   title:
@@ -57,6 +58,7 @@ export default function Home() {
 
   return (
     <div className="overflow-x-clip">
+      <FAQSchema faqs={faqs} />
       <B2BHero />
       <B2BAbout />
       {/* <B2BSolutions initialServices={services} /> */}

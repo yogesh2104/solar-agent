@@ -1,13 +1,27 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Calendar, User as UserIcon, Clock, Share2, } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  User as UserIcon,
+  Clock,
+  Share2,
+  Quote,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReadingProgress } from "@/components/blog/reading-progress";
+import { ShareButtons } from "@/components/blog/share-buttons";
 import TableOfContents from "@/components/landing/TableOfContents";
 import * as motion from "framer-motion/client";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { getBlogBySlug, getUnifiedBlogs } from "@/lib/blog-service";
+import { BlogCard } from "@/components/blog/blog-card";
+import HomeFAQ from "@/components/landing/HomeFAQ";
+import siteConfig from "@/lib/siteConfig";
+import FAQSchema from "@/components/FAQSchema";
 
 interface BlogDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -15,9 +29,9 @@ interface BlogDetailPageProps {
 
 export async function generateMetadata({ params }: BlogDetailPageProps) {
   const { slug } = await params;
-  const blog = await db.blog.findUnique({ where: { slug, isPublished: true } });
+  const blog = await getBlogBySlug(slug);
 
-  if (!blog) {
+  if (!blog || (!blog.isPublished && !blog.isStatic)) {
     return { title: "Post Not Found" };
   }
 
@@ -36,73 +50,76 @@ export async function generateMetadata({ params }: BlogDetailPageProps) {
 
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const { slug } = await params;
-  const blog = await db.blog.findUnique({
-    where: { slug, isPublished: true },
-    include: { author: true },
-  });
+  const blog = await getBlogBySlug(slug);
 
-  if (!blog) {
+  if (!blog || (!blog.isPublished && !blog.isStatic)) {
     notFound();
   }
+
+  const blogs = await getUnifiedBlogs();
+  const relatedBlogs = blogs.filter((b) => b.slug !== slug).slice(0, 3);
 
   const readingTime = Math.ceil(blog.content.split(/\s+/).length / 200);
 
   const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": blog.title,
-    "description": blog.metadata || blog.title,
-    "author": {
+    headline: blog.title,
+    description: blog.metadata || blog.title,
+    author: {
       "@type": "Organization",
-      "name": "ELIZ ENERGY"
+      name: "ELIZ ENERGY",
     },
-    "publisher": {
+    publisher: {
       "@type": "Organization",
-      "name": "ELIZ ENERGY"
+      name: "ELIZ ENERGY",
     },
-    "image": blog.image,
-    "datePublished": blog.createdAt.toISOString().split('T')[0],
+    image: blog.image,
+    datePublished: blog.createdAt.toISOString().split("T")[0],
+    areaServed: "India",
   };
 
+  const faqs = siteConfig.faqs;
+
   return (
-    <article className="relative min-h-screen bg-white">
+    <article className="relative min-h-screen">
+      <FAQSchema faqs={faqs} />
       <ReadingProgress />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
       />
 
-      {/* Hero Section */}
-      <header className="relative overflow-hidden bg-[#f4f8fe] pb-16 pt-28 md:pb-24 md:pt-40">
+      {/* Hero Section - Header */}
+      <header className="relative bg-[#f8fafc] pt-28 pb-12 md:pt-40 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(8,17,31,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(8,17,31,0.5)_1px,transparent_1px)] bg-size-[40px_40px]" />
-        <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
 
-        <div className="container relative z-10 mx-auto px-6">
+        <div className="container relative z-10 mx-auto px-6 max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
           >
             <Link
               href="/blog"
-              className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-medium text-slate-600 shadow-sm transition-all hover:bg-slate-50 hover:text-slate-900"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline mb-8"
             >
-              <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+              <ArrowLeft className="size-4" />
               Back to Insights
             </Link>
           </motion.div>
 
-          <div className="mt-10 max-w-4xl">
+          <div className="flex flex-col items-center text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex flex-wrap gap-2"
+              transition={{ duration: 0.5 }}
+              className="flex flex-wrap justify-center gap-3 mb-8"
             >
               {blog.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-primary/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-primary"
+                  className="rounded-full bg-primary/10 px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-widest text-primary border border-primary/10"
                 >
                   {tag}
                 </span>
@@ -112,20 +129,20 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="mt-6 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl md:leading-[1.1]"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl font-bold tracking-tight text-slate-950 md:text-6xl md:leading-[1.1] mb-10 max-w-4xl"
             >
               {blog.title}
             </motion.h1>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-10 flex flex-wrap items-center gap-8 text-sm text-slate-500"
+              className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-slate-600 border-t border-slate-200 pt-8"
             >
-              <div className="flex items-center gap-3">
-                <div className="relative size-12 overflow-hidden rounded-full border-2 border-white shadow-sm">
+              <div className="flex items-center gap-4">
+                <div className="relative size-12 overflow-hidden rounded-full border-2 border-white shadow-sm ring-4 ring-slate-50">
                   {blog.author.image ? (
                     <Image
                       src={blog.author.image}
@@ -134,70 +151,148 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                       className="object-cover"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-slate-100">
-                      <UserIcon className="size-6 text-slate-400" />
+                    <div className="flex h-full w-full items-center justify-center bg-slate-100 uppercase font-bold text-slate-400">
+                      {blog.author.name.charAt(0)}
                     </div>
                   )}
                 </div>
-                <div>
-                  <div className="font-semibold text-slate-950">{blog.author.name}</div>
-                  <div className="text-xs">Project Consultant</div>
+                <div className="text-left">
+                  <div className="font-bold text-slate-950">
+                    {blog.author.name}
+                  </div>
+                  <div className="text-xs font-medium text-slate-400">
+                    {blog.isStatic
+                      ? "ELIZ ENERGY Editorial"
+                      : "Renewable Energy Strategist"}
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-6 border-l border-slate-200 pl-8">
-                <div className="flex items-center gap-2">
-                  <Calendar className="size-4 text-slate-400" />
-                  <span>{format(new Date(blog.createdAt), "MMM d, yyyy")}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="size-4 text-slate-400" />
-                  <span>{readingTime} min read</span>
-                </div>
+              <div className="flex items-center gap-3">
+                <Calendar className="size-4 text-primary" />
+                <span className="font-medium tracking-tight">
+                  {format(new Date(blog.createdAt), "MMMM d, yyyy")}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Clock className="size-4 text-primary" />
+                <span className="font-medium tracking-tight">
+                  {readingTime} min read
+                </span>
               </div>
             </motion.div>
           </div>
         </div>
       </header>
 
-      {/* Featured Image */}
-      <div className="container mx-auto -mt-12 px-6 lg:-mt-20">
+      {/* Featured Large Image Section */}
+      <section className="container mx-auto px-6 -mt-8 md:-mt-12">
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
+          initial={{ opacity: 0, scale: 0.99 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          className="relative aspect-[21/9] overflow-hidden rounded-[2.5rem] bg-slate-100 shadow-[0_32px_64px_-16px_rgba(8,17,31,0.2)] md:rounded-[3.5rem]"
+          transition={{ duration: 0.8 }}
+          className="relative aspect-21/10 overflow-hidden rounded-[2.5rem] md:rounded-[4rem] bg-slate-100 border-8 border-white ring-1 ring-slate-200"
         >
           <Image
             src={blog.image}
             alt={blog.title}
             fill
             priority
-            className="object-cover"
+            className="object-cover transition-transform duration-1000 group-hover:scale-105"
           />
         </motion.div>
-      </div>
+      </section>
 
       {/* Content Section */}
-      <div className="container mx-auto mt-16 px-6 pb-24 md:mt-24">
-        <div className="flex flex-col gap-12 lg:flex-row lg:gap-20">
+      <div className="container mx-auto mt-16 px-6 pb-10 md:mt-10">
+        <div className="flex flex-col gap-12 lg:flex-row lg:justify-center lg:gap-10">
           {/* Main Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-none lg:w-[calc(100%-320px)]"
+            className="w-full max-w-4xl bg-white border border-slate-200 rounded-[2.5rem] p-4 md:p-8 shadow-sm"
           >
-            <div
-              className="prose prose-xl prose-slate max-w-none 
-                prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-slate-950
-                prose-p:text-[1.125rem] prose-p:leading-[1.8] prose-p:text-slate-600
-                prose-blockquote:border-l-primary prose-blockquote:bg-primary/5 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:font-medium prose-blockquote:italic prose-blockquote:rounded-r-xl
-                prose-img:rounded-[2rem] prose-img:shadow-xl
-                prose-a:text-primary prose-a:font-semibold prose-a:no-underline hover:prose-a:underline"
-              dangerouslySetInnerHTML={{ __html: blog.content }}
-            />
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h2: ({ children }) => (
+                  <h2 className="text-4xl font-bold tracking-tight text-slate-950 mt-5 mb-4 first:mt-0 flex items-center gap-4">
+                    <span className="h-10 w-1.5 rounded-full bg-primary" />
+                    {children}
+                  </h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-2xl font-bold text-slate-900 mt-5 mb-4 text-center lg:text-left">
+                    {children}
+                  </h3>
+                ),
+                p: ({ children }) => (
+                  <p className="text-lg leading-[1.8] text-slate-600 mb-6 font-medium last:mb-0">
+                    {children}
+                  </p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5 mb-6 p-0">
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="space-y-6 mb-8 list-decimal list-inside text-xl font-medium text-slate-600">
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li className="flex items-start gap-4 text-xl font-medium text-slate-600 group transition-colors hover:text-slate-950">
+                    <span className="mt-2.5 size-2 shrink-0 rounded-full bg-primary ring-4 ring-primary/10" />
+                    <span className="flex-1">{children}</span>
+                  </li>
+                ),
+                hr: () => <hr className="my-10 h-px border-0" />,
+                blockquote: ({ children }) => (
+                  <blockquote className="my-10 overflow-hidden rounded-[2.5rem] border border-slate-100 bg-[#f8fafc] p-8 md:p-10 text-2xl font-semibold italic leading-relaxed text-slate-900">
+                    <div className="flex gap-6">
+                      <Quote className="size-10 shrink-0 text-primary opacity-20" />
+                      <div>{children}</div>
+                    </div>
+                  </blockquote>
+                ),
+                table: ({ children }) => (
+                  <div className="my-10 overflow-hidden rounded-[2.5rem] border border-border bg-white shadow-2xl shadow-slate-200/50">
+                    <div className="overflow-x-auto">
+                      <table className="w-full border-collapse text-left">
+                        {children}
+                      </table>
+                    </div>
+                  </div>
+                ),
+                thead: ({ children }) => (
+                  <thead className="bg-slate-950 text-white">{children}</thead>
+                ),
+                th: ({ children }) => (
+                  <th className="px-8 py-6 text-xs font-black uppercase tracking-[0.2em]">
+                    {children}
+                  </th>
+                ),
+                td: ({ children }) => (
+                  <td className="px-8 py-6 text-lg font-medium text-slate-600 border-b border-slate-50">
+                    {children}
+                  </td>
+                ),
+                a: ({ children, href }) => (
+                  <a
+                    href={href}
+                    className="font-bold text-primary underline decoration-primary/20 transition-all hover:decoration-primary underline-offset-4"
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {blog.content}
+            </ReactMarkdown>
 
             {/* Author Footer Card */}
             <div className="mt-20 overflow-hidden rounded-[2.5rem] border border-slate-100 bg-[#f8fafc] p-8 md:p-12">
@@ -217,19 +312,17 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   )}
                 </div>
                 <div className="grow">
-                  <div className="text-sm font-bold uppercase tracking-widest text-primary">About the author</div>
-                  <h3 className="mt-1 text-2xl font-bold text-slate-950">{blog.author.name}</h3>
-                  <p className="mt-3 text-slate-600 leading-relaxed max-w-2xl">
-                    Dedicated to advancing renewable energy adoption across India. Specialized in commercial solar procurement and enterprise-grade energy strategy.
-                  </p>
-                  <div className="mt-6 flex justify-center gap-3 md:justify-start">
-                    <Button variant="outline" size="icon" className="rounded-full shadow-sm">
-                      {/* <Linkedin className="size-4" /> */}
-                    </Button>
-                    <Button variant="outline" size="icon" className="rounded-full shadow-sm">
-                      {/* <Twitter className="size-4" /> */}
-                    </Button>
+                  <div className="text-sm font-bold uppercase tracking-widest text-primary">
+                    About the author
                   </div>
+                  <h3 className="mt-1 text-2xl font-bold text-slate-950">
+                    {blog.author.name}
+                  </h3>
+                  <p className="mt-3 text-slate-600 leading-relaxed max-w-2xl">
+                    Dedicated to advancing renewable energy adoption across
+                    India. Specialized in commercial solar procurement and
+                    enterprise-grade energy strategy.
+                  </p>
                 </div>
               </div>
             </div>
@@ -238,11 +331,19 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <div className="mt-8 overflow-hidden rounded-[2.5rem] bg-slate-950 p-8 text-white md:p-12">
               <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
                 <div>
-                  <h2 className="text-3xl font-bold md:text-4xl">Ready to switch to solar?</h2>
-                  <p className="mt-2 text-slate-400">Get a custom commercial solar analysis for your facility.</p>
+                  <h2 className="text-3xl font-bold md:text-4xl text-white mt-0 border-0">
+                    Ready to switch to solar?
+                  </h2>
+                  <p className="mt-2 text-slate-400">
+                    Get a custom commercial solar analysis for your facility.
+                  </p>
                 </div>
                 <div className="flex shrink-0 gap-4">
-                  <Button asChild size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white font-semibold px-8 h-14">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="rounded-full bg-primary hover:bg-primary/90 text-white font-semibold px-8 h-14"
+                  >
                     <Link href="/get-quote">Get Enterprise Quote</Link>
                   </Button>
                 </div>
@@ -251,7 +352,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           </motion.div>
 
           {/* Sidebar */}
-          <aside className="lg:w-80">
+          <aside className="lg:w-80 shrink-0">
             <div className="sticky top-32 space-y-10">
               <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">
                 <TableOfContents />
@@ -262,17 +363,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <Share2 className="h-4 w-4" />
                   Share article
                 </div>
-                <div className="flex gap-3">
-                  <Button variant="secondary" size="icon" className="group rounded-full bg-slate-50 hover:bg-primary/10 hover:text-primary transition-all">
-                    L{/* <Linkedin className="size-4" /> */}
-                  </Button>
-                  <Button variant="secondary" size="icon" className="group rounded-full bg-slate-50 hover:bg-[#1DA1F2]/10 hover:text-[#1DA1F2] transition-all">
-                    T{/* <Twitter className="size-4" /> */}
-                  </Button>
-                  <Button variant="secondary" size="icon" className="group rounded-full bg-slate-50 hover:bg-[#1877F2]/10 hover:text-[#1877F2] transition-all">
-                    F{/* <Facebook className="size-4" /> */}
-                  </Button>
-                </div>
+                <ShareButtons title={blog.title} slug={blog.slug} />
               </div>
 
               <Link
@@ -280,14 +371,51 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 className="flex items-center justify-between rounded-3xl bg-primary/5 p-6 transition-colors hover:bg-primary/10 group"
               >
                 <div>
-                  <div className="text-sm font-semibold text-primary">Explore More</div>
-                  <div className="text-slate-900 font-bold">Latest Insights</div>
+                  <div className="text-sm font-semibold text-primary">
+                    Explore More
+                  </div>
+                  <div className="text-slate-900 font-bold">
+                    Latest Insights
+                  </div>
                 </div>
                 <ArrowLeft className="size-5 rotate-180 text-primary transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </aside>
         </div>
+      </div>
+
+      {/* Related Posts Section */}
+      {relatedBlogs.length > 0 && (
+        <section className="container mx-auto px-6 py-20 border-t border-slate-100">
+          <div className="flex flex-col items-center text-center mb-16 underline decoration-primary underline-offset-[16px] decoration-4">
+            <div className="text-sm font-black uppercase tracking-[0.2em] text-primary mb-4">
+              Continue Reading
+            </div>
+            <h2 className="text-4xl font-bold text-slate-950 md:text-5xl border-0">
+              Related Insights
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {relatedBlogs.map((relatedBlog) => (
+              <BlogCard key={relatedBlog.id} blog={relatedBlog} />
+            ))}
+          </div>
+          <div className="mt-16 flex justify-center">
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-full px-8 border-slate-200 hover:bg-slate-50 text-slate-600 font-semibold"
+            >
+              <Link href="/blog">View All Articles</Link>
+            </Button>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ Section */}
+      <div className="border-t border-slate-100">
+        <HomeFAQ faqs={faqs.slice(0, 5)} />
       </div>
     </article>
   );

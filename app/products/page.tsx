@@ -185,7 +185,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Trust Section */}
-      <section className="bg-slate-50 py-12">
+      {/* <section className="bg-slate-50 py-12">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-slate-950 md:text-4xl mb-12">
             Why Buy from ELIZ ENERGY?
@@ -219,7 +219,7 @@ export default function ProductsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

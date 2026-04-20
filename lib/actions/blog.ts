@@ -2,16 +2,7 @@
 
 import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
-
-function slugify(text: string) {
-  return text
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/[^\w-]+/g, "") // Remove all non-word chars
-    .replace(/--+/g, "-"); // Replace multiple - with single -
-}
+import { slugify } from "@/lib/utils";
 
 export async function createBlog(data: {
   title: string;
@@ -19,17 +10,21 @@ export async function createBlog(data: {
   image: string;
   tags: string[];
   authorId: string;
+  slug?: string;
   metadata?: string;
   isPublished?: boolean;
 }) {
   try {
-    const slug = slugify(data.title);
-    
+    const baseSlug =
+      data.slug && data.slug.trim() !== ""
+        ? slugify(data.slug)
+        : slugify(data.title);
+
     // Check for slug collision
-    let uniqueSlug = slug;
+    let uniqueSlug = baseSlug;
     let counter = 1;
     while (await db.blog.findUnique({ where: { slug: uniqueSlug } })) {
-      uniqueSlug = `${slug}-${counter}`;
+      uniqueSlug = `${baseSlug}-${counter}`;
       counter++;
     }
 
@@ -58,9 +53,10 @@ export async function updateBlog(
     content: string;
     image: string;
     tags: string[];
+    slug: string;
     isPublished: boolean;
     metadata: string;
-  }>
+  }>,
 ) {
   try {
     const updateData: Partial<{
@@ -70,12 +66,24 @@ export async function updateBlog(
       tags: string[];
       isPublished: boolean;
       metadata: string;
+      slug: string;
     }> = { ...data };
-    
-    if (data.title) {
-        // We might not want to change the slug after creation, 
-        // but if we do, we should handle collisions.
-        // For now, let's keep the slug stable or only change if explicitly needed.
+
+    if (data.slug) {
+      const baseSlug = slugify(data.slug);
+      let uniqueSlug = baseSlug;
+      let counter = 1;
+
+      // Check if the slug is actually different from the current one
+      const currentBlog = await db.blog.findUnique({ where: { id } });
+
+      if (currentBlog && currentBlog.slug !== baseSlug) {
+        while (await db.blog.findUnique({ where: { slug: uniqueSlug } })) {
+          uniqueSlug = `${baseSlug}-${counter}`;
+          counter++;
+        }
+        updateData.slug = uniqueSlug;
+      }
     }
 
     const blog = await db.blog.update({

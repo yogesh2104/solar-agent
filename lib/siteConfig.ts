@@ -2,7 +2,8 @@ const siteConfig = {
   company: {
     name: "ELIZ ENERGY",
     fullName: "ELIZ ENERGY Solar Solutions",
-    tagline: "Affordable & reliable solar solutions across India – Residential, Commercial, Industrial & Utility.",
+    tagline:
+      "Affordable & reliable solar solutions across India – Residential, Commercial, Industrial & Utility.",
     logo: "E",
     contact: {
       phone: "+91 7700908508",
@@ -19,8 +20,8 @@ const siteConfig = {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Blog", href: "/blog" },
     { name: "Products", href: "/products" },
-    // { name: "Maintenance", href: "/maintenance" },
     { name: "Contact", href: "/contact" },
   ],
   hero: {
@@ -352,45 +353,59 @@ const siteConfig = {
   faqs: [
     {
       id: "1",
-      question: "How long does the installation take?",
+      question: "How long does solar panel installation take in India?",
       answer:
-        "A typical residential installation takes 3-5 days, while commercial projects can take 2-4 weeks depending on the capacity and site conditions.",
+        "A typical residential solar panel installation in India takes 3–5 days. Larger commercial solar projects may take 2–4 weeks depending on system size and site conditions.",
       category: "General",
     },
     {
       id: "2",
-      question: "Does solar work during cloudy days?",
+      question: "Does solar work during cloudy or rainy days in India?",
       answer:
-        "Yes, solar panels still generate electricity on cloudy days, though at a reduced output. They use diffused daylight which is still present during overcast weather.",
+        "Yes, solar panels generate electricity even on cloudy or rainy days using diffused sunlight. However, output may reduce by 10–30% compared to sunny conditions.",
       category: "Technical",
     },
     {
       id: "3",
-      question: "What is the payback period for a solar system?",
+      question: "What is the payback period for solar systems in India?",
       answer:
-        "The typical payback period for most commercial installations is between 3 to 4 years, after which the electricity generated is essentially free.",
+        "The average payback period for solar systems in India is 3 to 5 years. After that, you can enjoy free electricity for 20+ years.",
       category: "Pricing",
     },
     {
       id: "4",
-      question: "What are the maintenance requirements for solar panels?",
+      question: "What maintenance is required for solar panels?",
       answer:
-        "Solar panels require very little maintenance. Periodic cleaning (every 3-6 months) and a yearly professional inspection are usually sufficient to maintain optimal performance.",
+        "Solar panels require minimal maintenance. Cleaning every 15–30 days and an annual inspection is enough to maintain efficiency.",
       category: "Maintenance",
     },
     {
       id: "5",
-      question: "Do you assist with Surya Ghar Yojana subsidies?",
+      question: "Is government subsidy available for solar in India?",
       answer:
-        "Yes, we provide complete, end-to-end assistance with Surya Ghar Yojana government subsidies, handling all paperwork and approvals to ensure you get the maximum benefit.",
+        "Yes, the Indian government provides subsidies under schemes like PM Surya Ghar Yojana. Residential users can get up to 40% subsidy on rooftop solar systems.",
       category: "General",
     },
     {
       id: "6",
-      question: "Do you install EV chargers as well?",
+      question: "Do you provide EV charger installation with solar?",
       answer:
-        "Yes, we supply and install EV chargers for both residential homes and commercial premises, seamlessly integrating them with your solar power setup if desired.",
+        "Yes, we install EV chargers for homes and businesses. These can be integrated with your solar system for efficient and cost-effective charging.",
       category: "Technical",
+    },
+    {
+      id: "7",
+      question: "How much does a solar system cost in India?",
+      answer:
+        "The cost of a solar system in India typically ranges from ₹70,000 to ₹90,000 per kW depending on components, installation, and system type.",
+      category: "Pricing",
+    },
+    {
+      id: "8",
+      question: "Is solar worth it for homes in India?",
+      answer:
+        "Yes, solar is a great investment for Indian homes due to high electricity costs, government subsidies, and long-term savings.",
+      category: "General",
     },
   ],
 } as const;

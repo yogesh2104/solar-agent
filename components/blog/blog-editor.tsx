@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Link from "@tiptap/extension-link";
-import Image from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
+import { Table } from "@tiptap/extension-table";
+import { TableRow } from "@tiptap/extension-table-row";
+import { TableHeader } from "@tiptap/extension-table-header";
+import { TableCell } from "@tiptap/extension-table-cell";
+import { Markdown } from "@tiptap/markdown";
 import {
   Bold,
   Italic,
@@ -17,32 +20,25 @@ import {
   Undo,
   Redo,
   Link as LinkIcon,
-  Image as ImageIcon,
   AlignCenter,
   AlignLeft,
   AlignRight,
   Code,
   Heading1,
   Heading2,
-  Heading3,
-  ListTodo,
   Strikethrough,
   Underline as UnderlineIcon,
-  Type,
-  Video as VideoIcon,
+  Table as TableIcon,
+  Plus,
+  Trash2,
+  ColumnsIcon,
+  RowsIcon,
+  Minus as HorizontalRule,
+  Heading3,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { UploadDropzone } from "@/lib/uploadthing";
-import { Video } from "./video-extension";
-import { toast } from "sonner";
+import Link from "@tiptap/extension-link";
 
 interface BlogEditorProps {
   content: string;
@@ -50,51 +46,88 @@ interface BlogEditorProps {
   placeholder?: string;
 }
 
-const MediaUploadDialog = ({ editor }: { editor: any }) => {
-  const [open, setOpen] = useState(false);
+const TableManagement = ({ editor }: { editor: any }) => {
+  if (!editor) return null;
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          type="button"
-          variant="ghost"
-          size="sm"
-          title="Upload image or video"
-        >
-          <ImageIcon className="h-4 w-4 mr-1" />
-          <VideoIcon className="h-4 w-4" />
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Upload Media</DialogTitle>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <UploadDropzone
-            endpoint="blogContentMedia"
-            onClientUploadComplete={(res) => {
-              res.forEach((file) => {
-                if (file.url.match(/\.(mp4|webm|ogg)$/i) || file.type.startsWith("video/")) {
-                  editor.chain().focus().setVideo({ src: file.url }).run();
-                } else {
-                  editor.chain().focus().setImage({ src: file.url }).run();
-                }
-              });
-              toast.success("Media uploaded and inserted");
-              setOpen(false);
-            }}
-            onUploadError={(error: Error) => {
-              toast.error(`Upload failed: ${error.message}`);
-            }}
-            className="ut-label:text-primary ut-button:bg-primary ut-button:ut-readying:bg-primary/50"
-          />
-        </div>
-      </DialogContent>
-    </Dialog>
+    <div className="flex flex-wrap gap-1 items-center px-1 border-l">
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        onClick={() =>
+          editor
+            .chain()
+            .focus()
+            .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+            .run()
+        }
+        title="Insert Table"
+      >
+        <TableIcon className="h-4 w-4 mr-1" />
+        <Plus className="h-3 w-3" />
+      </Button>
+
+      {editor.isActive("table") && (
+        <>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => editor.chain().focus().addColumnBefore().run()}
+            title="Add Column Before"
+          >
+            <ColumnsIcon className="h-4 w-4 mr-1" />
+            <Plus className="h-3 w-3" />
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => editor.chain().focus().addRowBefore().run()}
+            title="Add Row Before"
+          >
+            <RowsIcon className="h-4 w-4 mr-1" />
+            <Plus className="h-3 w-3" />
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => editor.chain().focus().deleteColumn().run()}
+            title="Delete Column"
+            className="text-destructive hover:text-destructive"
+          >
+            <ColumnsIcon className="h-4 w-4 mr-1" />
+            <Trash2 className="h-3 w-3" />
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => editor.chain().focus().deleteRow().run()}
+            title="Delete Row"
+            className="text-destructive hover:text-destructive"
+          >
+            <RowsIcon className="h-4 w-4 mr-1" />
+            <Trash2 className="h-3 w-3" />
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => editor.chain().focus().deleteTable().run()}
+            title="Delete Table"
+            className="text-destructive hover:text-destructive"
+          >
+            <TableIcon className="h-4 w-4 mr-1" />
+            <Trash2 className="h-3 w-3" />
+          </Button>
+        </>
+      )}
+    </div>
   );
 };
-
 
 const MenuBar = ({ editor }: { editor: any }) => {
   if (!editor) {
@@ -277,8 +310,17 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
       <div className="w-px h-6 bg-border mx-1 my-auto" />
 
-      <MediaUploadDialog editor={editor} />
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        onClick={() => editor.chain().focus().setHorizontalRule().run()}
+        title="Horizontal Rule"
+      >
+        <HorizontalRule className="h-4 w-4" />
+      </Button>
 
+      <TableManagement editor={editor} />
 
       <div className="ml-auto flex gap-1">
         <Button
@@ -307,13 +349,19 @@ const MenuBar = ({ editor }: { editor: any }) => {
 export const BlogEditor = ({
   content,
   onChange,
-  placeholder,
+  placeholder: placeholderProp,
 }: BlogEditorProps) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
+      Markdown.configure({
+        indentation: {
+          style: "space",
+          size: 2,
+        },
+      }),
       Placeholder.configure({
-        placeholder: placeholder || "Write your story...",
+        placeholder: placeholderProp || "Write your story...",
       }),
       Underline,
       Link.configure({
@@ -325,20 +373,19 @@ export const BlogEditor = ({
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
-      Image.configure({
+      Table.configure({
+        resizable: true,
         HTMLAttributes: {
-          class: "max-w-full h-auto rounded-lg shadow-md my-4",
+          class: "border-collapse table-auto w-full",
         },
       }),
-      Video.configure({
-        HTMLAttributes: {
-          class: "w-full aspect-video rounded-lg shadow-md my-4",
-        },
-      }),
+      TableRow,
+      TableHeader,
+      TableCell,
     ],
     content: content,
     onUpdate: ({ editor }) => {
-      onChange(editor.getHTML());
+      onChange(editor.getMarkdown());
     },
     immediatelyRender: false,
     editorProps: {

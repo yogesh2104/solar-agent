@@ -4,6 +4,7 @@ import { HelpCircle, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
+import FAQSchema from "@/components/FAQSchema";
 
 export const metadata = {
   title: "Solar FAQs | Solar Panel Installation Questions | ELIZ ENERGY India",
@@ -63,6 +64,7 @@ export default function FaqPage() {
 
   return (
     <div className="relative isolate min-h-screen">
+      <FAQSchema faqs={faqs} />
       <StaticPageHeader
         title="Frequently"
         highlight="Asked Questions"

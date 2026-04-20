@@ -12,6 +12,7 @@ import Image from "next/image";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createBlog, updateBlog } from "@/lib/actions/blog";
+import { slugify } from "@/lib/utils";
 
 interface BlogFormData {
   id?: string;
@@ -19,6 +20,7 @@ interface BlogFormData {
   content?: string;
   image?: string;
   tags?: string[];
+  slug?: string;
   metadata?: string | null;
   isPublished?: boolean;
 }
@@ -36,7 +38,22 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
   const [image, setImage] = useState(initialData?.image || "");
   const [tags, setTags] = useState<string[]>(initialData?.tags || []);
   const [tagInput, setTagInput] = useState("");
+  const [slug, setSlug] = useState(initialData?.slug || "");
+  const [isSlugModified, setIsSlugModified] = useState(!!initialData?.slug);
   const [metadata, setMetadata] = useState(initialData?.metadata || "");
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+    if (!isSlugModified) {
+      setSlug(slugify(newTitle));
+    }
+  };
+
+  const handleSlugChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSlug(slugify(e.target.value));
+    setIsSlugModified(true);
+  };
 
   const handleAddTag = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && tagInput.trim()) {
@@ -70,6 +87,7 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
         content,
         image,
         tags,
+        slug,
         metadata,
         isPublished: shouldPublish,
       };
@@ -106,7 +124,7 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8 max-w-5xl mx-auto pb-20">
+    <form onSubmit={onSubmit} className="space-y-4 max-w-6xl mx-auto pb-20">
       <div className="flex items-center justify-between sticky top-0 z-20 bg-background/80 backdrop-blur-md py-4 border-b mb-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">
@@ -164,7 +182,7 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
                 id="title"
                 placeholder="Enter a catchy title..."
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={handleTitleChange}
                 className="text-xl py-6 font-semibold"
                 required
               />
@@ -275,6 +293,28 @@ export const BlogForm = ({ initialData, authorId }: BlogFormProps) => {
                     </span>
                   ))}
                 </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="slug">Custom URL Slug</Label>
+                <div className="relative">
+                  <Input
+                    id="slug"
+                    placeholder="post-url-slug"
+                    value={slug}
+                    onChange={handleSlugChange}
+                    className="pr-10"
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                    <Globe className="h-4 w-4 text-muted-foreground" />
+                  </div>
+                </div>
+                <p className="text-[10px] text-muted-foreground flex items-center gap-1">
+                  URL Preview:{" "}
+                  <span className="text-primary truncate">
+                    /blog/{slug || "your-slug"}
+                  </span>
+                </p>
               </div>
 
               <div className="space-y-2">

@@ -28,28 +28,44 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState(initialData?.title || "");
-  const [description, setDescription] = useState(initialData?.description || "");
+  const [description, setDescription] = useState(
+    initialData?.description || "",
+  );
   const [problem, setProblem] = useState(initialData?.problem || "");
   const [solution, setSolution] = useState(initialData?.solution || "");
   const [savings, setSavings] = useState(initialData?.savings || "");
   const [outcome, setOutcome] = useState(initialData?.outcome || "");
   const [location, setLocation] = useState(initialData?.location || "");
-  const [capacity, setCapacity] = useState(initialData?.capacity?.toString() || "");
-  const [category, setCategory] = useState(initialData?.category || "Residential");
+  const [capacity, setCapacity] = useState(
+    initialData?.capacity?.toString() || "",
+  );
+  const [category, setCategory] = useState(
+    initialData?.category || "Residential",
+  );
   const [images, setImages] = useState<string[]>(initialData?.images || []);
-  
+
   // Technical Specifications
   const [brand, setBrand] = useState(initialData?.brand || "");
-  const [modelNumber, setModelNumber] = useState(initialData?.modelNumber || "");
+  const [modelNumber, setModelNumber] = useState(
+    initialData?.modelNumber || "",
+  );
   const [material, setMaterial] = useState(initialData?.material || "");
   const [type, setType] = useState(initialData?.type || "");
   const [numCells, setNumCells] = useState(initialData?.numCells || "");
   const [solarPower, setSolarPower] = useState(initialData?.solarPower || "");
-  const [outputVoltage, setOutputVoltage] = useState(initialData?.outputVoltage || "");
-  const [netQuantity, setNetQuantity] = useState(initialData?.netQuantity || "");
-  const [frameMaterial, setFrameMaterial] = useState(initialData?.frameMaterial || "");
-  const [voltageRating, setVoltageRating] = useState(initialData?.voltageRating || "");
-  
+  const [outputVoltage, setOutputVoltage] = useState(
+    initialData?.outputVoltage || "",
+  );
+  const [netQuantity, setNetQuantity] = useState(
+    initialData?.netQuantity || "",
+  );
+  const [frameMaterial, setFrameMaterial] = useState(
+    initialData?.frameMaterial || "",
+  );
+  const [voltageRating, setVoltageRating] = useState(
+    initialData?.voltageRating || "",
+  );
+
   // Dimensions
   const [length, setLength] = useState(initialData?.length || "");
   const [width, setWidth] = useState(initialData?.width || "");
@@ -57,8 +73,16 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !description || !location || !capacity || images.length === 0) {
-      toast.error("Please fill in all required fields and upload at least one image");
+    if (
+      !title ||
+      !description ||
+      !location ||
+      !capacity ||
+      images.length === 0
+    ) {
+      toast.error(
+        "Please fill in all required fields and upload at least one image",
+      );
       return;
     }
 
@@ -115,14 +139,16 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8 max-w-5xl mx-auto pb-20">
+    <form onSubmit={onSubmit} className="space-y-4 max-w-6xl mx-auto pb-20">
       <div className="flex items-center justify-between sticky top-0 z-20 bg-background/80 backdrop-blur-md py-4 border-b mb-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">
             {initialData ? "Edit Project" : "Add New Project"}
           </h1>
           <p className="text-muted-foreground">
-            {initialData ? "Modify project details" : "Showcase a new solar installation"}
+            {initialData
+              ? "Modify project details"
+              : "Showcase a new solar installation"}
           </p>
         </div>
         <div className="flex gap-4">
@@ -146,7 +172,9 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
           <Card>
             <CardContent className="pt-6 space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="title">Project Title <span className="text-destructive">*</span></Label>
+                <Label htmlFor="title">
+                  Project Title <span className="text-destructive">*</span>
+                </Label>
                 <Input
                   id="title"
                   placeholder="e.g. Green Valley Industrial Park"
@@ -157,7 +185,10 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="description">Overview Description <span className="text-destructive">*</span></Label>
+                <Label htmlFor="description">
+                  Overview Description{" "}
+                  <span className="text-destructive">*</span>
+                </Label>
                 <Textarea
                   id="description"
                   placeholder="Tell us about the project specifications and impact..."
@@ -214,7 +245,9 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="location">Location <span className="text-destructive">*</span></Label>
+                  <Label htmlFor="location">
+                    Location <span className="text-destructive">*</span>
+                  </Label>
                   <Input
                     id="location"
                     placeholder="City, State"
@@ -224,7 +257,9 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="capacity">Capacity (kW) <span className="text-destructive">*</span></Label>
+                  <Label htmlFor="capacity">
+                    Capacity (kW) <span className="text-destructive">*</span>
+                  </Label>
                   <Input
                     id="capacity"
                     type="number"
@@ -240,77 +275,146 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
 
           <Card>
             <CardContent className="pt-6 space-y-6">
-              <h3 className="text-lg font-semibold border-b pb-2">Technical Specifications</h3>
-              
+              <h3 className="text-lg font-semibold border-b pb-2">
+                Technical Specifications
+              </h3>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="brand">Brand</Label>
-                  <Input id="brand" value={brand} onChange={(e) => setBrand(e.target.value)} placeholder="e.g. ZunSolar" />
+                  <Input
+                    id="brand"
+                    value={brand}
+                    onChange={(e) => setBrand(e.target.value)}
+                    placeholder="e.g. ZunSolar"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="modelNumber">Model Number</Label>
-                  <Input id="modelNumber" value={modelNumber} onChange={(e) => setModelNumber(e.target.value)} placeholder="e.g. 200 Watt 12 Volt Mono PERC" />
+                  <Input
+                    id="modelNumber"
+                    value={modelNumber}
+                    onChange={(e) => setModelNumber(e.target.value)}
+                    placeholder="e.g. 200 Watt 12 Volt Mono PERC"
+                  />
                 </div>
               </div>
 
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="material">Material</Label>
-                  <Input id="material" value={material} onChange={(e) => setMaterial(e.target.value)} placeholder="e.g. Silver Anodized Aluminum Frame" />
+                  <Input
+                    id="material"
+                    value={material}
+                    onChange={(e) => setMaterial(e.target.value)}
+                    placeholder="e.g. Silver Anodized Aluminum Frame"
+                  />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="type">Type</Label>
-                  <Input id="type" value={type} onChange={(e) => setType(e.target.value)} placeholder="e.g. Monocrystalline" />
+                  <Input
+                    id="type"
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                    placeholder="e.g. Monocrystalline"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="numCells">Number of Cells</Label>
-                  <Input id="numCells" value={numCells} onChange={(e) => setNumCells(e.target.value)} placeholder="e.g. 36" />
+                  <Input
+                    id="numCells"
+                    value={numCells}
+                    onChange={(e) => setNumCells(e.target.value)}
+                    placeholder="e.g. 36"
+                  />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="solarPower">Solar Power</Label>
-                  <Input id="solarPower" value={solarPower} onChange={(e) => setSolarPower(e.target.value)} placeholder="e.g. 200" />
+                  <Input
+                    id="solarPower"
+                    value={solarPower}
+                    onChange={(e) => setSolarPower(e.target.value)}
+                    placeholder="e.g. 200"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="outputVoltage">Output Voltage</Label>
-                  <Input id="outputVoltage" value={outputVoltage} onChange={(e) => setOutputVoltage(e.target.value)} placeholder="e.g. 12" />
+                  <Input
+                    id="outputVoltage"
+                    value={outputVoltage}
+                    onChange={(e) => setOutputVoltage(e.target.value)}
+                    placeholder="e.g. 12"
+                  />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="netQuantity">Net Quantity</Label>
-                  <Input id="netQuantity" value={netQuantity} onChange={(e) => setNetQuantity(e.target.value)} placeholder="e.g. 1 Solar Panel" />
+                  <Input
+                    id="netQuantity"
+                    value={netQuantity}
+                    onChange={(e) => setNetQuantity(e.target.value)}
+                    placeholder="e.g. 1 Solar Panel"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="frameMaterial">Frame Material</Label>
-                  <Input id="frameMaterial" value={frameMaterial} onChange={(e) => setFrameMaterial(e.target.value)} placeholder="e.g. Silver Anodized Aluminium" />
+                  <Input
+                    id="frameMaterial"
+                    value={frameMaterial}
+                    onChange={(e) => setFrameMaterial(e.target.value)}
+                    placeholder="e.g. Silver Anodized Aluminium"
+                  />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="voltageRating">Voltage Rating</Label>
-                <Input id="voltageRating" value={voltageRating} onChange={(e) => setVoltageRating(e.target.value)} placeholder="e.g. 12 V" />
+                <Input
+                  id="voltageRating"
+                  value={voltageRating}
+                  onChange={(e) => setVoltageRating(e.target.value)}
+                  placeholder="e.g. 12 V"
+                />
               </div>
 
-              <h3 className="text-lg font-semibold border-b pb-2 pt-4">Dimensions & Weight</h3>
+              <h3 className="text-lg font-semibold border-b pb-2 pt-4">
+                Dimensions & Weight
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="length">Length</Label>
-                  <Input id="length" value={length} onChange={(e) => setLength(e.target.value)} placeholder="e.g. 149 cm" />
+                  <Input
+                    id="length"
+                    value={length}
+                    onChange={(e) => setLength(e.target.value)}
+                    placeholder="e.g. 149 cm"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="width">Width</Label>
-                  <Input id="width" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="e.g. 66.5 cm" />
+                  <Input
+                    id="width"
+                    value={width}
+                    onChange={(e) => setWidth(e.target.value)}
+                    placeholder="e.g. 66.5 cm"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="weight">Weight</Label>
-                  <Input id="weight" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder="e.g. 11.6 kg" />
+                  <Input
+                    id="weight"
+                    value={weight}
+                    onChange={(e) => setWeight(e.target.value)}
+                    placeholder="e.g. 11.6 kg"
+                  />
                 </div>
               </div>
             </CardContent>
@@ -318,10 +422,15 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
 
           <Card>
             <CardContent className="pt-6 space-y-4">
-              <Label>Project Images <span className="text-destructive">*</span></Label>
+              <Label>
+                Project Images <span className="text-destructive">*</span>
+              </Label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {images.map((url) => (
-                  <div key={url} className="relative aspect-video rounded-lg overflow-hidden border group">
+                  <div
+                    key={url}
+                    className="relative aspect-video rounded-lg overflow-hidden border group"
+                  >
                     <Image
                       src={url}
                       alt="Project image"
@@ -343,7 +452,7 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
                       endpoint="projectImage"
                       onClientUploadComplete={(res) => {
                         if (res) {
-                          setImages([...images, ...res.map(r => r.url)]);
+                          setImages([...images, ...res.map((r) => r.url)]);
                           toast.success("Images uploaded");
                         }
                       }}
@@ -351,7 +460,8 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
                         toast.error(`Upload failed: ${error.message}`);
                       }}
                       appearance={{
-                        button: "bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-full h-full",
+                        button:
+                          "bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-full h-full",
                       }}
                       content={{
                         button({ ready }) {
@@ -363,7 +473,9 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
                   </div>
                 )}
               </div>
-              <p className="text-xs text-muted-foreground">Upload up to 5 images. Recommended size: 1200x800px.</p>
+              <p className="text-xs text-muted-foreground">
+                Upload up to 5 images. Recommended size: 1200x800px.
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -372,7 +484,9 @@ export const ProjectForm = ({ initialData }: ProjectFormProps) => {
           <Card>
             <CardContent className="pt-6 space-y-4">
               <div className="space-y-2">
-                <Label>Category <span className="text-destructive">*</span></Label>
+                <Label>
+                  Category <span className="text-destructive">*</span>
+                </Label>
                 <Select value={category} onValueChange={setCategory}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select category" />

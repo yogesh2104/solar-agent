@@ -111,6 +111,7 @@ export default function B2BAbout() {
                 src={overview.image}
                 alt="Commercial rooftop solar overview"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
@@ -141,6 +142,7 @@ export default function B2BAbout() {
                       src={image}
                       alt="Commercial solar project detail"
                       fill
+                      sizes="(max-width: 768px) 100vw, 25vw"
                       className="object-cover"
                     />
                   </div>

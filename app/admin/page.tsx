@@ -1,22 +1,14 @@
 import { db } from "@/lib/db";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   FileText,
   Briefcase,
   Quote,
   MessageSquare,
-  Users,
-  TrendingUp,
   Star,
+  Users,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
 
 export default async function AdminDashboard() {
   const [
@@ -86,6 +78,14 @@ export default async function AdminDashboard() {
       color: "text-blue-600",
       bgColor: "bg-blue-600/10",
     },
+    {
+      title: "Total Users",
+      value: usersCount,
+      icon: Users,
+      description: "Registered users",
+      color: "text-blue-600",
+      bgColor: "bg-blue-600/10",
+    },
   ];
 
   return (
@@ -124,96 +124,6 @@ export default async function AdminDashboard() {
             </CardContent>
           </Card>
         ))}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="border-none   bg-card/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-primary" />
-              Quick Actions
-            </CardTitle>
-            <CardDescription>Common tasks for administrators</CardDescription>
-          </CardHeader>
-          <CardContent className="grid grid-cols-2 gap-4">
-            <Link
-              href="/admin/blogs/new"
-              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
-            >
-              <div className="font-semibold group-hover:text-primary transition-colors">
-                Create Blog
-              </div>
-            </Link>
-            <Link
-              href="/admin/projects/new"
-              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
-            >
-              <div className="font-semibold group-hover:text-primary transition-colors">
-                Add Project
-              </div>
-            </Link>
-            <Link
-              href="/admin/quotations"
-              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
-            >
-              <div className="font-semibold group-hover:text-primary transition-colors">
-                View Quotes
-              </div>
-            </Link>
-            <Link
-              href="/admin/contacts"
-              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
-            >
-              <div className="font-semibold group-hover:text-primary transition-colors">
-                Inquiries
-              </div>
-            </Link>
-            <Link
-              href="/admin/reviews"
-              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
-            >
-              <div className="font-semibold group-hover:text-primary transition-colors">
-                Manage Reviews
-              </div>
-            </Link>
-            <Link
-              href="/admin/testimonials"
-              className="p-4 rounded-xl border border-border/50 bg-background/50 hover:bg-primary/5 transition-colors text-center group"
-            >
-              <div className="font-semibold group-hover:text-primary transition-colors">
-                Testimonials
-              </div>
-            </Link>
-          </CardContent>
-        </Card>
-
-        <Card className="border-none   bg-card/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-sky-500" />
-              System Status
-            </CardTitle>
-            <CardDescription>Detailed overview of system data</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between p-3 rounded-lg bg-muted/30">
-              <span className="text-sm">Total Registered Users</span>
-              <span className="font-bold">{usersCount}</span>
-            </div>
-            <div className="flex items-center justify-between p-3 rounded-lg bg-muted/30">
-              <span className="text-sm">Database Engine</span>
-              <span className="font-mono text-xs px-2 py-1 rounded bg-green-500/20 text-green-600">
-                MongoDB / Prisma
-              </span>
-            </div>
-            <div className="flex items-center justify-between p-3 rounded-lg bg-muted/30">
-              <span className="text-sm">Deployment Stage</span>
-              <span className="font-mono text-xs px-2 py-1 rounded bg-amber-500/20 text-amber-600">
-                Development
-              </span>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );

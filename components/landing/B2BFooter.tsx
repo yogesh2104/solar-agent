@@ -64,17 +64,35 @@ export default function B2BFooter() {
                     src="/logo.png"
                     alt={siteConfig.company.name}
                     fill
+                    sizes="160px"
                     className={cn("object-contain transition-all duration-300")}
                     priority
                   />
                 </div>
               </Link>
 
-              <p className="mt-5 max-w-sm text-sm leading-7 text-black">
-                {company.tagline}
-              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <div className="relative h-20 w-40">
+                  <Image
+                    src="/MSME.jpeg"
+                    alt="MSME Government Approval"
+                    fill
+                    className="object-fit"
+                  />
+                  {/* <Image
+                    src="/MSME1.jpeg"
+                    alt="MSME Government Approval"
+                    fill
+                    className="object-contain dark:hidden"
+                  /> */}
+                </div>
+              </div>
 
-              <div className="mt-6 flex flex-wrap gap-2">
+              {/* <p className="mt-5 max-w-sm text-sm leading-7 text-black">
+                {company.tagline}
+              </p> */}
+
+              {/* <div className="mt-6 flex flex-wrap gap-2">
                 {[
                   "Residential Solar",
                   "Commercial Solar",
@@ -90,7 +108,7 @@ export default function B2BFooter() {
                     {tag}
                   </span>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             <div>

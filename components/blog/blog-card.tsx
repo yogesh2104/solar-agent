@@ -25,7 +25,7 @@ export const BlogCard = ({ blog, isAdmin }: BlogCardProps) => {
           />
           <div className="absolute inset-0 bg-linear-to-t from-slate-950/35 via-transparent to-transparent" />
           <div className="absolute left-5 top-5">
-            <Badge className="rounded-full border border-white/40 bg-white/88 px-3 py-1 text-[10px] font-semibold uppercase  text-slate-700 shadow-none">
+            <Badge className="rounded-full border border-white/40 bg-primary px-3 py-1 text-[10px] font-semibold uppercase text-white shadow-none">
               {blog.tags[0] || "Insight"}
             </Badge>
           </div>
