@@ -11,29 +11,26 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
+import siteConfig from "@/lib/siteConfig";
 
 export const metadata = {
-  title:
-    "Solar Installation Services India | Residential, Commercial, Industrial & Utility | ELIZ ENERGY",
-  description:
-    "Complete solar installation services across India by ELIZ ENERGY. Rooftop solar for homes, offices, factories & utility-scale plants. EV charger installation, Surya Ghar Yojana projects & robotic cleaning for utility solar.",
+  title: siteConfig.seo.services.title,
+  description: siteConfig.seo.services.description,
   keywords: [
     "solar installation services India",
-    "rooftop solar installation",
-    "commercial solar installation",
-    "industrial solar",
-    "utility solar India",
-    "Surya Ghar Yojana installation",
-    "solar EPC India",
+    "solar equipment supply India",
+    "solar panels India",
+    "solar inverters",
+    "solar batteries",
     "EV charger installation India",
-    "solar maintenance AMC",
+    "robotic cleaning utility solar",
+    "Surya Ghar Yojana installation",
   ],
   openGraph: {
     type: "website",
     url: "https://elizenergy.in/services",
-    title: "Solar Installation Services India | All Sectors | ELIZ ENERGY",
-    description:
-      "Complete solar installation for residential, commercial, industrial & utility sectors across India. EV chargers & robotic cleaning available.",
+    title: siteConfig.seo.services.title,
+    description: siteConfig.seo.services.description,
     images: [
       {
         url: "/Logo1.png",
@@ -45,8 +42,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Solar Installation Services India | ELIZ ENERGY",
-    description: "Complete solar installation for all sectors across India.",
+    title: siteConfig.seo.services.title,
+    description: siteConfig.seo.services.description,
     images: ["/Logo1.png"],
   },
   alternates: { canonical: "https://elizenergy.in/services" },
@@ -72,12 +69,12 @@ export default async function ServicesPage() {
       <StaticPageHeader
         title="Complete"
         highlight="Solar Installation Services"
-        description="Get complete solar installation services in Mumbai. ELIZ ENERGY provides rooftop, commercial, and industrial solar solutions with maintenance support."
+        description="Get complete solar equipment supply and support across India."
       />
 
       <div className="container mx-auto px-6 py-8 md:py-12">
         {services.length === 0 ? (
-          <div className="text-center py-20 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-slate-200">
+          <div className="rounded-[2.5rem] border border-slate-200 bg-white/40 py-20 text-center backdrop-blur-md">
             <p className="text-slate-500">
               Our services are currently being updated. Please check back soon.
             </p>
@@ -102,21 +99,21 @@ export default async function ServicesPage() {
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : (
-                      <div className="w-full h-full bg-slate-100 flex items-center justify-center">
+                      <div className="flex h-full w-full items-center justify-center bg-slate-100">
                         <Icon className="h-20 w-20 text-slate-200" />
                       </div>
                     )}
                     <div className="absolute inset-0 bg-linear-to-t from-slate-950/40 via-transparent to-transparent" />
-                    <div className="absolute left-6 top-6 flex size-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all duration-500 group-hover:scale-110 group-hover:-secondary group-hover:text-slate-950">
+                    <div className="absolute left-6 top-6 flex size-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all duration-500 group-hover:scale-110 group-hover:bg-white group-hover:text-slate-950">
                       <Icon className="size-6" />
                     </div>
                   </div>
 
                   <div className="flex flex-1 flex-col p-6 md:p-8">
-                    <h3 className="text-2xl font-bold tracking-tight text-slate-950 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-bold tracking-tight text-slate-950 transition-colors group-hover:text-primary">
                       {service.title}
                     </h3>
-                    <p className="mt-4 text-slate-600 leading-relaxed font-medium">
+                    <p className="mt-4 font-medium leading-relaxed text-slate-600">
                       {service.description}
                     </p>
 
@@ -126,7 +123,7 @@ export default async function ServicesPage() {
                           key={feature}
                           className="inline-flex items-center gap-1.5 rounded-full border border-slate-100 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600"
                         >
-                          <CheckCircle2 className="size-3 -secondary" />
+                          <CheckCircle2 className="size-3 text-secondary" />
                           {feature}
                         </span>
                       ))}
@@ -137,7 +134,7 @@ export default async function ServicesPage() {
                       )}
                     </div>
 
-                    <div className="mt-10 flex items-center gap-3 text-sm font-bold uppercase tracking-widest -secondary">
+                    <div className="mt-10 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-secondary">
                       Explore Details
                       <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </div>
@@ -148,29 +145,28 @@ export default async function ServicesPage() {
           </div>
         )}
 
-        {/* CTA Section */}
-        <div className="mt-12 rounded-[3rem] bg-slate-950 p-8 md:p-16 text-center relative overflow-hidden">
-          <div className="absolute -left-1/4 -top-1/4 size-[500px] rounded-full text-secondary opacity-10 blur-[100px]" />
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold text-white md:text-5xl mb-6">
-              Not sure which solar path is right for you?
+        <div className="mt-12 rounded-[3rem] bg-slate-950 p-8 text-center text-white md:p-16">
+          <div className="relative z-10 mx-auto max-w-2xl">
+            <h2 className="mb-6 text-3xl font-bold text-white md:text-5xl">
+              Need help matching equipment to your project?
             </h2>
-            <p className="text-slate-400 text-lg mb-10">
-              Our experts help you analyze your energy load and site conditions
-              to recommend the most optimized system.
+            <p className="mb-10 text-lg text-slate-400">
+              We help you choose the right solar equipment, partner brand, and
+              support path for residential, commercial, industrial, and utility
+              projects.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/get-quote">
-                <Button className="h-14 px-10 cursor-pointer rounded-full font-bold text-base text-white hover:bg-primary/90">
-                  Get Free Feasibility Study
+              <Link href="/contact">
+                <Button className="h-14 cursor-pointer rounded-full px-10 text-base font-bold text-white hover:bg-primary/90">
+                  Contact Our Team
                 </Button>
               </Link>
-              <Link href="/contact">
+              <Link href="/products">
                 <Button
                   variant="secondary"
-                  className="h-14 px-10 cursor-pointer rounded-full font-bold text-base text-white border-white/10 transition-colors"
+                  className="h-14 cursor-pointer rounded-full px-10 text-base font-bold text-white border-white/10 transition-colors"
                 >
-                  Talk to an Expert
+                  View Products
                 </Button>
               </Link>
             </div>

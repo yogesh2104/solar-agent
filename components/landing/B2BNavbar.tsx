@@ -157,8 +157,8 @@ export default function B2BNavbar() {
                 : "bg-white text-black hover:bg-white/90",
             )}
           >
-            <Link href="/get-quote" onClick={() => setMobileMenuOpen(false)}>
-              Get Quote
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+              Contact
               <ArrowUpRight className="size-4" />
             </Link>
           </Button>

@@ -39,18 +39,18 @@ export default function B2BFooter() {
                 asChild
                 className="h-12 rounded-full -secondary px-5 text-white hover:text-secondary/90"
               >
-                <Link href="/get-quote">
-                  Start Quote
+                <Link href="/contact">
+                  Contact Sales
                   <ArrowUpRight className="size-4" />
                 </Link>
               </Button>
-              <Button
+              {/* <Button
                 asChild
                 variant="outline"
                 className="h-12 rounded-full border-white/15 bg-transparent px-5 text-black hover:bg-white/8"
               >
                 <Link href="/contact">Contact Sales</Link>
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function B2BFooter() {
               <Link href="/" className="flex items-center gap-3">
                 <div className="relative h-40 w-40">
                   <Image
-                    src="/logo.png"
+                    src="/logo1.png"
                     alt={siteConfig.company.name}
                     fill
                     sizes="160px"

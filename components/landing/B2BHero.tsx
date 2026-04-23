@@ -35,9 +35,8 @@ export default function B2BHero() {
             className="mt-8 text-5xl font-semibold tracking-tight text-white md:text-7xl xl:text-[5.6rem]"
           >
             {/* {hero.title} */}
-            Solar Panel Installation{" "}
-            <span className="text-primary">Across India</span>- Save Electricity
-            Bills with Solar
+            The pit stop solution for{" "}
+            <span className="text-primary">renewable energy</span> equipment
           </motion.h1>
 
           <motion.p

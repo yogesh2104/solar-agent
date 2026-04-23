@@ -252,14 +252,14 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <div className="bg-foreground text-background rounded-3xl p-10 flex flex-col items-center text-center">
               <h3 className="text-2xl font-bold mb-4">Start Your Switch to Solar</h3>
               <p className="text-background/70 mb-8 max-w-md">
-                Inspired by this project? Get a personalized quotation for your
-                own rooftop installation today.
+                Inspired by this project? Reach out for the right solar equipment,
+                partner brand, and support path for your site.
               </p>
               <Link
-                href="/get-quote"
+                href="/contact"
                 className="bg-primary text-primary-foreground h-14 px-10 flex items-center justify-center rounded-full font-bold text-lg hover:bg-primary/90 transition-all hover:scale-105"
               >
-                Get Free Quote
+                Contact Our Team
               </Link>
             </div>
           </div>

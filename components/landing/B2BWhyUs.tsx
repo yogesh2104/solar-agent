@@ -53,7 +53,7 @@ export default function B2BWhyUs() {
               What teams use us for
             </div>
             <h3 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
-              Fewer blind spots between proposal, approval, and performance.
+              Pan India supply, trusted brands, and practical solar support.
             </h3>
             <div className="mt-6 space-y-4">
               {whyUs.checklist.map((item) => (

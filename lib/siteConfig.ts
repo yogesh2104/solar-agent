@@ -2,95 +2,85 @@ const siteConfig = {
   company: {
     name: "ELIZ ENERGY",
     fullName: "ELIZ ENERGY Solar Solutions",
-    tagline:
-      "Affordable & reliable solar solutions across India – Residential, Commercial, Industrial & Utility.",
+    tagline: "The pit stop solution for renewable energy equipment.",
     logo: "E",
     contact: {
-      phone: "+91 7700908508",
-      whatsapp: "917700908508",
+      phone: "+91 7208244097",
+      whatsapp: "917208244097",
       email: "energyeliz@gmail.com",
       address: "Thane, Mumbai, Maharashtra",
       googleMaps: "#",
-      workingHours: "Mon-Sat, 9:00 AM - 7:00 PM",
+      workingHours: "11am to 5pm",
       locationBoost:
-        "Solar Company in Pan India | Gujarat | Rajasthan | Delhi | Uttar Pradesh | Maharashtra | Madhya Pradesh | Haryana | Punjab | Bihar | Uttarakhand | Jammu & Kashmir | Ladakh | Goa | Chandigarh",
+        "Pan India solar equipment sale & support | Residential, Commercial, Industrial & Utility",
     },
   },
   navigation: [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    // { name: "Services", href: "/services" },
     { name: "Blog", href: "/blog" },
     { name: "Products", href: "/products" },
     { name: "Contact", href: "/contact" },
   ],
   hero: {
-    badge: "Clean energy for Residential, Commercial, Industrial & Utility",
-    title:
-      "Solar Panel Installation Across India – Save Electricity Bills with Solar",
+    badge: "Pan India solar equipment sale & support",
+    title: "The pit stop solution for renewable energy equipment",
     description:
-      "ELIZ ENERGY provides affordable solar panel installation across India for homes, shops, industries, and utility-scale projects. We serve Mumbai, Thane, Navi Mumbai and beyond. Reduce electricity costs and switch to clean energy today.",
+      "Eliz Energy provides fast delivery, reliable and sustainable power systems for a cleaner future.",
     primaryCta: {
-      text: "Get Free Consultation",
+      text: "Contact Us",
       href: "/contact",
     },
     secondaryCta: {
-      text: "Our Services",
-      href: "/services",
+      text: "View Products",
+      href: "/products",
     },
     trustChips: [
-      "Pan India Solar Installation",
-      "End-to-end Solar Solutions & Support",
-      "Surya Ghar Yojana Subsidy Assistance",
+      "Supply & Support Across India",
       "Residential, Commercial, Industrial & Utility",
+      "4+ years in the solar sector",
+      "Waaree, Citizen, GoodWe & more",
     ],
     sideStats: [
       {
-        label: "Module efficiency",
-        value: "22.3%",
-        note: "High-output mono PERC and TOPCon supply",
+        label: "Experience",
+        value: "4+ years",
+        note: "Solar sector supply and support",
       },
       {
-        label: "Asset uptime target",
-        value: "99.5%",
-        note: "Commissioning, monitoring, and service support",
+        label: "Coverage",
+        value: "Pan India",
+        note: "Fast delivery and reliable support",
       },
     ],
     stageCards: {
       proof: {
-        title:
-          "Commercial-ready supply for rooftops, captive plants, and phased site rollouts.",
+        title: "Pan India solar equipment sale & support.",
         image: "/images/worker-helmet.webp",
       },
       social: {
-        value: "500+",
-        label: "satisfied customers and partners served",
+        value: "Across India",
+        label: "Supply and support",
       },
       highlight: {
-        title: "Storage-ready design",
+        title: "Grow Green Energy With Us !!",
         description:
-          "Hybrid inverter and battery options for resilience, peak shaving, and night-shift continuity.",
+          "Reliable solar equipment and clean-energy systems for residential, commercial, industrial, and utility projects.",
       },
     },
     metrics: [
       { value: "4+ Years", label: "Solar sector experience" },
-      { value: "3.4 yrs", label: "median modeled payback on high-load sites" },
-      {
-        value: "Pan India",
-        label: "Installation coverage across India",
-      },
-      {
-        value: "48 hrs",
-        label: "for first-pass feasibility and commercial response",
-      },
+      { value: "Pan India", label: "Supply & support coverage" },
+      { value: "4", label: "Sectors served" },
+      { value: "Tier-1", label: "Partner brands" },
     ],
     image: "/images/new_landing/hero_b2b.png",
   },
   solutions: {
-    badge: "Solar delivery models",
-    title: "Complete Solar Solutions Across India",
+    badge: "Products & services",
+    title: "Complete solar equipment supply and support",
     description:
-      "We provide complete solar solutions including panels, inverters, batteries, mounting structures, BoS components, cabling, EV chargers, and robotic cleaning for utility projects. Tailored for Residential, Commercial, Industrial & Utility sectors.",
+      "We provide complete solar solutions including solar panels, inverters, solar batteries, mounting structures, BoS components, cabling & accessories, EV chargers, robotic cleaning for utility, and Surya Ghar Yojana subsidy project support.",
     image: "/images/Solar-Panel-Installation.webp",
     sectors: [
       "Residential Homes",
@@ -103,46 +93,46 @@ const siteConfig = {
     cards: [
       {
         id: "01",
-        title: "Residential Solar",
+        title: "Solar Panels & Inverters",
         description:
-          "Solar panel installation for homes across India. Reduce electricity bills, increase property value, and avail Surya Ghar Yojana subsidy.",
+          "Reliable panels and inverter options from trusted brands for homes, businesses, and larger installations.",
         bullets: [
-          "Affordable rooftop solar for homes",
-          "Surya Ghar Yojana subsidy assistance",
-          "Professional installation & maintenance",
+          "Solar panels",
+          "Inverters",
+          "Waaree, Citizen, GoodWe and more",
         ],
       },
       {
         id: "02",
-        title: "Commercial & Industrial Solar",
+        title: "Batteries, Mounting & BoS",
         description:
-          "Cost-effective solar solutions for shops, offices, and industrial plants across India. Maximize ROI and reduce energy costs.",
+          "Storage, mounting structures, and balance-of-system components for dependable project execution.",
         bullets: [
-          "Reduced operational energy costs",
-          "Tax benefits and ROI modeling",
-          "Scalable solar deployments",
+          "Solar batteries",
+          "Mounting structures",
+          "BoS components",
         ],
       },
       {
         id: "03",
-        title: "Utility-Scale Solar",
+        title: "Cabling, Accessories & EV Chargers",
         description:
-          "Large-scale utility solar projects with robotic cleaning solutions. We also supply and install EV chargers for homes and businesses.",
+          "Supporting electrical hardware and EV charger supply for residential, commercial, and industrial needs.",
         bullets: [
-          "Robotic cleaning for utility solar plants",
-          "EV charger installation (home & commercial)",
-          "Turnkey utility-scale project delivery",
+          "Cabling & accessories",
+          "EV charger",
+          "Fast delivery across India",
         ],
       },
       {
         id: "04",
-        title: "Monitoring, Warranty & O&M",
+        title: "Robotic Cleaning & Subsidy Support",
         description:
-          "Track generation and asset health after go-live with service workflows built for residential, commercial, industrial, and utility facilities.",
+          "Utility cleaning solutions and Surya Ghar Yojana project support for cleaner, simpler adoption.",
         bullets: [
-          "Remote performance monitoring",
-          "Preventive maintenance schedules",
-          "Warranty coordination and escalation support",
+          "Robotic cleaning for utility",
+          "Surya Ghar Yojana",
+          "Pan India supply & support",
         ],
       },
     ],
@@ -154,28 +144,28 @@ const siteConfig = {
       "Representative use cases that show how ELIZ ENERGY approaches panel selection, project sizing, and commercial outcomes across India.",
     items: [
       {
-        title: "Industrial Rooftop Solar Plant",
-        sector: "Industrial",
-        location: "Mumbai, Maharashtra",
+        title: "The project capacity is 600kw–Non-DCR",
+        sector: "Residential",
+        location: "Latur, Maharashtra",
         scale: "Rooftop solar system",
         outcome: "Projected 35%+ reduction in daytime grid dependency",
-        image: "/images/industrial.png",
+        image: "/project/latur_maharashtra.jpeg",
       },
       {
-        title: "Residential Solar with Battery Storage",
+        title: "700+ kW Non-DCR Project (535 Wp Modules) ",
         sector: "Residential",
         location: "Thane, Maharashtra",
         scale: "Surya Ghar Yojana subsidised install",
         outcome: "Near-zero electricity bills with govt subsidy",
-        image: "/images/solar-battery-solar.jpg",
+        image: "/project/pune_maharashtra.jpeg",
       },
       {
-        title: "Utility Solar with Robotic Cleaning",
+        title: " 20kw_590wp Waree Non-DCR",
         sector: "Utility",
-        location: "Pan India",
+        location: "Mumbai",
         scale: "Large-scale utility plant",
         outcome: "Automated robotic cleaning maximised generation",
-        image: "/images/solar-battery-solar.jpg",
+        image: "/project/project-2.jpeg",
       },
     ],
   },
@@ -218,56 +208,56 @@ const siteConfig = {
     ],
   },
   whyUs: {
-    badge: "Commercial confidence",
-    title: "Why Choose ELIZ ENERGY – Trusted Solar Company Across India?",
+    badge: "What teams use us for",
+    title: "Why buyers stay with ELIZ ENERGY",
     description:
-      "ELIZ ENERGY brings 4+ years of dedicated solar experience. We serve Residential, Commercial, Industrial & Utility customers with end-to-end solar solutions and Surya Ghar Yojana subsidy assistance.",
+      "ELIZ ENERGY brings 4+ years of solar sector experience and supports Residential, Commercial, Industrial & Utility customers across India.",
     image: "/images/Solar-Panel-Installation.webp",
     checklist: [
-      "Pan India solar installation coverage",
-      "4+ years of solar sector expertise",
-      "Complete product supply – Panels, Inverters, Batteries, BoS, Cabling & ",
-      "Robotic cleaning solutions for utility-scale solar plants",
-      "Surya Ghar Yojana subsidy project assistance",
+      "Pan India solar equipment sale & support",
+      "Waaree, Citizen, GoodWe & more",
+      "Solar panels, inverters, batteries, mounting structures",
+      "BoS components, cabling, accessories, and EV chargers",
+      "Robotic cleaning for utility and Surya Ghar Yojana support",
     ],
   },
   finalCta: {
-    title: "Get Free Solar Consultation – Anywhere in India",
+    title: "Grow Green Energy With Us !!",
     description:
-      "Contact ELIZ ENERGY today for complete solar solutions across India. Residential, Commercial, Industrial & Utility sectors served. Surya Ghar Yojana subsidy assistance available.",
+      "Call between 11am and 5pm for solar equipment, supply, and support across India.",
     primary: {
-      text: "Talk to Our Solar Experts",
+      text: "Contact Now",
       href: "/contact",
     },
     secondary: {
-      text: "Start Your Quote",
-      href: "/get-quote",
+      text: "View Products",
+      href: "/products",
     },
     deliverables: [
-      "Capacity sizing recommendation",
-      "Estimated generation and savings model",
-      "Surya Ghar Yojana subsidy eligibility check",
+      "Fast delivery across India",
+      "Reliable solar equipment support",
+      "Waaree, Citizen, GoodWe & more",
+      "Residential, Commercial, Industrial & Utility coverage",
     ],
   },
   overview: {
     badge: "About ELIZ ENERGY",
-    title:
-      "Trusted Solar Company Across India – Residential, Commercial, Industrial & Utility",
+    title: "About ELIZ ENERGY",
     description:
-      "ELIZ ENERGY is a leading solar company with 4+ years of experience in the solar sector. We provide reliable, cost-effective, and sustainable solar solutions across India. Our founder's solar expertise drives end-to-end project delivery for residential, commercial, industrial, and utility-scale customers, including Surya Ghar Yojana subsidy projects.",
+      "Eliz Energy is a solar equipment partner delivering reliable products and support across India for residential, commercial, industrial, and utility projects.",
     highlight:
-      "We align sourcing, engineering, commissioning, and service – across all sectors.",
+      "Fast delivery, reliable and sustainable power systems for a cleaner future.",
     image: "/images/new_landing/about_b2b.png",
     gallery: ["/images/Rooftop.jpg", "/images/industrial.png"],
     stats: [
       { value: "4+ Years", label: "Solar sector experience" },
-      { value: "10+ Years", label: "Combined expertise" },
-      { value: "Founded 2025", label: "ELIZ ENERGY" },
+      { value: "Across India", label: "Supply & support" },
+      { value: "Tier-1", label: "Partner brands" },
     ],
     advantages: [
-      "Complete solar product supply – Panels, Inverters, Batteries, Mounting Structures, BoS & Cabling",
-      "EV Charger installation for homes and commercial premises",
-      "Robotic cleaning solutions for utility-scale solar plants",
+      "Solar panels, inverters, batteries, mounting structures, and BoS components",
+      "EV charger supply and robotic cleaning for utility",
+      "Surya Ghar Yojana project support",
     ],
     sectors: [
       "Residential Homes",
@@ -277,30 +267,32 @@ const siteConfig = {
       "Hospitals & Campuses",
       "Government Subsidy Projects",
     ],
+    mission:
+      "To supply dependable solar equipment and support that helps customers switch to clean energy with confidence, speed, and service.",
+    vision:
+      "To become a trusted pan-India renewable energy partner known for fast delivery, reliable support, and practical solar solutions.",
   },
   seo: {
     home: {
-      title:
-        "Solar Panel Installation Across India | Best Solar Company | ELIZ ENERGY",
+      title: "Eliz Energy | Solar Equipment Supply & Support Across India",
       description:
-        "ELIZ ENERGY provides affordable solar solutions across India for Residential, Commercial, Industrial & Utility sectors. Surya Ghar Yojana subsidy available. Get a free consultation today.",
+        "Eliz Energy provides fast delivery, reliable solar equipment, and support across India for Residential, Commercial, Industrial & Utility projects.",
     },
     about: {
-      title:
-        "About ELIZ ENERGY | Trusted Solar Company with 4+ Years Experience",
+      title: "About Eliz Energy | Solar Equipment Supply & Support",
       description:
-        "Learn about ELIZ ENERGY – 4+ years of solar expertise. We provide complete solar solutions for Residential, Commercial, Industrial & Utility sectors across India.",
+        "Learn about Eliz Energy - 4+ years of solar sector experience, pan-India supply & support, and trusted partner brands like Waaree, Citizen, and GoodWe.",
     },
     services: {
       title:
-        "Complete Solar Solutions in India | Residential, Commercial, Industrial & Utility",
+        "Solar Products & Services in India | Residential, Commercial, Industrial & Utility",
       description:
-        "ELIZ ENERGY provides rooftop solar, commercial, industrial, and utility-scale solar solutions. EV charger installation and robotic cleaning for utility plants also available.",
+        "ELIZ ENERGY provides solar panels, inverters, batteries, mounting structures, BoS components, cabling, EV chargers, robotic cleaning, and Surya Ghar Yojana support.",
     },
     products: {
-      title: "Solar Panels, Inverters, Batteries,  & More | ELIZ ENERGY",
+      title: "Solar Panels, Inverters, Batteries & More | Eliz Energy",
       description:
-        "Buy high-quality solar panels, inverters, batteries, mounting structures, BoS components, cabling, and EV chargers. Robotic cleaning for utility solar available.",
+        "Buy solar panels, inverters, batteries, mounting structures, BoS components, cabling & accessories, EV chargers, and robotic cleaning support from Eliz Energy.",
     },
     maintenance: {
       title: "Solar Maintenance Services | AMC, Cleaning & Robotic Cleaning",
@@ -308,20 +300,17 @@ const siteConfig = {
         "Keep your solar system efficient with expert maintenance. AMC, panel cleaning, robotic cleaning for utility plants, and performance optimization by ELIZ ENERGY.",
     },
     contact: {
-      title: "Contact ELIZ ENERGY | Solar Consultation Across India",
-      description:
-        "Contact ELIZ ENERGY for solar panel installation across India. Residential, Commercial, Industrial & Utility sectors. Get a free consultation and quotation today.",
+      title: "Contact Eliz Energy | Pan India Solar Equipment Sale & Support",
+      description: "Call between 11am and 5pm for solar equipment, supply, and support across India.",
     },
   },
   footer: {
-    title: "Need pricing, technical data sheets, or solar support?",
-    description:
-      "Tell us whether you are evaluating a rooftop solar project, buying panels, or planning maintenance. Our team will point you to the right path quickly.",
+    title: "Need solar equipment, supply, or support?",
+    description: "Call between 11am and 5pm for fast delivery and reliable solar support across India.",
     quickLinks: [
       { name: "About Us", href: "/about" },
       { name: "Products", href: "/products" },
-      // { name: "Services", href: "/services" },
-      // { name: "Maintenance", href: "/maintenance" },
+      { name: "Services", href: "/services" },
       { name: "Blog", href: "/blog" },
       { name: "Contact", href: "/contact" },
     ],
@@ -330,14 +319,13 @@ const siteConfig = {
       { name: "Terms and Conditions", href: "/terms" },
       { name: "Cookie Policy", href: "/cookies" },
       { name: "Disclaimer", href: "/disclaimer" },
-      { name: "Refund Policy", href: "/refund-policy" },
     ],
     solutionLinks: [
-      { name: "Rooftop Solar", href: "/services" },
-      { name: "Commercial Solar", href: "/services" },
+      { name: "Solar Products", href: "/products" },
+      { name: "Solar Services", href: "/services" },
       { name: "Maintenance & AMC", href: "/maintenance" },
     ],
-    copyright: "© 2026 ELIZ ENERGY. All rights reserved.",
+    copyright: "(c) 2026 ELIZ ENERGY. All rights reserved.",
   },
   founder: {
     name: "Ms. Falguni Rawal",
@@ -347,7 +335,7 @@ const siteConfig = {
       combined: "10-11 years",
       sales: "5+ years",
     },
-    bio: "Ms. Falguni Rawal brings 4+ years of dedicated solar sector experience alongside a decade of combined expertise. Driven by a passion for clean energy, she founded ELIZ ENERGY to deliver complete solar solutions – from residential rooftops eligible for Surya Ghar Yojana subsidies to utility-scale projects with robotic cleaning – making sustainable power accessible and affordable across India.",
+    bio: "Ms. Falguni Rawal brings 4+ years of dedicated solar sector experience alongside a decade of combined expertise. Driven by a passion for clean energy, she founded ELIZ ENERGY to deliver complete solar solutions - from residential rooftops eligible for Surya Ghar Yojana subsidies to utility-scale projects with robotic cleaning - making sustainable power accessible and affordable across India.",
     image: "/images/founder.jpeg",
   },
   faqs: [
@@ -355,14 +343,14 @@ const siteConfig = {
       id: "1",
       question: "How long does solar panel installation take in India?",
       answer:
-        "A typical residential solar panel installation in India takes 3–5 days. Larger commercial solar projects may take 2–4 weeks depending on system size and site conditions.",
+        "A typical residential solar panel installation in India takes 3-5 days. Larger commercial solar projects may take 2-4 weeks depending on system size and site conditions.",
       category: "General",
     },
     {
       id: "2",
       question: "Does solar work during cloudy or rainy days in India?",
       answer:
-        "Yes, solar panels generate electricity even on cloudy or rainy days using diffused sunlight. However, output may reduce by 10–30% compared to sunny conditions.",
+        "Yes, solar panels generate electricity even on cloudy or rainy days using diffused sunlight. However, output may reduce by 10-30% compared to sunny conditions.",
       category: "Technical",
     },
     {
@@ -376,7 +364,7 @@ const siteConfig = {
       id: "4",
       question: "What maintenance is required for solar panels?",
       answer:
-        "Solar panels require minimal maintenance. Cleaning every 15–30 days and an annual inspection is enough to maintain efficiency.",
+        "Solar panels require minimal maintenance. Cleaning every 15-30 days and an annual inspection is enough to maintain efficiency.",
       category: "Maintenance",
     },
     {
@@ -397,7 +385,7 @@ const siteConfig = {
       id: "7",
       question: "How much does a solar system cost in India?",
       answer:
-        "The cost of a solar system in India typically ranges from ₹70,000 to ₹90,000 per kW depending on components, installation, and system type.",
+        "The cost of a solar system in India typically ranges from Rs 70,000 to Rs 90,000 per kW depending on components, installation, and system type.",
       category: "Pricing",
     },
     {

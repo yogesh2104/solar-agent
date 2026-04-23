@@ -219,40 +219,40 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               remarkPlugins={[remarkGfm]}
               components={{
                 h2: ({ children }) => (
-                  <h2 className="text-4xl font-bold tracking-tight text-slate-950 mt-5 mb-4 first:mt-0 flex items-center gap-4">
+                  <h2 className="text-xl font-bold tracking-tight text-slate-950 mt-2 mb-2 first:mt-0 flex items-center gap-4">
                     <span className="h-10 w-1.5 rounded-full bg-primary" />
                     {children}
                   </h2>
                 ),
                 h3: ({ children }) => (
-                  <h3 className="text-2xl font-bold text-slate-900 mt-5 mb-4 text-center lg:text-left">
+                  <h3 className="text-md font-bold text-slate-900 mt-2 mb-2 text-center lg:text-left">
                     {children}
                   </h3>
                 ),
                 p: ({ children }) => (
-                  <p className="text-lg leading-[1.8] text-slate-600 mb-6 font-medium last:mb-0">
+                  <p className="text-sm leading-[1.8] text-slate-600 mb-3 font-medium last:mb-0">
                     {children}
                   </p>
                 ),
                 ul: ({ children }) => (
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5 mb-6 p-0">
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5 mb-4 p-0">
                     {children}
                   </ul>
                 ),
                 ol: ({ children }) => (
-                  <ol className="space-y-6 mb-8 list-decimal list-inside text-xl font-medium text-slate-600">
+                  <ol className="space-y-2 mb-4 list-decimal list-inside text-xl font-medium text-slate-600">
                     {children}
                   </ol>
                 ),
                 li: ({ children }) => (
-                  <li className="flex items-start gap-4 text-xl font-medium text-slate-600 group transition-colors hover:text-slate-950">
+                  <li className="flex items-start gap-4 text-md font-medium text-slate-600 group transition-colors hover:text-slate-950">
                     <span className="mt-2.5 size-2 shrink-0 rounded-full bg-primary ring-4 ring-primary/10" />
                     <span className="flex-1">{children}</span>
                   </li>
                 ),
                 hr: () => <hr className="my-10 h-px border-0" />,
                 blockquote: ({ children }) => (
-                  <blockquote className="my-10 overflow-hidden rounded-[2.5rem] border border-slate-100 bg-[#f8fafc] p-8 md:p-10 text-2xl font-semibold italic leading-relaxed text-slate-900">
+                  <blockquote className="my-10 overflow-hidden rounded-[2.5rem] border border-slate-100 bg-[#f8fafc] p-8 md:p-10 text-md font-semibold italic leading-relaxed text-slate-900">
                     <div className="flex gap-6">
                       <Quote className="size-10 shrink-0 text-primary opacity-20" />
                       <div>{children}</div>
@@ -344,7 +344,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     size="lg"
                     className="rounded-full bg-primary hover:bg-primary/90 text-white font-semibold px-8 h-14"
                   >
-                    <Link href="/get-quote">Get Enterprise Quote</Link>
+                    <Link href="/contact">Contact Our Team</Link>
                   </Button>
                 </div>
               </div>

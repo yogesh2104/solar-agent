@@ -21,10 +21,10 @@ export default function B2BAbout() {
               transition={{ duration: 0.55 }}
               className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl"
             >
-              Affordable & reliable solar solutions across India
+              {overview.title}
             </motion.h2>
 
-            {/* <motion.p
+            <motion.p
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -32,7 +32,7 @@ export default function B2BAbout() {
               className="mt-5 text-2xl leading-10 text-slate-500 md:text-3xl md:leading-[1.35]"
             >
               {overview.highlight}
-            </motion.p> */}
+            </motion.p>
 
             <motion.p
               initial={{ opacity: 0, y: 24 }}
@@ -41,8 +41,27 @@ export default function B2BAbout() {
               transition={{ duration: 0.55, delay: 0.16 }}
               className="mt-6 max-w-2xl text-base leading-8 text-slate-600"
             >
-              {overview.description} Led by <strong>Ms. Falguni Rawal</strong>, ELIZ ENERGY combines over a decade of industry expertise with a fresh vision for sustainable energy.
+              {overview.description}
             </motion.p>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-5">
+                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                  Mission
+                </div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  {overview.mission}
+                </p>
+              </div>
+              <div className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-5">
+                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                  Vision
+                </div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  {overview.vision}
+                </p>
+              </div>
+            </div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -52,10 +71,10 @@ export default function B2BAbout() {
               className="mt-8"
             >
               <Link
-                href="/about"
+                href="/contact"
                 className="inline-flex items-center gap-3 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
               >
-                Learn About ELIZ ENERGY
+                Contact Our Team
                 <ArrowUpRight className="size-4" />
               </Link>
             </motion.div>

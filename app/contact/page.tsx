@@ -1,25 +1,25 @@
 import ContactForm from "@/components/landing/ContactForm";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
+import siteConfig from "@/lib/siteConfig";
 
 export const metadata = {
-  title: "Contact ELIZ ENERGY | Free Solar Consultation Across India",
-  description:
-    "Get a free solar consultation from ELIZ ENERGY. We install residential, commercial, industrial & utility solar across India. Surya Ghar Yojana subsidy assistance available. Call or WhatsApp now.",
+  title: siteConfig.seo.contact.title,
+  description: siteConfig.seo.contact.description,
   keywords: [
     "contact ELIZ ENERGY",
-    "solar consultation India",
-    "free solar quote",
-    "solar company contact Mumbai",
+    "solar equipment India",
+    "solar support India",
+    "Waaree",
+    "Citizen",
+    "GoodWe",
     "Surya Ghar Yojana contact",
-    "solar installation enquiry",
-    "solar panel quote India",
+    "solar equipment supply",
   ],
   openGraph: {
     type: "website",
     url: "https://elizenergy.in/contact",
-    title: "Contact ELIZ ENERGY | Free Solar Consultation Across India",
-    description:
-      "Free solar consultation. Residential, commercial, industrial & utility solar across India. Surya Ghar Yojana subsidy assistance.",
+    title: siteConfig.seo.contact.title,
+    description: siteConfig.seo.contact.description,
     images: [
       {
         url: "/Logo1.png",
@@ -31,8 +31,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact ELIZ ENERGY | Free Solar Consultation Across India",
-    description: "Get your free solar consultation from ELIZ ENERGY.",
+    title: siteConfig.seo.contact.title,
+    description: siteConfig.seo.contact.description,
     images: ["/Logo1.png"],
   },
   alternates: { canonical: "https://elizenergy.in/contact" },
@@ -43,10 +43,10 @@ export default function ContactPage() {
   return (
     <div className="bg-[#f7fbff] pb-20">
       <StaticPageHeader
-        title="Get Free"
-        highlight="Solar Consultation"
+        title="Contact"
+        highlight="ELIZ ENERGY"
         breadcrumb="Contact"
-        description="Contact ELIZ ENERGY for solar panel installation in Mumbai. Get a free consultation and quotation today."
+        description="Call between 11am and 5pm for solar equipment, supply, and support across India."
       />
       <ContactForm />
     </div>

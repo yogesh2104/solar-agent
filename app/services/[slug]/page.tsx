@@ -111,15 +111,15 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
               <div className="rounded-[2.5rem] bg-slate-950 p-8 md:p-10 text-white shadow-2xl overflow-hidden relative group">
                 <div className="absolute -right-1/4 -top-1/4 size-64 rounded-full -secondary opacity-10 blur-[80px] transition-all duration-700 group-hover:scale-150" />
                 
-                <h3 className="text-2xl font-bold mb-6 relative z-10">Request a custom quote for {service.title}</h3>
+                <h3 className="text-2xl font-bold mb-6 relative z-10">Talk to us about {service.title}</h3>
                 <p className="text-slate-400 mb-10 relative z-10">
-                  Ready to go solar? Our engineers will provide a detailed technical and financial analysis.
+                  Ready to go solar? Our team will help you choose the right equipment, partner brand, and support path.
                 </p>
 
                 <div className="space-y-4 relative z-10">
-                    <Link href="/get-quote" className="block w-full">
+                    <Link href="/contact" className="block w-full">
                         <Button className="w-full h-14 rounded-full font-bold text-base -secondary text-slate-950 hover:-secondary/90">
-                            Start Solar Quote
+                            Contact Our Team
                             <ArrowRight className="ml-2 size-5" />
                         </Button>
                     </Link>

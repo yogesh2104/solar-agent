@@ -1,33 +1,31 @@
 import { Metadata } from "next";
 import AboutClient from "./AboutClient";
+import siteConfig from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
-  title: "About ELIZ ENERGY | Trusted Solar Company with 4+ Years Experience",
-  description:
-    "Learn about ELIZ ENERGY – 4+ years of solar sector expertise led by founder Ms. Falguni Rawal. Complete solar solutions for Residential, Commercial, Industrial & Utility sectors across India, including Surya Ghar Yojana subsidy projects.",
+  title: siteConfig.seo.about.title,
+  description: siteConfig.seo.about.description,
   keywords: [
     "about ELIZ ENERGY",
+    "solar equipment supply India",
     "solar company India",
-    "Falguni Rawal solar",
-    "solar company founder",
-    "trusted solar company India",
+    "Waaree",
+    "Citizen",
+    "GoodWe",
     "Surya Ghar Yojana",
-    "solar company Mumbai",
-    "4 years solar experience",
+    "pan India solar support",
   ],
   openGraph: {
     type: "website",
     url: "https://elizenergy.in/about",
-    title: "About ELIZ ENERGY | Trusted Solar Company with 4+ Years Experience",
-    description:
-      "ELIZ ENERGY – founded by Ms. Falguni Rawal with 4+ years of solar expertise. Serving Residential, Commercial, Industrial & Utility sectors across India.",
+    title: siteConfig.seo.about.title,
+    description: siteConfig.seo.about.description,
     images: [{ url: "/Logo1.png", width: 1200, height: 630, alt: "About ELIZ ENERGY" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About ELIZ ENERGY | Trusted Solar Company with 4+ Years Experience",
-    description:
-      "ELIZ ENERGY – 4+ years solar expertise. Complete solutions for all sectors across India.",
+    title: siteConfig.seo.about.title,
+    description: siteConfig.seo.about.description,
     images: ["/Logo1.png"],
   },
   alternates: { canonical: "https://elizenergy.in/about" },
