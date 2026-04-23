@@ -139,7 +139,7 @@ export default function B2BAbout() {
                   Enterprise note
                 </div>
                 <p className="mt-3 text-lg font-semibold leading-8">
-                  Faster decisions happen when technical, commercial, and rollout risks are visible early.
+                  Grow Green Energy With Us !!
                 </p>
               </div>
             </div>
