@@ -61,7 +61,7 @@ export default function B2BFooter() {
               <Link href="/" className="flex items-center gap-3">
                 <div className="relative h-40 w-40">
                   <Image
-                    src="/logo1.png"
+                    src="/Logo1.png"
                     alt={siteConfig.company.name}
                     fill
                     sizes="160px"
