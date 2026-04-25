@@ -55,7 +55,7 @@ export default function B2BFooter() {
           </div>
         </div>
 
-        <div className="px-8">
+        <div className="px-0 sm:px-8">
           <div className="grid gap-12 lg:grid-cols-5">
             <div className="col-span-2">
               <Link href="/" className="flex items-center gap-3">
@@ -152,21 +152,21 @@ export default function B2BFooter() {
               <div className="mt-5 space-y-4">
                 <a
                   href={`tel:${company.contact.phone.replace(/\s+/g, "")}`}
-                  className="flex items-start gap-3 text-sm text-black/60 transition-colors hover:-secondary"
+                  className="flex min-w-0 items-start gap-3 text-sm text-black/60 transition-colors hover:-secondary"
                 >
                   <Phone className="mt-0.5 size-4 shrink-0" />
-                  <span>{company.contact.phone}</span>
+                  <span className="break-words">{company.contact.phone}</span>
                 </a>
                 <a
                   href={`mailto:${company.contact.email}`}
-                  className="flex items-start gap-3 text-sm text-black/60 transition-colors hover:-secondary"
+                  className="flex min-w-0 items-start gap-3 text-sm text-black/60 transition-colors hover:-secondary"
                 >
                   <Mail className="mt-0.5 size-4 shrink-0" />
-                  <span>{company.contact.email}</span>
+                  <span className="break-words">{company.contact.email}</span>
                 </a>
                 <div className="flex items-start gap-3 text-sm text-black/60">
                   <MapPin className="mt-0.5 size-4 shrink-0" />
-                  <span>{company.contact.address}</span>
+                  <span className="break-words">{company.contact.address}</span>
                 </div>
               </div>
             </div>

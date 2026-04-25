@@ -105,17 +105,17 @@ export default function B2BProjects() {
                   </div>
 
                   <div className="p-4">
-                    <div className="flex justify-between align-center items-center">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                       <div className="text-xs font-semibold uppercase text-slate-600">
                         {project.sector}
                       </div>
-                      <div className="mt-2 flex items-center gap-2 text-sm text-slate-600">
+                      <div className="flex items-center gap-2 text-sm text-slate-600">
                         <MapPin className="size-4 text-slate-400" />
                         {project.location}
                       </div>
                     </div>
-                    <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-950">
-                      {project.title} &nbsp;&nbsp;&nbsp;
+                    <h3 className="mt-2 flex flex-wrap items-baseline gap-x-2 text-xl font-semibold tracking-tight text-slate-950">
+                      <span className="min-w-0 flex-1">{project.title}</span>
                       <span className="text-sm font-medium text-slate-700">
                         ({project.scale})
                       </span>

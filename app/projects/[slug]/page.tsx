@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -40,8 +39,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     where: { slug: slug },
   });
 
-  console.log(project);
-
   if (!project) {
     notFound();
   }
@@ -75,7 +72,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
             <div className="bg-card border border-border/50 rounded-3xl p-8 backdrop-blur-sm">
               <h3 className="text-xl font-bold mb-6">Installation Overview</h3>
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div className="space-y-1">
                   <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">
                     Category
@@ -215,9 +212,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                         { label: "Frame Material", value: project.frameMaterial },
                         { label: "Voltage Rating", value: project.voltageRating },
                       ].map((spec, i) => spec.value && (
-                        <div key={i} className="py-4 flex justify-between gap-4">
+                        <div key={i} className="py-4 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                           <span className="text-muted-foreground font-medium">{spec.label}</span>
-                          <span className="text-foreground font-bold text-right">{spec.value}</span>
+                          <span className="text-foreground font-bold break-words sm:text-right">{spec.value}</span>
                         </div>
                       ))}
                     </div>
@@ -236,9 +233,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                           { label: "Width", value: project.width },
                           { label: "Weight", value: project.weight },
                         ].map((spec, i) => spec.value && (
-                          <div key={i} className="py-4 flex justify-between gap-4">
+                          <div key={i} className="py-4 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                             <span className="text-muted-foreground font-medium">{spec.label}</span>
-                            <span className="text-foreground font-bold text-right">{spec.value}</span>
+                            <span className="text-foreground font-bold break-words sm:text-right">{spec.value}</span>
                           </div>
                         ))}
                       </div>

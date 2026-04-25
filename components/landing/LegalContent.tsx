@@ -62,7 +62,7 @@ export default function LegalContent({
         <div className="flex flex-col gap-10 lg:flex-row">
           {/* Sidebar */}
           <aside className="lg:w-72">
-            <div className="sticky top-28 rounded-2xl border border-slate-200 bg-white/70 p-5 shadow-sm backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white/70 p-5 shadow-sm backdrop-blur lg:sticky lg:top-28">
               <p className="mb-4 text-sm font-semibold text-slate-500">
                 On this page
               </p>

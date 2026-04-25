@@ -164,6 +164,10 @@ html.lenis body {
   --tw-prose-th-borders: var(--border);
   --tw-prose-td-borders: var(--border);
   max-width: none !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .prose table {
@@ -245,6 +249,22 @@ html.lenis body {
   border-radius: 2rem;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
   margin: 3.5rem auto;
+}
+
+.prose pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .prose table {
+    font-size: 0.875rem;
+  }
+
+  .prose th,
+  .prose td {
+    padding: 0.75rem;
+  }
 }
 
 .prose ul, .prose ol {

@@ -1,6 +1,6 @@
 import siteConfig from "@/lib/siteConfig";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { HelpCircle, MessageSquare } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
@@ -75,7 +75,7 @@ export default function FaqPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
           {/* Sidebar Navigation */}
           <aside className="lg:col-span-1">
-            <div className="sticky top-32 space-y-2">
+            <div className="space-y-2 lg:sticky lg:top-32">
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 px-4">
                 Categories
               </p>
