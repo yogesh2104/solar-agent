@@ -47,9 +47,9 @@ export default function AboutPage() {
               transition={{ duration: 0.55 }}
               className="space-y-6"
             >
-              <h2 className="text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+              {/* <h2 className="text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
                 {overview.title}
-              </h2>
+              </h2> */}
               <p className="max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
                 {overview.description}
               </p>
