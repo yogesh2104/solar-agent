@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Clock, Mail, MessageCircle, Phone } from "lucide-react";
-import { isBusinessHours } from "@/utils/isBusinessHours";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Clock, Mail, MessageCircle, Phone } from "lucide-react";
 import siteConfig from "@/lib/siteConfig";
+import { isBusinessHours } from "@/utils/isBusinessHours";
 
 interface ContactAvailabilityProps {
-  /** If true, only renders the availability indicator (compact mode) */
   compact?: boolean;
   className?: string;
 }
@@ -18,37 +17,32 @@ export default function ContactAvailability({
   className = "",
 }: ContactAvailabilityProps) {
   const { company } = siteConfig;
-  const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean | null>(null);
 
-  // Hydration-safe: only check business hours after mount
   useEffect(() => {
-    setMounted(true);
-    setIsOpen(isBusinessHours());
+    const updateStatus = () => setIsOpen(isBusinessHours());
 
-    // Re-check every minute
-    const interval = setInterval(() => {
-      setIsOpen(isBusinessHours());
-    }, 60_000);
+    const frame = window.requestAnimationFrame(updateStatus);
 
-    return () => clearInterval(interval);
+    const interval = setInterval(updateStatus, 60_000);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      clearInterval(interval);
+    };
   }, []);
 
-  // Avoid hydration mismatch — render nothing until mounted
-  if (!mounted) {
+  if (isOpen === null) {
     return (
       <div
-        className={`animate-pulse rounded-2xl bg-slate-100 h-24 w-full ${className}`}
+        className={`h-24 w-full animate-pulse rounded-[1.6rem] border border-slate-200 bg-white/70 ${className}`}
       />
     );
   }
 
   if (compact) {
-    return (
-      <div className={`flex items-center gap-2 ${className}`}>
-        <span
-          className={`relative flex size-2 ${isOpen ? "" : ""}`}
-        >
+    const compactContent = (
+      <>
+        <span className="relative flex size-2">
           {isOpen && (
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
           )}
@@ -58,9 +52,27 @@ export default function ContactAvailability({
             }`}
           />
         </span>
+        {isOpen && <Phone className="size-3.5 text-emerald-600" />}
         <span className="text-xs font-medium text-slate-600">
-          {isOpen ? "Online now" : "Offline — 11 AM–5 PM IST"}
+          {isOpen ? company.contact.phone : "Offline - 11 AM-5 PM IST"}
         </span>
+      </>
+    );
+
+    if (isOpen) {
+      return (
+        <a
+          href={`tel:${company.contact.phone.replace(/\s+/g, "")}`}
+          className={`flex items-center gap-2 transition-colors hover:text-primary ${className}`}
+        >
+          {compactContent}
+        </a>
+      );
+    }
+
+    return (
+      <div className={`flex items-center gap-2 ${className}`}>
+        {compactContent}
       </div>
     );
   }
@@ -76,7 +88,6 @@ export default function ContactAvailability({
           transition={{ duration: 0.4, ease: "easeOut" }}
           className={`space-y-3 ${className}`}
         >
-          {/* Status pill */}
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5">
             <span className="relative flex size-2">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -87,13 +98,11 @@ export default function ContactAvailability({
             </span>
           </div>
 
-          {/* Contact cards */}
           <div className="grid gap-3">
-            {/* Phone */}
             <motion.a
               href={`tel:${company.contact.phone.replace(/\s+/g, "")}`}
               whileHover={{ y: -2 }}
-              className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+              className="group flex items-center gap-4 rounded-[1.35rem] border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:border-emerald-200 hover:shadow-md"
             >
               <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                 <Phone className="size-4" />
@@ -108,13 +117,12 @@ export default function ContactAvailability({
               </div>
             </motion.a>
 
-            {/* WhatsApp */}
             <motion.a
               href={`https://wa.me/${company.contact.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ y: -2 }}
-              className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+              className="group flex items-center gap-4 rounded-[1.35rem] border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:border-emerald-200 hover:shadow-md"
             >
               <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-600">
                 <MessageCircle className="size-4" />
@@ -129,13 +137,12 @@ export default function ContactAvailability({
               </div>
             </motion.a>
 
-            {/* Email */}
             <motion.a
               href={`mailto:${company.contact.email}`}
               whileHover={{ y: -2 }}
-              className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+              className="group flex items-center gap-4 rounded-[1.35rem] border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:border-emerald-200 hover:shadow-md"
             >
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
                 <Mail className="size-4" />
               </span>
               <div>
@@ -156,10 +163,9 @@ export default function ContactAvailability({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className={`${className}`}
+          className={className}
         >
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            {/* Status pill */}
+          <div className="rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-sm">
             <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-1.5">
               <span className="size-2 rounded-full bg-slate-400" />
               <span className="text-xs font-semibold text-slate-500">
@@ -176,7 +182,7 @@ export default function ContactAvailability({
                 <p className="mt-1.5 text-sm leading-6 text-slate-500">
                   Working hours:{" "}
                   <span className="font-semibold text-slate-700">
-                    11:00 AM – 5:00 PM IST
+                    11:00 AM - 5:00 PM IST
                   </span>
                 </p>
                 <p className="mt-2 text-sm leading-6 text-slate-500">
@@ -188,9 +194,10 @@ export default function ContactAvailability({
 
             <Link
               href="/contact"
-              className="mt-5 inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-slate-800"
             >
               Leave a message
+              <ArrowUpRight className="size-4" />
             </Link>
           </div>
         </motion.div>

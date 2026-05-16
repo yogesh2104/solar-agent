@@ -10,14 +10,14 @@ export default function B2BCTA() {
   const { finalCta } = siteConfig;
 
   return (
-    <section className="py-10 md:py-14">
-      <div className="container mx-auto px-6">
+    <section className="py-12 md:py-24">
+      <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
-          className="relative overflow-hidden rounded-[2.5rem] border border-[rgba(15,23,42,0.07)] bg-[#f7faf9] p-8 md:p-12"
+          className="relative overflow-hidden rounded-[1.6rem] border border-[rgba(15,23,42,0.07)] bg-[#f7faf9] p-5 md:rounded-[2.5rem] md:p-12"
         >
           {/* Background glows */}
           <div className="pointer-events-none absolute inset-0">
@@ -36,7 +36,7 @@ export default function B2BCTA() {
               </div>
 
               <h2
-                className="mt-5 max-w-2xl text-3xl font-bold tracking-tight text-[#0f172a] md:text-5xl"
+                className="mt-5 max-w-2xl text-2xl font-semibold tracking-tight text-[#0f172a] md:text-5xl"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 {finalCta.title}
@@ -45,10 +45,10 @@ export default function B2BCTA() {
                 {finalCta.description}
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row md:mt-8">
                 <Button
                   asChild
-                  className="group h-12 rounded-full bg-primary px-7 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary/90 hover:shadow-[0_6px_24px_rgba(34,197,94,0.28)]"
+                  className="group h-11 rounded-full bg-primary px-6 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary/90 hover:shadow-[0_6px_24px_rgba(34,197,94,0.28)] md:h-12 md:px-7"
                 >
                   <Link href={finalCta.primary.href}>
                     {finalCta.primary.text}
@@ -58,7 +58,7 @@ export default function B2BCTA() {
                 <Button
                   asChild
                   variant="outline"
-                  className="h-12 rounded-full border-[rgba(15,23,42,0.12)] bg-white px-7 text-sm font-semibold text-slate-800 hover:border-primary/30 hover:bg-white transition-all duration-200"
+                  className="h-11 rounded-full border-[rgba(15,23,42,0.12)] bg-white px-6 text-sm font-semibold text-slate-800 transition-all duration-200 hover:border-primary/30 hover:bg-white md:h-12 md:px-7"
                 >
                   <Link href={finalCta.secondary.href}>
                     {finalCta.secondary.text}
@@ -68,7 +68,7 @@ export default function B2BCTA() {
             </div>
 
             {/* Deliverables card */}
-            <div className="glass p-6">
+            <div className="glass rounded-[1.4rem] p-5 md:p-6">
               <div className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
                 What you receive
               </div>

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  ArrowUpRight,
   Battery,
   CheckCircle2,
   ShieldCheck,
@@ -132,7 +133,7 @@ const productCategories = [
 
 export default function ProductsPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-[#f7faf9]">
       <StaticPageHeader
         title="Solar"
         highlight="Products"
@@ -140,62 +141,94 @@ export default function ProductsPage() {
         description="Solar panels, inverters, batteries, mounting structures, BoS components, cabling & accessories, EV chargers, robotic cleaning, and Surya Ghar Yojana support."
       />
 
-      <section className="py-20">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-6">
-          <div className="grid gap-12">
+          <div className="mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(15,23,42,0.08)] bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-slate-500 shadow-sm">
+                <span className="size-1.5 rounded-full bg-primary" />
+                Equipment portfolio
+              </div>
+              <h2 className="mt-5 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+                Everything needed for a reliable solar project.
+              </h2>
+            </div>
+            <p className="max-w-xl text-base leading-8 text-slate-600">
+              A practical product stack for residential, commercial, industrial,
+              and utility teams buying dependable solar equipment across India.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {productCategories.map((product, index) => (
-              <div
+              <article
                 key={product.title}
-                className={`grid gap-10 items-center xl:grid-cols-2 ${index % 2 === 1 ? "xl:direction-rtl" : ""}`}
+                className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)]"
               >
-                <div
-                  className={`space-y-6 ${index % 2 === 1 ? "xl:order-2" : ""}`}
-                >
-                  <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
-                    <product.icon className="size-4 text-secondary" />
-                    Brochure Item
-                  </div>
-                  <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-5xl">
-                    {product.title}
-                  </h2>
-                  <p className="text-lg leading-8 text-slate-600">
-                    {product.description}
-                  </p>
-
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    {product.features.map((feature) => (
-                      <div
-                        key={feature}
-                        className="flex items-center gap-2 text-sm font-medium text-slate-700"
-                      >
-                        <CheckCircle2 className="size-4 text-secondary" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="pt-4">
-                    <Link href="/contact">
-                      <Button className="h-12 rounded-full bg-slate-950 px-8 font-bold text-white hover:bg-slate-800">
-                        Contact Our Team
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-
-                <div
-                  className={`relative aspect-16/10 overflow-hidden rounded-[2.5rem] border border-slate-200 shadow-2xl ${index % 2 === 1 ? "xl:order-1" : ""}`}
-                >
+                <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={product.image}
                     alt={product.title}
                     fill
-                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-slate-950/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent" />
+                  <div className="absolute left-5 top-5 flex size-12 items-center justify-center rounded-2xl border border-white/30 bg-white/85 text-primary shadow-sm backdrop-blur-xl">
+                    <product.icon className="size-5" />
+                  </div>
                 </div>
-              </div>
+
+                <div className="p-6 md:p-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
+                      {product.title}
+                    </h2>
+                    <span className="text-xs font-semibold text-slate-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {product.description}
+                  </p>
+
+                  <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    {product.features.map((feature) => (
+                      <div
+                        key={feature}
+                        className="flex items-center gap-2 rounded-full bg-[#f7faf9] px-3 py-2 text-xs font-medium text-slate-600"
+                      >
+                        <CheckCircle2 className="size-3.5 text-primary" />
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </article>
             ))}
+          </div>
+
+          <div className="mt-12 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <div>
+                <h3 className="text-2xl font-semibold tracking-tight text-slate-950">
+                  Need help selecting equipment?
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Share your project size, site type, or sourcing brief and we
+                  will point you to the right product path.
+                </p>
+              </div>
+              <Button
+                asChild
+                className="h-12 rounded-full bg-primary px-6 text-sm font-semibold text-white hover:bg-primary/90"
+              >
+                <Link href="/contact">
+                  Contact Our Team
+                  <ArrowUpRight className="size-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

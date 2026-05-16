@@ -54,7 +54,7 @@ export default async function BlogsPage() {
   const [featuredBlog, ...otherBlogs] = blogs;
 
   return (
-    <div className="bg-[#f7fbff] pb-10 ">
+    <div className="bg-[#f7faf9] pb-10">
       <StaticPageHeader
         title="Blog and"
         highlight="Insights"
@@ -89,12 +89,12 @@ export default async function BlogsPage() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/18 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/18 via-transparent to-transparent" />
                   </div>
 
                   <div className="flex flex-col justify-center p-8 md:p-10">
                     <div className="inline-flex max-w-max items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600">
-                      <span className="size-2 rounded-full text-secondary" />
+                      <span className="size-2 rounded-full bg-secondary" />
                       Featured article
                     </div>
 
@@ -123,7 +123,7 @@ export default async function BlogsPage() {
             {otherBlogs.length > 0 && (
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
                 {otherBlogs.map((blog) => (
-                  <BlogCard key={blog.id} blog={blog as any} />
+                  <BlogCard key={blog.id} blog={blog} />
                 ))}
               </div>
             )}

@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import siteConfig from "@/lib/siteConfig";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import ContactAvailability from "@/components/contact/contact-availability";
 
 export default function B2BFooter() {
   const pathname = usePathname();
@@ -19,16 +20,16 @@ export default function B2BFooter() {
 
   return (
     <footer className="border-t border-[rgba(15,23,42,0.07)] bg-white text-slate-950">
-      <div className="container mx-auto px-6 py-10">
+      <div className="container mx-auto px-4 py-8 md:px-6 md:py-10">
         {/* CTA band */}
-        <div className="mb-10 rounded-[2.5rem] border border-[rgba(15,23,42,0.07)] bg-[#f7faf9] p-8 md:p-10">
+        <div className="mb-8 rounded-[1.6rem] border border-[rgba(15,23,42,0.07)] bg-[#f7faf9] p-5 md:mb-10 md:rounded-[2.5rem] md:p-10">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <div className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
                 Enterprise support
               </div>
               <h2
-                className="mt-3 text-3xl font-bold tracking-tight text-[#0f172a] md:text-4xl"
+                className="mt-3 text-2xl font-semibold tracking-tight text-[#0f172a] md:text-4xl"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 {footer.title}
@@ -41,7 +42,7 @@ export default function B2BFooter() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button
                 asChild
-                className="h-12 rounded-full bg-primary px-6 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary/90 hover:shadow-[0_6px_24px_rgba(34,197,94,0.25)]"
+                className="h-11 rounded-full bg-primary px-6 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary/90 hover:shadow-[0_6px_24px_rgba(34,197,94,0.25)] md:h-12"
               >
                 <Link href="/contact">
                   Contact Sales
@@ -54,16 +55,16 @@ export default function B2BFooter() {
 
         {/* Main footer grid */}
         <div className="px-0 sm:px-4">
-          <div className="grid gap-10 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-5 lg:gap-10">
             {/* Logo column */}
             <div className="col-span-2">
               <Link href="/" className="flex items-center gap-3">
-                <div className="relative h-36 w-36">
+                <div className="relative h-24 w-24 md:h-36 md:w-36">
                   <Image
                     src="/Logo1.png"
                     alt={siteConfig.company.name}
                     fill
-                    sizes="144px"
+                    sizes="(max-width: 768px) 96px, 144px"
                     className={cn("object-contain transition-all duration-300")}
                     priority
                   />
@@ -71,12 +72,12 @@ export default function B2BFooter() {
               </Link>
 
               <div className="mt-4 flex items-center gap-3">
-                <div className="relative h-20 w-40">
+                <div className="relative h-14 w-28 md:h-20 md:w-40">
                   <Image
                     src="/MSME.jpeg"
                     alt="MSME Government Approval"
                     fill
-                    className="object-fit"
+                    className="object-contain"
                   />
                 </div>
               </div>
@@ -124,20 +125,7 @@ export default function B2BFooter() {
                 Contact
               </div>
               <div className="mt-5 space-y-4">
-                <a
-                  href={`tel:${company.contact.phone.replace(/\s+/g, "")}`}
-                  className="flex min-w-0 items-start gap-3 text-sm text-slate-500 transition-colors hover:text-primary"
-                >
-                  <Phone className="mt-0.5 size-4 shrink-0" />
-                  <span className="break-words">{company.contact.phone}</span>
-                </a>
-                <a
-                  href={`mailto:${company.contact.email}`}
-                  className="flex min-w-0 items-start gap-3 text-sm text-slate-500 transition-colors hover:text-primary"
-                >
-                  <Mail className="mt-0.5 size-4 shrink-0" />
-                  <span className="break-words">{company.contact.email}</span>
-                </a>
+                <ContactAvailability compact />
                 <div className="flex items-start gap-3 text-sm text-slate-500">
                   <MapPin className="mt-0.5 size-4 shrink-0" />
                   <span className="break-words">{company.contact.address}</span>

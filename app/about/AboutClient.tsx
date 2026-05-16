@@ -25,20 +25,11 @@ const buyerGroups = [
 
 const partners = ["Waaree", "Citizen", "GoodWe", "Sineng", "Apar", "Polycab"];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.08, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] },
-  }),
-};
-
 export default function AboutPage() {
   const { overview, company, founder } = siteConfig;
 
   return (
-    <div className="bg-white">
+    <div className="bg-[#f7faf9]">
       <StaticPageHeader
         title="About"
         highlight="ELIZ ENERGY"
@@ -47,13 +38,13 @@ export default function AboutPage() {
       />
 
       {/* ── Overview Section ── */}
-      <section className="py-16">
+      <section className="bg-white py-16 md:py-24">
         <div className="container mx-auto px-6">
           <div className="grid gap-14 xl:grid-cols-[1.05fr_0.95fr] xl:items-center">
             <motion.div
-              // variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
               viewport={{ once: true, amount: 0.2 }}
               className="space-y-7"
             >
@@ -69,10 +60,9 @@ export default function AboutPage() {
                 {overview.stats.map((stat, i) => (
                   <motion.div
                     key={stat.label}
-                    custom={i}
-                    // variants={fadeUp}
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45, delay: i * 0.06 }}
                     viewport={{ once: true }}
                     className="rounded-[1.6rem] border border-[rgba(15,23,42,0.07)] bg-[#f7faf9] p-5"
                   >
@@ -117,11 +107,10 @@ export default function AboutPage() {
 
             {/* Image card */}
             <motion.div
-              // variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.08 }}
               viewport={{ once: true, amount: 0.2 }}
-              custom={1}
               className="relative"
             >
               <div className="overflow-hidden rounded-[2.5rem] border border-[rgba(15,23,42,0.07)] shadow-sm">
@@ -151,21 +140,21 @@ export default function AboutPage() {
       </section>
 
       {/* ── Supply & Support Section ── */}
-      <section className="bg-[#f7faf9] py-14">
+      <section className="bg-[#f7faf9] py-16 md:py-24">
         <div className="container mx-auto px-6">
           <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
             {/* Dark card with buyer groups */}
-            <div className="rounded-[2.5rem] bg-[#0f172a] p-8 text-white md:p-10">
-              <div className="text-[11px] font-semibold uppercase tracking-widest text-white/40">
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+              <div className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
                 Who we serve
               </div>
               <h3
-                className="mt-4 text-3xl font-bold tracking-tight md:text-4xl"
+                className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 Supply & Support Across India
               </h3>
-              <p className="mt-4 text-base leading-7 text-white/65">
+              <p className="mt-4 text-base leading-7 text-slate-600">
                 {company.fullName} supports residential, commercial, industrial,
                 and utility projects with a practical mix of equipment supply,
                 delivery, and after-sales help.
@@ -175,7 +164,7 @@ export default function AboutPage() {
                 {buyerGroups.map((group) => (
                   <span
                     key={group}
-                    className="rounded-full border border-white/10 bg-white/8 px-3.5 py-1.5 text-sm text-white/80"
+                    className="rounded-full border border-slate-200 bg-[#f7faf9] px-3.5 py-1.5 text-sm font-medium text-slate-700"
                   >
                     {group}
                   </span>
@@ -238,7 +227,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Partners & Products Section ── */}
-      <section className="py-14">
+      <section className="bg-white py-16 md:py-24">
         <div className="container mx-auto px-6">
           <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
             {/* Dealing Partners */}
@@ -306,7 +295,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Founder Section ── */}
-      <section className="bg-[#f7faf9] py-14">
+      <section className="bg-[#f7faf9] py-16 md:py-24">
         <div className="container mx-auto px-6">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
             {/* Founder image */}

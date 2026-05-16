@@ -12,11 +12,11 @@ export default function B2BProjects() {
   const [featured, ...secondary] = projects.items;
 
   return (
-    <section id="projects" className="overflow-hidden bg-white py-7 md:py-10">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="overflow-hidden bg-white py-12 md:py-24">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            <h2 className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 md:mt-7 md:text-6xl">
               {projects.title}
             </h2>
           </div>
@@ -37,16 +37,16 @@ export default function B2BProjects() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mt-10 grid gap-5 lg:grid-cols-[1.15fr_0.85fr] md:mt-14 md:gap-6">
           <motion.article
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55 }}
-            className="overflow-hidden rounded-[2.5rem] h-fit border border-slate-200"
+            className="h-fit overflow-hidden rounded-[1.6rem] border border-slate-200 md:rounded-[2.5rem]"
           >
             <Link href="/projects" className="block">
-              <div className="relative h-[320px] md:h-[440px]">
+              <div className="relative h-[240px] md:h-[440px]">
                 <Image
                   src={featured.image}
                   alt={featured.title}
@@ -54,20 +54,20 @@ export default function B2BProjects() {
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-slate-950/72 via-slate-950/8 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 via-slate-950/8 to-transparent" />
               </div>
 
-              <div className="bg-white p-6 md:p-8">
+              <div className="bg-white p-5 md:p-8">
                 <div className="flex flex-wrap gap-2">
                   <span className="rounded-full bg-slate-950/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
                     {featured.sector}
                   </span>
-                  <span className="rounded-full -secondary/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
+                  <span className="rounded-full bg-secondary/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
                     {featured.scale}
                   </span>
                 </div>
 
-                <h3 className="mt-5 text-3xl font-semibold tracking-tight text-slate-950">
+                <h3 className="mt-4 text-2xl font-semibold tracking-tight text-slate-950 md:mt-5 md:text-3xl">
                   {featured.title}
                 </h3>
 
@@ -76,7 +76,7 @@ export default function B2BProjects() {
                   {featured.location}
                 </div>
 
-                <p className="mt-4 text-base leading-8 text-slate-600">
+                <p className="mt-3 text-sm leading-7 text-slate-600 md:mt-4 md:text-base md:leading-8">
                   {featured.outcome}
                 </p>
               </div>
@@ -91,10 +91,10 @@ export default function B2BProjects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="overflow-hidden rounded-4xl border border-slate-200 bg-white"
+                className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white md:rounded-4xl"
               >
                 <Link href="/projects" className="block">
-                  <div className="relative h-48">
+                  <div className="relative h-40 md:h-48">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -114,7 +114,7 @@ export default function B2BProjects() {
                         {project.location}
                       </div>
                     </div>
-                    <h3 className="mt-2 flex flex-wrap items-baseline gap-x-2 text-xl font-semibold tracking-tight text-slate-950">
+                    <h3 className="mt-2 flex flex-wrap items-baseline gap-x-2 text-lg font-semibold tracking-tight text-slate-950 md:text-xl">
                       <span className="min-w-0 flex-1">{project.title}</span>
                       <span className="text-sm font-medium text-slate-700">
                         ({project.scale})

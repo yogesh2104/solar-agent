@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import {
   ArrowRight,
   BatteryCharging,
@@ -13,12 +14,12 @@ import {
 import { Button } from "@/components/ui/button";
 import siteConfig from "@/lib/siteConfig";
 
-const wordReveal = {
+const wordReveal: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.06, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { delay: i * 0.06, duration: 0.55, ease: "easeOut" },
   }),
 };
 
@@ -30,7 +31,7 @@ export default function B2BHero() {
   return (
     <section
       id="hero"
-      className="relative isolate min-h-screen overflow-hidden bg-white pb-20 pt-32 md:pb-28 md:pt-40"
+      className="relative isolate overflow-hidden bg-white pb-14 pt-24 md:min-h-screen md:pb-28 md:pt-40"
     >
       {/* ── Layered Background ── */}
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -44,7 +45,7 @@ export default function B2BHero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f7faf9]/60 to-transparent" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-5xl text-center">
 
           {/* ── Badge ── */}
@@ -52,17 +53,17 @@ export default function B2BHero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="inline-flex items-center gap-2 rounded-full border border-[rgba(34,197,94,0.25)] bg-[rgba(34,197,94,0.06)] px-4 py-1.5"
+            className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-[rgba(34,197,94,0.25)] bg-[rgba(34,197,94,0.06)] px-3 py-1.5 md:px-4"
           >
             <Sun className="size-3.5 text-primary" />
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">
+            <span className="text-center text-[10px] font-semibold uppercase tracking-wider text-emerald-700 md:text-[11px] md:tracking-widest">
               {hero.badge}
             </span>
           </motion.div>
 
           {/* ── Headline — Word-by-Word Reveal ── */}
           <motion.h1
-            className="mt-7 text-5xl font-bold tracking-tight text-[#0f172a] md:text-7xl xl:text-[5.25rem] xl:leading-[1.04]"
+            className="mt-5 text-[2.15rem] font-bold leading-[1.05] tracking-tight text-[#0f172a] min-[380px]:text-4xl md:mt-7 md:text-7xl xl:text-[5.25rem] xl:leading-[1.04]"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             {titleWords.map((word, i) => {
@@ -89,7 +90,7 @@ export default function B2BHero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mx-auto mt-6 max-w-2xl text-lg leading-[1.75] text-[#475569] md:text-xl"
+            className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#475569] md:mt-6 md:text-xl md:leading-[1.75]"
           >
             {hero.description}
           </motion.p>
@@ -99,12 +100,12 @@ export default function B2BHero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.65 }}
-            className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row md:mt-9"
           >
             {/* Primary CTA */}
             <Button
               asChild
-              className="group h-12 rounded-full bg-primary px-7 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary/90 hover:shadow-[0_6px_24px_rgba(34,197,94,0.30)]"
+              className="group h-11 w-full rounded-full bg-primary px-6 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary/90 hover:shadow-[0_6px_24px_rgba(34,197,94,0.30)] sm:w-auto md:h-12 md:px-7"
             >
               <Link href={hero.primaryCta.href}>
                 {hero.primaryCta.text}
@@ -116,7 +117,7 @@ export default function B2BHero() {
             <Button
               asChild
               variant="outline"
-              className="h-12 rounded-full border-[rgba(15,23,42,0.12)] bg-white px-7 text-sm font-semibold text-slate-800 shadow-sm transition-all duration-200 hover:border-primary/30 hover:bg-[#f7faf9] hover:shadow-md"
+              className="h-11 w-full rounded-full border-[rgba(15,23,42,0.12)] bg-white px-6 text-sm font-semibold text-slate-800 shadow-sm transition-all duration-200 hover:border-primary/30 hover:bg-[#f7faf9] hover:shadow-md sm:w-auto md:h-12 md:px-7"
             >
               <Link href={hero.secondaryCta.href}>
                 {hero.secondaryCta.text}
@@ -129,7 +130,7 @@ export default function B2BHero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.78 }}
-            className="mt-7 flex flex-wrap items-center justify-center gap-2"
+            className="mt-6 flex flex-wrap items-center justify-center gap-2 md:mt-7"
           >
             {hero.trustChips.map((chip) => (
               <span
@@ -143,7 +144,7 @@ export default function B2BHero() {
         </div>
 
         {/* ── Hero Visual ── */}
-        <div className="relative mx-auto mt-16 max-w-7xl">
+        <div className="relative mx-auto mt-10 max-w-7xl md:mt-16">
 
           {/* Left floating stat card */}
           <motion.div
@@ -208,9 +209,9 @@ export default function B2BHero() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="overflow-hidden rounded-[2.5rem] border border-[rgba(15,23,42,0.08)] bg-[#f7faf9] shadow-[0_24px_80px_rgba(15,23,42,0.10)]"
+            className="overflow-hidden rounded-[1.6rem] border border-[rgba(15,23,42,0.08)] bg-[#f7faf9] shadow-[0_16px_50px_rgba(15,23,42,0.08)] md:rounded-[2.5rem] md:shadow-[0_24px_80px_rgba(15,23,42,0.10)]"
           >
-            <div className="relative h-[400px] md:h-[560px]">
+            <div className="relative h-[260px] min-[380px]:h-[300px] md:h-[560px]">
               <Image
                 src={hero.image}
                 alt="Commercial rooftop solar panels for industrial and B2B buyers"
@@ -225,7 +226,7 @@ export default function B2BHero() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,197,94,0.06),transparent_40%)]" />
 
               {/* Floating glass cards over image */}
-              <div className="absolute inset-x-5 bottom-5 grid gap-3 lg:grid-cols-[1.15fr_0.55fr_0.78fr]">
+              <div className="absolute inset-x-5 bottom-5 hidden gap-3 md:grid lg:grid-cols-[1.15fr_0.55fr_0.78fr]">
 
                 {/* Proof card */}
                 <div className="rounded-3xl bg-white/92 p-4 shadow-[0_10px_40px_rgba(15,23,42,0.10)] backdrop-blur-xl md:p-5">
@@ -281,7 +282,7 @@ export default function B2BHero() {
           </motion.div>
 
           {/* ── Metric Row ── */}
-          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-5 grid grid-cols-2 gap-3 md:mt-6 md:grid-cols-2 md:gap-4 xl:grid-cols-4">
             {hero.metrics.map((metric, index) => (
               <motion.div
                 key={metric.label}
@@ -289,12 +290,12 @@ export default function B2BHero() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="rounded-[1.6rem] border border-[rgba(15,23,42,0.07)] bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+                className="rounded-[1.25rem] border border-[rgba(15,23,42,0.07)] bg-white p-4 shadow-sm transition-shadow hover:shadow-md md:rounded-[1.6rem] md:p-5"
               >
-                <div className="text-2xl font-bold text-[#0f172a]">
+                <div className="text-xl font-bold text-[#0f172a] md:text-2xl">
                   {metric.value}
                 </div>
-                <p className="mt-1.5 text-sm leading-5 text-[#475569]">
+                <p className="mt-1.5 text-xs leading-5 text-[#475569] md:text-sm">
                   {metric.label}
                 </p>
               </motion.div>

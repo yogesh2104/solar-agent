@@ -2,10 +2,11 @@ import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, Phone, Mail, ArrowRight } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { Separator } from "@/components/ui/separator";
+import ContactAvailability from "@/components/contact/contact-availability";
 
 interface ServiceDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -39,9 +40,8 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   }
 
   return (
-    <div className="relative overflow-x-clip">
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center pt-24 pb-16 md:pt-32 md:pb-24">
+    <div className="relative overflow-x-clip bg-[#f7faf9]">
+      <section className="relative flex min-h-[60vh] items-center overflow-hidden pb-16 pt-28 md:pb-20 md:pt-36">
         <div className="absolute inset-0 -z-10">
           {service.image ? (
              <>
@@ -52,112 +52,96 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                  className="object-cover"
                  priority
                />
-               <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px]" />
+               <div className="absolute inset-0 bg-white/82 backdrop-blur-[2px]" />
              </>
           ) : (
-            <div className="absolute inset-0 bg-slate-950" />
+            <div className="absolute inset-0 bg-white" />
           )}
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f7faf9]/90 via-white/82 to-white" />
+          <div className="absolute right-0 top-0 h-[420px] w-[520px] rounded-full bg-primary/10 blur-3xl" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container relative z-10 mx-auto px-6">
           <Link 
             href="/services"
-            className="inline-flex items-center gap-2 text-white/60 hover:-secondary transition-colors mb-8 group"
+            className="group mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:text-primary"
           >
             <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
             <span className="text-sm font-bold uppercase tracking-widest">Back to Services</span>
           </Link>
 
           <div className="max-w-4xl">
-            <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-7xl mb-6">
+            <h1 className="mb-6 text-4xl font-semibold tracking-tight text-slate-950 md:text-7xl">
               {service.title}
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 leading-relaxed max-w-3xl">
+            <p className="max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
               {service.description}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="py-20">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              {/* Features Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
+              <div className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-2">
                 {service.features.map((feature) => (
                   <div 
                     key={feature}
-                    className="flex items-start gap-4 p-6 rounded-2xl bg-slate-50 border border-slate-100 transition-all hover:-secondary/30 hover:bg-white hover:shadow-lg hover:shadow-primary/5"
+                    className="flex items-start gap-4 rounded-[1.35rem] border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-primary/20 hover:shadow-md"
                   >
-                    <CheckCircle2 className="size-6 shrink-0 -secondary" />
-                    <span className="text-lg font-semibold text-slate-800">{feature}</span>
+                    <CheckCircle2 className="size-6 shrink-0 text-primary" />
+                    <span className="text-base font-semibold text-slate-800">{feature}</span>
                   </div>
                 ))}
               </div>
 
-              {/* Rich Text Content */}
               {service.content && (
-                <div className="prose prose-lg max-w-none prose-slate prose-headings:font-bold prose-headings:tracking-tight prose-a:-secondary">
+                <div className="prose prose-lg max-w-none rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm prose-headings:font-bold prose-headings:tracking-tight md:p-10">
                     <div dangerouslySetInnerHTML={{ __html: service.content }} />
                 </div>
               )}
             </div>
 
-            {/* Sticky Sidebar */}
             <aside className="lg:sticky lg:top-32 h-fit">
-              <div className="rounded-[2.5rem] bg-slate-950 p-8 md:p-10 text-white shadow-2xl overflow-hidden relative group">
-                <div className="absolute -right-1/4 -top-1/4 size-64 rounded-full -secondary opacity-10 blur-[80px] transition-all duration-700 group-hover:scale-150" />
+              <div className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+                <div className="absolute -right-1/4 -top-1/4 size-64 rounded-full bg-primary/10 blur-[80px] transition-all duration-700 group-hover:scale-150" />
                 
-                <h3 className="text-2xl font-bold mb-6 relative z-10">Talk to us about {service.title}</h3>
-                <p className="text-slate-400 mb-10 relative z-10">
+                <h3 className="relative z-10 mb-4 text-2xl font-semibold tracking-tight text-slate-950">Talk to us about {service.title}</h3>
+                <p className="relative z-10 mb-8 text-sm leading-7 text-slate-600">
                   Ready to go solar? Our team will help you choose the right equipment, partner brand, and support path.
                 </p>
 
                 <div className="space-y-4 relative z-10">
                     <Link href="/contact" className="block w-full">
-                        <Button className="w-full h-14 rounded-full font-bold text-base -secondary text-slate-950 hover:-secondary/90">
+                        <Button className="h-12 w-full rounded-full bg-primary text-sm font-semibold text-white hover:bg-primary/90">
                             Contact Our Team
                             <ArrowRight className="ml-2 size-5" />
                         </Button>
                     </Link>
                     <Link href="/contact" className="block w-full">
-                        <Button variant="outline" className="w-full h-14 rounded-full font-bold text-base border-white/10 hover:bg-white/5">
+                        <Button variant="outline" className="h-12 w-full rounded-full border-slate-200 bg-white text-sm font-semibold text-slate-800 hover:bg-[#f7faf9]">
                             Submit Inquiry
                         </Button>
                     </Link>
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-white/10 relative z-10">
-                    <p className="text-sm font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Direct Support</p>
-                    <div className="space-y-4">
-                        <a href="tel:+917700908508" className="flex items-center gap-4 text-white hover:-secondary transition-colors">
-                            <div className="size-10 rounded-full bg-white/5 flex items-center justify-center">
-                                <Phone className="size-4" />
-                            </div>
-                            <span className="font-semibold">+91 7700908508</span>
-                        </a>
-                        <a href="mailto:energyeliz@gmail.com" className="flex items-center gap-4 text-white hover:-secondary transition-colors">
-                            <div className="size-10 rounded-full bg-white/5 flex items-center justify-center">
-                                <Mail className="size-4" />
-                            </div>
-                            <span className="font-semibold">energyeliz@gmail.com</span>
-                        </a>
-                    </div>
+                <div className="relative z-10 mt-10 border-t border-slate-100 pt-6">
+                    <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest text-slate-400">Direct Support</p>
+                    <ContactAvailability />
                 </div>
               </div>
             </aside>
           </div>
 
-          <Separator className="my-24 opacity-50" />
+          <Separator className="my-16 opacity-70 md:my-24" />
 
           {/* Service FAQ Section */}
           {service.faqs.length > 0 && (
             <div className="max-w-4xl">
                 <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-600 shadow-sm mb-6">
-                    <span className="size-2 rounded-full -secondary" />
+                    <span className="size-2 rounded-full bg-primary" />
                     Service FAQ
                 </div>
                 <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-5xl mb-12">

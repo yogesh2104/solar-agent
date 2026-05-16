@@ -82,7 +82,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const faqs = siteConfig.faqs;
 
   return (
-    <article className="relative min-h-screen">
+    <article className="relative min-h-screen bg-[#f7faf9]">
       <FAQSchema faqs={faqs} />
       <ReadingProgress />
       <script
@@ -90,9 +90,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
       />
 
-      {/* Hero Section - Header */}
-      <header className="relative bg-[#f8fafc] pt-28 pb-12 md:pt-40 md:pb-16 overflow-hidden">
+      <header className="relative overflow-hidden bg-gradient-to-b from-[#f7faf9] via-white to-white pb-12 pt-28 md:pb-16 md:pt-36">
         <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(8,17,31,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(8,17,31,0.5)_1px,transparent_1px)] bg-size-[40px_40px]" />
+        <div className="absolute right-0 top-0 h-[420px] w-[520px] rounded-full bg-primary/10 blur-3xl" />
 
         <div className="container relative z-10 mx-auto px-6 max-w-7xl">
           <motion.div
@@ -102,7 +102,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           >
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline mb-8"
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:text-primary"
             >
               <ArrowLeft className="size-4" />
               Back to Insights
@@ -114,12 +114,12 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex flex-wrap justify-center gap-3 mb-8"
+              className="mb-8 flex flex-wrap justify-center gap-3"
             >
               {blog.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-primary/10 px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-widest text-primary border border-primary/10"
+                  className="rounded-full border border-primary/10 bg-primary/10 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-primary"
                 >
                   {tag}
                 </span>
@@ -130,7 +130,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl font-bold tracking-tight text-slate-950 md:text-6xl md:leading-[1.1] mb-10 max-w-4xl"
+              className="mb-10 max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl md:leading-[1.1]"
             >
               {blog.title}
             </motion.h1>
@@ -139,7 +139,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-slate-600 border-t border-slate-200 pt-8"
+              className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 border-t border-slate-200 pt-8 text-sm text-slate-600"
             >
               <div className="flex items-center gap-4">
                 <div className="relative size-12 overflow-hidden rounded-full border-2 border-white shadow-sm ring-4 ring-slate-50">
@@ -187,12 +187,12 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       </header>
 
       {/* Featured Large Image Section */}
-      <section className="container mx-auto px-6 -mt-8 md:-mt-12">
+      <section className="container mx-auto -mt-8 px-6 md:-mt-12">
         <motion.div
           initial={{ opacity: 0, scale: 0.99 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative aspect-21/10 overflow-hidden rounded-[2.5rem] md:rounded-[4rem] bg-slate-100 border-8 border-white ring-1 ring-slate-200"
+          className="relative aspect-[21/10] overflow-hidden rounded-[2rem] border-8 border-white bg-slate-100 shadow-[0_24px_80px_rgba(15,23,42,0.10)] ring-1 ring-slate-200 md:rounded-[2.5rem]"
         >
           <Image
             src={blog.image}
@@ -205,7 +205,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       </section>
 
       {/* Content Section */}
-      <div className="container mx-auto mt-16 px-6 pb-10 md:mt-10">
+      <div className="container mx-auto mt-12 px-6 pb-10 md:mt-16">
         <div className="flex flex-col gap-12 lg:flex-row lg:justify-center lg:gap-10">
           {/* Main Content */}
           <motion.div
@@ -213,46 +213,46 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-4xl bg-white border border-slate-200 rounded-[2.5rem] p-4 md:p-8 shadow-sm"
+            className="w-full max-w-4xl rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10"
           >
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
                 h2: ({ children }) => (
-                  <h2 className="text-xl font-bold tracking-tight text-slate-950 mt-2 mb-2 first:mt-0 flex items-center gap-4">
+                  <h2 className="mb-4 mt-8 flex items-center gap-4 text-2xl font-semibold tracking-tight text-slate-950 first:mt-0">
                     <span className="h-10 w-1.5 rounded-full bg-primary" />
                     {children}
                   </h2>
                 ),
                 h3: ({ children }) => (
-                  <h3 className="text-md font-bold text-slate-900 mt-2 mb-2 text-center lg:text-left">
+                  <h3 className="mb-3 mt-6 text-lg font-semibold text-slate-900">
                     {children}
                   </h3>
                 ),
                 p: ({ children }) => (
-                  <p className="text-sm leading-[1.8] text-slate-600 mb-3 font-medium last:mb-0">
+                  <p className="mb-4 text-base leading-8 text-slate-600 last:mb-0">
                     {children}
                   </p>
                 ),
                 ul: ({ children }) => (
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5 mb-4 p-0">
+                  <ul className="mb-6 grid grid-cols-1 gap-x-8 gap-y-4 p-0 md:grid-cols-2">
                     {children}
                   </ul>
                 ),
                 ol: ({ children }) => (
-                  <ol className="space-y-2 mb-4 list-decimal list-inside text-xl font-medium text-slate-600">
+                  <ol className="mb-6 list-inside list-decimal space-y-2 text-base text-slate-600">
                     {children}
                   </ol>
                 ),
                 li: ({ children }) => (
-                  <li className="flex items-start gap-4 text-md font-medium text-slate-600 group transition-colors hover:text-slate-950">
+                  <li className="group flex items-start gap-3 text-sm font-medium text-slate-600 transition-colors hover:text-slate-950">
                     <span className="mt-2.5 size-2 shrink-0 rounded-full bg-primary ring-4 ring-primary/10" />
                     <span className="flex-1">{children}</span>
                   </li>
                 ),
                 hr: () => <hr className="my-10 h-px border-0" />,
                 blockquote: ({ children }) => (
-                  <blockquote className="my-10 overflow-hidden rounded-[2.5rem] border border-slate-100 bg-[#f8fafc] p-8 md:p-10 text-md font-semibold italic leading-relaxed text-slate-900">
+                  <blockquote className="my-10 overflow-hidden rounded-[1.8rem] border border-slate-200 bg-[#f7faf9] p-6 text-base font-medium italic leading-8 text-slate-900 md:p-8">
                     <div className="flex gap-6">
                       <Quote className="size-10 shrink-0 text-primary opacity-20" />
                       <div>{children}</div>
@@ -260,7 +260,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   </blockquote>
                 ),
                 table: ({ children }) => (
-                  <div className="my-10 overflow-hidden rounded-[2.5rem] border border-border bg-white shadow-2xl shadow-slate-200/50">
+                  <div className="my-10 overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm">
                     <div className="overflow-x-auto">
                       <table className="w-full border-collapse text-left">
                         {children}
@@ -277,7 +277,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   </th>
                 ),
                 td: ({ children }) => (
-                  <td className="px-8 py-6 text-lg font-medium text-slate-600 border-b border-slate-50">
+                  <td className="border-b border-slate-50 px-8 py-6 text-base font-medium text-slate-600">
                     {children}
                   </td>
                 ),
@@ -295,7 +295,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </ReactMarkdown>
 
             {/* Author Footer Card */}
-            <div className="mt-20 overflow-hidden rounded-[2.5rem] border border-slate-100 bg-[#f8fafc] p-8 md:p-12">
+            <div className="mt-16 overflow-hidden rounded-[2rem] border border-slate-200 bg-[#f7faf9] p-8 md:p-10">
               <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left">
                 <div className="relative size-24 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-md">
                   {blog.author.image ? (
@@ -328,13 +328,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </div>
 
             {/* Global CTA */}
-            <div className="mt-8 overflow-hidden rounded-[2.5rem] bg-slate-950 p-8 text-white md:p-12">
+            <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-8 md:p-10">
               <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
                 <div>
-                  <h2 className="text-3xl font-bold md:text-4xl text-white mt-0 border-0">
+                  <h2 className="mt-0 border-0 text-3xl font-semibold text-slate-950 md:text-4xl">
                     Ready to switch to solar?
                   </h2>
-                  <p className="mt-2 text-slate-400">
+                  <p className="mt-2 text-slate-600">
                     Get a custom commercial solar analysis for your facility.
                   </p>
                 </div>
@@ -354,11 +354,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           {/* Sidebar */}
           <aside className="lg:w-80 shrink-0">
             <div className="sticky top-32 space-y-10">
-              <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">
+              <div className="rounded-[1.6rem] border border-slate-200 bg-white p-6 shadow-sm">
                 <TableOfContents />
               </div>
 
-              <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">
+              <div className="rounded-[1.6rem] border border-slate-200 bg-white p-6 shadow-sm">
                 <div className="flex items-center gap-2 mb-6 text-sm font-semibold uppercase tracking-wider text-slate-400">
                   <Share2 className="h-4 w-4" />
                   Share article
@@ -368,7 +368,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
               <Link
                 href="/blog"
-                className="flex items-center justify-between rounded-3xl bg-primary/5 p-6 transition-colors hover:bg-primary/10 group"
+                className="group flex items-center justify-between rounded-[1.6rem] border border-primary/10 bg-white p-6 transition-colors hover:bg-primary/5"
               >
                 <div>
                   <div className="text-sm font-semibold text-primary">
@@ -387,12 +387,12 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
       {/* Related Posts Section */}
       {relatedBlogs.length > 0 && (
-        <section className="container mx-auto px-6 py-20 border-t border-slate-100">
-          <div className="flex flex-col items-center text-center mb-16 underline decoration-primary underline-offset-[16px] decoration-4">
-            <div className="text-sm font-black uppercase tracking-[0.2em] text-primary mb-4">
+        <section className="container mx-auto border-t border-slate-200 px-6 py-16 md:py-24">
+          <div className="mb-12 flex flex-col items-center text-center">
+            <div className="mb-4 text-sm font-semibold uppercase tracking-widest text-primary">
               Continue Reading
             </div>
-            <h2 className="text-4xl font-bold text-slate-950 md:text-5xl border-0">
+            <h2 className="border-0 text-4xl font-semibold text-slate-950 md:text-5xl">
               Related Insights
             </h2>
           </div>

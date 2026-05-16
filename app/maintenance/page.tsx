@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { CheckCircle2, Droplets, ShieldPlus, LineChart } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Droplets, ShieldPlus, LineChart } from "lucide-react";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -87,7 +87,7 @@ const maintenanceServices = [
 
 export default function MaintenancePage() {
   return (
-    <div className="bg-white pb-20">
+    <div className="bg-[#f7faf9] pb-20">
       <StaticPageHeader
         title="Solar"
         highlight="Maintenance & AMC"
@@ -95,13 +95,17 @@ export default function MaintenancePage() {
         description="Keep your solar system efficient with expert maintenance services in Mumbai. AMC, cleaning, and performance optimization available."
       />
 
-      <section className="py-20">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-5xl">
+          <div className="mx-auto mb-14 max-w-4xl text-center">
+            <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[rgba(15,23,42,0.08)] bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-slate-500 shadow-sm">
+              <span className="size-1.5 rounded-full bg-primary" />
+              Maintenance care
+            </div>
+            <h2 className="mt-5 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
               Solar Maintenance & AMC Services in Mumbai
             </h2>
-            <p className="mt-6 text-lg text-slate-600">
+            <p className="mt-5 text-base leading-8 text-slate-600">
               A solar system is a 25-year asset. To ensure it delivers peak
               savings, regular maintenance is mandatory. ELIZ ENERGY provides
               professional O&M services for residential and commercial plants.
@@ -110,49 +114,53 @@ export default function MaintenancePage() {
 
           <div className="grid gap-8 md:grid-cols-3">
             {maintenanceServices.map((service) => (
-              <div
+              <article
                 key={service.title}
-                className="group flex flex-col rounded-[2.5rem] border border-slate-200 bg-white p-8 transition-all hover:bg-secondary hover:shadow-2xl"
+                className="group flex flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)]"
               >
-                <div className="mb-6 flex size-14 items-center justify-center rounded-2xl bg-slate-50 text-secondary transition-colors group-hover:bg-secondary group-hover:text-slate-950">
+                <div className="mb-6 flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
                   <service.icon className="size-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-950 mb-4">
+                <h3 className="mb-4 text-2xl font-semibold tracking-tight text-slate-950">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 text-sm leading-7 mb-8">
+                <p className="mb-8 text-sm leading-7 text-slate-600">
                   {service.description}
                 </p>
                 <div className="mt-auto space-y-3">
                   {service.benefits.map((benefit) => (
                     <div
                       key={benefit}
-                      className="flex items-center gap-2 text-xs font-semibold text-slate-500"
+                      className="flex items-center gap-2 rounded-full bg-[#f7faf9] px-3 py-2 text-xs font-medium text-slate-600"
                     >
-                      <CheckCircle2 className="size-3 text-secondary" />
+                      <CheckCircle2 className="size-3.5 text-primary" />
                       {benefit}
                     </div>
                   ))}
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
-          <div className="mt-20 rounded-[3rem] bg-slate-950 p-8 md:p-16 text-center relative overflow-hidden">
-            <div className="absolute -right-1/4 -bottom-1/4 size-[500px] rounded-full text-secondary opacity-10 blur-[100px]" />
-            <div className="relative z-10 max-w-2xl mx-auto">
-              <h2 className="text-3xl font-bold text-white md:text-4xl mb-6">
+          <div className="relative mt-16 overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white p-8 text-center shadow-sm md:p-12">
+            <div className="absolute -right-20 -top-24 size-72 rounded-full bg-primary/10 blur-3xl" />
+            <div className="relative z-10 mx-auto max-w-2xl">
+              <h2 className="mb-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl">
                 Protect Your Solar Investment
               </h2>
-              <p className="text-slate-400 mb-10">
+              <p className="mb-8 text-base leading-7 text-slate-600">
                 Don&apos;t wait for your generation to drop. Book a health check
                 or sign up for an AMC today.
               </p>
-              <Link href="/contact">
-                <Button className="h-14 px-10 rounded-full font-bold text-base bg-secondary text-slate-950 hover:bg-secondary/90">
+              <Button
+                asChild
+                className="h-12 rounded-full bg-primary px-7 text-sm font-semibold text-white hover:bg-primary/90"
+              >
+                <Link href="/contact">
                   Book Maintenance Now
-                </Button>
-              </Link>
+                  <ArrowUpRight className="size-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

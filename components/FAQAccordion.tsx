@@ -29,7 +29,7 @@ export const FAQAccordion = ({
   };
 
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("space-y-3", className)}>
       {items.map((item) => {
         const isOpen = openIndex === item.id;
 
@@ -37,10 +37,10 @@ export const FAQAccordion = ({
           <div
             key={item.id}
             className={cn(
-              "group rounded-2xl border transition-all duration-300",
+              "group rounded-[1.35rem] border transition-all duration-300",
               isOpen
-                ? "border-primary/20 bg-primary/[0.02] shadow-sm"
-                : "border-border/50 bg-card/50 hover:border-primary/10 hover:bg-card"
+                ? "border-primary/20 bg-white shadow-sm"
+                : "border-slate-200 bg-white/75 hover:border-primary/20 hover:bg-white hover:shadow-sm"
             )}
           >
             <button
@@ -49,8 +49,8 @@ export const FAQAccordion = ({
             >
               <span
                 className={cn(
-                  "text-base font-semibold transition-colors duration-300 md:text-lg",
-                  isOpen ? "text-primary" : "text-foreground group-hover:text-primary/80"
+                  "text-base font-semibold tracking-tight transition-colors duration-300 md:text-lg",
+                  isOpen ? "text-slate-950" : "text-slate-800 group-hover:text-primary"
                 )}
               >
                 {item.question}
@@ -60,7 +60,7 @@ export const FAQAccordion = ({
                   "ml-4 flex size-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
                   isOpen
                     ? "border-primary/20 bg-primary/10 text-primary"
-                    : "border-border text-muted-foreground group-hover:border-primary/20 group-hover:text-primary"
+                    : "border-slate-200 bg-[#f7faf9] text-slate-500 group-hover:border-primary/20 group-hover:text-primary"
                 )}
               >
                 {variant === "chevron" ? (
@@ -85,8 +85,8 @@ export const FAQAccordion = ({
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <div className="border-t border-primary/5 px-5 pb-6 pt-2 md:px-6 md:pb-8">
-                    <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+                  <div className="border-t border-slate-100 px-5 pb-6 pt-2 md:px-6 md:pb-8">
+                    <p className="text-sm leading-7 text-slate-600 md:text-base">
                       {item.answer}
                     </p>
                   </div>

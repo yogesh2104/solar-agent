@@ -53,17 +53,16 @@ export default function LegalContent({
   className,
 }: LegalContentProps) {
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-white to-slate-50 py-10">
-      {/* Background Glow */}
-      <div className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-cyan-400/5 blur-3xl" />
-      <div className="absolute bottom-0 left-0 h-[24rem] w-[24rem] rounded-full bg-lime-400/10 blur-3xl" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#f7faf9] py-12 md:py-16">
+      <div className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute bottom-0 left-0 h-[24rem] w-[24rem] rounded-full bg-secondary/10 blur-3xl" />
 
       <div className="container mx-auto px-6">
         <div className="flex flex-col gap-10 lg:flex-row">
           {/* Sidebar */}
           <aside className="lg:w-72">
-            <div className="rounded-2xl border border-slate-200 bg-white/70 p-5 shadow-sm backdrop-blur lg:sticky lg:top-28">
-              <p className="mb-4 text-sm font-semibold text-slate-500">
+            <div className="rounded-[1.5rem] border border-slate-200 bg-white/80 p-5 shadow-sm backdrop-blur lg:sticky lg:top-28">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">
                 On this page
               </p>
               <TableOfContents />
@@ -74,7 +73,7 @@ export default function LegalContent({
           <article
             className={cn(
               "w-full max-w-4xl",
-              "rounded-3xl border border-slate-200 bg-white p-8 shadow-sm",
+              "rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10",
               "prose prose-slate prose-lg",
               "prose-headings:font-bold prose-headings:text-slate-900",
               "prose-h2:text-2xl prose-h2:mt-12 prose-h2:pb-3 prose-h2:border-b prose-h2:border-slate-100",
@@ -95,7 +94,7 @@ export default function LegalContent({
 
 export function InfoBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="my-6 rounded-xl border border-blue-100 bg-blue-50 p-4 text-sm text-blue-800">
+    <div className="my-6 rounded-xl border border-sky-100 bg-sky-50 p-4 text-sm text-sky-800">
       {children}
     </div>
   );

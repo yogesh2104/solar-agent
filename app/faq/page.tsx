@@ -63,7 +63,7 @@ export default function FaqPage() {
   );
 
   return (
-    <div className="relative isolate min-h-screen">
+    <div className="relative isolate min-h-screen bg-[#f7faf9]">
       <FAQSchema faqs={faqs} />
       <StaticPageHeader
         title="Frequently"
@@ -72,33 +72,32 @@ export default function FaqPage() {
       />
 
       <div className="container mx-auto px-6 py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-          {/* Sidebar Navigation */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-4">
           <aside className="lg:col-span-1">
             <div className="space-y-2 lg:sticky lg:top-32">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 px-4">
+              <p className="mb-4 px-4 text-[11px] font-semibold uppercase tracking-widest text-slate-400">
                 Categories
               </p>
               {categories.map((cat) => (
                 <a
                   key={cat}
                   href={`#${cat.toLowerCase().replace(/ /g, "-")}`}
-                  className="block px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-white hover:text-primary transition-all"
+                  className="block rounded-full px-4 py-3 text-sm font-semibold text-slate-600 transition-all hover:bg-white hover:text-primary hover:shadow-sm"
                 >
                   {cat}
                 </a>
               ))}
 
-              <div className="mt-12 p-6 rounded-3xl bg-slate-950 text-white relative overflow-hidden group">
-                <div className="absolute -right-8 -bottom-8 size-32 rounded-full text-secondary opacity-10 blur-2xl group-hover:scale-150 transition-transform duration-700" />
-                <h4 className="font-bold mb-4 relative z-10">
+              <div className="group relative mt-10 overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="absolute -bottom-16 -right-16 size-40 rounded-full bg-primary/10 blur-3xl transition-transform duration-700 group-hover:scale-125" />
+                <h4 className="relative z-10 mb-3 text-lg font-semibold tracking-tight text-slate-950">
                   Still have questions?
                 </h4>
-                <p className="text-sm text-slate-400 mb-6 relative z-10">
+                <p className="relative z-10 mb-6 text-sm leading-6 text-slate-600">
                   Our team is ready to help you with any technical inquiries.
                 </p>
                 <Link href="/contact">
-                  <Button className="w-full rounded-full bg-secondary text-slate-950 hover:bg-secondary/90 h-10 text-xs font-bold uppercase tracking-wider">
+                  <Button className="h-11 w-full rounded-full bg-primary text-sm font-semibold text-white hover:bg-primary/90">
                     Contact Us
                   </Button>
                 </Link>
@@ -106,19 +105,18 @@ export default function FaqPage() {
             </div>
           </aside>
 
-          {/* FAQ Groups */}
-          <div className="lg:col-span-3 space-y-20">
+          <div className="space-y-14 lg:col-span-3">
             {categories.map((cat) => (
               <div
                 key={cat}
                 id={cat.toLowerCase().replace(/ /g, "-")}
                 className="scroll-mt-32"
               >
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="size-10 rounded-xl bg-primary/5 flex items-center justify-center">
-                    <HelpCircle className="size-5 text-black" />
+                <div className="mb-6 flex items-center gap-4">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-white text-primary shadow-sm">
+                    <HelpCircle className="size-5" />
                   </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">
+                  <h2 className="text-2xl font-semibold tracking-tight text-slate-950 md:text-3xl">
                     {cat} Questions
                   </h2>
                 </div>

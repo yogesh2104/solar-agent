@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, HelpCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Separator } from "../ui/separator";
 
 interface FAQItem {
@@ -21,7 +21,7 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section className="relative overflow-hidden bg-white py-7 md:py-10">
+    <section className="relative overflow-hidden bg-white py-12 md:py-24">
       {/* Background Decor */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div
@@ -31,21 +31,20 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
             backgroundSize: "40px 40px",
           }}
         />
-        <div className="absolute -left-1/4 top-1/2 size-[600px] rounded-full -muted opacity-10 blur-[120px]" />
+        <div className="absolute -left-1/4 top-1/2 size-[600px] rounded-full bg-[#eef4f1] opacity-40 blur-[120px]" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6">
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
+      <div className="container relative z-10 mx-auto px-4 md:px-6">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between md:gap-12">
           <div className="max-w-xl lg:sticky lg:top-32">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="mt-7 text-4xl font-semibold leading-[1.15] tracking-tight text-slate-950 md:text-6xl"
+              className="text-3xl font-semibold leading-[1.12] tracking-tight text-slate-950 md:mt-7 md:text-6xl"
             >
               Frequently Asked Questions <br />
-              <span className="text-primary">About Solar in Mumbai</span>
             </motion.h2>
 
             <motion.p
@@ -53,7 +52,7 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="mt-8 text-lg leading-relaxed text-slate-600"
+              className="mt-4 text-sm leading-7 text-slate-600 md:mt-8 md:text-lg md:leading-relaxed"
             >
               Learn about the installation process, ROI expectations,
               maintenance, and how solar can transform your business energy
@@ -65,10 +64,10 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="mt-12"
+              className="mt-6 md:mt-12"
             >
               <Link href="/faq">
-                <Button className="h-14 px-8 rounded-full font-bold text-base bg-slate-950 text-white hover:bg-slate-800 transition-all group">
+                <Button className="group h-11 rounded-full bg-slate-950 px-6 text-sm font-semibold text-white transition-all hover:bg-slate-800 md:h-14 md:px-8 md:text-base">
                   View All FAQs
                   <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
                 </Button>

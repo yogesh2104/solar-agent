@@ -120,7 +120,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="bg-[#f7faf9] pt-6 pb-20">
+    <section id="contact" className="bg-[#f7faf9] pb-20 pt-8">
       <div className="container mx-auto px-6">
         <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr]">
           <div className="space-y-6">

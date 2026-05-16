@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  ArrowUpRight,
   ArrowRight,
   CheckCircle2,
   Factory,
@@ -9,6 +10,7 @@ import {
   Building2,
   ShieldCheck,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import siteConfig from "@/lib/siteConfig";
@@ -50,7 +52,7 @@ export const metadata = {
   robots: { index: true, follow: true },
 };
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   Home: Home,
   Building: Building2,
   Factory: Factory,
@@ -65,22 +67,22 @@ export default async function ServicesPage() {
   });
 
   return (
-    <div className="relative isolate min-h-screen">
+    <div className="relative isolate min-h-screen bg-[#f7faf9]">
       <StaticPageHeader
         title="Complete"
         highlight="Solar Installation Services"
         description="Get complete solar equipment supply and support across India."
       />
 
-      <div className="container mx-auto px-6 py-8 md:py-12">
+      <div className="container mx-auto px-6 py-16 md:py-24">
         {services.length === 0 ? (
-          <div className="rounded-[2.5rem] border border-slate-200 bg-white/40 py-20 text-center backdrop-blur-md">
+          <div className="rounded-[2rem] border border-dashed border-slate-300 bg-white py-20 text-center shadow-sm">
             <p className="text-slate-500">
               Our services are currently being updated. Please check back soon.
             </p>
           </div>
         ) : (
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {services.map((service) => {
               const Icon = iconMap[service.icon || ""] || Building2;
 
@@ -88,9 +90,9 @@ export default async function ServicesPage() {
                 <Link
                   key={service.id}
                   href={`/services/${service.slug}`}
-                  className="group relative flex flex-col overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white/60 p-2 backdrop-blur-md transition-all duration-500 hover:border-slate-300 hover:bg-white hover:shadow-[0_40px_80px_rgba(8,17,31,0.06)]"
+                  className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-2 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)]"
                 >
-                  <div className="relative aspect-video overflow-hidden rounded-4xl">
+                  <div className="relative aspect-video overflow-hidden rounded-[1.6rem]">
                     {service.image ? (
                       <Image
                         src={service.image}
@@ -103,8 +105,8 @@ export default async function ServicesPage() {
                         <Icon className="h-20 w-20 text-slate-200" />
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/40 via-transparent to-transparent" />
-                    <div className="absolute left-6 top-6 flex size-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all duration-500 group-hover:scale-110 group-hover:bg-white group-hover:text-slate-950">
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+                    <div className="absolute left-5 top-5 flex size-12 items-center justify-center rounded-2xl border border-white/25 bg-white/85 text-primary backdrop-blur-xl transition-all duration-300 group-hover:scale-105">
                       <Icon className="size-6" />
                     </div>
                   </div>
@@ -123,7 +125,7 @@ export default async function ServicesPage() {
                           key={feature}
                           className="inline-flex items-center gap-1.5 rounded-full border border-slate-100 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600"
                         >
-                          <CheckCircle2 className="size-3 text-secondary" />
+                          <CheckCircle2 className="size-3 text-primary" />
                           {feature}
                         </span>
                       ))}
@@ -134,7 +136,7 @@ export default async function ServicesPage() {
                       )}
                     </div>
 
-                    <div className="mt-10 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-secondary">
+                    <div className="mt-10 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary">
                       Explore Details
                       <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </div>
@@ -145,30 +147,35 @@ export default async function ServicesPage() {
           </div>
         )}
 
-        <div className="mt-12 rounded-[3rem] bg-slate-950 p-8 text-center text-white md:p-16">
+        <div className="mt-12 rounded-[2.2rem] border border-slate-200 bg-white p-8 shadow-sm md:p-12">
           <div className="relative z-10 mx-auto max-w-2xl">
-            <h2 className="mb-6 text-3xl font-bold text-white md:text-5xl">
+            <h2 className="mb-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
               Need help matching equipment to your project?
             </h2>
-            <p className="mb-10 text-lg text-slate-400">
+            <p className="mb-8 text-base leading-8 text-slate-600">
               We help you choose the right solar equipment, partner brand, and
               support path for residential, commercial, industrial, and utility
               projects.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/contact">
-                <Button className="h-14 cursor-pointer rounded-full px-10 text-base font-bold text-white hover:bg-primary/90">
+              <Button
+                asChild
+                className="h-12 cursor-pointer rounded-full bg-primary px-7 text-sm font-semibold text-white hover:bg-primary/90"
+              >
+                <Link href="/contact">
                   Contact Our Team
-                </Button>
-              </Link>
-              <Link href="/products">
-                <Button
-                  variant="secondary"
-                  className="h-14 cursor-pointer rounded-full px-10 text-base font-bold text-white border-white/10 transition-colors"
-                >
+                  <ArrowUpRight className="size-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="h-12 cursor-pointer rounded-full border-slate-200 bg-white px-7 text-sm font-semibold text-slate-800 hover:bg-[#f7faf9]"
+              >
+                <Link href="/products">
                   View Products
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

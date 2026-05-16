@@ -4,9 +4,10 @@ import { Blog } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Calendar } from "lucide-react";
 import { format } from "date-fns";
+import type { UnifiedBlog } from "@/lib/blog-service";
 
 interface BlogCardProps {
-  blog: Blog;
+  blog: Blog | UnifiedBlog;
   isAdmin?: boolean;
 }
 
@@ -23,7 +24,7 @@ export const BlogCard = ({ blog, isAdmin }: BlogCardProps) => {
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-slate-950/35 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent" />
           <div className="absolute left-5 top-5">
             <Badge className="rounded-full border border-white/40 bg-primary px-3 py-1 text-[10px] font-semibold uppercase text-white shadow-none">
               {blog.tags[0] || "Insight"}
