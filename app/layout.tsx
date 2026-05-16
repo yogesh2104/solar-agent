@@ -7,6 +7,8 @@ import B2BFooter from "@/components/landing/B2BFooter";
 import WhatsAppCTA from "@/components/landing/WhatsAppCTA";
 import siteConfig from "@/lib/siteConfig";
 import "./globals.css";
+import type { Viewport } from 'next'
+
 
 const fontSans = Outfit({
   subsets: ["latin"],
@@ -76,7 +78,6 @@ export const metadata: Metadata = {
     canonical: "https://elizenergy.in",
   },
   manifest: "/site.webmanifest",
-  themeColor: "#ffffff",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -90,9 +91,13 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#ffffff",
+  
 };
 
 export default function RootLayout({

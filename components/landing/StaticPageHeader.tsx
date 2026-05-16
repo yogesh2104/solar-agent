@@ -23,7 +23,7 @@ export default function StaticPageHeader({
   return (
     <section
       className={cn(
-        "relative overflow-hidden border-b border-slate-200/80 pb-6 pt-20 md:pb-10 md:pt-28",
+        "relative overflow-hidden border-b border-slate-200/80 pb-6 pt-28 md:pb-10 md:pt-28",
         className,
       )}
     >
