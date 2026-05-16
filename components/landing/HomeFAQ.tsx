@@ -45,7 +45,6 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
               className="mt-7 text-4xl font-semibold leading-[1.15] tracking-tight text-slate-950 md:text-6xl"
             >
               Frequently Asked Questions <br />
-              <span className="text-primary">About Solar in Mumbai</span>
             </motion.h2>
 
             <motion.p

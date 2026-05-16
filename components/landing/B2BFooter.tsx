@@ -59,7 +59,7 @@ export default function B2BFooter() {
           <div className="grid gap-12 lg:grid-cols-5">
             <div className="col-span-2">
               <Link href="/" className="flex items-center gap-3">
-                <div className="relative h-40 w-40">
+                <div className="relative h-32 w-32">
                   <Image
                     src="/Logo1.png"
                     alt={siteConfig.company.name}
@@ -72,43 +72,16 @@ export default function B2BFooter() {
               </Link>
 
               <div className="mt-4 flex items-center gap-3">
-                <div className="relative h-20 w-40">
+                <div className="relative h-20 w-20">
                   <Image
                     src="/MSME.jpeg"
                     alt="MSME Government Approval"
                     fill
-                    className="object-fit"
+                    className="object-contain"
                   />
-                  {/* <Image
-                    src="/MSME1.jpeg"
-                    alt="MSME Government Approval"
-                    fill
-                    className="object-contain dark:hidden"
-                  /> */}
                 </div>
               </div>
-
-              {/* <p className="mt-5 max-w-sm text-sm leading-7 text-black">
-                {company.tagline}
-              </p> */}
-
-              {/* <div className="mt-6 flex flex-wrap gap-2">
-                {[
-                  "Residential Solar",
-                  "Commercial Solar",
-                  "Industrial Solar",
-                  "Utility Solar",
-                  "EV Charger",
-                  "Surya Ghar Yojana",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-black"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div> */}
+             
             </div>
 
             <div>

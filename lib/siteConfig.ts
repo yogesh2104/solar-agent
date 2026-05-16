@@ -8,7 +8,7 @@ const siteConfig = {
       phone: "+91 7208244097",
       whatsapp: "917208244097",
       email: "energyeliz@gmail.com",
-      address: "Thane, Mumbai, Maharashtra",
+      address: "Office no: 1108, 11th floor, Solus Building Hiranandani Estate, Thane West, Maharashtra 400607.",
       googleMaps: "#",
       workingHours: "11am to 5pm",
       locationBoost:
@@ -74,7 +74,7 @@ const siteConfig = {
       { value: "4", label: "Sectors served" },
       { value: "Tier-1", label: "Partner brands" },
     ],
-    image: "/images/new_landing/hero_b2b.png",
+    image: "/new-images/HomePage.png",
   },
   solutions: {
     badge: "Products & services",
@@ -167,6 +167,14 @@ const siteConfig = {
         outcome: "Automated robotic cleaning maximised generation",
         image: "/project/project-2.jpeg",
       },
+      // {
+      //   title: "Inverter Project",
+      //   sector: "Industrial",
+      //   location: "",
+      //   scale: "Multi-Inverter Grid-Tie System",
+      //   outcome: "Seamless grid integration and real-time power analytics",
+      //   image: "/new-images/Inverters.jpg",
+      // },
     ],
   },
   testimonials: {
@@ -212,10 +220,9 @@ const siteConfig = {
     title: "Why buyers stay with ELIZ ENERGY",
     description:
       "ELIZ ENERGY brings 4+ years of solar sector experience and supports Residential, Commercial, Industrial & Utility customers across India.",
-    image: "/images/Solar-Panel-Installation.webp",
+    image: "/new-images/whatteams.jpg",
     checklist: [
       "Pan India solar equipment sale & support",
-      "Waaree, Citizen, GoodWe & more",
       "Solar panels, inverters, batteries, mounting structures",
       "BoS components, cabling, accessories, and EV chargers",
       "Robotic cleaning for utility and Surya Ghar Yojana support",
@@ -236,7 +243,6 @@ const siteConfig = {
     deliverables: [
       "Fast delivery across India",
       "Reliable solar equipment support",
-      "Waaree, Citizen, GoodWe & more",
       "Residential, Commercial, Industrial & Utility coverage",
     ],
   },
@@ -247,7 +253,10 @@ const siteConfig = {
       "Eliz Energy is a solar equipment partner delivering reliable products and support across India for residential, commercial, industrial, and utility projects.",
     highlight:
       "Fast delivery, reliable and sustainable power systems for a cleaner future.",
-    image: "/images/new_landing/about_b2b.png",
+    images: [
+      "/new-images/Enterprisenote1.jpg",
+      "/new-images/Enterprisenote2.jpg",
+    ],
     gallery: ["/images/Rooftop.jpg", "/images/industrial.png"],
     stats: [
       { value: "4+ Years", label: "Solar sector experience" },
@@ -305,7 +314,7 @@ const siteConfig = {
     },
   },
   footer: {
-    title: "Need solar equipment, supply, or support?",
+    title: "Speak with a team built for B2B & B2C solar buying decisions.",
     description: "Call between 11am and 5pm for fast delivery and reliable solar support across India.",
     quickLinks: [
       { name: "About Us", href: "/about" },

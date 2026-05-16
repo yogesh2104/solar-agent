@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
   Building2,
@@ -10,9 +12,11 @@ import {
   ShieldCheck,
   Users,
   CheckCircle2,
+  SolarPanel,
 } from "lucide-react";
 import StaticPageHeader from "@/components/landing/StaticPageHeader";
 import siteConfig from "@/lib/siteConfig";
+import { cn } from "@/lib/utils";
 
 const buyerGroups = [
   "Residential",
@@ -27,6 +31,14 @@ const partners = ["Waaree", "Citizen", "GoodWe", "Sineng", "Apar", "Polycab"];
 
 export default function AboutPage() {
   const { overview, company, founder } = siteConfig;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % overview.images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [overview.images.length]);
 
   return (
     <div className="bg-white">
@@ -110,12 +122,24 @@ export default function AboutPage() {
             >
               <div className="relative overflow-hidden rounded-[2.6rem] border border-slate-200">
                 <div className="relative h-[360px] md:h-[520px]">
-                  <Image
-                    src={overview.image}
-                    alt="ELIZ ENERGY solar equipment and support"
-                    fill
-                    className="object-cover"
-                  />
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={overview.images[currentImageIndex]}
+                        alt="ELIZ ENERGY solar equipment and support"
+                        fill
+                        className="object-cover"
+                        priority={currentImageIndex === 0}
+                      />
+                    </motion.div>
+                  </AnimatePresence>
                   <div className="absolute inset-0 bg-linear-to-t from-slate-950/45 via-slate-950/5 to-transparent" />
                 </div>
               </div>
@@ -136,25 +160,61 @@ export default function AboutPage() {
       <section className="bg-[#f7fbff] py-12">
         <div className="container mx-auto px-6">
           <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="rounded-[2.4rem] bg-slate-950 p-8 text-white md:p-10">
-              <h3 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-                Supply & Support Across India
-              </h3>
-              <p className="mt-5 text-base leading-8 text-white/68">
-                {company.fullName} supports residential, commercial, industrial,
-                and utility projects with a practical mix of equipment supply,
-                delivery, and after-sales help.
-              </p>
+            <div className="relative flex flex-col justify-between overflow-hidden rounded-[2.4rem] bg-slate-950 p-8 text-white md:p-10">
+              {/* Decorative Glow */}
+              <div className="absolute -right-24 -top-24 size-64 rounded-full bg-blue-500/10 blur-3xl" />
+              <div className="absolute -bottom-24 -left-24 size-64 rounded-full bg-secondary/10 blur-3xl" />
 
-              <div className="mt-8 flex flex-wrap gap-2">
-                {buyerGroups.map((group) => (
-                  <span
-                    key={group}
-                    className="rounded-full border border-white/10 bg-white/8 px-3 py-1.5 text-sm text-white"
+              <div className="relative z-10">
+                <h3 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+                  Supply & Support Across India
+                </h3>
+                <p className="mt-5 text-base leading-8 text-white/68">
+                  {company.fullName} supports residential, commercial, industrial,
+                  and utility projects with a practical mix of equipment supply,
+                  delivery, and after-sales help.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {buyerGroups.map((group) => (
+                    <span
+                      key={group}
+                      className="rounded-full border border-white/10 bg-white/8 px-3 py-1.5 text-sm text-white transition-colors hover:bg-white/15"
+                    >
+                      {group}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Added Highlights to fill space */}
+              <div className="relative z-10 mt-12 grid gap-4 sm:grid-cols-2">
+                {overview.stats.slice(0, 2).map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-[1.6rem] border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
                   >
-                    {group}
-                  </span>
+                    <div className="text-3xl font-bold tracking-tight text-white">
+                      {stat.value}
+                    </div>
+                    <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+                      {stat.label}
+                    </div>
+                  </div>
                 ))}
+                <div className="group flex cursor-pointer items-center justify-between rounded-[1.6rem] border border-white/10 bg-linear-to-br from-white/5 to-white/10 p-6 backdrop-blur-sm transition-colors hover:bg-white/15 sm:col-span-2">
+                  <div>
+                    <div className="text-lg font-semibold text-white">
+                      Trusted Partner Brands
+                    </div>
+                    <p className="mt-1 text-sm text-white/50">
+                      Waaree, Citizen, GoodWe, Sineng & more
+                    </p>
+                  </div>
+                  <div className="flex size-11 items-center justify-center rounded-full bg-white/10 transition-transform group-hover:scale-110">
+                    <ArrowUpRight className="size-5 text-secondary" />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -167,18 +227,25 @@ export default function AboutPage() {
                 },
                 {
                   icon: Building2,
-                  title: "Inverters, Batteries & BoS",
+                  title: "Inverters & Storage",
                   body: "Inverters, solar batteries, mounting structures, and balance-of-system components.",
                 },
                 {
                   icon: ShieldCheck,
-                  title: "EV Charger & Accessories",
+                  title: "EV Solutions",
                   body: "EV charger supply plus cabling and accessories for clean, practical deployment.",
                 },
                 {
                   icon: Users,
-                  title: "Robotic Cleaning & Subsidy",
+                  title: "Robotic Cleaning",
                   body: "Utility robotic cleaning and Surya Ghar Yojana project support across India.",
+                },
+                {
+                  icon: SolarPanel,
+                  title: "PM Surya Ghar (Muft Bijli Yojana)",
+                  body: "A Government of India initiative providing subsidies for residential rooftop solar systems, helping households reduce electricity bills and promote clean energy usage across the nation.",
+                  className: "md:col-span-2 bg-linear-to-br from-blue-50/50 to-white",
+                  iconClassName: "bg-blue-100 text-blue-600",
                 },
               ].map((item, index) => {
                 const Icon = item.icon;
@@ -190,9 +257,17 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ duration: 0.45, delay: index * 0.08 }}
-                    className="rounded-[1.9rem] border border-slate-200 bg-white p-6"
+                    className={cn(
+                      "group relative overflow-hidden rounded-[1.9rem] border border-slate-200 bg-white p-6 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/40",
+                      item.className
+                    )}
                   >
-                    <span className="flex size-11 items-center justify-center rounded-full bg-slate-50 text-slate-950">
+                    <span
+                      className={cn(
+                        "flex size-11 items-center justify-center rounded-full bg-slate-50 text-slate-950 transition-colors group-hover:bg-slate-950 group-hover:text-white",
+                        item.iconClassName
+                      )}
+                    >
                       <Icon className="size-5" />
                     </span>
                     <h3 className="mt-5 text-xl font-semibold tracking-tight text-slate-950">
@@ -248,7 +323,7 @@ export default function AboutPage() {
               <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
                 Products & Services
               </div>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                 {[
                   "Solar Panels",
                   "Inverters",
@@ -262,7 +337,7 @@ export default function AboutPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm font-medium text-slate-700"
+                    className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 p-2 text-sm font-medium text-slate-700"
                   >
                     <CheckCircle2 className="size-4 text-secondary" />
                     {item}

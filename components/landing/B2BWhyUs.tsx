@@ -31,14 +31,14 @@ export default function B2BWhyUs() {
             transition={{ duration: 0.55 }}
             className="overflow-hidden rounded-[2.6rem] border border-white/10"
           >
-            <div className="relative h-[360px] md:h-[520px]">
+            <div className="relative h-[260px] md:h-[380px]">
               <Image
                 src={whyUs.image}
                 alt="Commercial renewable energy infrastructure"
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,17,31,0.08)_0%,rgba(8,17,31,0.2)_28%,rgba(8,17,31,0.74)_100%)]" />
+              {/* <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,17,31,0.08)_0%,rgba(8,17,31,0.2)_28%,rgba(8,17,31,0.74)_100%)]" /> */}
             </div>
           </motion.div>
 

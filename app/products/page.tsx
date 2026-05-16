@@ -61,7 +61,7 @@ const productCategories = [
     description:
       "High-quality solar panels for residential rooftops, commercial buildings, industrial plants, and utility projects.",
     icon: Sun,
-    image: "/images/Rooftop.jpg",
+    image: "/new-images/image5.jpg",
     features: ["Trusted brands", "High output", "Long service life", "Fast supply"],
   },
   {
@@ -69,7 +69,7 @@ const productCategories = [
     description:
       "On-grid and hybrid inverters for reliable energy conversion and practical system performance.",
     icon: Zap,
-    image: "/images/industrial.png",
+    image: "/new-images/Inverters.jpg",
     features: ["On-grid", "Hybrid", "Smart monitoring", "Stable output"],
   },
   {
@@ -77,7 +77,7 @@ const productCategories = [
     description:
       "Battery options for backup power, storage, and resilience across solar projects.",
     icon: Battery,
-    image: "/images/solar-battery-solar.jpg",
+    image: "/new-images/SolarBatteries.jpg",
     features: ["Backup power", "Reliable storage", "Long cycle life", "Safe design"],
   },
   {
@@ -85,7 +85,7 @@ const productCategories = [
     description:
       "Durable mounting structures for rooftops and ground-mounted systems with dependable installation support.",
     icon: Factory,
-    image: "/images/industrial.png",
+    image: "/new-images/MountingStructures.jpg",
     features: ["Corrosion resistant", "Quick installation", "Strong support", "Project-ready"],
   },
   {
@@ -93,7 +93,7 @@ const productCategories = [
     description:
       "Balance of System components that keep every solar project properly connected and operational.",
     icon: Building2,
-    image: "/images/Rooftop.jpg",
+    image: "/new-images/BoSComponents.png",
     features: ["Project fit-out", "Electrical support", "Reliable sourcing", "System completion"],
   },
   {
@@ -101,23 +101,23 @@ const productCategories = [
     description:
       "Cables, connectors, and accessories that support clean and dependable solar deployment.",
     icon: ShieldCheck,
-    image: "/images/Rooftop.jpg",
+    image: "/new-images/cabling.png",
     features: ["Cabling", "Connectors", "Accessories", "Fast delivery"],
   },
-  {
-    title: "EV Charger",
-    description:
-      "EV charger supply for homes and businesses that want a practical clean-energy charging setup.",
-    icon: Zap,
-    image: "/images/industrial.png",
-    features: ["Home use", "Commercial use", "Clean charging", "Support"],
-  },
+  // {
+  //   title: "EV Charger",
+  //   description:
+  //     "EV charger supply for homes and businesses that want a practical clean-energy charging setup.",
+  //   icon: Zap,
+  //   image: "/images/industrial.png",
+  //   features: ["Home use", "Commercial use", "Clean charging", "Support"],
+  // },
   {
     title: "Robotic Cleaning for Utility",
     description:
       "Robotic cleaning support for utility-scale solar plants to help maintain output and reduce downtime.",
     icon: CheckCircle2,
-    image: "/images/Rooftop.jpg",
+    image: "/new-images/RoboticCleaning.jpg",
     features: ["Utility scale", "Water-saving", "Efficiency support", "Automation"],
   },
   {

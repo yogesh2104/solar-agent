@@ -1,13 +1,23 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import siteConfig from "@/lib/siteConfig";
 
 export default function B2BAbout() {
   const { overview } = siteConfig;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % overview.images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [overview.images.length]);
 
   return (
     <section id="overview" className="overflow-hidden bg-white py-7 md:py-10">
@@ -126,13 +136,25 @@ export default function B2BAbout() {
             className="relative overflow-hidden rounded-[2.5rem] border border-slate-200"
           >
             <div className="relative h-[320px] md:h-[440px]">
-              <Image
-                src={overview.image}
-                alt="Commercial rooftop solar overview"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImageIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={overview.images[currentImageIndex]}
+                    alt="Commercial rooftop solar overview"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                    priority={currentImageIndex === 0}
+                  />
+                </motion.div>
+              </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
               <div className="absolute inset-x-6 bottom-6 rounded-[1.6rem] border border-white/18 bg-white/88 p-5 text-slate-950 backdrop-blur-xl md:max-w-md">
                 <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">

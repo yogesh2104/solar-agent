@@ -92,7 +92,7 @@ export default function B2BHero() {
         </div>
 
         <div className="relative mx-auto mt-16 max-w-7xl">
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -115,9 +115,9 @@ export default function B2BHero() {
             <p className="mt-4 text-sm leading-6 text-white/62">
               {hero.sideStats[0].note}
             </p>
-          </motion.div>
+          </motion.div> */}
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -140,7 +140,7 @@ export default function B2BHero() {
             <p className="mt-4 text-sm leading-6 text-white/62">
               {hero.sideStats[1].note}
             </p>
-          </motion.div>
+          </motion.div> */}
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -158,10 +158,10 @@ export default function B2BHero() {
                 priority
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(135,177,224,0.18)_0%,rgba(8,17,31,0.04)_26%,rgba(8,17,31,0.72)_100%)]" />
-              <div className="absolute inset-x-0 bottom-0 h-44 bg-linear-to-t -foreground -foreground/65 to-transparent" />
+              {/* <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(135,177,224,0.18)_0%,rgba(8,17,31,0.04)_26%,rgba(8,17,31,0.72)_100%)]" />
+              <div className="absolute inset-x-0 bottom-0 h-44 bg-linear-to-t -foreground -foreground/65 to-transparent" /> */}
 
-              <div className="absolute inset-x-6 bottom-6 grid gap-4 lg:grid-cols-[1.15fr_0.55fr_0.78fr]">
+              {/* <div className="absolute inset-x-6 bottom-6 grid gap-4 lg:grid-cols-[1.15fr_0.55fr_0.78fr]">
                 <div className="rounded-4xl bg-white p-4 text-slate-950 shadow-[0_20px_60px_rgba(8,17,31,0.14)] md:p-5">
                   <div className="flex items-center gap-4">
                     <div className="relative h-20 w-24 overflow-hidden rounded-[1.35rem]">
@@ -208,7 +208,7 @@ export default function B2BHero() {
                     {hero.stageCards.highlight.description}
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </motion.div>
 
