@@ -51,7 +51,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-6">
           <div className="grid gap-14 xl:grid-cols-[1.05fr_0.95fr] xl:items-center">
             <motion.div
-              variants={fadeUp}
+              // variants={fadeUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
@@ -70,7 +70,7 @@ export default function AboutPage() {
                   <motion.div
                     key={stat.label}
                     custom={i}
-                    variants={fadeUp}
+                    // variants={fadeUp}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
@@ -117,7 +117,7 @@ export default function AboutPage() {
 
             {/* Image card */}
             <motion.div
-              variants={fadeUp}
+              // variants={fadeUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
