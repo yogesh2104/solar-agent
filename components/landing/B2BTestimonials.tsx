@@ -2,134 +2,139 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import siteConfig from "@/lib/siteConfig";
 
 export default function B2BTestimonials() {
   const { testimonials } = siteConfig;
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const next = () => {
-    setActiveIndex((current) => (current + 1) % testimonials.items.length);
-  };
-
-  const previous = () => {
+  const next = () =>
+    setActiveIndex((c) => (c + 1) % testimonials.items.length);
+  const previous = () =>
     setActiveIndex(
-      (current) =>
-        (current - 1 + testimonials.items.length) % testimonials.items.length,
+      (c) => (c - 1 + testimonials.items.length) % testimonials.items.length,
     );
-  };
 
-  const activeTestimonial = testimonials.items[activeIndex];
+  const active = testimonials.items[activeIndex];
 
   return (
-    <section className="overflow-hidden bg-[#f7fbff] py-7 md:py-10">
-      <div className="container mx-auto px-6">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
-            {testimonials.title}
-          </h2>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            {testimonials.proofPoints.map((point) => (
-              <span
-                key={point}
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600"
-              >
-                {point}
-              </span>
-            ))}
+    <section className="bg-white py-20 md:py-28">
+      <div className="container mx-auto px-6 lg:px-10">
+
+        {/* Header */}
+        <div className="mb-14 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#22c55e]">
+              {testimonials.badge}
+            </div>
+            <h2
+              className="max-w-lg text-4xl font-black tracking-tight text-[#0f172a] md:text-5xl"
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
+              {testimonials.title}
+            </h2>
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-3">
-            {testimonials.items.map((item, index) => (
-              <button
-                key={item.author}
-                type="button"
-                className="relative"
-                onClick={() => setActiveIndex(index)}
-                aria-label={`Show testimonial from ${item.author}`}
+          {/* Proof chips */}
+          <div className="flex flex-wrap gap-2">
+            {testimonials.proofPoints.map((p) => (
+              <span
+                key={p}
+                className="rounded-full border border-[rgba(15,23,42,0.08)] bg-[#f8faf9] px-3 py-1.5 text-xs font-medium text-[#475569]"
               >
-                <span
-                  className={`block overflow-hidden rounded-full border-2 transition-all ${index === activeIndex
-                    ? "-secondary"
-                    : "border-transparent opacity-60"
-                    }`}
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.author}
-                    width={44}
-                    height={44}
-                    className="size-11 object-cover"
-                  />
-                </span>
-              </button>
+                {p}
+              </span>
             ))}
           </div>
         </div>
 
-        <motion.div
-          key={activeTestimonial.author}
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto mt-12 grid max-w-6xl gap-8 overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-6 shadow-[0_22px_70px_rgba(8,17,31,0.08)] md:p-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center"
-        >
-          <div className="relative overflow-hidden rounded-4xl">
-            <div className="relative h-[320px]">
-              <Image
-                src={activeTestimonial.image}
-                alt={activeTestimonial.author}
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-slate-950/35 via-transparent to-transparent" />
-            </div>
-          </div>
+        {/* Testimonial card */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active.author}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="rounded-[2rem] border border-[rgba(15,23,42,0.07)] bg-[#f8faf9] p-8 md:p-10"
+          >
+            <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:items-center">
 
-          <div className="relative">
-            <Quote className="absolute -top-3 left-0 size-12 text-slate-200" />
-            <div className="pl-0 md:pl-10">
-              <div className="inline-flex rounded-full -secondary/25 px-4 py-2 text-xs font-semibold uppercase  text-slate-700">
-                {activeTestimonial.result}
-              </div>
-              <p className="mt-6 text-2xl font-medium leading-[1.55] text-slate-950 md:text-3xl">
-                &ldquo;{activeTestimonial.quote}&rdquo;
-              </p>
-
-              <div className="mt-8">
-                <div className="text-xl font-semibold text-slate-950">
-                  {activeTestimonial.author}
+              {/* Avatar + meta */}
+              <div className="flex flex-col items-start gap-4">
+                <div className="overflow-hidden rounded-2xl border border-[rgba(15,23,42,0.07)] bg-white">
+                  <Image
+                    src={active.image}
+                    alt={active.author}
+                    width={200}
+                    height={220}
+                    className="h-48 w-full object-cover"
+                  />
                 </div>
-                <div className="mt-1 text-sm font-medium text-slate-500">
-                  {activeTestimonial.role} · {activeTestimonial.company}
+                <div>
+                  <div className="text-base font-bold text-[#0f172a]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    {active.author}
+                  </div>
+                  <div className="mt-0.5 text-sm text-[#64748b]">
+                    {active.role} · {active.company}
+                  </div>
                 </div>
+                <span className="rounded-full border border-[rgba(34,197,94,0.20)] bg-[rgba(34,197,94,0.06)] px-3 py-1 text-xs font-semibold text-[#22c55e]">
+                  {active.result}
+                </span>
               </div>
 
-              <div className="mt-10 flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={previous}
-                  className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50"
-                  aria-label="Previous testimonial"
-                >
-                  <ChevronLeft className="size-5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={next}
-                  className="flex size-12 items-center justify-center rounded-full bg-slate-950 text-white transition-colors hover:bg-slate-800"
-                  aria-label="Next testimonial"
-                >
-                  <ChevronRight className="size-5" />
-                </button>
+              {/* Quote */}
+              <div>
+                <div className="text-4xl font-black leading-none text-[#e2e8f0]" aria-hidden>
+                  "
+                </div>
+                <p className="mt-3 text-xl font-medium leading-[1.6] text-[#0f172a] md:text-2xl">
+                  {active.quote}
+                </p>
+
+                {/* Nav controls */}
+                <div className="mt-10 flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={previous}
+                    className="flex size-10 items-center justify-center rounded-full border border-[rgba(15,23,42,0.12)] text-[#475569] transition-colors hover:border-[#0f172a] hover:text-[#0f172a]"
+                    aria-label="Previous"
+                  >
+                    <ChevronLeft className="size-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={next}
+                    className="flex size-10 items-center justify-center rounded-full bg-[#0f172a] text-white transition-colors hover:bg-[#1e293b]"
+                    aria-label="Next"
+                  >
+                    <ChevronRight className="size-4" />
+                  </button>
+
+                  {/* Dots */}
+                  <div className="ml-2 flex items-center gap-1.5">
+                    {testimonials.items.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setActiveIndex(i)}
+                        className={`size-1.5 rounded-full transition-all duration-200 ${
+                          i === activeIndex
+                            ? "w-4 bg-[#0f172a]"
+                            : "bg-[#cbd5e1]"
+                        }`}
+                        aria-label={`Testimonial ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

@@ -6,22 +6,18 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import siteConfig from "@/lib/siteConfig";
 
 function isLinkActive(pathname: string, href: string) {
-  if (href.startsWith("/#")) {
-    return pathname === "/" && href === "/#hero";
-  }
+  if (href.startsWith("/#")) return pathname === "/" && href === "/#hero";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export default function B2BNavbar() {
   const pathname = usePathname();
   const { data: session } = useSession();
-  const isHome = pathname === "/";
   const hideNavbar = pathname.startsWith("/admin");
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,9 +25,7 @@ export default function B2BNavbar() {
   const isAdmin = userRole === "admin";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 36);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -39,205 +33,134 @@ export default function B2BNavbar() {
 
   if (hideNavbar) return null;
 
-  // On home page: transparent until scrolled. On other pages: always glass.
-  const compactShell = scrolled || !isHome || mobileMenuOpen;
-
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6">
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className={cn(
-          "mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border px-4 py-2 transition-all duration-300 md:px-6",
-          compactShell
-            ? "border-[rgba(15,23,42,0.07)] bg-[rgba(255,255,255,0.88)] text-slate-950 shadow-[0_8px_32px_rgba(15,23,42,0.08)] backdrop-blur-xl"
-            : "border-white/20 bg-white/10 text-white backdrop-blur-md shadow-none",
-        )}
-      >
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled
+          ? "border-b border-[rgba(15,23,42,0.07)] bg-white/95 backdrop-blur-xl shadow-[0_1px_20px_rgba(15,23,42,0.05)]"
+          : "bg-transparent",
+      )}
+    >
+      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3"
+          className="flex items-center"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <div className="relative h-16 w-16 rounded-full">
+          <div className="relative h-12 w-12">
             <Image
               src="/Logo1.png"
               alt={siteConfig.company.name}
               fill
-              sizes="64px"
-              className={cn(
-                "rounded-full! object-contain transition-all duration-300",
-                compactShell ? "opacity-100" : "opacity-0 pointer-events-none",
-              )}
-              priority
-            />
-            <Image
-              src="/logo.png"
-              alt={siteConfig.company.name}
-              fill
-              sizes="64px"
-              className={cn(
-                "rounded-full! object-contain transition-all duration-300",
-                compactShell ? "opacity-0 pointer-events-none" : "opacity-100",
-              )}
+              sizes="48px"
+              className="rounded-full object-contain"
               priority
             />
           </div>
+          <span
+            className="ml-2.5 hidden text-sm font-bold tracking-tight text-[#0f172a] sm:block"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+          >
+            {siteConfig.company.name}
+          </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-1 rounded-full px-2 py-1">
+        {/* Desktop nav links — clean minimal */}
+        <nav className="hidden items-center gap-1 lg:flex">
           {siteConfig.navigation.map((item) => {
             const active = isLinkActive(pathname, item.href);
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
-                  compactShell
-                    ? "text-slate-600 hover:bg-slate-950/5 hover:text-slate-950"
-                    : "text-white/85 hover:bg-white/12 hover:text-white",
-                  active &&
-                    (compactShell
-                      ? "bg-slate-950 text-white shadow-sm"
-                      : "bg-white/20 text-white"),
+                  "rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-150",
+                  active
+                    ? "text-[#0f172a]"
+                    : "text-[#64748b] hover:text-[#0f172a]",
                 )}
               >
                 {item.name}
               </Link>
             );
           })}
-        </div>
+        </nav>
 
-        {/* Right side: Phone + CTA */}
-        <div className="flex items-center gap-2">
-          <a
-            href={`tel:${siteConfig.company.contact.phone.replace(/\s+/g, "")}`}
-            className={cn(
-              "hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-medium xl:flex transition-colors duration-200",
-              compactShell
-                ? "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                : "bg-white/12 text-white/88 hover:bg-white/20",
-            )}
-          >
-            <Phone className="size-4" />
-            {siteConfig.company.contact.phone}
-          </a>
-
+        {/* Right side */}
+        <div className="flex items-center gap-3">
           {isAdmin && (
-            <Button
-              asChild
-              variant="outline"
-              className={cn(
-                "hidden h-10 rounded-full border px-5 text-sm font-semibold shadow-none md:inline-flex",
-                compactShell
-                  ? "border-slate-200 bg-white text-slate-950 hover:bg-slate-50"
-                  : "border-white/20 bg-white/8 text-white hover:bg-white/14",
-              )}
+            <Link
+              href="/admin"
+              className="hidden text-sm font-medium text-[#64748b] transition-colors hover:text-[#0f172a] lg:block"
             >
-              <Link href="/admin" onClick={() => setMobileMenuOpen(false)}>
-                Admin
-              </Link>
-            </Button>
+              Admin
+            </Link>
           )}
 
-          {/* Primary CTA — green gradient button */}
-          <Button
-            asChild
-            className={cn(
-              "h-10 rounded-full px-5 text-sm font-semibold shadow-none transition-all duration-200",
-              compactShell
-                ? "bg-primary text-white hover:bg-primary/90 hover:shadow-[0_4px_20px_rgba(34,197,94,0.25)]"
-                : "bg-white text-slate-950 hover:bg-white/92",
-            )}
+          {/* Contact CTA — clean outline pill */}
+          <Link
+            href="/contact"
+            className="hidden h-9 items-center rounded-full border border-[rgba(15,23,42,0.18)] px-5 text-sm font-semibold text-[#0f172a] transition-all duration-200 hover:border-[#22c55e] hover:text-[#22c55e] lg:inline-flex"
+            onClick={() => setMobileMenuOpen(false)}
           >
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-              Contact
-              <ArrowUpRight className="size-3.5" />
-            </Link>
-          </Button>
+            Contact Us
+          </Link>
 
-          {/* Mobile menu toggle */}
+          {/* Mobile menu button */}
           <button
             type="button"
-            className={cn(
-              "flex size-10 items-center justify-center rounded-full lg:hidden transition-colors duration-200",
-              compactShell
-                ? "bg-slate-950 text-white hover:bg-slate-800"
-                : "bg-white text-slate-950 hover:bg-white/92",
-            )}
-            onClick={() => setMobileMenuOpen((open) => !open)}
+            className="flex size-9 items-center justify-center rounded-lg border border-[rgba(15,23,42,0.12)] text-[#0f172a] transition-colors hover:bg-[#f8faf9] lg:hidden"
+            onClick={() => setMobileMenuOpen((v) => !v)}
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
           >
-            {mobileMenuOpen ? (
-              <X className="size-4" />
-            ) : (
-              <Menu className="size-4" />
-            )}
+            {mobileMenuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
         </div>
-      </motion.nav>
+      </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 12, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[2rem] border border-[rgba(15,23,42,0.07)] bg-white/95 p-4 shadow-[0_24px_60px_rgba(15,23,42,0.10)] backdrop-blur-2xl lg:hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="border-t border-[rgba(15,23,42,0.07)] bg-white px-6 pb-6 lg:hidden"
           >
-            <div className="flex flex-col gap-1.5">
+            <nav className="flex flex-col gap-1 pt-4">
               {siteConfig.navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="rounded-2xl px-4 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-950"
+                  className="rounded-lg px-3 py-2.5 text-base font-medium text-[#475569] transition-colors hover:bg-[#f8faf9] hover:text-[#0f172a]"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-            </div>
+            </nav>
 
-            <div className="mt-4 rounded-2xl bg-[#f7faf9] p-4">
-              <div className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
-                Enterprise Desk
+            <div className="mt-4 border-t border-[rgba(15,23,42,0.07)] pt-4">
+              <div className="text-xs font-semibold uppercase tracking-widest text-[#94a3b8]">
+                Contact
               </div>
               <a
                 href={`tel:${siteConfig.company.contact.phone.replace(/\s+/g, "")}`}
-                className="mt-3 flex items-center gap-2 text-lg font-semibold text-slate-950 hover:text-primary transition-colors"
+                className="mt-2 block text-base font-semibold text-[#0f172a]"
               >
-                <Phone className="size-5 text-primary" />
                 {siteConfig.company.contact.phone}
               </a>
-
-              {isAdmin && (
-                <Button
-                  asChild
-                  variant="outline"
-                  className="mt-4 h-11 w-full rounded-full border-slate-200 bg-white text-slate-950 hover:bg-slate-50"
-                >
-                  <Link href="/admin" onClick={() => setMobileMenuOpen(false)}>
-                    Open Dashboard
-                  </Link>
-                </Button>
-              )}
-              <Button
-                asChild
-                className="mt-3 h-11 w-full rounded-full bg-primary text-white hover:bg-primary/90"
+              <Link
+                href="/contact"
+                className="mt-4 flex h-10 items-center justify-center rounded-full bg-[#0f172a] text-sm font-semibold text-white"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                  Talk to Sales
-                  <ArrowUpRight className="size-4" />
-                </Link>
-              </Button>
+                Contact Us
+              </Link>
             </div>
           </motion.div>
         )}

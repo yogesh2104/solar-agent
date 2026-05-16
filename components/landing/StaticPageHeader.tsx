@@ -23,74 +23,56 @@ export default function StaticPageHeader({
   return (
     <section
       className={cn(
-        "relative overflow-hidden border-b border-[rgba(15,23,42,0.07)] pb-10 pt-28 md:pb-14 md:pt-32",
+        "border-b border-[rgba(15,23,42,0.07)] bg-white pb-12 pt-28 md:pb-16 md:pt-32",
         className,
       )}
     >
-      {/* ── Background layers ── */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f7faf9] via-white to-white" />
-        {/* Green radial — top right */}
-        <div className="absolute right-0 top-0 h-[400px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.07),transparent_65%)]" />
-        {/* Yellow radial — bottom left */}
-        <div className="absolute bottom-0 left-0 h-[300px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.05),transparent_65%)]" />
-        {/* Subtle grid */}
-        <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(rgba(15,23,42,1)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,1)_1px,transparent_1px)] bg-[size:52px_52px]" />
-      </div>
-
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container mx-auto px-6 lg:px-10">
         {/* Breadcrumb */}
         <motion.nav
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className="inline-flex items-center gap-2 rounded-full border border-[rgba(15,23,42,0.08)] bg-white/90 px-4 py-2 text-sm shadow-sm backdrop-blur-xl"
+          transition={{ duration: 0.3 }}
+          className="mb-8 inline-flex items-center gap-1.5 text-xs text-[#94a3b8]"
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 font-medium text-slate-500 transition-colors hover:text-slate-950"
+            className="inline-flex items-center gap-1 font-medium transition-colors hover:text-[#22c55e]"
           >
-            <Home className="h-3.5 w-3.5" />
+            <Home className="size-3" />
             Home
           </Link>
-          <ChevronRight className="h-3.5 w-3.5 text-slate-300" />
-          <span className="font-medium text-slate-700">
-            {breadcrumb || title}
-          </span>
+          <ChevronRight className="size-3" />
+          <span className="text-[#475569]">{breadcrumb || title}</span>
         </motion.nav>
 
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        <motion.h1
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.08 }}
-          className="mt-8 max-w-4xl"
+          transition={{ duration: 0.5, delay: 0.06 }}
+          className="text-5xl font-black tracking-tight text-[#0f172a] md:text-7xl"
+          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
-          <h1
-            className="text-4xl font-bold tracking-tight text-[#0f172a] md:text-6xl md:leading-[1.04]"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-          >
-            {title}
-            {highlight && (
-              <>
-                {" "}
-                <span className="text-primary">{highlight}</span>
-              </>
-            )}
-          </h1>
-
-          {description && (
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.18 }}
-              className="mt-5 max-w-2xl text-base leading-7 text-[#475569] md:text-lg md:leading-8"
-            >
-              {description}
-            </motion.p>
+          {title}
+          {highlight && (
+            <>
+              {" "}
+              <span className="text-[#22c55e]">{highlight}</span>
+            </>
           )}
-        </motion.div>
+        </motion.h1>
+
+        {description && (
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.15 }}
+            className="mt-5 max-w-2xl text-base leading-7 text-[#64748b] md:text-lg"
+          >
+            {description}
+          </motion.p>
+        )}
       </div>
     </section>
   );

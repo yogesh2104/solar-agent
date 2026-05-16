@@ -2,10 +2,8 @@
 
 import { motion } from "framer-motion";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, HelpCircle } from "lucide-react";
-import { Separator } from "../ui/separator";
+import { ArrowRight } from "lucide-react";
 
 interface FAQItem {
   id: string;
@@ -21,31 +19,25 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
   if (faqs.length === 0) return null;
 
   return (
-    <section className="relative overflow-hidden bg-white py-7 md:py-10">
-      {/* Background Decor */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div
-          className="absolute inset-x-0 top-0 h-[500px] opacity-[0.15]"
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, var(--brand-line) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-        <div className="absolute -left-1/4 top-1/2 size-[600px] rounded-full -muted opacity-10 blur-[120px]" />
-      </div>
-
-      <div className="container relative z-10 mx-auto px-6">
+    <section className="bg-white py-20 md:py-24">
+      <div className="container mx-auto px-6 lg:px-10">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-xl lg:sticky lg:top-32">
+
+          {/* Left — sticky heading */}
+          <div className="max-w-sm lg:sticky lg:top-28">
+            <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#22c55e]">
+              FAQ
+            </div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="mt-7 text-4xl font-semibold leading-[1.15] tracking-tight text-slate-950 md:text-6xl"
+              className="text-4xl font-black leading-tight tracking-tight text-[#0f172a]"
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
-              Frequently Asked Questions <br />
-              <span className="text-primary">About Solar in Mumbai</span>
+              Frequently Asked{" "}
+              <span className="text-[#22c55e]">Questions</span>
             </motion.h2>
 
             <motion.p
@@ -53,11 +45,10 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="mt-8 text-lg leading-relaxed text-slate-600"
+              className="mt-5 text-sm leading-7 text-[#64748b]"
             >
-              Learn about the installation process, ROI expectations,
-              maintenance, and how solar can transform your business energy
-              costs.
+              Learn about solar installation, ROI expectations, maintenance,
+              and how solar can transform your energy costs.
             </motion.p>
 
             <motion.div
@@ -65,29 +56,30 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="mt-12"
+              className="mt-8"
             >
-              <Link href="/faq">
-                <Button className="h-14 px-8 rounded-full font-bold text-base bg-slate-950 text-white hover:bg-slate-800 transition-all group">
-                  View All FAQs
-                  <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
-                </Button>
+              <Link
+                href="/faq"
+                className="inline-flex h-10 items-center gap-2 rounded-full border border-[rgba(15,23,42,0.14)] px-5 text-sm font-semibold text-[#0f172a] transition-all hover:border-[#22c55e] hover:text-[#22c55e]"
+              >
+                View All FAQs
+                <ArrowRight className="size-3.5" />
               </Link>
             </motion.div>
           </div>
 
+          {/* Right — accordion */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
             className="flex-1 lg:max-w-2xl"
           >
             <FAQAccordion items={faqs} variant="plus" />
           </motion.div>
         </div>
       </div>
-      <Separator />
     </section>
   );
 }

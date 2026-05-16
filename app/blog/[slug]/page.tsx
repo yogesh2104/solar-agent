@@ -91,8 +91,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       />
 
       {/* Hero Section - Header */}
-      <header className="relative bg-[#f8fafc] pt-28 pb-12 md:pt-40 md:pb-16 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(8,17,31,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(8,17,31,0.5)_1px,transparent_1px)] bg-size-[40px_40px]" />
+      <header className="relative bg-white pt-28 pb-12 md:pt-36 md:pb-14 border-b border-[rgba(15,23,42,0.07)]">
 
         <div className="container relative z-10 mx-auto px-6 max-w-7xl">
           <motion.div
@@ -102,10 +101,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           >
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline mb-8"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-[#64748b] hover:text-[#22c55e] transition-colors mb-8"
             >
-              <ArrowLeft className="size-4" />
-              Back to Insights
+              <ArrowLeft className="size-3.5" />
+              Back to Blog
             </Link>
           </motion.div>
 
@@ -119,7 +118,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               {blog.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-primary/10 px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-widest text-primary border border-primary/10"
+                  className="rounded-full border border-[rgba(34,197,94,0.15)] bg-[rgba(34,197,94,0.06)] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-[#22c55e]"
                 >
                   {tag}
                 </span>
@@ -130,7 +129,8 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl font-bold tracking-tight text-slate-950 md:text-6xl md:leading-[1.1] mb-10 max-w-4xl"
+              className="text-4xl font-black tracking-tight text-[#0f172a] md:text-5xl md:leading-[1.08] mb-10 max-w-3xl"
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               {blog.title}
             </motion.h1>
@@ -213,7 +213,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-4xl bg-white border border-slate-200 rounded-[2.5rem] p-4 md:p-8 shadow-sm"
+            className="w-full max-w-4xl border border-[rgba(15,23,42,0.07)] rounded-[1.75rem] p-6 md:p-10"
           >
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -295,7 +295,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </ReactMarkdown>
 
             {/* Author Footer Card */}
-            <div className="mt-20 overflow-hidden rounded-[2.5rem] border border-slate-100 bg-[#f8fafc] p-8 md:p-12">
+            <div className="mt-16 overflow-hidden rounded-[1.75rem] border border-[rgba(15,23,42,0.07)] bg-[#f8faf9] p-8">
               <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left">
                 <div className="relative size-24 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-md">
                   {blog.author.image ? (
@@ -352,14 +352,14 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           </motion.div>
 
           {/* Sidebar */}
-          <aside className="lg:w-80 shrink-0">
-            <div className="sticky top-32 space-y-10">
-              <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">
+          <aside className="lg:w-72 shrink-0">
+            <div className="sticky top-28 space-y-5">
+              <div className="rounded-[1.5rem] border border-[rgba(15,23,42,0.07)] bg-[#f8faf9] p-5">
                 <TableOfContents />
               </div>
 
-              <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">
-                <div className="flex items-center gap-2 mb-6 text-sm font-semibold uppercase tracking-wider text-slate-400">
+              <div className="rounded-[1.5rem] border border-[rgba(15,23,42,0.07)] bg-[#f8faf9] p-5">
+                <div className="flex items-center gap-2 mb-4 text-[11px] font-semibold uppercase tracking-widest text-[#94a3b8]">
                   <Share2 className="h-4 w-4" />
                   Share article
                 </div>
@@ -368,17 +368,17 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
               <Link
                 href="/blog"
-                className="flex items-center justify-between rounded-3xl bg-primary/5 p-6 transition-colors hover:bg-primary/10 group"
+                className="flex items-center justify-between rounded-[1.5rem] border border-[rgba(15,23,42,0.07)] bg-[#f8faf9] p-5 transition-colors hover:bg-[rgba(34,197,94,0.04)] group"
               >
                 <div>
-                  <div className="text-sm font-semibold text-primary">
+                  <div className="text-xs font-semibold uppercase tracking-widest text-[#22c55e]">
                     Explore More
                   </div>
-                  <div className="text-slate-900 font-bold">
+                  <div className="text-[#0f172a] font-bold text-sm mt-1">
                     Latest Insights
                   </div>
                 </div>
-                <ArrowLeft className="size-5 rotate-180 text-primary transition-transform group-hover:translate-x-1" />
+                <ArrowLeft className="size-4 rotate-180 text-[#22c55e] transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </aside>

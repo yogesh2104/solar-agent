@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Blog } from "@prisma/client";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowUpRight, Calendar } from "lucide-react";
 import { format } from "date-fns";
 
 interface BlogCardProps {
@@ -15,42 +14,42 @@ export const BlogCard = ({ blog, isAdmin }: BlogCardProps) => {
 
   return (
     <Link href={href} className="group block h-full">
-      <article className="flex h-full flex-col overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-[0_14px_40px_rgba(8,17,31,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(8,17,31,0.08)]">
-        <div className="relative aspect-16/10 overflow-hidden">
+      <article className="flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[rgba(15,23,42,0.08)] bg-white transition-shadow hover:shadow-[0_10px_32px_rgba(15,23,42,0.07)]">
+        <div className="relative h-48 overflow-hidden">
           <Image
             src={blog.image}
             alt={blog.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-slate-950/35 via-transparent to-transparent" />
-          <div className="absolute left-5 top-5">
-            <Badge className="rounded-full border border-white/40 bg-primary px-3 py-1 text-[10px] font-semibold uppercase text-white shadow-none">
+          <div className="absolute left-4 top-4">
+            <span className="inline-flex rounded-full border border-[rgba(15,23,42,0.10)] bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#475569] backdrop-blur-sm">
               {blog.tags[0] || "Insight"}
-            </Badge>
+            </span>
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col p-6">
-          <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
-            <Calendar className="size-3.5 text-slate-400" />
+        <div className="flex flex-1 flex-col p-5">
+          <div className="flex items-center gap-2 text-[11px] font-medium text-[#94a3b8]">
+            <Calendar className="size-3" />
             <span>{format(new Date(blog.createdAt), "MMMM d, yyyy")}</span>
-            <span className="size-1 rounded-full bg-slate-300" />
-            <span>5 min read</span>
           </div>
 
-          <h3 className="mt-4 text-2xl font-semibold leading-tight tracking-tight text-slate-950 transition-colors group-hover:text-slate-700">
+          <h3
+            className="mt-3 text-base font-black leading-snug tracking-tight text-[#0f172a] transition-colors group-hover:text-[#22c55e]"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+          >
             {blog.title}
           </h3>
 
-          <p className="mt-4 line-clamp-3 text-sm leading-7 text-slate-600">
+          <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#64748b]">
             {blog.metadata ||
-              "Discover how sustainable energy solutions are transforming commercial energy decisions and modern infrastructure."}
+              "Discover how sustainable energy solutions are transforming commercial energy decisions."}
           </p>
 
-          <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-slate-950">
+          <div className="mt-5 flex items-center gap-1.5 text-xs font-semibold text-[#22c55e]">
             {isAdmin ? "Open article" : "Read article"}
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>
         </div>
       </article>

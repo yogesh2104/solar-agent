@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
 import siteConfig from "@/lib/siteConfig";
 
 export default function B2BProjects() {
@@ -12,122 +11,90 @@ export default function B2BProjects() {
   const [featured, ...secondary] = projects.items;
 
   return (
-    <section id="projects" className="overflow-hidden bg-white py-7 md:py-10">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-3xl">
-            <h2 className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+    <section id="projects" className="bg-[#f8faf9] py-20 md:py-28">
+      <div className="container mx-auto px-6 lg:px-10">
+
+        {/* Header row — split left/right like AeroVolt */}
+        <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-lg">
+            <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#22c55e]">
+              {projects.badge}
+            </div>
+            <h2
+              className="text-4xl font-black tracking-tight text-[#0f172a] md:text-5xl"
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
               {projects.title}
             </h2>
           </div>
 
-          <div className="max-w-xl">
-            <p className="text-base leading-8 text-slate-600">
+          <div className="max-w-sm">
+            <p className="text-sm leading-7 text-[#64748b]">
               {projects.description}
             </p>
-            <Button
-              asChild
-              className="mt-5 h-12 rounded-full bg-slate-950 px-5 text-sm font-semibold text-white hover:bg-slate-800"
+            <Link
+              href="/projects"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0f172a] hover:text-[#22c55e] transition-colors"
             >
-              <Link href="/projects">
-                View All Projects
-                <ArrowUpRight className="size-4" />
-              </Link>
-            </Button>
+              See All
+              <ArrowRight className="size-3.5" />
+            </Link>
           </div>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <motion.article
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.55 }}
-            className="overflow-hidden rounded-[2.5rem] h-fit border border-slate-200"
-          >
-            <Link href="/projects" className="block">
-              <div className="relative h-[320px] md:h-[440px]">
-                <Image
-                  src={featured.image}
-                  alt={featured.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  className="object-cover transition-transform duration-700 hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-slate-950/72 via-slate-950/8 to-transparent" />
-              </div>
+        {/* Project cards — AeroVolt grid style */}
+        <div className="grid gap-5 lg:grid-cols-3">
 
-              <div className="bg-white p-6 md:p-8">
-                <div className="flex flex-wrap gap-2">
-                  <span className="rounded-full bg-slate-950/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
-                    {featured.sector}
-                  </span>
-                  <span className="rounded-full -secondary/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
-                    {featured.scale}
-                  </span>
+          {/* Featured project — spans 1 col but taller */}
+          {[featured, ...secondary].map((project, index) => (
+            <motion.article
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="group overflow-hidden rounded-[1.5rem] border border-[rgba(15,23,42,0.07)] bg-white"
+            >
+              <Link href="/projects" className="block">
+                {/* Image */}
+                <div className="relative h-56 overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
                 </div>
 
-                <h3 className="mt-5 text-3xl font-semibold tracking-tight text-slate-950">
-                  {featured.title}
-                </h3>
+                {/* Content */}
+                <div className="p-5">
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full border border-[rgba(15,23,42,0.08)] bg-[#f8faf9] px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#475569]">
+                      {project.sector}
+                    </span>
+                    <ArrowUpRight className="size-4 text-[#94a3b8] opacity-0 transition-opacity group-hover:opacity-100" />
+                  </div>
 
-                <div className="mt-3 flex items-center gap-2 text-sm text-slate-500">
-                  <MapPin className="size-4 text-slate-400" />
-                  {featured.location}
+                  <h3
+                    className="mt-3 text-base font-bold text-[#0f172a] leading-snug"
+                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                  >
+                    {project.title}
+                  </h3>
+
+                  <div className="mt-2 flex items-center gap-1.5 text-xs text-[#94a3b8]">
+                    <MapPin className="size-3" />
+                    {project.location}
+                  </div>
+
+                  <p className="mt-3 border-t border-[rgba(15,23,42,0.06)] pt-3 text-xs leading-5 text-[#64748b]">
+                    {project.outcome}
+                  </p>
                 </div>
-
-                <p className="mt-4 text-base leading-8 text-slate-600">
-                  {featured.outcome}
-                </p>
-              </div>
-            </Link>
-          </motion.article>
-
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-            {secondary.map((project, index) => (
-              <motion.article
-                key={project.title}
-                initial={{ opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="overflow-hidden rounded-4xl border border-slate-200 bg-white"
-              >
-                <Link href="/projects" className="block">
-                  <div className="relative h-48">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div className="p-4">
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                      <div className="text-xs font-semibold uppercase text-slate-600">
-                        {project.sector}
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-slate-600">
-                        <MapPin className="size-4 text-slate-400" />
-                        {project.location}
-                      </div>
-                    </div>
-                    <h3 className="mt-2 flex flex-wrap items-baseline gap-x-2 text-xl font-semibold tracking-tight text-slate-950">
-                      <span className="min-w-0 flex-1">{project.title}</span>
-                      <span className="text-sm font-medium text-slate-700">
-                        ({project.scale})
-                      </span>
-                    </h3>
-                    <p className=" text-sm leading-7 text-slate-600">
-                      {project.outcome}
-                    </p>
-                  </div>
-                </Link>
-              </motion.article>
-            ))}
-          </div>
+              </Link>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>

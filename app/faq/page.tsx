@@ -27,20 +27,12 @@ export const metadata = {
     title: "Solar FAQs | Frequently Asked Questions | ELIZ ENERGY",
     description:
       "Common solar questions answered – installation, cost, subsidy, maintenance & EV chargers in India.",
-    images: [
-      {
-        url: "/Logo1.png",
-        width: 1200,
-        height: 630,
-        alt: "ELIZ ENERGY Solar FAQ",
-      },
-    ],
+    images: [{ url: "/Logo1.png", width: 1200, height: 630, alt: "ELIZ ENERGY Solar FAQ" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Solar FAQs | ELIZ ENERGY India",
-    description:
-      "Solar installation questions, subsidy, cost & maintenance answered.",
+    description: "Solar installation questions, subsidy, cost & maintenance answered.",
     images: ["/Logo1.png"],
   },
   alternates: { canonical: "https://elizenergy.in/faq" },
@@ -50,10 +42,7 @@ export const metadata = {
 export default function FaqPage() {
   const faqs = siteConfig.faqs;
 
-  // Group FAQs by category
-  const categories = Array.from(
-    new Set(faqs.map((f) => f.category || "General")),
-  );
+  const categories = Array.from(new Set(faqs.map((f) => f.category || "General")));
   const groupedFaqs = categories.reduce(
     (acc, cat) => {
       acc[cat] = faqs.filter((f) => (f.category || "General") === cat);
@@ -63,7 +52,7 @@ export default function FaqPage() {
   );
 
   return (
-    <div className="relative isolate min-h-screen">
+    <div className="relative isolate min-h-screen bg-white">
       <FAQSchema faqs={faqs} />
       <StaticPageHeader
         title="Frequently"
@@ -71,34 +60,36 @@ export default function FaqPage() {
         description="Can't find what you are looking for? Reach out to our technical team for personalized support."
       />
 
-      <div className="container mx-auto px-6 py-16 md:py-24">
+      <div className="container mx-auto px-6 lg:px-10 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-          {/* Sidebar Navigation */}
+          {/* Sidebar */}
           <aside className="lg:col-span-1">
-            <div className="space-y-2 lg:sticky lg:top-32">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 px-4">
+            <div className="space-y-1 lg:sticky lg:top-32">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[#94a3b8] mb-4 px-3">
                 Categories
               </p>
               {categories.map((cat) => (
                 <a
                   key={cat}
                   href={`#${cat.toLowerCase().replace(/ /g, "-")}`}
-                  className="block px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-white hover:text-primary transition-all"
+                  className="block px-3 py-2.5 rounded-xl text-sm font-medium text-[#475569] hover:bg-[#f8faf9] hover:text-[#0f172a] transition-colors"
                 >
                   {cat}
                 </a>
               ))}
 
-              <div className="mt-12 p-6 rounded-3xl bg-slate-950 text-white relative overflow-hidden group">
-                <div className="absolute -right-8 -bottom-8 size-32 rounded-full text-secondary opacity-10 blur-2xl group-hover:scale-150 transition-transform duration-700" />
-                <h4 className="font-bold mb-4 relative z-10">
+              <div className="mt-10 p-6 rounded-[1.5rem] border border-[rgba(15,23,42,0.07)] bg-[#f8faf9]">
+                <h4
+                  className="font-black text-[#0f172a] mb-3"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
                   Still have questions?
                 </h4>
-                <p className="text-sm text-slate-400 mb-6 relative z-10">
-                  Our team is ready to help you with any technical inquiries.
+                <p className="text-sm text-[#64748b] mb-5 leading-6">
+                  Our team is ready to help with any technical inquiries.
                 </p>
                 <Link href="/contact">
-                  <Button className="w-full rounded-full bg-secondary text-slate-950 hover:bg-secondary/90 h-10 text-xs font-bold uppercase tracking-wider">
+                  <Button className="w-full rounded-full bg-[#0f172a] text-white hover:bg-[#1e293b] h-10 text-xs font-semibold">
                     Contact Us
                   </Button>
                 </Link>
@@ -107,18 +98,21 @@ export default function FaqPage() {
           </aside>
 
           {/* FAQ Groups */}
-          <div className="lg:col-span-3 space-y-20">
+          <div className="lg:col-span-3 space-y-16">
             {categories.map((cat) => (
               <div
                 key={cat}
                 id={cat.toLowerCase().replace(/ /g, "-")}
                 className="scroll-mt-32"
               >
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="size-10 rounded-xl bg-primary/5 flex items-center justify-center">
-                    <HelpCircle className="size-5 text-black" />
+                <div className="flex items-center gap-3 mb-7">
+                  <div className="size-9 rounded-xl bg-[rgba(34,197,94,0.07)] flex items-center justify-center">
+                    <HelpCircle className="size-4 text-[#22c55e]" />
                   </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">
+                  <h2
+                    className="text-xl font-black tracking-tight text-[#0f172a]"
+                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                  >
                     {cat} Questions
                   </h2>
                 </div>
@@ -131,15 +125,6 @@ export default function FaqPage() {
                 />
               </div>
             ))}
-
-            {/* {faqs.length === 0 && (
-              <div className="text-center py-24 bg-white/40 backdrop-blur-md rounded-[3rem] border border-dashed border-slate-200">
-                <MessageSquare className="size-12 text-slate-200 mx-auto mb-4" />
-                <p className="text-slate-500 font-medium">
-                  No FAQs have been published yet. Please check back later.
-                </p>
-              </div>
-            )} */}
           </div>
         </div>
       </div>

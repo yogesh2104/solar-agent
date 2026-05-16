@@ -41,7 +41,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="bg-[#f7fbff] pb-20">
+    <div className="bg-white pb-20">
       <StaticPageHeader
         title="Contact"
         highlight="ELIZ ENERGY"
