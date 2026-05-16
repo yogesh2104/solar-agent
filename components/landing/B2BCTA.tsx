@@ -17,14 +17,14 @@ export default function B2BCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
-          className="relative overflow-hidden rounded-[2.6rem] bg-foreground/10 p-6 text-black md:p-8 lg:p-10"
+          className="relative overflow-hidden rounded-3xl bg-foreground/10 p-6 text-black md:rounded-[2.6rem] md:p-8 lg:p-10"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(204,255,52,0.2),transparent_36%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(143,183,223,0.22),transparent_34%)]" />
 
           <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <h2 className="mt-6 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
+              <h2 className="mt-6 max-w-3xl text-2xl font-semibold tracking-tight md:text-5xl">
                 {finalCta.title}
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-8 text-black/64">
@@ -53,7 +53,7 @@ export default function B2BCTA() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-white/6 p-6 backdrop-blur-xl">
+            <div className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur-xl md:rounded-[2rem]">
               <div className="text-xs font-semibold uppercase tracking-[0.24em] text-black/45">
                 What you receive
               </div>

@@ -14,7 +14,7 @@ const PartnerMarquee = () => {
   const displayPartners = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS];
 
   return (
-    <section className="py-20 relative overflow-hidden bg-gradient-to-b from-white to-gray-50/50">
+    <section className="py-12 relative overflow-hidden bg-gradient-to-b from-white to-gray-50/50 md:py-20">
       <div className="container mx-auto px-4 mb-12 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ const PartnerMarquee = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">
             Our Dealing <span className="text-primary">Partners</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">

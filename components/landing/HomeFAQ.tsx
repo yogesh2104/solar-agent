@@ -42,7 +42,7 @@ export default function HomeFAQ({ faqs }: HomeFAQProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="mt-7 text-4xl font-semibold leading-[1.15] tracking-tight text-slate-950 md:text-6xl"
+              className="mt-7 text-3xl font-semibold leading-[1.15] tracking-tight text-slate-950 md:text-6xl"
             >
               Frequently Asked Questions <br />
             </motion.h2>

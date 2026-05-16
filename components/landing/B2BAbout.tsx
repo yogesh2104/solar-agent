@@ -29,7 +29,7 @@ export default function B2BAbout() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55 }}
-              className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl"
+              className="mt-7 text-3xl font-semibold tracking-tight text-slate-950 md:text-6xl"
             >
               {overview.title}
             </motion.h2>
@@ -39,7 +39,7 @@ export default function B2BAbout() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.55, delay: 0.08 }}
-              className="mt-5 text-2xl leading-10 text-slate-500 md:text-3xl md:leading-[1.35]"
+              className="mt-5 text-xl leading-8 text-slate-500 md:text-3xl md:leading-[1.35]"
             >
               {overview.highlight}
             </motion.p>
@@ -95,18 +95,18 @@ export default function B2BAbout() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55 }}
-            className="rounded-[2.3rem] border border-slate-200 -muted p-6 md:p-8"
+            className="rounded-3xl border border-slate-200 -muted p-6 md:rounded-[2.3rem] md:p-8"
           >
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid gap-4 grid-cols-2 sm:grid-cols-3">
               {overview.stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-[1.6rem] bg-white p-5 shadow-[0_16px_45px_rgba(8,17,31,0.06)]"
+                  className="rounded-[1.6rem] bg-white p-4 md:p-5 shadow-[0_16px_45px_rgba(8,17,31,0.06)]"
                 >
-                  <div className="text-2xl font-semibold tracking-tight text-slate-950">
+                  <div className="md:text-2xl text-xl font-semibold tracking-tight text-slate-950">
                     {stat.value}
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</p>
+                  <p className="mt-2 md:text-sm text-xs leading-6 text-slate-600">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -133,9 +133,9 @@ export default function B2BAbout() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55 }}
-            className="relative overflow-hidden rounded-[2.5rem] border border-slate-200"
+            className="relative overflow-hidden rounded-3xl border border-slate-200 md:rounded-[2.5rem]"
           >
-            <div className="relative h-[320px] md:h-[440px]">
+            <div className="relative h-[280px] md:h-[440px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentImageIndex}
@@ -156,11 +156,11 @@ export default function B2BAbout() {
                 </motion.div>
               </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
-              <div className="absolute inset-x-6 bottom-6 rounded-[1.6rem] border border-white/18 bg-white/88 p-5 text-slate-950 backdrop-blur-xl md:max-w-md">
-                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
+              <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/18 bg-white/88 p-4 text-slate-950 backdrop-blur-xl md:inset-x-6 md:bottom-6 md:rounded-[1.6rem] md:p-5 md:max-w-md">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-500 md:text-xs">
                   Enterprise note
                 </div>
-                <p className="mt-3 text-lg font-semibold leading-8">
+                <p className="mt-2 text-base font-semibold leading-7 md:mt-3 md:text-lg md:leading-8">
                   Grow Green Energy With Us !!
                 </p>
               </div>

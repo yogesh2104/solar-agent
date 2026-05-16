@@ -16,7 +16,7 @@ export default function B2BProjects() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            <h2 className="mt-7 text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+            <h2 className="mt-7 text-3xl font-semibold tracking-tight text-slate-950 md:text-6xl">
               {projects.title}
             </h2>
           </div>
@@ -43,10 +43,10 @@ export default function B2BProjects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55 }}
-            className="overflow-hidden rounded-[2.5rem] h-fit border border-slate-200"
+            className="overflow-hidden rounded-3xl h-fit border border-slate-200 md:rounded-[2.5rem]"
           >
             <Link href="/projects" className="block">
-              <div className="relative h-[320px] md:h-[440px]">
+              <div className="relative h-[280px] md:h-[440px]">
                 <Image
                   src={featured.image}
                   alt={featured.title}

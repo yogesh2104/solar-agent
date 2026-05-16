@@ -15,7 +15,7 @@ export default function B2BWhyUs() {
     >
       <div className="container mx-auto px-6">
         <div className="max-w-3xl">
-          <h2 className="mt-7 text-4xl font-semibold tracking-tight md:text-6xl">
+          <h2 className="mt-7 text-3xl font-semibold tracking-tight md:text-6xl">
             {whyUs.title}
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-8 text-white/62">
@@ -29,9 +29,9 @@ export default function B2BWhyUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55 }}
-            className="overflow-hidden rounded-[2.6rem] border border-white/10"
+            className="overflow-hidden rounded-3xl border border-white/10 md:rounded-[2.6rem]"
           >
-            <div className="relative h-[260px] md:h-[380px]">
+            <div className="relative h-[220px] md:h-[380px]">
               <Image
                 src={whyUs.image}
                 alt="Commercial renewable energy infrastructure"
@@ -47,12 +47,12 @@ export default function B2BWhyUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="rounded-[2.6rem] bg-white p-7 text-slate-950 md:p-10"
+            className="rounded-3xl bg-white p-7 text-slate-950 md:rounded-[2.6rem] md:p-10"
           >
             <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
               What teams use us for
             </div>
-            <h3 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
+            <h3 className="mt-4 text-2xl font-semibold tracking-tight md:text-4xl">
               Pan India supply, trusted brands, and practical solar support.
             </h3>
             <div className="mt-6 space-y-4">
