@@ -23,25 +23,33 @@ export default function StaticPageHeader({
   return (
     <section
       className={cn(
-        "relative overflow-hidden border-b border-slate-200/80 pb-6 pt-28 md:pb-10 md:pt-28",
+        "relative overflow-hidden border-b border-[rgba(15,23,42,0.07)] pb-10 pt-28 md:pb-14 md:pt-32",
         className,
       )}
     >
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(244,248,254,0.94)_0%,rgba(255,255,255,0.92)_70%,rgba(255,255,255,1)_100%)]" />
-      <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(8,17,31,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(8,17,31,0.5)_1px,transparent_1px)] bg-size-[52px_52px]" />
-      <div className="absolute right-0 top-0 h-112 w-md rounded-full bg-[radial-gradient(circle,rgba(143,183,223,0.32),transparent_66%)]" />
-      <div className="absolute bottom-0 left-0 h-96 w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(204,255,52,0.18),transparent_68%)]" />
+      {/* ── Background layers ── */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f7faf9] via-white to-white" />
+        {/* Green radial — top right */}
+        <div className="absolute right-0 top-0 h-[400px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.07),transparent_65%)]" />
+        {/* Yellow radial — bottom left */}
+        <div className="absolute bottom-0 left-0 h-[300px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.05),transparent_65%)]" />
+        {/* Subtle grid */}
+        <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(rgba(15,23,42,1)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,1)_1px,transparent_1px)] bg-[size:52px_52px]" />
+      </div>
 
       <div className="container relative z-10 mx-auto px-6">
+        {/* Breadcrumb */}
         <motion.nav
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-4 py-2 text-sm text-slate-500 shadow-[0_10px_30px_rgba(8,17,31,0.04)] backdrop-blur-xl"
+          className="inline-flex items-center gap-2 rounded-full border border-[rgba(15,23,42,0.08)] bg-white/90 px-4 py-2 text-sm shadow-sm backdrop-blur-xl"
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 font-medium text-slate-600 transition-colors hover:text-slate-950"
+            className="inline-flex items-center gap-1.5 font-medium text-slate-500 transition-colors hover:text-slate-950"
           >
             <Home className="h-3.5 w-3.5" />
             Home
@@ -52,13 +60,17 @@ export default function StaticPageHeader({
           </span>
         </motion.nav>
 
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.06 }}
+          transition={{ duration: 0.55, delay: 0.08 }}
           className="mt-8 max-w-4xl"
         >
-          <h1 className="mt-2 text-4xl font-semibold tracking-tight text-slate-950 md:text-7xl md:leading-[1.02]">
+          <h1
+            className="text-4xl font-bold tracking-tight text-[#0f172a] md:text-6xl md:leading-[1.04]"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+          >
             {title}
             {highlight && (
               <>
@@ -69,9 +81,14 @@ export default function StaticPageHeader({
           </h1>
 
           {description && (
-            <p className="max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.18 }}
+              className="mt-5 max-w-2xl text-base leading-7 text-[#475569] md:text-lg md:leading-8"
+            >
               {description}
-            </p>
+            </motion.p>
           )}
         </motion.div>
       </div>

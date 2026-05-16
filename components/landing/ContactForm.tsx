@@ -6,13 +6,8 @@ import {
   AlertCircle,
   ArrowUpRight,
   CheckCircle2,
-  Clock3,
-  Factory,
-  Mail,
   MapPin,
-  Phone,
   Send,
-  ShieldCheck,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -20,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import siteConfig from "@/lib/siteConfig";
+import ContactAvailability from "@/components/contact/contact-availability";
 
 const industryOptions = [
   "Manufacturing and industrial",
@@ -56,29 +52,6 @@ export default function ContactForm() {
     capacity: "",
   });
 
-  const contactCards = [
-    {
-      icon: Phone,
-      label: "Call",
-      value: company.contact.phone,
-      sub: company.contact.workingHours,
-      href: `tel:${company.contact.phone.replace(/\s+/g, "")}`,
-    },
-    {
-      icon: Mail,
-      label: "Email",
-      value: company.contact.email,
-      sub: "Response within 4 business hours",
-      href: `mailto:${company.contact.email}`,
-    },
-    {
-      icon: MapPin,
-      label: "Office",
-      value: company.contact.address,
-      sub: "Commercial solar consultations by appointment",
-      href: company.contact.googleMaps,
-    },
-  ];
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -147,7 +120,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="bg-[#f7fbff] pt-6">
+    <section id="contact" className="bg-[#f7faf9] pt-6 pb-20">
       <div className="container mx-auto px-6">
         <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr]">
           <div className="space-y-6">
@@ -155,18 +128,21 @@ export default function ContactForm() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="rounded-[2.4rem] -foreground p-8 text-black md:p-10"
+              className="rounded-[2rem] border border-[rgba(15,23,42,0.07)] bg-white p-8 shadow-sm md:p-10"
             >
-              <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
+              <h2
+                className="text-3xl font-bold tracking-tight text-[#0f172a] md:text-4xl"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              >
                 Speak with a team built for B2B solar buying decisions.
               </h2>
-              <p className="mt-5 text-base leading-8 text-black/64">
+              <p className="mt-4 text-base leading-7 text-[#475569]">
                 Use this page for panel sourcing, rooftop solar feasibility,
                 hybrid system planning, or channel-partner support. We will
                 point you to the right commercial path quickly.
               </p>
 
-              <div className="mt-3 grid gap-4 sm:grid-cols-3">
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {[
                   { label: "Response", value: "4 hrs" },
                   { label: "Coverage", value: "18 states" },
@@ -174,12 +150,12 @@ export default function ContactForm() {
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-[1.6rem] border border-white/10 bg-white/6 p-4"
+                    className="rounded-[1.4rem] border border-[rgba(15,23,42,0.07)] bg-[#f7faf9] p-4"
                   >
-                    <div className="text-xs font-semibold uppercase  text-black/45">
+                    <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
                       {item.label}
                     </div>
-                    <div className="mt-2 text-2xl font-semibold">
+                    <div className="mt-1.5 text-2xl font-bold text-[#0f172a]">
                       {item.value}
                     </div>
                   </div>
@@ -187,59 +163,53 @@ export default function ContactForm() {
               </div>
             </motion.div>
 
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-1">
-              {contactCards.map((card, index) => {
-                const Icon = card.icon;
+            {/* ── Business Hours Contact Availability ── */}
+            <ContactAvailability />
 
-                return (
-                  <motion.a
-                    key={card.label}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ delay: index * 0.08 }}
-                    href={card.href}
-                    className="rounded-[1.9rem] border border-slate-200 bg-white p-5 shadow-[0_14px_40px_rgba(8,17,31,0.04)] transition-transform hover:-translate-y-1"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-start gap-4">
-                        <span className="flex size-11 items-center justify-center rounded-full -muted text-slate-950">
-                          <Icon className="size-5" />
-                        </span>
-                        <div>
-                          <div className="text-xs font-semibold uppercase  text-slate-400">
-                            {card.label}
-                          </div>
-                          <div className="mt-2 text-base font-semibold text-slate-950">
-                            {card.value}
-                          </div>
-                          <p className="mt-1 text-sm leading-6 text-slate-600">
-                            {card.sub}
-                          </p>
-                        </div>
-                      </div>
-                      <ArrowUpRight className="mt-1 size-4 text-slate-400" />
-                    </div>
-                  </motion.a>
-                );
-              })}
-            </div>
+            {/* Office location card */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="rounded-[1.9rem] border border-[rgba(15,23,42,0.07)] bg-white p-5 shadow-sm"
+            >
+              <div className="flex items-start gap-4">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-slate-600">
+                  <MapPin className="size-5" />
+                </span>
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
+                    Office
+                  </div>
+                  <div className="mt-1 text-sm font-semibold text-[#0f172a]">
+                    {company.contact.address}
+                  </div>
+                  <p className="mt-0.5 text-xs leading-5 text-[#475569]">
+                    Commercial solar consultations by appointment
+                  </p>
+                </div>
+                <ArrowUpRight className="ml-auto mt-1 size-4 shrink-0 text-slate-300" />
+              </div>
+            </motion.div>
           </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="rounded-[2.4rem] border border-slate-200 bg-white p-8 shadow-[0_24px_70px_rgba(8,17,31,0.06)] md:p-10"
+            className="rounded-[2rem] border border-[rgba(15,23,42,0.07)] bg-white p-8 shadow-[0_16px_60px_rgba(15,23,42,0.07)] md:p-10"
           >
             <div className="mb-8">
-              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+              <div className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
                 Send your enquiry
               </div>
-              <h3 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+              <h3
+                className="mt-3 text-2xl font-bold tracking-tight text-[#0f172a]"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              >
                 Share the essentials and we will take it from there.
               </h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
+              <p className="mt-2 text-sm leading-6 text-[#475569]">
                 We can work from a monthly bill, rough roof area, target
                 capacity, or a sourcing brief.
               </p>
@@ -401,7 +371,7 @@ export default function ContactForm() {
                 size="lg"
                 type="submit"
                 disabled={loading}
-                className="h-14 w-full rounded-2xl bg-slate-950 text-base font-semibold text-white hover:bg-slate-800"
+                className="h-13 w-full rounded-2xl bg-primary text-base font-semibold text-white hover:bg-primary/90 hover:shadow-[0_6px_24px_rgba(34,197,94,0.28)] transition-all duration-200"
               >
                 {loading ? "Submitting..." : "Submit enterprise enquiry"}
                 {!loading && <Send className="ml-2 size-4" />}

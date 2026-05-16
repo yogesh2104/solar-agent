@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import SessionProvider from "@/components/providers/SessionProvider";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import B2BNavbar from "@/components/landing/B2BNavbar";
@@ -7,12 +7,19 @@ import B2BFooter from "@/components/landing/B2BFooter";
 import WhatsAppCTA from "@/components/landing/WhatsAppCTA";
 import siteConfig from "@/lib/siteConfig";
 import "./globals.css";
-import type { Viewport } from 'next'
+import type { Viewport } from 'next';
 
 
-const fontSans = Outfit({
+const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const fontHeading = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -241,7 +248,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontSans.variable} antialiased`}
+      className={`${fontSans.variable} ${fontHeading.variable} antialiased`}
       suppressHydrationWarning
     >
       <body

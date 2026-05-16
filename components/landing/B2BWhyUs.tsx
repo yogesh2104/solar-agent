@@ -11,69 +11,78 @@ export default function B2BWhyUs() {
   return (
     <section
       id="why-us"
-      className="overflow-hidden bg-foreground py-7 text-white md:py-10"
+      className="relative overflow-hidden bg-[#f7faf9] py-10 md:py-14"
     >
+      {/* Subtle background glows */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.06),transparent_60%)]" />
+        <div className="absolute bottom-0 left-0 h-[300px] w-[350px] rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.05),transparent_60%)]" />
+      </div>
+
       <div className="container mx-auto px-6">
+        {/* Section header */}
         <div className="max-w-3xl">
-          <h2 className="mt-7 text-4xl font-semibold tracking-tight md:text-6xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(15,23,42,0.08)] bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-slate-500 shadow-sm">
+            <span className="size-1.5 rounded-full bg-primary" />
+            {whyUs.badge}
+          </div>
+          <h2
+            className="mt-6 text-4xl font-bold tracking-tight text-[#0f172a] md:text-5xl"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+          >
             {whyUs.title}
           </h2>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-white/62">
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[#475569]">
             {whyUs.description}
           </p>
         </div>
 
-        <div className="mt-14 grid gap-8 xl:grid-cols-[1.04fr_0.96fr]">
+        <div className="mt-12 grid gap-8 xl:grid-cols-[1.04fr_0.96fr]">
+          {/* Image card */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55 }}
-            className="overflow-hidden rounded-[2.6rem] border border-white/10"
+            className="overflow-hidden rounded-[2.5rem] border border-[rgba(15,23,42,0.07)] shadow-sm"
           >
             <div className="relative h-[360px] md:h-[520px]">
               <Image
                 src={whyUs.image}
                 alt="Commercial renewable energy infrastructure"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 hover:scale-[1.02]"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,17,31,0.08)_0%,rgba(8,17,31,0.2)_28%,rgba(8,17,31,0.74)_100%)]" />
+              {/* Soft top light */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#f7faf9]/30 via-transparent to-transparent" />
             </div>
           </motion.div>
 
+          {/* Checklist card */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="rounded-[2.6rem] bg-white p-7 text-slate-950 md:p-10"
+            className="rounded-[2.5rem] border border-[rgba(15,23,42,0.07)] bg-white p-8 shadow-sm md:p-10"
           >
-            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+            <div className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
               What teams use us for
             </div>
-            <h3 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
+            <h3
+              className="mt-4 text-2xl font-bold tracking-tight text-[#0f172a] md:text-3xl"
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
               Pan India supply, trusted brands, and practical solar support.
             </h3>
-            <div className="mt-6 space-y-4">
+            <div className="mt-7 space-y-4">
               {whyUs.checklist.map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 -secondary" />
-                  <p className="text-sm leading-7 text-slate-600">{item}</p>
+                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" />
+                  <p className="text-sm leading-6 text-[#475569]">{item}</p>
                 </div>
               ))}
             </div>
-
-            {/* <div className="mt-8 rounded-[1.8rem] bg-slate-950 p-6 text-white">
-              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
-                Operating principle
-              </div>
-              <p className="mt-3 text-lg leading-8 text-white/72">
-                We treat solar as an operating asset, not a one-time install.
-                That changes how proposals are structured, how projects are
-                deployed, and how support is handled afterward.
-              </p>
-            </div> */}
           </motion.div>
         </div>
       </div>
